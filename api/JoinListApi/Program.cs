@@ -201,6 +201,222 @@ app.MapGet("/api/systemconfig", async () =>
     }
 });
 
+// --- PUT SystemConfig endpoint ---
+app.MapPut("/api/systemconfig", async (HttpRequest request) =>
+{
+    if (request.ContentLength > 1_048_576)
+    {
+        return Results.BadRequest(new { message = "Request body too large. Maximum 1MB." });
+    }
+
+    using var reader = new StreamReader(request.Body);
+    string body = await reader.ReadToEndAsync();
+
+    if (body.Length > 1_048_576)
+    {
+        return Results.BadRequest(new { message = "Request body too large. Maximum 1MB." });
+    }
+
+    if (string.IsNullOrWhiteSpace(body))
+    {
+        return Results.BadRequest(new { message = "Empty payload." });
+    }
+
+    if (!TryValidateSystemConfig(body, out var error))
+    {
+        return Results.BadRequest(new { message = error });
+    }
+
+    try
+    {
+        var directory = Path.GetDirectoryName(systemConfigPath);
+        if (!string.IsNullOrWhiteSpace(directory))
+        {
+            Directory.CreateDirectory(directory);
+        }
+
+        await fileLock.WaitAsync();
+        try
+        {
+            var tempPath = systemConfigPath + ".tmp";
+            await File.WriteAllTextAsync(tempPath, body);
+            File.Move(tempPath, systemConfigPath, overwrite: true);
+        }
+        finally
+        {
+            fileLock.Release();
+        }
+
+        logger.LogInformation("SystemConfig updated successfully.");
+        return Results.Ok(new { message = "SystemConfig updated." });
+    }
+    catch (IOException ex)
+    {
+        logger.LogError(ex, "Failed to write SystemConfig file.");
+        return Results.Problem("Unable to write SystemConfig file.");
+    }
+});
+
+// --- Validate SystemConfig endpoint ---
+app.MapPost("/api/systemconfig/validate", async (HttpRequest request) =>
+{
+    using var reader = new StreamReader(request.Body);
+    string body = await reader.ReadToEndAsync();
+
+    if (string.IsNullOrWhiteSpace(body))
+    {
+        return Results.BadRequest(new { valid = false, errors = new[] { "Empty payload." } });
+    }
+
+    if (!TryValidateSystemConfig(body, out var error))
+    {
+        return Results.Ok(new { valid = false, errors = new[] { error } });
+    }
+
+    return Results.Ok(new { valid = true, errors = Array.Empty<string>() });
+});
+
+// --- New SystemConfig template endpoint ---
+app.MapPost("/api/systemconfig/new", async (HttpRequest request) =>
+{
+    using var reader = new StreamReader(request.Body);
+    string body = await reader.ReadToEndAsync();
+
+    if (string.IsNullOrWhiteSpace(body))
+    {
+        return Results.BadRequest(new { message = "Empty payload." });
+    }
+
+    try
+    {
+        using var doc = JsonDocument.Parse(body);
+        var root = doc.RootElement;
+
+        var projectId = root.TryGetProperty("projectId", out var pid) ? pid.GetString() ?? "" : "";
+        var systemName = root.TryGetProperty("systemName", out var sn) ? sn.GetString() ?? "" : "";
+
+        if (string.IsNullOrWhiteSpace(projectId))
+        {
+            return Results.BadRequest(new { message = "projectId is required." });
+        }
+
+        if (string.IsNullOrWhiteSpace(systemName))
+        {
+            systemName = projectId;
+        }
+
+        var rooms = new List<object>();
+        int offset = 0;
+        if (root.TryGetProperty("rooms", out var roomsEl) && roomsEl.ValueKind == JsonValueKind.Array)
+        {
+            foreach (var room in roomsEl.EnumerateArray())
+            {
+                var roomName = room.TryGetProperty("name", out var rn) ? rn.GetString() ?? "Room" : "Room";
+                var roomId = Slugify(roomName);
+                rooms.Add(new
+                {
+                    id = roomId,
+                    name = roomName,
+                    joinOffset = offset,
+                    subsystems = new[] { "av", "lighting" },
+                    devices = new Dictionary<string, object>(),
+                    sources = Array.Empty<string>(),
+                });
+                offset += 100;
+            }
+        }
+
+        var config = new
+        {
+            schemaVersion = "1.0",
+            projectId,
+            processor = "CP4",
+            system = new
+            {
+                name = systemName,
+                eiscIpId = "0x03",
+                eiscIpAddress = "127.0.0.2",
+            },
+            rooms,
+            sources = Array.Empty<object>(),
+            scenes = Array.Empty<object>(),
+        };
+
+        return Results.Json(config);
+    }
+    catch (JsonException)
+    {
+        return Results.BadRequest(new { message = "Invalid JSON format." });
+    }
+});
+
+// --- Export SystemConfig bundle endpoint ---
+app.MapGet("/api/systemconfig/export", async () =>
+{
+    if (!File.Exists(systemConfigPath))
+    {
+        return Results.NotFound(new { message = "SystemConfig file not found." });
+    }
+
+    try
+    {
+        await fileLock.WaitAsync();
+        string configJson;
+        try
+        {
+            configJson = await File.ReadAllTextAsync(systemConfigPath);
+        }
+        finally
+        {
+            fileLock.Release();
+        }
+
+        var contract = JoinContractBuilder.Build(configJson);
+
+        // Collect device profile IDs from config
+        var profileIds = new List<string>();
+        using var doc = JsonDocument.Parse(configJson);
+        if (doc.RootElement.TryGetProperty("rooms", out var roomsEl))
+        {
+            foreach (var room in roomsEl.EnumerateArray())
+            {
+                if (room.TryGetProperty("devices", out var devicesEl))
+                {
+                    foreach (var dev in devicesEl.EnumerateObject())
+                    {
+                        if (dev.Value.TryGetProperty("profileId", out var profileProp))
+                        {
+                            var id = profileProp.GetString();
+                            if (!string.IsNullOrEmpty(id) && !profileIds.Contains(id))
+                            {
+                                profileIds.Add(id);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        var configParsed = JsonSerializer.Deserialize<JsonElement>(configJson);
+        return Results.Json(new
+        {
+            systemConfig = configParsed,
+            joinContract = contract,
+            deviceProfileIds = profileIds,
+        });
+    }
+    catch (IOException ex)
+    {
+        logger.LogError(ex, "Failed to read SystemConfig for export.");
+        return Results.Problem("Unable to export configuration.");
+    }
+    catch (JsonException ex)
+    {
+        logger.LogError(ex, "Invalid SystemConfig JSON for export.");
+        return Results.BadRequest(new { message = "SystemConfig contains invalid JSON." });
+    }
+});
+
 // --- Join Contract endpoint (computed server-side) ---
 app.MapGet("/api/joincontract", async () =>
 {
@@ -430,6 +646,260 @@ static bool TryValidateJoinList(string json, out string error)
                 }
 
                 index++;
+            }
+        }
+
+        error = string.Empty;
+        return true;
+    }
+    catch (JsonException)
+    {
+        error = "Invalid JSON format.";
+        return false;
+    }
+}
+
+static string Slugify(string name)
+{
+    var sb = new StringBuilder();
+    foreach (var c in name.ToLowerInvariant())
+    {
+        if (char.IsLetterOrDigit(c)) sb.Append(c);
+        else if (c == ' ' || c == '-' || c == '_') sb.Append('-');
+    }
+    // collapse consecutive dashes and trim
+    var result = sb.ToString();
+    while (result.Contains("--")) result = result.Replace("--", "-");
+    return result.Trim('-');
+}
+
+static bool TryValidateSystemConfig(string json, out string error)
+{
+    try
+    {
+        using var document = JsonDocument.Parse(json);
+        var root = document.RootElement;
+
+        // schemaVersion
+        if (!root.TryGetProperty("schemaVersion", out var schema)
+            || schema.ValueKind != JsonValueKind.String
+            || schema.GetString() != "1.0")
+        {
+            error = "schemaVersion must be '1.0'.";
+            return false;
+        }
+
+        // processor
+        if (!root.TryGetProperty("processor", out var processor)
+            || processor.ValueKind != JsonValueKind.String
+            || !string.Equals(processor.GetString(), "CP4", StringComparison.OrdinalIgnoreCase))
+        {
+            error = "processor must be 'CP4'.";
+            return false;
+        }
+
+        // projectId
+        if (!root.TryGetProperty("projectId", out var projectId)
+            || projectId.ValueKind != JsonValueKind.String
+            || string.IsNullOrWhiteSpace(projectId.GetString()))
+        {
+            error = "projectId is required and must be a non-empty string.";
+            return false;
+        }
+
+        // system block
+        if (!root.TryGetProperty("system", out var system) || system.ValueKind != JsonValueKind.Object)
+        {
+            error = "system section is required.";
+            return false;
+        }
+
+        if (!system.TryGetProperty("name", out var sysName)
+            || sysName.ValueKind != JsonValueKind.String
+            || string.IsNullOrWhiteSpace(sysName.GetString()))
+        {
+            error = "system.name is required.";
+            return false;
+        }
+
+        // Valid subsystems and protocols
+        var validSubsystems = new HashSet<string> { "av", "lighting", "shades", "hvac", "security" };
+        var validProtocols = new HashSet<string> { "ir", "serial", "ip", "bacnet", "modbus", "knx", "artnet", "shelly", "pjlink" };
+
+        // Rooms
+        if (!root.TryGetProperty("rooms", out var rooms) || rooms.ValueKind != JsonValueKind.Array)
+        {
+            error = "rooms must be an array.";
+            return false;
+        }
+
+        var seenRoomIds = new HashSet<string>();
+        var seenOffsets = new HashSet<int>();
+        int roomIndex = 0;
+        foreach (var room in rooms.EnumerateArray())
+        {
+            // id
+            if (!room.TryGetProperty("id", out var roomId)
+                || roomId.ValueKind != JsonValueKind.String
+                || string.IsNullOrWhiteSpace(roomId.GetString()))
+            {
+                error = $"rooms[{roomIndex}].id is required.";
+                return false;
+            }
+            if (!seenRoomIds.Add(roomId.GetString()!))
+            {
+                error = $"Duplicate room ID '{roomId.GetString()}'.";
+                return false;
+            }
+
+            // name
+            if (!room.TryGetProperty("name", out var roomName)
+                || roomName.ValueKind != JsonValueKind.String
+                || string.IsNullOrWhiteSpace(roomName.GetString()))
+            {
+                error = $"rooms[{roomIndex}].name is required.";
+                return false;
+            }
+
+            // joinOffset
+            if (!room.TryGetProperty("joinOffset", out var offsetEl)
+                || offsetEl.ValueKind != JsonValueKind.Number
+                || !offsetEl.TryGetInt32(out var offset))
+            {
+                error = $"rooms[{roomIndex}].joinOffset must be an integer.";
+                return false;
+            }
+            if (offset < 0 || offset >= 900)
+            {
+                error = $"rooms[{roomIndex}].joinOffset must be >= 0 and < 900.";
+                return false;
+            }
+            if (!seenOffsets.Add(offset))
+            {
+                error = $"Duplicate joinOffset {offset}.";
+                return false;
+            }
+
+            // Check offset spacing: all offsets must differ by at least 100
+            foreach (var existing in seenOffsets)
+            {
+                if (existing != offset && Math.Abs(existing - offset) < 100)
+                {
+                    error = $"rooms[{roomIndex}].joinOffset {offset} too close to another room offset (minimum spacing: 100).";
+                    return false;
+                }
+            }
+
+            // subsystems
+            if (room.TryGetProperty("subsystems", out var subs) && subs.ValueKind == JsonValueKind.Array)
+            {
+                foreach (var sub in subs.EnumerateArray())
+                {
+                    var subVal = sub.GetString()?.ToLowerInvariant();
+                    if (subVal != null && !validSubsystems.Contains(subVal))
+                    {
+                        error = $"rooms[{roomIndex}] has invalid subsystem '{subVal}'. Valid: {string.Join(", ", validSubsystems)}.";
+                        return false;
+                    }
+                }
+            }
+
+            // devices — validate protocols
+            if (room.TryGetProperty("devices", out var devices) && devices.ValueKind == JsonValueKind.Object)
+            {
+                foreach (var dev in devices.EnumerateObject())
+                {
+                    if (dev.Value.TryGetProperty("protocol", out var proto))
+                    {
+                        var protoVal = proto.GetString()?.ToLowerInvariant();
+                        if (protoVal != null && !validProtocols.Contains(protoVal))
+                        {
+                            error = $"rooms[{roomIndex}].devices.{dev.Name} has invalid protocol '{protoVal}'.";
+                            return false;
+                        }
+                    }
+                }
+            }
+
+            roomIndex++;
+        }
+
+        // Sources
+        if (root.TryGetProperty("sources", out var sources) && sources.ValueKind == JsonValueKind.Array)
+        {
+            var seenSourceIds = new HashSet<string>();
+            int srcIndex = 0;
+            foreach (var src in sources.EnumerateArray())
+            {
+                if (!src.TryGetProperty("id", out var srcId)
+                    || srcId.ValueKind != JsonValueKind.String
+                    || string.IsNullOrWhiteSpace(srcId.GetString()))
+                {
+                    error = $"sources[{srcIndex}].id is required.";
+                    return false;
+                }
+                if (!seenSourceIds.Add(srcId.GetString()!))
+                {
+                    error = $"Duplicate source ID '{srcId.GetString()}'.";
+                    return false;
+                }
+                srcIndex++;
+            }
+
+            // Validate room source refs
+            foreach (var room in rooms.EnumerateArray())
+            {
+                if (room.TryGetProperty("sources", out var roomSources) && roomSources.ValueKind == JsonValueKind.Array)
+                {
+                    foreach (var s in roomSources.EnumerateArray())
+                    {
+                        var sRef = s.GetString();
+                        if (sRef != null && !seenSourceIds.Contains(sRef))
+                        {
+                            var rId = room.GetProperty("id").GetString();
+                            error = $"Room '{rId}' references undefined source '{sRef}'.";
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+
+        // Scenes
+        if (root.TryGetProperty("scenes", out var scenes) && scenes.ValueKind == JsonValueKind.Array)
+        {
+            var seenSceneIds = new HashSet<string>();
+            int scnIndex = 0;
+            foreach (var scn in scenes.EnumerateArray())
+            {
+                if (!scn.TryGetProperty("id", out var scnId)
+                    || scnId.ValueKind != JsonValueKind.String
+                    || string.IsNullOrWhiteSpace(scnId.GetString()))
+                {
+                    error = $"scenes[{scnIndex}].id is required.";
+                    return false;
+                }
+                if (!seenSceneIds.Add(scnId.GetString()!))
+                {
+                    error = $"Duplicate scene ID '{scnId.GetString()}'.";
+                    return false;
+                }
+
+                // Validate room refs in scenes
+                if (scn.TryGetProperty("rooms", out var scnRooms) && scnRooms.ValueKind == JsonValueKind.Array)
+                {
+                    foreach (var r in scnRooms.EnumerateArray())
+                    {
+                        var rRef = r.GetString();
+                        if (rRef != null && rRef != "all" && !seenRoomIds.Contains(rRef))
+                        {
+                            error = $"Scene '{scnId.GetString()}' references undefined room '{rRef}'.";
+                            return false;
+                        }
+                    }
+                }
+
+                scnIndex++;
             }
         }
 
