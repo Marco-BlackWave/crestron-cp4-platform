@@ -1,0 +1,18 @@
+{
+  "id": "save-string-v0",
+  "manufacturer": "Save",
+  "model": "String v0",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Save String v0.usp"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "panasonic-generic",
+  "manufacturer": "Panasonic",
+  "model": "Generic",
+  "category": "audio",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "cmd1": "CL1I%01dO%01dT\r\n",
+        "cmd2": "\\x02AVL:%01d\\x03",
+        "cmd3": "\\x02AVL:-%01d\\x03"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": true,
+    "inputSelect": true,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "make_string_panasonic.usp"
+}

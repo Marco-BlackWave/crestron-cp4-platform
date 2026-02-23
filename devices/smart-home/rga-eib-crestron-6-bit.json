@@ -1,0 +1,29 @@
+{
+  "id": "rga-eib-crestron-6-bit",
+  "manufacturer": "RGA",
+  "model": "EIB-CRESTRON 6 Bit",
+  "category": "gateway",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "up": "\\x01%c%c\\x09",
+        "down": "\\x01%c%c\\x01",
+        "cmd3": "\\x00%c%c\\x00",
+        "cmd4": "\\x01%c%c\\x00"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "RGA EIB-CRESTRON 6 Bit.usp"
+}

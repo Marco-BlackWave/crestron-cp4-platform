@@ -1,0 +1,19 @@
+{
+  "id": "bose-ex-series-parameter-set-control",
+  "manufacturer": "Bose",
+  "model": "EX Series Parameter Set Control",
+  "category": "audio",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Bose EX Series Parameter Set Control.usp",
+  "externalLibrary": "BoseExSeriesLib"
+}

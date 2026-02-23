@@ -1,0 +1,23 @@
+{
+  "id": "fdk-on-off-value",
+  "manufacturer": "fdk",
+  "model": "on off value",
+  "category": "utility",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": true,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "fdk_on_off_value_V1.0_AZ.usp"
+}

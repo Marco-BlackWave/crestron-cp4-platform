@@ -1,0 +1,18 @@
+{
+  "id": "lutron-homeworks-qs-dimming-load-parsing-module-s-r01",
+  "manufacturer": "Lutron",
+  "model": "Homeworks QS Dimming Load Parsing Module S\u002B r01",
+  "category": "lighting",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Lutron Homeworks QS Dimming Load Parsing Module S\u002B r01.usp"
+}

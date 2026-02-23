@@ -1,0 +1,22 @@
+{
+  "id": "bss-blu-voipdialer-control-module",
+  "manufacturer": "BSS",
+  "model": "BLU VoIPDialer Control Module",
+  "category": "dsp",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "dsp": {
+    "maxChannels": 8
+  },
+  "sourceModule": "BSS BLU VoIPDialer Control Module v1.0.usp",
+  "externalLibrary": "BSSCommLIB"
+}

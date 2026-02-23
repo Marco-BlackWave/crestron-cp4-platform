@@ -1,0 +1,23 @@
+{
+  "id": "write-setpoint-rxb-v1-ale",
+  "manufacturer": "write",
+  "model": "setpoint rxb V1 ALE",
+  "category": "hvac",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": true,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "write_setpoint_rxb_V1_ALE.usp"
+}

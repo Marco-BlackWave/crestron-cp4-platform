@@ -1,0 +1,23 @@
+{
+  "id": "analog-to-digital-freddo",
+  "manufacturer": "Analog",
+  "model": "to digital freddo",
+  "category": "utility",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": true,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Analog to digital_freddo_v1.0_ALE.usp"
+}

@@ -1,0 +1,19 @@
+{
+  "id": "analog-32-64-bit-serial-converter",
+  "manufacturer": "Analog",
+  "model": "32 64 bit Serial Converter",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Analog 32 64 bit Serial Converter v1.2.usp",
+  "externalLibrary": "IntToStringConverter"
+}

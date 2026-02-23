@@ -1,0 +1,58 @@
+{
+  "id": "apple-tv-status-processor",
+  "manufacturer": "Apple",
+  "model": "TV Status Processor",
+  "category": "display",
+  "protocols": {
+    "ip": {
+      "port": 23,
+      "type": "tcp",
+      "commands": {
+        "startgenius": "/ctrl-int/1/set-genius-seed?item-spec=\u0027dmap.itemid:"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "server-info",
+      "signal": "_txBuffer"
+    },
+    {
+      "pattern": "IP\\ Address",
+      "signal": "rx$"
+    },
+    {
+      "pattern": "IP\\ Address:\\ ",
+      "signal": "rx$"
+    },
+    {
+      "pattern": "Host\\ Name:\\ ",
+      "signal": "rx$"
+    },
+    {
+      "pattern": ":",
+      "signal": "rx$"
+    },
+    {
+      "pattern": "Activation\\ is\\ :",
+      "signal": "rx$"
+    },
+    {
+      "pattern": ":",
+      "signal": "rx$"
+    },
+    {
+      "pattern": "\\(none\\ entered\\)",
+      "signal": "_myHostName$"
+    }
+  ],
+  "sourceModule": "Autonomic Apple TV Status Processor v1.2.usp"
+}

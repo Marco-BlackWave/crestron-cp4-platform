@@ -1,0 +1,18 @@
+{
+  "id": "text-scroller",
+  "manufacturer": "text",
+  "model": "scroller",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "text scroller v1.0.usp"
+}

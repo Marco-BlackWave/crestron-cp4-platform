@@ -1,0 +1,28 @@
+{
+  "id": "cy-entertainment-management",
+  "manufacturer": "CY",
+  "model": "Entertainment Management",
+  "category": "utility",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "selectAudioSource": "You are about to switch off\raudio only!",
+        "selectVideoSource": "You are about to switch off\rvideo only!",
+        "selectAvSource": "You are about to shutdown\rthe entire entertainment system!"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": true,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "CY Entertainment Management v1.2.usp"
+}

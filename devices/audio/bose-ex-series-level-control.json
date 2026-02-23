@@ -1,0 +1,19 @@
+{
+  "id": "bose-ex-series-level-control",
+  "manufacturer": "Bose",
+  "model": "EX Series Level Control",
+  "category": "audio",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Bose EX Series Level Control.usp",
+  "externalLibrary": "BoseExSeriesLib"
+}

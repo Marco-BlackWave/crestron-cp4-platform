@@ -1,0 +1,59 @@
+{
+  "id": "lutron-v3-1-no-fdk-btn",
+  "manufacturer": "Lutron",
+  "model": "v3.1 no fdk btn",
+  "category": "lighting",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "btnUp": "KBP,[%02d:%02d:%02d],24\n",
+        "btnDown": "KBP,[%02d:%02d:%02d],23\n",
+        "cmd3": "KBP,[%02d:%02d:%02d],01\n",
+        "cmd4": "KBR,[%02d:%02d:%02d],01\n",
+        "cmd5": "KBP,[%02d:%02d:%02d],02\n",
+        "cmd6": "KBR,[%02d:%02d:%02d],02\n",
+        "cmd7": "KBP,[%02d:%02d:%02d],03\n",
+        "cmd8": "KBR,[%02d:%02d:%02d],03\n",
+        "cmd9": "KBP,[%02d:%02d:%02d],04\n",
+        "cmd10": "KBR,[%02d:%02d:%02d],04\n",
+        "cmd11": "KBP,[%02d:%02d:%02d],05\n",
+        "cmd12": "KBR,[%02d:%02d:%02d],05\n",
+        "cmd13": "KBP,[%02d:%02d:%02d],06\n",
+        "cmd14": "KBR,[%02d:%02d:%02d],06\n",
+        "cmd15": "KBP,[%02d:%02d:%02d],07\n",
+        "cmd16": "KBR,[%02d:%02d:%02d],07\n",
+        "cmd17": "KBP,[%02d:%02d:%02d],08\n",
+        "cmd18": "KBR,[%02d:%02d:%02d],08\n",
+        "cmd19": "KBP,[%02d:%02d:%02d],09\n",
+        "cmd20": "KBR,[%02d:%02d:%02d],09\n",
+        "cmd21": "KBP,[%02d:%02d:%02d],10\n",
+        "cmd22": "KBR,[%02d:%02d:%02d],10\n",
+        "cmd23": "KBP,[%02d:%02d:%02d],11\n",
+        "cmd24": "KBR,[%02d:%02d:%02d],11\n",
+        "cmd25": "KBP,[%02d:%02d:%02d],12\n",
+        "cmd26": "KBR,[%02d:%02d:%02d],12\n",
+        "cmd27": "KBP,[%02d:%02d:%02d],13\n",
+        "cmd28": "KBR,[%02d:%02d:%02d],13\n",
+        "cmd29": "KBP,[%02d:%02d:%02d],14\n",
+        "cmd30": "KBR,[%02d:%02d:%02d],14\n",
+        "cmd31": "KBP,[%02d:%02d:%02d],15\n",
+        "cmd32": "KBR,[%02d:%02d:%02d],15\n",
+        "cmd33": "KBR,[%02d:%02d:%02d],24\n",
+        "cmd34": "KBR,[%02d:%02d:%02d],23\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "lutron_v3.1_no_fdk_btn.usp"
+}

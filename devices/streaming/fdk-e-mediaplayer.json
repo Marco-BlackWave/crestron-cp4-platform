@@ -1,0 +1,37 @@
+{
+  "id": "fdk-e-mediaplayer",
+  "manufacturer": "fdk",
+  "model": "e-mediaplayer",
+  "category": "media",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "Riproduzione",
+      "signal": "rx$"
+    },
+    {
+      "pattern": "Interrotto",
+      "signal": "rx$"
+    },
+    {
+      "pattern": "In\\ pausa",
+      "signal": "rx$"
+    }
+  ],
+  "sourceModule": "fdk_e-mediaplayer.usp"
+}

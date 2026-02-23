@@ -1,0 +1,49 @@
+{
+  "id": "bss-soundweb-london-n-gain-8-chan-basic",
+  "manufacturer": "BSS",
+  "model": "Soundweb London N-Gain 8-Chan BASIC",
+  "category": "dsp",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "enableFeedback": "\\x89\\x00\\x00\\x03%s%s%s\\x00\\x00\\x00\\x00\\x03\\x03\\x03\\x03\\x03",
+        "disableFeedback": "\\x8A\\x00\\x00\\x03%s%s%s\\x00\\x00\\x00\\x00\\x03\\x03\\x03\\x03\\x03",
+        "chan1Mute": "\\x88\\x00\\x00\\x03%s%s%s\\x00\\x00\\x00\\x01\\x03\\x03\\x03\\x03\\x03",
+        "chan2Mute": "\\x88\\x00\\x00\\x03%s%s%s\\x00\\x00\\x00\\x01\\x03\\x03\\x03\\x03\\x03",
+        "chan3Mute": "\\x88\\x00\\x00\\x03%s%s%s\\x00\\x00\\x00\\x01\\x03\\x03\\x03\\x03\\x03",
+        "chan4Mute": "\\x88\\x00\\x00\\x03%s%s%s\\x00\\x00\\x00\\x01\\x03\\x03\\x03\\x03\\x03",
+        "chan5Mute": "\\x88\\x00\\x00\\x03%s%s%s\\x00\\x00\\x00\\x01\\x03\\x03\\x03\\x03\\x03",
+        "chan6Mute": "\\x88\\x00\\x00\\x03%s%s%s\\x00\\x00\\x00\\x01\\x03\\x03\\x03\\x03\\x03",
+        "chan7Mute": "\\x88\\x00\\x00\\x03%s%s%s\\x00\\x00\\x00\\x01\\x03\\x03\\x03\\x03\\x03",
+        "chan8Mute": "\\x88\\x00\\x00\\x03%s%s%s\\x00\\x00\\x00\\x01\\x03\\x03\\x03\\x03\\x03",
+        "masteroutMute": "\\x88\\x00\\x00\\x03%s%s%s\\x00\\x00\\x00\\x01\\x03\\x03\\x03\\x03\\x03",
+        "cmd12": "\\x8E\\x00\\x00\\x03%s%s%s%s\\x03\\x03\\x03\\x03\\x03",
+        "cmd13": "\\x8F\\x00\\x00\\x03%s%s%s%s\\x03\\x03\\x03\\x03\\x03",
+        "cmd14": "\\x88\\x00\\x00\\x03%s%s%s\\x00\\x00\\x00\\x00\\x03\\x03\\x03\\x03\\x03",
+        "cmd15": "\\x8D\\x00\\x00\\x03%s%s%s%s\\x03\\x03\\x03\\x03\\x03"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "dsp": {
+    "maxChannels": 8
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x03\\\\x03\\\\x03\\\\x03\\\\x03",
+      "signal": "rx$"
+    }
+  ],
+  "sourceModule": "BSS Soundweb London N-Gain 8-Chan BASIC.usp"
+}

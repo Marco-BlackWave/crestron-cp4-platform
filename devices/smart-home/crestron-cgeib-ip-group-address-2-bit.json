@@ -1,0 +1,35 @@
+{
+  "id": "crestron-cgeib-ip-group-address-2-bit",
+  "manufacturer": "Crestron",
+  "model": "CGEIB(-IP) Group Address 2 Bit",
+  "category": "gateway",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "turnOnControl": "%s%02d\r",
+        "turnOffControl": "%s%02d\r",
+        "turnOnValue": "%s%02d\r",
+        "turnOffValue": "%s%02d\r"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "/",
+      "signal": "Group_Address"
+    }
+  ],
+  "sourceModule": "Crestron CGEIB(-IP) Group Address 2 Bit v2.3.usp"
+}

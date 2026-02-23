@@ -1,0 +1,25 @@
+{
+  "id": "hanna-ph",
+  "manufacturer": "Hanna",
+  "model": "PH",
+  "category": "utility",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "poll1": ":0103160B0001DA\r\n",
+        "poll2": ":0103160C0001D9\r\n",
+        "poll3": ":0103160D0001D8\r\n",
+        "poll4": ":0103160E0001D7\r\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Hanna_PH_V1.1_ALE.usp"
+}

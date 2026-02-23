@@ -1,0 +1,30 @@
+{
+  "id": "condaria-v1-1-ale",
+  "manufacturer": "Condaria",
+  "model": "V1.1 Ale",
+  "category": "hvac",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "cmd1": "\\xFE%s\\x04%s",
+        "cmd2": "\\xFE%s\\x06%s",
+        "cmd3": "\\xFE%s\\x07\\x03",
+        "cmd4": "\\xFE%s\\x07\\x06",
+        "cmd5": "\\xFE%s\\x07\\x09"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Condaria_V1.1_Ale.usp"
+}

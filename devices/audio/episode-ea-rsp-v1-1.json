@@ -1,0 +1,35 @@
+{
+  "id": "episode-ea-rsp-v1-1",
+  "manufacturer": "Episode",
+  "model": "EA-RSP-v1.1",
+  "category": "audio",
+  "protocols": {
+    "ip": {
+      "port": 23,
+      "type": "tcp"
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": true,
+    "inputSelect": true,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": ",",
+      "signal": "copy"
+    },
+    {
+      "pattern": "},",
+      "signal": "array"
+    },
+    {
+      "pattern": "},",
+      "signal": "array"
+    }
+  ],
+  "sourceModule": "Episode_EA-RSP-v1.1.usp"
+}

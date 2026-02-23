@@ -1,0 +1,52 @@
+{
+  "id": "protune-v1-ale",
+  "manufacturer": "Protune",
+  "model": "V1 ALE",
+  "category": "dsp",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "radioOn": "\\x1BMP1\r",
+        "radioOff": "\\x1BMP0\r",
+        "searchUp": "\\x1BS\u002B\r",
+        "searchDown": "\\x1BS-\r",
+        "fm": "\\x1BMR\r",
+        "radioa": "\\x1BMA\r",
+        "radiob": "\\x1BMB\r",
+        "save1": "\\x1BWD1\r",
+        "save2": "\\x1BWD2\r",
+        "save3": "\\x1BWD3\r",
+        "save4": "\\x1BWD4\r",
+        "save5": "\\x1BWD5\r",
+        "save6": "\\x1BWD6\r",
+        "save7": "\\x1BWD7\r",
+        "save8": "\\x1BWD8\r",
+        "preset1": "\\x1BPD1\r",
+        "preset2": "\\x1BPD2\r",
+        "preset3": "\\x1BPD3\r",
+        "preset4": "\\x1BPD4\r",
+        "preset5": "\\x1BPD5\r",
+        "preset6": "\\x1BPD6\r",
+        "preset7": "\\x1BPD7\r",
+        "preset8": "\\x1BPD8\r",
+        "polling": "\\x1B?F\r",
+        "presetUp": "\\x1BP\u002B\r",
+        "presetDown": "\\x1BP-\r",
+        "scanUp": "\\x1BF\u002B\r",
+        "scanDown": "\\x1BF-\r"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "dsp": {
+    "maxChannels": 8
+  },
+  "sourceModule": "Protune_V1_ALE.usp"
+}

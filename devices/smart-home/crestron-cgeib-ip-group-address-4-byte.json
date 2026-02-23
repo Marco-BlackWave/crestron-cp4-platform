@@ -1,0 +1,30 @@
+{
+  "id": "crestron-cgeib-ip-group-address-4-byte",
+  "manufacturer": "Crestron",
+  "model": "CGEIB(-IP) Group Address 4 Byte",
+  "category": "gateway",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "sendValue": "%s%02X%02X%02X%02X\r",
+        "cmd2": "%lu",
+        "cmd3": "%ld"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "/",
+      "signal": "Group_Address"
+    }
+  ],
+  "sourceModule": "Crestron CGEIB(-IP) Group Address 4 Byte v2.3.usp"
+}

@@ -1,0 +1,46 @@
+{
+  "id": "canon-vc-c50i",
+  "manufacturer": "Canon",
+  "model": "VC C50i",
+  "category": "display",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "initialize": "\\xFF\\x30\\x30\\x00\\x8F\\x31\\xEF",
+        "btnUp": "\\xFF\\x30\\x31\\x00\\x53\\x33\\xEF",
+        "btnDown": "\\xFF\\x30\\x31\\x00\\x53\\x34\\xEF",
+        "btnLeft": "\\xFF\\x30\\x31\\x00\\x53\\x32\\xEF",
+        "btnRight": "\\xFF\\x30\\x31\\x00\\x53\\x31\\xEF",
+        "btnStop": "\\xFF\\x30\\x31\\x00\\x53\\x30\\xEF",
+        "powerOn": "\\xFF\\x30\\x31\\x00\\xA0\\x31\\xEF",
+        "powerOff": "\\xFF\\x30\\x31\\x00\\xA0\\x30\\xEF",
+        "focusAuto": "\\xFF\\x30\\x31\\x00\\xA1\\x30\\xEF",
+        "focusMan": "\\xFF\\x30\\x31\\x00\\xA1\\x31\\xEF",
+        "focusTele": "\\xFF\\x30\\x31\\x00\\xA2\\x31\\xEF",
+        "focusStop": "\\xFF\\x30\\x31\\x00\\xA2\\x30\\xEF",
+        "focusWide": "\\xFF\\x30\\x31\\x00\\xA2\\x32\\xEF",
+        "btnSet1": "\\xFF\\x30\\x31\\x00\\x89\\x31\\xEF",
+        "btnSet2": "\\xFF\\x30\\x31\\x00\\x89\\x32\\xEF",
+        "btnSet3": "\\xFF\\x30\\x31\\x00\\x89\\x33\\xEF",
+        "btnSet4": "\\xFF\\x30\\x31\\x00\\x89\\x34\\xEF",
+        "btnCall1": "\\xFF\\x30\\x31\\x00\\x8A\\x31\\xEF",
+        "btnCall2": "\\xFF\\x30\\x31\\x00\\x8A\\x32\\xEF",
+        "btnCall3": "\\xFF\\x30\\x31\\x00\\x8A\\x33\\xEF",
+        "btnCall4": "\\xFF\\x30\\x31\\x00\\x8A\\x34\\xEF"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Canon_VC_C50i.usp"
+}

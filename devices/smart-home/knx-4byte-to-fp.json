@@ -1,0 +1,50 @@
+{
+  "id": "knx-4byte-to-fp",
+  "manufacturer": "KNX",
+  "model": "4Byte to FP",
+  "category": "gateway",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "cmd1": "Start processing of Received values",
+        "cmd2": "Change Ok message received \u0026 processing",
+        "cmd3": "Feedback String is fully cleared",
+        "cmd4": "Start of KNX Feedback Event, Sem = %u",
+        "cmd5": "Semafoor cleared, Len FB = %u Check FB = %s",
+        "cmd6": "Start of while loop, length Feedback = %u",
+        "cmd7": "New State Value = %lu",
+        "cmd8": "Removed %u bytes to garbage string",
+        "cmd9": "Sem set to 1 Sem = %u",
+        "cmd10": "End of KNX Feedback Event, Sem = %u"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "CHANGE\\ STATE:",
+      "signal": "Feedback"
+    },
+    {
+      "pattern": "CHANGE\\ OK\\\\x0D",
+      "signal": "Feedback"
+    },
+    {
+      "pattern": "CHANGE\\ STATE:",
+      "signal": "Feedback"
+    }
+  ],
+  "sourceModule": "Crestron CI-KNX 4Byte to FP v1.7.usp",
+  "externalLibrary": "CI_KNX_4Byte_FP"
+}

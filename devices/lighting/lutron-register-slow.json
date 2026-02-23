@@ -1,0 +1,24 @@
+{
+  "id": "lutron-register-slow",
+  "manufacturer": "Lutron",
+  "model": "Register Slow",
+  "category": "lighting",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x0d",
+      "signal": "temp"
+    }
+  ],
+  "sourceModule": "Lutron Register Slow v1.0.usp"
+}

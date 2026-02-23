@@ -1,0 +1,104 @@
+{
+  "id": "lg-webos",
+  "manufacturer": "LG",
+  "model": "WebOS Series",
+  "category": "display",
+  "protocols": {
+    "ir": {
+      "driverFile": "LG_TV.ir",
+      "commands": {
+        "powerOn": "POWER_ON",
+        "powerOff": "POWER_OFF",
+        "powerToggle": "POWER",
+        "input_hdmi1": "HDMI_1",
+        "input_hdmi2": "HDMI_2",
+        "input_hdmi3": "HDMI_3",
+        "volumeUp": "VOL+",
+        "volumeDown": "VOL-",
+        "mute": "MUTE"
+      }
+    },
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "powerOn": "ka 01 01\r",
+        "powerOff": "ka 01 00\r",
+        "input_hdmi1": "xb 01 90\r",
+        "input_hdmi2": "xb 01 91\r",
+        "input_hdmi3": "xb 01 92\r",
+        "input_hdmi4": "xb 01 93\r",
+        "input_dtv": "xb 01 00\r",
+        "input_component": "xb 01 40\r",
+        "input_av": "xb 01 20\r",
+        "input_rgb": "xb 01 60\r",
+        "volumeMuteOn": "ke 01 00\r",
+        "volumeMuteOff": "ke 01 01\r",
+        "screenMuteOn": "kd 01 01\r",
+        "screenMuteOff": "kd 01 00\r",
+        "osdOff": "kl 01 00\r",
+        "osdOn": "kl 01 01\r",
+        "remoteLockOn": "km 01 01\r",
+        "remoteLockOff": "km 01 00\r",
+        "aspectRatio4x3": "kc 01 01\r",
+        "aspectRatio16x9": "kc 01 02\r",
+        "aspectRatioJustScan": "kc 01 09\r",
+        "energySavingOff": "jq 01 00\r",
+        "energySavingMin": "jq 01 01\r",
+        "energySavingMax": "jq 01 03\r",
+        "energySavingScreenOff": "jq 01 05\r",
+        "speakerOn": "dv 01 01\r",
+        "speakerOff": "dv 01 00\r",
+        "irVolumeUp": "mc 01 02\r",
+        "irVolumeDown": "mc 01 03\r",
+        "irChannelUp": "mc 01 00\r",
+        "irChannelDown": "mc 01 01\r",
+        "irMenu": "mc 01 43\r",
+        "irOk": "mc 01 44\r",
+        "irUp": "mc 01 40\r",
+        "irDown": "mc 01 41\r",
+        "irLeft": "mc 01 07\r",
+        "irRight": "mc 01 06\r",
+        "irReturn": "mc 01 28\r",
+        "irExit": "mc 01 5b\r"
+      },
+      "feedback": {
+        "powerState": { "poll": "ka 01 ff\r", "on": "a 01 OK01x", "off": "a 01 OK00x" },
+        "volume": { "poll": "kf 01 ff\r" },
+        "muteState": { "poll": "ke 01 ff\r" },
+        "inputSource": { "poll": "xb 01 ff\r" }
+      }
+    },
+    "ip": {
+      "port": 9761,
+      "type": "tcp",
+      "commands": {
+        "powerOn": "ka 01 01\r",
+        "powerOff": "ka 01 00\r",
+        "input_hdmi1": "xb 01 90\r",
+        "input_hdmi2": "xb 01 91\r",
+        "input_hdmi3": "xb 01 92\r",
+        "input_hdmi4": "xb 01 93\r",
+        "volumeMuteOn": "ke 01 00\r",
+        "volumeMuteOff": "ke 01 01\r"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": true,
+    "volumeControl": true,
+    "inputSelect": true,
+    "feedback": true,
+    "warmupMs": 4000,
+    "cooldownMs": 1000
+  },
+  "feedbackRules": [
+    { "pattern": "^a 01 OK01x$", "signal": "power", "value": true },
+    { "pattern": "^a 01 OK00x$", "signal": "power", "value": false },
+    { "pattern": "^f 01 OK([0-9a-f]{2})x$", "signal": "volume", "transform": "parseHex" },
+    { "pattern": "^e 01 OK00x$", "signal": "mute", "value": true },
+    { "pattern": "^e 01 OK01x$", "signal": "mute", "value": false }
+  ]
+}

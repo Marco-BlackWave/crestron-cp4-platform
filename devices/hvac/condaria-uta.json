@@ -1,0 +1,38 @@
+{
+  "id": "condaria-uta",
+  "manufacturer": "Condaria",
+  "model": "UTA",
+  "category": "hvac",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "poll": "\\xFE\\x01\\x84",
+        "cmd2": "\\xFE\\x01\\x85",
+        "cmd3": "\\xFE\\x01\\x86",
+        "cmd4": "\\xFE%s\\x04%s",
+        "cmd5": "\\xFE%s\\x06%s",
+        "cmd6": "\\xFE%s\\x07\\x01",
+        "cmd7": "\\xFE%s\\x07\\x02",
+        "cmd8": "\\xFE%s\\x07\\x03",
+        "cmd9": "\\xFE%s\\x07\\x00",
+        "cmd10": "\\xFE%s\\x07\\x04",
+        "cmd11": "\\xFE%s\\x07\\x06",
+        "cmd12": "\\xFE%s\\x07\\x08",
+        "cmd13": "\\xFE%s\\x07\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Condaria_UTA_V1.3_AZ.usp"
+}

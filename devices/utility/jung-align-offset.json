@@ -1,0 +1,18 @@
+{
+  "id": "jung-align-offset",
+  "manufacturer": "Jung",
+  "model": "align offset",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": true,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Jung_align_offset_v1.0_AZ.usp"
+}

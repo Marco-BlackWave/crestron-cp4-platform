@@ -1,0 +1,72 @@
+{
+  "id": "biamp-audiaflex-dialer-processor",
+  "manufacturer": "Biamp",
+  "model": "AudiaFlex Dialer Processor",
+  "category": "dsp",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "onHook": "SET %s TIHOOKSTATE %s 1\n",
+        "offHook": "SET %s TIHOOKSTATE %s 0\n",
+        "dial": "%s%s\n",
+        "redial": "%s%s\n",
+        "keyboardgo": "%s%s\n",
+        "presets": "%s%s\n",
+        "getNames": "GETD %s TISDLABEL %s %u\n",
+        "poll": "GETD %s TIHOOKSTATE %s\n",
+        "dialEntry": "DIAL %s TISPEEDDIAL %s %u\n",
+        "cmd10": "%s=%s\r\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "dsp": {
+    "maxChannels": 8
+  },
+  "feedbackRules": [
+    {
+      "pattern": "hello",
+      "signal": "tempData"
+    },
+    {
+      "pattern": "-ERR",
+      "signal": "tempData"
+    },
+    {
+      "pattern": "\\\\x0D",
+      "signal": "tempData"
+    },
+    {
+      "pattern": "\\\\x22",
+      "signal": "tempData"
+    },
+    {
+      "pattern": "RING",
+      "signal": "tempData"
+    },
+    {
+      "pattern": "\\\\x22",
+      "signal": "sTempNumber"
+    },
+    {
+      "pattern": "\\\\x22",
+      "signal": "sTempName"
+    },
+    {
+      "pattern": "\\\\x20",
+      "signal": "Instance$"
+    }
+  ],
+  "sourceModule": "BiAmp AudiaFlex Dialer Processor v7.5.1.usp"
+}

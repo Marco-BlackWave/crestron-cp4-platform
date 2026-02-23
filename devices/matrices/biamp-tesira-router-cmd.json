@@ -1,0 +1,27 @@
+{
+  "id": "biamp-tesira-router-cmd",
+  "manufacturer": "Biamp",
+  "model": "Tesira Router Cmd",
+  "category": "matrix",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": true,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "matrix": {
+    "inputs": 8,
+    "outputs": 8
+  },
+  "sourceModule": "BiAmp Tesira Router Cmd v1.0 AZ.usp"
+}

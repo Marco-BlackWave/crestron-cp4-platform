@@ -1,0 +1,29 @@
+{
+  "id": "orologio-v1-3-az",
+  "manufacturer": "Orologio",
+  "model": "v1.3 AZ",
+  "category": "utility",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "cmd1": "Error writing structure.  Error code = %d\n",
+        "cmd2": "Structure written to file correctly.  Total bytes written = %d\n",
+        "cmd3": "Error reading structure.  Error code = %d\n",
+        "cmd4": "Read structure from file correctly.  Total bytes read = %d\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Orologio_v1.3_AZ.usp"
+}

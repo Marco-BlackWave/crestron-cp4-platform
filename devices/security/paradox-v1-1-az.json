@@ -1,0 +1,37 @@
+{
+  "id": "paradox-v1-1-az",
+  "manufacturer": "Paradox",
+  "model": "V1.1 AZ",
+  "category": "security",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x0D",
+      "signal": "in$"
+    },
+    {
+      "pattern": "\\\\x0D",
+      "signal": "in$"
+    },
+    {
+      "pattern": "\\\\x0D",
+      "signal": "in$"
+    }
+  ],
+  "sourceModule": "buffer_Paradox_V1.1_AZ.usp"
+}

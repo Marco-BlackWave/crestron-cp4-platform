@@ -1,0 +1,23 @@
+{
+  "id": "rga-eib-crestron-1-byte-con-stato",
+  "manufacturer": "RGA",
+  "model": "EIB-CRESTRON 1 Byte con stato",
+  "category": "gateway",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "cmd1": "\\x00%c%c\\x00",
+        "cmd2": "\\x02%c%c%c"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": true,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "RGA EIB-CRESTRON 1 Byte con stato.usp"
+}

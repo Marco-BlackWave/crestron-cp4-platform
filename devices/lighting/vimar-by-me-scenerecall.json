@@ -1,0 +1,18 @@
+{
+  "id": "vimar-by-me-scenerecall",
+  "manufacturer": "VIMAR",
+  "model": "By-Me SceneRecall",
+  "category": "lighting",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "VIMAR By-Me SceneRecall    1.22.usp"
+}

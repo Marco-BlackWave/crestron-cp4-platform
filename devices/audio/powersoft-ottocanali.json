@@ -1,0 +1,40 @@
+{
+  "id": "powersoft-ottocanali",
+  "manufacturer": "Powersoft",
+  "model": "Ottocanali",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "cmd1": "\\x02%02dJ%s%s%s%s",
+        "cmd2": "\\x02%02dJ%s%s%s%s%s",
+        "cmd3": "\\x02%02dJ%s%s",
+        "cmd4": "\\x02%02dJ%s%s%s%s%s%s",
+        "cmd5": "%d"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": true,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x03",
+      "signal": "Rx$"
+    },
+    {
+      "pattern": "\\\\x03",
+      "signal": "Rx$"
+    }
+  ],
+  "sourceModule": "Powersoft Ottocanali v1.1.usp"
+}

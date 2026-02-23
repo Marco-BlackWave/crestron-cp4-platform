@@ -1,0 +1,19 @@
+{
+  "id": "airzone-zone",
+  "manufacturer": "AirZone",
+  "model": "Zone",
+  "category": "display",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": true,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "AirZone Zone V1.0.usp",
+  "externalLibrary": "AirZone"
+}

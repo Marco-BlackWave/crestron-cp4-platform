@@ -1,0 +1,27 @@
+{
+  "id": "mygenie2-intercommanager-v0-06",
+  "manufacturer": "MyGenie2",
+  "model": "IntercomManager(V0-06)",
+  "category": "utility",
+  "protocols": {
+    "ip": {
+      "port": 23,
+      "type": "tcp"
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\r",
+      "signal": "sQueue"
+    }
+  ],
+  "sourceModule": "MyGenie2_IntercomManager(V0-06).usp"
+}

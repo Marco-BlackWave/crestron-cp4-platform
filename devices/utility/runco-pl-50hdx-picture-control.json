@@ -1,0 +1,32 @@
+{
+  "id": "runco-pl-50hdx-picture-control",
+  "manufacturer": "Runco",
+  "model": "PL-50HDX Picture Control",
+  "category": "utility",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "tintUp": "TINT %d\r",
+        "tintDown": "TINT %d\r",
+        "colorUp": "COLOR %d\r",
+        "colorDown": "COLOR %d\r",
+        "brightnessUp": "BRIGHTNESS %d\r",
+        "brightnessDown": "BRIGHTNESS %d\r",
+        "contrastUp": "CONTRAST %d\r",
+        "contrastDown": "CONTRAST %d\r",
+        "sharpnessUp": "SHARPNESS %d\r",
+        "sharpnessDown": "SHARPNESS %d\r",
+        "sendNextCommand": "TINT %d\r"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Runco PL-50HDX Picture Control.usp"
+}

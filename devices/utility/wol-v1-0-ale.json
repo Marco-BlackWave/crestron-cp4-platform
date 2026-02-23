@@ -1,0 +1,21 @@
+{
+  "id": "wol-v1-0-ale",
+  "manufacturer": "WOL",
+  "model": "v1.0 ALE",
+  "category": "utility",
+  "protocols": {
+    "ip": {
+      "port": 23,
+      "type": "udp"
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "WOL_v1.0_ALE.usp"
+}

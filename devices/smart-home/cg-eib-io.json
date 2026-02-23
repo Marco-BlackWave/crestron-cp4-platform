@@ -1,0 +1,18 @@
+{
+  "id": "cg-eib-io",
+  "manufacturer": "CG",
+  "model": "EIB IO",
+  "category": "gateway",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "CG-EIB IO V4.3.usp"
+}

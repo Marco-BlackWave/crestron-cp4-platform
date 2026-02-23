@@ -1,0 +1,53 @@
+{
+  "id": "lutron-homeworks-qs-feedback-sorting-module-r04",
+  "manufacturer": "Lutron",
+  "model": "Homeworks QS Feedback Sorting Module r04",
+  "category": "lighting",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "QNET\u003E\\ ",
+      "signal": "PARSEDMESSAGE"
+    },
+    {
+      "pattern": "~MONITORING",
+      "signal": "PARSEDMESSAGE"
+    },
+    {
+      "pattern": "~SYSTEM",
+      "signal": "PARSEDMESSAGE"
+    },
+    {
+      "pattern": "~ERROR",
+      "signal": "PARSEDMESSAGE"
+    },
+    {
+      "pattern": "~",
+      "signal": "PARSEDMESSAGE"
+    },
+    {
+      "pattern": "\\\\x00",
+      "signal": "FROM_CORE_MODULE$"
+    },
+    {
+      "pattern": "\\\\x00",
+      "signal": "FROM_CORE_MODULE$"
+    }
+  ],
+  "sourceModule": "Lutron Homeworks QS Feedback Sorting Module r04.usp"
+}

@@ -1,0 +1,23 @@
+{
+  "id": "elmo-stato-allineamentoridotto",
+  "manufacturer": "ELMO",
+  "model": "Stato AllineamentoRidotto",
+  "category": "utility",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": true,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "ELMO_Stato_AllineamentoRidotto_v4.3.usp"
+}

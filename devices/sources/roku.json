@@ -1,0 +1,29 @@
+{
+  "id": "roku",
+  "manufacturer": "Roku",
+  "model": "Streaming Player",
+  "category": "source",
+  "protocols": {
+    "ir": {
+      "driverFile": "Roku.ir",
+      "commands": {
+        "home": "HOME",
+        "select": "SELECT",
+        "up": "UP",
+        "down": "DOWN",
+        "left": "LEFT",
+        "right": "RIGHT",
+        "playPause": "PLAY_PAUSE",
+        "back": "BACK"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  }
+}

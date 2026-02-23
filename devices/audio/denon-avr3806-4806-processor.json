@@ -1,0 +1,33 @@
+{
+  "id": "denon-avr3806-4806-processor",
+  "manufacturer": "Denon",
+  "model": "AVR3806-4806 Processor",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x0D",
+      "signal": "FromDevice$"
+    },
+    {
+      "pattern": "MVMAX",
+      "signal": "FromDevice$"
+    }
+  ],
+  "sourceModule": "Denon AVR3806-4806 Processor.usp"
+}

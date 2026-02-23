@@ -1,0 +1,57 @@
+{
+  "id": "linn-intersekt-feedback-goffi",
+  "manufacturer": "Linn",
+  "model": "Intersekt Feedback(Goffi)",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "5VOL=\\\u002B",
+      "signal": "In$"
+    },
+    {
+      "pattern": "5VOL=-",
+      "signal": "In$"
+    },
+    {
+      "pattern": "6VOL=\\\u002B",
+      "signal": "In$"
+    },
+    {
+      "pattern": "6VOL=-",
+      "signal": "In$"
+    },
+    {
+      "pattern": "5MUTE=N",
+      "signal": "In$"
+    },
+    {
+      "pattern": "5MUTE=Y",
+      "signal": "In$"
+    },
+    {
+      "pattern": "6MUTE=N",
+      "signal": "In$"
+    },
+    {
+      "pattern": "6MUTE=Y",
+      "signal": "In$"
+    }
+  ],
+  "sourceModule": "Linn_Intersekt_Feedback(Goffi).usp"
+}

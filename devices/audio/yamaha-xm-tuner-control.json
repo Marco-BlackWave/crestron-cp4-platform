@@ -1,0 +1,40 @@
+{
+  "id": "yamaha-xm-tuner-control",
+  "manufacturer": "Yamaha",
+  "model": "XM Tuner Control",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "key": "%s(Play_Control(Ch_Number=%s)),"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "2",
+      "signal": "sFreqRequest"
+    },
+    {
+      "pattern": "2",
+      "signal": "sFreqRequest"
+    },
+    {
+      "pattern": "5",
+      "signal": "sFreqRequest"
+    }
+  ],
+  "sourceModule": "Yamaha XM Tuner Control.usp"
+}

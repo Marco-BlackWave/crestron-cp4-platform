@@ -1,0 +1,18 @@
+{
+  "id": "http-authorization-base64",
+  "manufacturer": "HTTP",
+  "model": "Authorization Base64",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "HTTP Authorization Base64.usp"
+}

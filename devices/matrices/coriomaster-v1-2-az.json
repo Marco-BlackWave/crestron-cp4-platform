@@ -1,0 +1,71 @@
+{
+  "id": "coriomaster-v1-2-az",
+  "manufacturer": "CORIOMaster",
+  "model": "v1 2 AZ",
+  "category": "shades",
+  "protocols": {
+    "ip": {
+      "port": 23,
+      "type": "tcp"
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "!Error",
+      "signal": "Data"
+    },
+    {
+      "pattern": "Please\\ login\\.",
+      "signal": "Data"
+    },
+    {
+      "pattern": "!Info\\ :\\ User\\ Automatically\\ Logged\\ Out",
+      "signal": "Data"
+    },
+    {
+      "pattern": "Preset\\.Take\\ =",
+      "signal": "Data"
+    },
+    {
+      "pattern": "Window1\\.Input\\ =",
+      "signal": "Data"
+    },
+    {
+      "pattern": "=",
+      "signal": "Data"
+    },
+    {
+      "pattern": "Window2\\.Input\\ =",
+      "signal": "Data"
+    },
+    {
+      "pattern": "=",
+      "signal": "Data"
+    },
+    {
+      "pattern": "Window3\\.Input\\ =",
+      "signal": "Data"
+    },
+    {
+      "pattern": "=",
+      "signal": "Data"
+    },
+    {
+      "pattern": "Window4\\.Input\\ =",
+      "signal": "Data"
+    },
+    {
+      "pattern": "=",
+      "signal": "Data"
+    }
+  ],
+  "sourceModule": "CORIOMaster_v1_2_AZ.usp"
+}

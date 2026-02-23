@@ -1,0 +1,66 @@
+{
+  "id": "blackmagicsmartvideohub-v-1-1-az",
+  "manufacturer": "BlackMagicSmartVideoHub",
+  "model": "v 1 1 AZ",
+  "category": "utility",
+  "protocols": {
+    "ip": {
+      "port": 23,
+      "type": "tcp",
+      "commands": {
+        "take": "VIDEO OUTPUT ROUTING:\n%s\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "VIDEO\\ OUTPUT\\ ROUTING:",
+      "signal": "data"
+    },
+    {
+      "pattern": "\\\\x0A\\\\x0A",
+      "signal": "data"
+    },
+    {
+      "pattern": "INPUT\\ LABELS:",
+      "signal": "data"
+    },
+    {
+      "pattern": "\\\\x0A\\\\x0A",
+      "signal": "data"
+    },
+    {
+      "pattern": "OUTPUT\\ LABELS:",
+      "signal": "data"
+    },
+    {
+      "pattern": "\\\\x0A\\\\x0A",
+      "signal": "data"
+    },
+    {
+      "pattern": "\\\\x20",
+      "signal": "label"
+    },
+    {
+      "pattern": "\\\\x20",
+      "signal": "label"
+    },
+    {
+      "pattern": "\\\\x20",
+      "signal": "label"
+    },
+    {
+      "pattern": "\\\\x20",
+      "signal": "label"
+    }
+  ],
+  "sourceModule": "BlackMagicSmartVideoHub_v_1_1_AZ.usp"
+}

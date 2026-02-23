@@ -1,0 +1,18 @@
+{
+  "id": "eib-groupconversion",
+  "manufacturer": "EIB",
+  "model": "GroupConversion",
+  "category": "gateway",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "EIB_GroupConversion.usp"
+}

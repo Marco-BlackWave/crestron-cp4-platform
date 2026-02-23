@@ -1,0 +1,36 @@
+{
+  "id": "pakedge-ab",
+  "manufacturer": "pakedge",
+  "model": "AB",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "status",
+      "signal": "in$"
+    },
+    {
+      "pattern": "power",
+      "signal": "in$"
+    },
+    {
+      "pattern": "current",
+      "signal": "in$"
+    },
+    {
+      "pattern": "current",
+      "signal": "in$"
+    }
+  ],
+  "sourceModule": "pakedge_AB_v1.1.usp"
+}

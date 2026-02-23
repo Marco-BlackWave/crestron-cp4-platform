@@ -1,0 +1,70 @@
+{
+  "id": "biamp-level-processor",
+  "manufacturer": "Biamp",
+  "model": "Level Processor",
+  "category": "dsp",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "volUp": "INCD %s %s\n",
+        "volDown": "INCD %s -%s\n",
+        "sendNewLevel": "SETD %s %d\n",
+        "pollLevel": "GETD %s\n",
+        "cmd5": "%s=%s\r\n",
+        "cmd6": "%s %s %s %s",
+        "cmd7": "%s %s %s",
+        "cmd8": "%s %s"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": true,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "dsp": {
+    "maxChannels": 8
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x2E",
+      "signal": "Data"
+    },
+    {
+      "pattern": "\\\\x2E",
+      "signal": "Data"
+    },
+    {
+      "pattern": "-",
+      "signal": "sVolText"
+    },
+    {
+      "pattern": "hello",
+      "signal": "paramData"
+    },
+    {
+      "pattern": "-ERR",
+      "signal": "paramData"
+    },
+    {
+      "pattern": "\\\\n",
+      "signal": "Device_RX$"
+    },
+    {
+      "pattern": "\\\\n",
+      "signal": "Device_RX$"
+    },
+    {
+      "pattern": "\\\\x20",
+      "signal": "Volume_Device_Instance"
+    }
+  ],
+  "sourceModule": "Biamp Level Processor v7.5.1.usp"
+}

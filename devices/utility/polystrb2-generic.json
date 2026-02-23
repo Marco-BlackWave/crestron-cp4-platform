@@ -1,0 +1,136 @@
+{
+  "id": "polystrb2-generic",
+  "manufacturer": "PolystrB2",
+  "model": "Generic",
+  "category": "utility",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "sendsystemname": "systemname set ",
+        "sendisdnnumber": "prinumber set ",
+        "sende164number": "E164ext set ",
+        "sendh323name": "h323name set ",
+        "sendgatekeeperip": "gatekeeperip set "
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x0D\\\\x0A",
+      "signal": "FromDevice$"
+    },
+    {
+      "pattern": "\\\\x0A\\\\x0D",
+      "signal": "FromDevice$"
+    },
+    {
+      "pattern": "\\\\x0D\\\\x0A",
+      "signal": "FromDevice$"
+    },
+    {
+      "pattern": "\\\\x0A\\\\x0D",
+      "signal": "FromDevice$"
+    },
+    {
+      "pattern": "systemname\\ ",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "\\ get",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "e164ext\\ ",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "\\ get",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "h323name\\ ",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "\\ get",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "gatekeeperip\\ ",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "\\ get",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "ipaddress\\ ",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "\\ get",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "isdnnum\\ 1b1\\ ",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "\\ get",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "serialnum\\ ",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "\\ get",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "version\\ ",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "\\ get",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "Model:\\ ",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "\\ get",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "state\\[",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "call",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "speed\\[",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "call\\[0]",
+      "signal": "Tempstring$"
+    }
+  ],
+  "sourceModule": "PolystrB2.usp"
+}

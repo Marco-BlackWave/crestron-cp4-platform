@@ -1,0 +1,21 @@
+{
+  "id": "crestron-nextworks-http-get",
+  "manufacturer": "Crestron",
+  "model": "Nextworks HTTP GET",
+  "category": "utility",
+  "protocols": {
+    "ip": {
+      "port": 23,
+      "type": "tcp"
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Crestron_Nextworks_HTTP_GET_v1.4.usp"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "crestron-cgeib-ip-group-address-date",
+  "manufacturer": "Crestron",
+  "model": "CGEIB(-IP) Group Address Date",
+  "category": "gateway",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "send": "%s%02X%02X%02X\r"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": true,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "/",
+      "signal": "Group_Address"
+    }
+  ],
+  "sourceModule": "Crestron CGEIB(-IP) Group Address Date v2.3.usp"
+}

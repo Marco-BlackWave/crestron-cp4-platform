@@ -1,0 +1,18 @@
+{
+  "id": "ave-domina-energy-control",
+  "manufacturer": "AVE",
+  "model": "Domina Energy-Control",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "AVE-Domina_Energy-Control_v2.01.usp"
+}

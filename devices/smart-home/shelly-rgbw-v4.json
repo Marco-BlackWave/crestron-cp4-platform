@@ -1,0 +1,23 @@
+{
+  "id": "shelly-rgbw-v4",
+  "manufacturer": "Shelly",
+  "model": "RGBW v4",
+  "category": "gateway",
+  "protocols": {
+    "ip": {
+      "port": 80,
+      "type": "tcp",
+      "commands": {}
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Shelly RGBW v4.usp",
+  "externalLibrary": "Shelly"
+}

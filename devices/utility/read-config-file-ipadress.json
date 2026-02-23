@@ -1,0 +1,28 @@
+{
+  "id": "read-config-file-ipadress",
+  "manufacturer": "Read",
+  "model": "Config File IPAdress",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": ";",
+      "signal": "Read_Data"
+    },
+    {
+      "pattern": "\\[IP]",
+      "signal": "String_To_Treate"
+    }
+  ],
+  "sourceModule": "Read_Config_File_IPAdress.usp"
+}

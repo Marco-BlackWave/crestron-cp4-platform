@@ -1,0 +1,18 @@
+{
+  "id": "compare-command-queue",
+  "manufacturer": "Compare",
+  "model": "Command Queue",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Compare - Command Queue.usp"
+}

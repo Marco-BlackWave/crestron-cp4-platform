@@ -1,0 +1,27 @@
+{
+  "id": "crestron-nextworks-serversim",
+  "manufacturer": "Crestron",
+  "model": "Nextworks ServerSim",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "send": "@@@ver:9.5|numseq:%s%s",
+        "cmd2": "@@@ver:9.5|numseq:%s per me non va un cazzo"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Crestron_Nextworks_ServerSim_v1.1.usp"
+}

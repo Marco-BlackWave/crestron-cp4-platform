@@ -1,0 +1,23 @@
+{
+  "id": "shelly-plus-1-plus-1pm-add-on-v1",
+  "manufacturer": "Shelly",
+  "model": "Plus 1 Plus 1PM Add-On v1",
+  "category": "gateway",
+  "protocols": {
+    "ip": {
+      "port": 80,
+      "type": "tcp",
+      "commands": {}
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Shelly Plus 1 Plus 1PM Add-On v1.usp",
+  "externalLibrary": "Shelly"
+}

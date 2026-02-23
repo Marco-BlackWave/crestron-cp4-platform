@@ -1,0 +1,18 @@
+{
+  "id": "lutron-homeworks-qs-group-feedback-processing-module-r02",
+  "manufacturer": "Lutron",
+  "model": "Homeworks QS Group Feedback Processing Module r02",
+  "category": "lighting",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Lutron Homeworks QS Group Feedback Processing Module r02.usp"
+}

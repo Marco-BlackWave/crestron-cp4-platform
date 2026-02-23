@@ -1,0 +1,22 @@
+{
+  "id": "xtseries-volume-converter",
+  "manufacturer": "XTseries",
+  "model": "Volume Converter",
+  "category": "audio",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "cmd1": "AT[\u0026SV%03d\r"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": true,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "XTseries_Volume_Converter.usp"
+}

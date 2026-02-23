@@ -1,0 +1,129 @@
+{
+  "id": "sanyo-plc-xu100-feedback-processor",
+  "manufacturer": "Sanyo",
+  "model": "PLC-XU100 Feedback Processor",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": true,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x0D",
+      "signal": "From_Module$"
+    },
+    {
+      "pattern": "\\\\x0D",
+      "signal": "From_Device$"
+    },
+    {
+      "pattern": "\\\\x06",
+      "signal": "sTemp1"
+    },
+    {
+      "pattern": "\\?",
+      "signal": "sTemp1"
+    },
+    {
+      "pattern": "\\\\x20",
+      "signal": "sTemp1"
+    },
+    {
+      "pattern": "S-VIDEO",
+      "signal": "sTemp1"
+    },
+    {
+      "pattern": "VIDEO",
+      "signal": "sTemp1"
+    },
+    {
+      "pattern": "YPBPR",
+      "signal": "sTemp1"
+    },
+    {
+      "pattern": "YCBCR",
+      "signal": "sTemp1"
+    },
+    {
+      "pattern": "AUTO",
+      "signal": "sTemp1"
+    },
+    {
+      "pattern": "ON",
+      "signal": "sTemp1"
+    },
+    {
+      "pattern": "OFF",
+      "signal": "sTemp1"
+    },
+    {
+      "pattern": "NORMAL",
+      "signal": "sTemp1"
+    },
+    {
+      "pattern": "WIDE",
+      "signal": "sTemp1"
+    },
+    {
+      "pattern": "\\\\x20",
+      "signal": "sTemp1"
+    },
+    {
+      "pattern": "ON",
+      "signal": "sTemp1"
+    },
+    {
+      "pattern": "OFF",
+      "signal": "sTemp1"
+    },
+    {
+      "pattern": "STAND",
+      "signal": "sTemp1"
+    },
+    {
+      "pattern": "REAL",
+      "signal": "sTemp1"
+    },
+    {
+      "pattern": "CINEMA",
+      "signal": "sTemp1"
+    },
+    {
+      "pattern": "CUSTOM1",
+      "signal": "sTemp1"
+    },
+    {
+      "pattern": "CUSTOM2",
+      "signal": "sTemp1"
+    },
+    {
+      "pattern": "CUSTOM3",
+      "signal": "sTemp1"
+    },
+    {
+      "pattern": "CUSTOM4",
+      "signal": "sTemp1"
+    },
+    {
+      "pattern": "ON",
+      "signal": "sTemp1"
+    },
+    {
+      "pattern": "OFF",
+      "signal": "sTemp1"
+    }
+  ],
+  "sourceModule": "Sanyo PLC-XU100 Feedback Processor.usp"
+}

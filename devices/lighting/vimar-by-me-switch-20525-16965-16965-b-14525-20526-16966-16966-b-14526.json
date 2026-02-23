@@ -1,0 +1,28 @@
+{
+  "id": "vimar-by-me-switch-20525-16965-16965-b-14525-20526-16966-16966-b-14526",
+  "manufacturer": "VIMAR",
+  "model": "By-Me Switch 20525 16965 16965.B 14525 20526 16966 16966.B 14526",
+  "category": "lighting",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\xCA\\\\x10\\\\x09",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\\\\x81\\\\x00",
+      "signal": "TempString$"
+    }
+  ],
+  "sourceModule": "VIMAR By-Me Switch 20525_16965_16965.B_14525_20526_16966_16966.B_14526   1.22.usp"
+}

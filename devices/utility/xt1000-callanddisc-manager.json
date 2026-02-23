@@ -1,0 +1,26 @@
+{
+  "id": "xt1000-callanddisc-manager",
+  "manufacturer": "XT1000",
+  "model": "CallAndDisc manager",
+  "category": "utility",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "startCall": "AT[?CB\r",
+        "disconnect": "AT[\u0026CH11\r",
+        "accept": "AT[\u0026CA10\r",
+        "cmd4": "AT[\u0026CD1%s%s%s\r",
+        "cmd5": "AT[\u0026CM%s%s%s0%s\r"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "XT1000_CallAndDisc_manager.usp"
+}

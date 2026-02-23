@@ -1,0 +1,32 @@
+{
+  "id": "knx-2byte",
+  "manufacturer": "KNX",
+  "model": "2Byte",
+  "category": "gateway",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "cmd1": "%s%04X;"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "/",
+      "signal": "text"
+    }
+  ],
+  "sourceModule": "CrestronKNX 2Byte_V1.0_AZ.usp"
+}

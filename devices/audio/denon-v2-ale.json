@@ -1,0 +1,23 @@
+{
+  "id": "denon-v2-ale",
+  "manufacturer": "Denon",
+  "model": "v2 ALE",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "ipod_denon_v2_ALE.usp"
+}

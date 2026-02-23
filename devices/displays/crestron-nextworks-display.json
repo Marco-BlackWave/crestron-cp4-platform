@@ -1,0 +1,56 @@
+{
+  "id": "crestron-nextworks-display",
+  "manufacturer": "Crestron",
+  "model": "Nextworks DISPLAY",
+  "category": "display",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "cmd1": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:100%serrcode:%s!###",
+        "cmd2": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:90|subcmd_type:500%sinput:%s!###",
+        "cmd3": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:90|subcmd_type:520%schannel:%s!###",
+        "cmd4": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:0!###",
+        "cmd5": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:%s|cmd_type:90|subcmd_type:504|input:%s|name:%s!###"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "input:",
+      "signal": "s$"
+    },
+    {
+      "pattern": "channel:",
+      "signal": "s$"
+    },
+    {
+      "pattern": "!\\#\\#\\#",
+      "signal": "Rx_From_IO$"
+    },
+    {
+      "pattern": "!\\#\\#\\#",
+      "signal": "Rx_From_IO$"
+    },
+    {
+      "pattern": "!\\#\\#\\#",
+      "signal": "Rx_From_IO$"
+    },
+    {
+      "pattern": "subcmd_type:",
+      "signal": "app_display$"
+    },
+    {
+      "pattern": "numseq:",
+      "signal": "app_display$"
+    }
+  ],
+  "sourceModule": "Crestron_Nextworks_DISPLAY_v1.7.usp"
+}

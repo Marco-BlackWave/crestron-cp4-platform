@@ -1,0 +1,28 @@
+{
+  "id": "cg-eib-addressing",
+  "manufacturer": "CG",
+  "model": "EIB Addressing",
+  "category": "gateway",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "cmd1": "%s%s%s%s%s%s"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "/",
+      "signal": "Address$"
+    }
+  ],
+  "sourceModule": "CG-EIB Addressing.usp"
+}

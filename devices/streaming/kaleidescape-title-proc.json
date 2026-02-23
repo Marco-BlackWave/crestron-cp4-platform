@@ -1,0 +1,65 @@
+{
+  "id": "kaleidescape-title-proc",
+  "manufacturer": "Kaleidescape",
+  "model": "Title Proc",
+  "category": "media",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x0D\\\\x0A",
+      "signal": "from_device$"
+    },
+    {
+      "pattern": "PLAY_STATUS",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "UI_STATE",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "MOVIE_LOCATION",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "ASPECT_RATIO",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "SCREEN_MASK",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "000:",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": ":/",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\\\\x5C:",
+      "signal": "sNewTitle"
+    },
+    {
+      "pattern": "\\\\x5C:",
+      "signal": "sNewTitle"
+    }
+  ],
+  "sourceModule": "Kaleidescape Title Proc.usp"
+}

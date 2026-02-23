@@ -1,0 +1,26 @@
+{
+  "id": "inim-1050",
+  "manufacturer": "inim",
+  "model": "1050",
+  "category": "security",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "pollZone": "\\x00\\x00\\x00\\x20\\x01\\x00\\x1A\\x3B"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "inim_1050_V1.1_AZ.usp"
+}

@@ -1,0 +1,19 @@
+{
+  "id": "rga-eib-crestron-4-byte",
+  "manufacturer": "RGA",
+  "model": "EIB-CRESTRON 4 Byte",
+  "category": "gateway",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "RGA EIB-CRESTRON 4 Byte.usp",
+  "externalLibrary": "RGA4ByteToAnalog"
+}

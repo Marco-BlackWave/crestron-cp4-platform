@@ -1,0 +1,18 @@
+{
+  "id": "send-wol-packet",
+  "manufacturer": "Send",
+  "model": "WOL Packet",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Send_WOL_Packet.usp"
+}

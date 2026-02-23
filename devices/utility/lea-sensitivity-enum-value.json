@@ -1,0 +1,19 @@
+{
+  "id": "lea-sensitivity-enum-value",
+  "manufacturer": "LEA",
+  "model": "Sensitivity Enum Value",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "LEA Sensitivity Enum Value 3.0.usp",
+  "externalLibrary": "LeaProfessional.Simpl 3.0"
+}

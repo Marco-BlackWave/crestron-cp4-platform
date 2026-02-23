@@ -1,0 +1,58 @@
+{
+  "id": "hi-lite-vetrina1",
+  "manufacturer": "Hi",
+  "model": "lite-Vetrina1",
+  "category": "audio",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "seqoff": "FADEDIM, 100, 0, 0, [1:1:3:1:3]\r",
+        "up": "FADEDIM,100, 0,0, %s\r",
+        "down": "FADEDIM, 0, 0,0, %s\r",
+        "zoneoff": "FADEDIM, 0, 2, 0, %s\r",
+        "cmd5": "FADEDIM, 80, 20, 0, [1:1:3:8:1]\r",
+        "cmd6": "FADEDIM, 0, 20, 0, [1:1:3:1:2]\r",
+        "cmd7": "FADEDIM, 30, 20, 0, [1:1:3:8:1]\r",
+        "cmd8": "FADEDIM, 90, 20, 0, [1:1:3:1:2]\r",
+        "cmd9": "FADEDIM, 90, 45, 0, [1:1:3:8:1]\r",
+        "cmd10": "FADEDIM, 90, 15, 1, [1:1:1:7:3]\r",
+        "cmd11": "FADEDIM, 90, 15, 10, [1:1:1:7:4]\r",
+        "cmd12": "FADEDIM, 90, 15, 20, [1:1:1:8:1]\r",
+        "cmd13": "FADEDIM, 90, 15, 30, [1:1:1:8:2]\r",
+        "cmd14": "FADEDIM, 90, 15, 40, [1:1:1:8:3]\r",
+        "cmd15": "FADEDIM, 90, 15, 50, [1:1:1:8:4]\r",
+        "cmd16": "FADEDIM, 90, 15, 1:00, [1:1:1:7:1]\r",
+        "cmd17": "FADEDIM, 90, 15, 1:10, [1:1:1:7:2]\r",
+        "cmd18": "FADEDIM, 0, 5, 0, [1:1:3:8:1]\r",
+        "cmd19": "FADEDIM, 0, 5, 0, [1:1:1:7:3]\r",
+        "cmd20": "FADEDIM, 0, 5, 5, [1:1:1:7:4]\r",
+        "cmd21": "FADEDIM, 0, 5, 10, [1:1:1:8:1]\r",
+        "cmd22": "FADEDIM, 0, 5, 15, [1:1:1:8:2]\r",
+        "cmd23": "FADEDIM, 0, 5, 20, [1:1:1:8:3]\r",
+        "cmd24": "FADEDIM, 0, 5, 25, [1:1:1:8:4]\r",
+        "cmd25": "FADEDIM, 0, 5, 30, [1:1:1:7:1]\r",
+        "cmd26": "FADEDIM, 0, 5, 35, [1:1:1:7:2]\r",
+        "cmd27": "FADEDIM, 0, 0, 0, [1:1:3:1:2]\r",
+        "cmd28": "FADEDIM, 60, 0, 0, [1:1:3:8:1]\r",
+        "cmd29": "FADEDIM, 0, 0, 0, [1:1:1:8:1]\r",
+        "cmd30": "FADEDIM, 0, 0, 0, [1:1:1:8:2]\r",
+        "cmd31": "FADEDIM, 0, 0, 0, [1:1:1:8:3]\r",
+        "cmd32": "FADEDIM, 0, 0, 0, [1:1:1:8:4]\r",
+        "cmd33": "FADEDIM, 0, 0, 0, [1:1:1:7:1]\r",
+        "cmd34": "FADEDIM, 0, 0, 0, [1:1:1:7:2]\r",
+        "cmd35": "RAISEDIM, %s\r",
+        "cmd36": "STOPDIM, %s\r",
+        "cmd37": "LOWERDIM, %s\r"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Hi-lite-Vetrina1.usp"
+}

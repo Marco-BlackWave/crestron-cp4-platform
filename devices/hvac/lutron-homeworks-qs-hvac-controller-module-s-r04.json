@@ -1,0 +1,47 @@
+{
+  "id": "lutron-homeworks-qs-hvac-controller-module-s-r04",
+  "manufacturer": "Lutron",
+  "model": "Homeworks QS HVAC Controller Module S\u002B r04",
+  "category": "lighting",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "heatSetPointUpF": "#HVAC,%d,2,%d,%d\n",
+        "heatSetPointUpC": "#HVAC,%d,16,%d,%d\n",
+        "heatSetPointDownF": "#HVAC,%d,2,%d,%d\n",
+        "heatSetPointDownC": "#HVAC,%d,16,%d,%d\n",
+        "coolSetPointUpF": "#HVAC,%d,2,%d,%d\n",
+        "coolSetPointUpC": "#HVAC,%d,16,%d,%d\n",
+        "coolSetPointDownF": "#HVAC,%d,2,%d,%d\n",
+        "coolSetPointDownC": "#HVAC,%d,16,%d,%d\n",
+        "setTemperatureUpF": "#HVAC,%d,1,%d\n",
+        "setTemperatureDownF": "#HVAC,%d,1,%d\n",
+        "setTemperatureUpC": "#HVAC,%d,15,%d\n",
+        "setTemperatureDownC": "#HVAC,%d,15,%d\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "~HVAC,",
+      "signal": "IN$"
+    },
+    {
+      "pattern": "\\\\r\\\\n",
+      "signal": "IN$"
+    },
+    {
+      "pattern": "\\\\r\\\\n",
+      "signal": "IN$"
+    }
+  ],
+  "sourceModule": "Lutron Homeworks QS HVAC Controller Module S\u002B r04.usp"
+}

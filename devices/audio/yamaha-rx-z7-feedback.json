@@ -1,0 +1,333 @@
+{
+  "id": "yamaha-rx-z7-feedback",
+  "manufacturer": "Yamaha",
+  "model": "RX-Z7 Feedback",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "EVENT",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Main_Zone",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Zone_2",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Zone_3",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Zone_4",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Main_Zone\\(Basic_Status",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Vol\\(Lvl\\(Val=-",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Val=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Vol\\(Lvl\\(Val=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Val=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Main_Zone\\(Power_Control",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Zone_2\\(Basic_Status",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Vol\\(Lvl\\(Val=-",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Val=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Vol\\(Lvl\\(Val=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Val=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Zone_2\\(Power_Control",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Zone_3\\(Basic_Status",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Vol\\(Lvl\\(Val=-",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Val=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Vol\\(Lvl\\(Val=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Val=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Zone_3\\(Power_Control",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Zone_4\\(Basic_Status",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Zone_4\\(Power_Control",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "SIRIUS\\(Play_Info",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Play_Info\\(Status",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Search_Mode",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Preset",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Antenna_Lvl",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Category",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Ch_Number",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Ch_Name",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Artist",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Song",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Composer",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Parental_Lock\\(Status",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "XM\\(Play_Info",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Play_Info\\(Status",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Search_Mode",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Preset",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Antenna_Lvl",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Category",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Ch_Number",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Ch_Name",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Artist",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Song",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "HD_Radio\\(Play_Info",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Play_Info\\(Search_Mode",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Preset",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Tuning\\(Band",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Freq\\(Val=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Exp=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Unit=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Unit=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Unit=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Receive_Status\\(Tuned",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": ",Stereo=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": ",HD=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Station_Name",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Pgm_Number",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Play_Info",
+      "signal": "sTempPoll"
+    },
+    {
+      "pattern": "Power",
+      "signal": "sTempPoll"
+    },
+    {
+      "pattern": "Input",
+      "signal": "sTempPoll"
+    },
+    {
+      "pattern": "Volume",
+      "signal": "sTempPoll"
+    },
+    {
+      "pattern": "Play_Info",
+      "signal": "sTempPoll"
+    },
+    {
+      "pattern": "Power",
+      "signal": "sTempPoll"
+    },
+    {
+      "pattern": "Input",
+      "signal": "sTempPoll"
+    },
+    {
+      "pattern": "Volume",
+      "signal": "sTempPoll"
+    },
+    {
+      "pattern": "Play_Info",
+      "signal": "sTempPoll"
+    },
+    {
+      "pattern": "Power",
+      "signal": "sTempPoll"
+    },
+    {
+      "pattern": "Input",
+      "signal": "sTempPoll"
+    },
+    {
+      "pattern": "Volume",
+      "signal": "sTempPoll"
+    },
+    {
+      "pattern": "Play_Info",
+      "signal": "sTempPoll"
+    },
+    {
+      "pattern": "Power",
+      "signal": "sTempPoll"
+    },
+    {
+      "pattern": "Input",
+      "signal": "sTempPoll"
+    },
+    {
+      "pattern": "Volume",
+      "signal": "sTempPoll"
+    }
+  ],
+  "sourceModule": "Yamaha RX-Z7 Feedback v2.0.usp"
+}

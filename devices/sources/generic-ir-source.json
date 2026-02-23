@@ -1,0 +1,29 @@
+{
+  "id": "generic-ir-source",
+  "manufacturer": "Generic",
+  "model": "IR Source Device",
+  "category": "source",
+  "protocols": {
+    "ir": {
+      "driverFile": "Generic_Source.ir",
+      "commands": {
+        "powerToggle": "POWER",
+        "select": "SELECT",
+        "up": "UP",
+        "down": "DOWN",
+        "left": "LEFT",
+        "right": "RIGHT",
+        "playPause": "PLAY_PAUSE",
+        "menu": "MENU"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  }
+}

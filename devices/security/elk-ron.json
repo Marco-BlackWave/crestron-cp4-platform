@@ -1,0 +1,26 @@
+{
+  "id": "elk-ron",
+  "manufacturer": "Elk",
+  "model": "ron",
+  "category": "security",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "send1": "\\x01\\x31\\x00\\x03\\x30",
+        "send2": "\\x01\\x31\\x1D\\X49\\x30\\x33\\x30\\x33\\x30\\x33\\x30\\x33\\x30\\x33\\x30\\x33\\x30\\x35\\x30\\x35\\x30\\x35\\x30\\x35\\x30\\x35\\x30\\x35\\x30\\x35\\x30\\x35\\x03\\x73",
+        "send3": "\\x01\\x31\\x01\\x62\\x03",
+        "send4": "\\x01\\x31\\x01\\x75\\x03\\x75",
+        "ack": "\\x06"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "test_elkron.usp"
+}

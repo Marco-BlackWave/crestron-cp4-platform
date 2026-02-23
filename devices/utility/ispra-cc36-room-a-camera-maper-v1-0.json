@@ -1,0 +1,18 @@
+{
+  "id": "ispra-cc36-room-a-camera-maper-v1-0",
+  "manufacturer": "ISPRA",
+  "model": "CC36 Room A Camera Maper v1 0",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "ISPRA_CC36_Room_A_Camera_Maper_v1_0.usp"
+}

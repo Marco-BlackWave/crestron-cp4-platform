@@ -1,0 +1,30 @@
+{
+  "id": "avocent-feedback",
+  "manufacturer": "Avocent",
+  "model": "Feedback",
+  "category": "utility",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "outlet1On": "on 1\r\nyes\r\nshow\r\n",
+        "outlet1Off": "off 1\r\nyes\r\nshow\r\n",
+        "outlet2On": "on 2\r\nyes\r\nshow\r\n",
+        "outlet2Off": "off 2\r\nyes\r\nshow\r\n",
+        "outlet3On": "on 3\r\nyes\r\nshow\r\n",
+        "outlet3Off": "off 3\r\nyes\r\nshow\r\n",
+        "check": "show\r\\0Acd /\r\n",
+        "cmd8": "show\r",
+        "cmd9": "cd power_management/pdus/%s/outlets\r"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Avocent Feedback.usp"
+}

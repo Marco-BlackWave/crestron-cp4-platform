@@ -1,0 +1,19 @@
+{
+  "id": "knx-4-byte",
+  "manufacturer": "KNX",
+  "model": "4 Byte",
+  "category": "gateway",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Crestron KNX 4 Byte v3.2.usp",
+  "externalLibrary": "CrestronKNXLibrary"
+}

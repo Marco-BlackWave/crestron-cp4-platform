@@ -1,0 +1,18 @@
+{
+  "id": "vitrum-clima-set",
+  "manufacturer": "Vitrum",
+  "model": "Clima Set",
+  "category": "hvac",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Vitrum_Clima_Set_V1.0_AZ.usp"
+}

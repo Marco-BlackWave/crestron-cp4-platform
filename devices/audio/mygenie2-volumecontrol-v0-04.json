@@ -1,0 +1,18 @@
+{
+  "id": "mygenie2-volumecontrol-v0-04",
+  "manufacturer": "MYGenie2",
+  "model": "VolumeControl(V0-04)",
+  "category": "audio",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "MYGenie2_VolumeControl(V0-04).usp"
+}

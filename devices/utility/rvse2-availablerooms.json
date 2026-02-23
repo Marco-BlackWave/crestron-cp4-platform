@@ -1,0 +1,84 @@
+{
+  "id": "rvse2-availablerooms",
+  "manufacturer": "RVSE2",
+  "model": "AvailableRooms",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\u003CRoom\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003C/Room\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003C/RoomID\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CAttribute\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003C/Join\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003C/Name\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003C/Value\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003C/Error\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CRoom\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003C/ID\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003C/Name\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003C/Room\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": ",",
+      "signal": "FreeUntilAttributeNames$"
+    },
+    {
+      "pattern": ",",
+      "signal": "FreeUntilAttributeNames$"
+    },
+    {
+      "pattern": ",",
+      "signal": "FreeUntilAttributeJoins$"
+    },
+    {
+      "pattern": ",",
+      "signal": "FreeUntilAttributeJoins$"
+    }
+  ],
+  "sourceModule": "RVSE2_AvailableRooms_v4.1\u002B.usp"
+}

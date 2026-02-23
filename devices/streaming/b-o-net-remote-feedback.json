@@ -1,0 +1,288 @@
+{
+  "id": "b-o-net-remote-feedback",
+  "manufacturer": "B\u0026O",
+  "model": "Net Remote Feedback",
+  "category": "media",
+  "protocols": {
+    "ip": {
+      "port": 23,
+      "type": "tcp"
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "type",
+      "signal": "data"
+    },
+    {
+      "pattern": "type",
+      "signal": "data"
+    },
+    {
+      "pattern": "level",
+      "signal": "data"
+    },
+    {
+      "pattern": ",",
+      "signal": "data"
+    },
+    {
+      "pattern": "muted",
+      "signal": "data"
+    },
+    {
+      "pattern": "primary",
+      "signal": "data"
+    },
+    {
+      "pattern": "primary",
+      "signal": "data"
+    },
+    {
+      "pattern": ":",
+      "signal": "data"
+    },
+    {
+      "pattern": "friendlyName",
+      "signal": "data"
+    },
+    {
+      "pattern": "friendlyName",
+      "signal": "data"
+    },
+    {
+      "pattern": "friendlyName",
+      "signal": "data"
+    },
+    {
+      "pattern": "friendlyName",
+      "signal": "data"
+    },
+    {
+      "pattern": "reason",
+      "signal": "data"
+    },
+    {
+      "pattern": "reason",
+      "signal": "data"
+    },
+    {
+      "pattern": "trackNumber",
+      "signal": "data"
+    },
+    {
+      "pattern": "trackNumber",
+      "signal": "data"
+    },
+    {
+      "pattern": "}",
+      "signal": "data"
+    },
+    {
+      "pattern": "state",
+      "signal": "data"
+    },
+    {
+      "pattern": "state",
+      "signal": "data"
+    },
+    {
+      "pattern": "name",
+      "signal": "data"
+    },
+    {
+      "pattern": "name",
+      "signal": "data"
+    },
+    {
+      "pattern": "trackId",
+      "signal": "data"
+    },
+    {
+      "pattern": "trackId",
+      "signal": "data"
+    },
+    {
+      "pattern": "trackImage",
+      "signal": "data"
+    },
+    {
+      "pattern": "]",
+      "signal": "data"
+    },
+    {
+      "pattern": "artist",
+      "signal": "data"
+    },
+    {
+      "pattern": "artist",
+      "signal": "data"
+    },
+    {
+      "pattern": "artistImage",
+      "signal": "data"
+    },
+    {
+      "pattern": "]",
+      "signal": "data"
+    },
+    {
+      "pattern": "album",
+      "signal": "data"
+    },
+    {
+      "pattern": "album",
+      "signal": "data"
+    },
+    {
+      "pattern": "albumImage",
+      "signal": "data"
+    },
+    {
+      "pattern": "]",
+      "signal": "data"
+    },
+    {
+      "pattern": "genre",
+      "signal": "data"
+    },
+    {
+      "pattern": "genre",
+      "signal": "data"
+    },
+    {
+      "pattern": "name",
+      "signal": "data"
+    },
+    {
+      "pattern": "name",
+      "signal": "data"
+    },
+    {
+      "pattern": "genre",
+      "signal": "data"
+    },
+    {
+      "pattern": "genre",
+      "signal": "data"
+    },
+    {
+      "pattern": "country",
+      "signal": "data"
+    },
+    {
+      "pattern": "country",
+      "signal": "data"
+    },
+    {
+      "pattern": "languages",
+      "signal": "data"
+    },
+    {
+      "pattern": "languages",
+      "signal": "data"
+    },
+    {
+      "pattern": "image",
+      "signal": "data"
+    },
+    {
+      "pattern": "]",
+      "signal": "data"
+    },
+    {
+      "pattern": "liveDescription",
+      "signal": "data"
+    },
+    {
+      "pattern": "liveDescription",
+      "signal": "data"
+    },
+    {
+      "pattern": "name",
+      "signal": "data"
+    },
+    {
+      "pattern": "name",
+      "signal": "data"
+    },
+    {
+      "pattern": "number",
+      "signal": "data"
+    },
+    {
+      "pattern": "number",
+      "signal": "data"
+    },
+    {
+      "pattern": ",",
+      "signal": "data"
+    },
+    {
+      "pattern": "name",
+      "signal": "data"
+    },
+    {
+      "pattern": "name",
+      "signal": "data"
+    },
+    {
+      "pattern": "Light",
+      "signal": "data"
+    },
+    {
+      "pattern": "Light",
+      "signal": "data"
+    },
+    {
+      "pattern": "KeyPress",
+      "signal": "data"
+    },
+    {
+      "pattern": "Control",
+      "signal": "data"
+    },
+    {
+      "pattern": "Control",
+      "signal": "data"
+    },
+    {
+      "pattern": "KeyPress",
+      "signal": "data"
+    },
+    {
+      "pattern": "MATRIX",
+      "signal": "SourceData"
+    },
+    {
+      "pattern": "HDMI",
+      "signal": "SourceData"
+    },
+    {
+      "pattern": "https://",
+      "signal": "TempURL$"
+    },
+    {
+      "pattern": "https://",
+      "signal": "TempURL$"
+    },
+    {
+      "pattern": "https://",
+      "signal": "TempURL$"
+    },
+    {
+      "pattern": "https://",
+      "signal": "TempURL$"
+    }
+  ],
+  "sourceModule": "B\u0026O Net Remote Feedback v1.5.7.usp",
+  "externalLibrary": "BeoNetRemote"
+}

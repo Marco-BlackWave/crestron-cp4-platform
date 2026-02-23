@@ -1,0 +1,22 @@
+{
+  "id": "sealux-kodi",
+  "manufacturer": "Sealux",
+  "model": "Kodi",
+  "category": "media",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "cmd1": "@@@ver:4.0|numseq:1|type:0|handshake:1|count:1|cmd_type:0|cid:-1|cmd_name:%s|avtid:%s!###"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": true,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Sealux_Kodi_v1.1_AZ.usp"
+}

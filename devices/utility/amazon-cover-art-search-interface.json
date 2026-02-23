@@ -1,0 +1,81 @@
+{
+  "id": "amazon-cover-art-search-interface",
+  "manufacturer": "Amazon",
+  "model": "Cover Art Search Interface",
+  "category": "utility",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "http://",
+      "signal": "Data"
+    },
+    {
+      "pattern": "http://",
+      "signal": "Data"
+    },
+    {
+      "pattern": "http://",
+      "signal": "Data"
+    },
+    {
+      "pattern": "\u003E",
+      "signal": "TCP_RX"
+    },
+    {
+      "pattern": "Bad\\ Request",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Errors",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003C/ItemSearchResponse\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003CSmallImage\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003C/SmallImage\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003CMediumImage\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003C/MediumImage\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003CLargeImage\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003C/LargeImage\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "NoExactMatches",
+      "signal": "sTemp"
+    }
+  ],
+  "sourceModule": "Amazon Cover Art Search Interface v2.0.usp"
+}

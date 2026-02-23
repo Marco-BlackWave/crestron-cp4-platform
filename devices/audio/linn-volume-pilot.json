@@ -1,0 +1,18 @@
+{
+  "id": "linn-volume-pilot",
+  "manufacturer": "Linn",
+  "model": "Volume Pilot",
+  "category": "audio",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": true,
+    "inputSelect": true,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Linn_Volume_Pilot.usp"
+}

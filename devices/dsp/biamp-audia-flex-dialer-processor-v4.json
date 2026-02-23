@@ -1,0 +1,77 @@
+{
+  "id": "biamp-audia-flex-dialer-processor-v4",
+  "manufacturer": "Biamp",
+  "model": "Audia Flex Dialer Processor v4",
+  "category": "dsp",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "onHook": "SET %s TIHOOKSTATE %s 1\n",
+        "offHook": "SET %s TIHOOKSTATE %s 0\n",
+        "dial": "%s%s\n",
+        "redial": "%s%s\n",
+        "keyboardgo": "%s%s\n",
+        "presets": "%s%s\n",
+        "cmd7": "GET %s TIHOOKSTATE %s\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "dsp": {
+    "maxChannels": 8
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\xF7",
+      "signal": "From_Smpl$"
+    },
+    {
+      "pattern": "\\\\xF0",
+      "signal": "Temp$"
+    },
+    {
+      "pattern": "\\\\xF7",
+      "signal": "Temp$"
+    },
+    {
+      "pattern": "TIHOOKSTATE",
+      "signal": "Temp$"
+    },
+    {
+      "pattern": "\\\\x80",
+      "signal": "Temp$"
+    },
+    {
+      "pattern": "\\\\x81",
+      "signal": "Temp$"
+    },
+    {
+      "pattern": "\\\\x82",
+      "signal": "Temp$"
+    },
+    {
+      "pattern": "\\\\x83",
+      "signal": "Temp$"
+    },
+    {
+      "pattern": "\\\\x84",
+      "signal": "Temp$"
+    },
+    {
+      "pattern": "\\\\x85",
+      "signal": "Temp$"
+    }
+  ],
+  "sourceModule": "Biamp Audia Flex Dialer Processor v4.usp"
+}

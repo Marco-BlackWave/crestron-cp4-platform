@@ -1,0 +1,158 @@
+{
+  "id": "mygenie2-gui-v0-12",
+  "manufacturer": "MyGenie2",
+  "model": "GUI(V0-12)",
+  "category": "utility",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "owneronsat": "{%s\u003CBackToMenu\u003E}",
+        "owneronsky": "{%s\u003CBackToMenu\u003E}",
+        "ownerontv": "{%s\u003CBackToMenu\u003E}",
+        "cctv": "{%s\u003CPage\u003E4\u003C/Page\u003E}",
+        "power": "{%s\u003CPage\u003E39\u003C/Page\u003E}",
+        "avsystemoff": "{%s\u003CBackToMenu\u003E}",
+        "intercom": "{%s\u003CPage\u003E4\u003C/Page\u003E}",
+        "backtomenu": "{%s\u003CBackToMenu\u003E}",
+        "backup": "{%s\u003CList\u003EMainMenu\u003C/List\u003E}",
+        "scrolldn": "{%s\u003CDraw\u003E%u\u003C/Draw\u003E}",
+        "scrollup": "{%s\u003CDraw\u003E%u\u003C/Draw\u003E}",
+        "cmd12": "{%s\u003CLanguage\u003E1\u003C/Language\u003E}",
+        "cmd13": "{%s\u003CPage\u003E40\u003C/Page\u003E}",
+        "cmd14": "{%s\u003CPage\u003E%u\u003C/Page\u003E}",
+        "cmd15": "{%s\u003CList\u003E%s\u003C/List\u003E}"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\uFFFD",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003CC\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003C/C\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003CU\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003C/U\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003CF\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003CR\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003CB\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003CM\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003CG0\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003CG1\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003CL\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003CP\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003CE\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003CD\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003CA\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003CLanguage\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003CList\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003CDraw\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003CPage\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003CEquipmentID\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003CBackToMenu\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003CButton\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003CZ\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003CG\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003C/G\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "}",
+      "signal": "GuiSyncRx$"
+    },
+    {
+      "pattern": "\u003CGuiData\u003E",
+      "signal": "sFileData"
+    },
+    {
+      "pattern": "\u003CMenus\u003E",
+      "signal": "sFileData"
+    }
+  ],
+  "sourceModule": "MyGenie2_GUI(V0-12).usp"
+}

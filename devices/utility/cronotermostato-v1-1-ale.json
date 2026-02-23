@@ -1,0 +1,27 @@
+{
+  "id": "cronotermostato-v1-1-ale",
+  "manufacturer": "Cronotermostato",
+  "model": "v1.1 ALE",
+  "category": "utility",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "save": "Errore scrittura%d",
+        "recall": "Errore scrittura%d"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Cronotermostato_v1.1_ALE.usp"
+}

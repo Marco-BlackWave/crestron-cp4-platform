@@ -1,0 +1,54 @@
+{
+  "id": "crestron-nextworks-domo-datapoint-digital",
+  "manufacturer": "Crestron",
+  "model": "Nextworks DOMO Datapoint Digital",
+  "category": "utility",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "cmd1": "numseq:%s|type:1|handshake:1|count:1|cmd_type:100|cid:|dev_id:%s|errcode:%s!###",
+        "cmd2": "numseq:%s|type:1|handshake:1|count:1|cmd_type:2|cid:|subcmd_type:17|dev_id:%s|dp_type:digit|value:%s!###",
+        "cmd3": "numseq:0|type:0|handshake:1|count:1|cmd_type:2|cid:|subcmd_type:17|dev_id:%s|dp_type:digit|value:%s!###",
+        "cmd4": "numseq:%s|type:1|handshake:1|count:1|cmd_type:2|cid:|subcmd_type:17|dev_id:%s|dp_type:digit|value:on!###",
+        "cmd5": "numseq:%s|type:1|handshake:1|count:1|cmd_type:2|cid:|subcmd_type:17|dev_id:%s|dp_type:digit|value:off!###",
+        "cmd6": "numseq:%s|type:1|handshake:1|count:1|cmd_type:2|cid:|subcmd_type:20|dev_id:%s!###",
+        "cmd7": "numseq:%s|type:1|handshake:1|count:1|cmd_type:2|cid:|subcmd_type:21|dev_id:%s!###"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "value:",
+      "signal": "s$"
+    },
+    {
+      "pattern": "handshake:1\\|",
+      "signal": "s$"
+    },
+    {
+      "pattern": "value:on",
+      "signal": "s$"
+    },
+    {
+      "pattern": "!\\#\\#\\#",
+      "signal": "FromDomoIO$"
+    },
+    {
+      "pattern": "subcmd_type:",
+      "signal": "app_domo$"
+    },
+    {
+      "pattern": "numseq:",
+      "signal": "app_domo$"
+    }
+  ],
+  "sourceModule": "Crestron_Nextworks_DOMO_Datapoint_Digital_v1.4.usp"
+}

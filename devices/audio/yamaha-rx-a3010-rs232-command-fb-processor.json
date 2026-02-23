@@ -1,0 +1,1634 @@
+{
+  "id": "yamaha-rx-a3010-rs232-command-fb-processor",
+  "manufacturer": "Yamaha",
+  "model": "RX-A3010 RS232 Command \u0026 FB Processor",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "pandoraMemSave": "@PANDORA:MEM=%d\n",
+        "napsterMemSave": "@NAPSTER:MEM=%d\n",
+        "siriusirMemSave": "@SIRIUSIR:MEM=%d\n",
+        "rhapMemSave": "@RHAP:MEM=%d\n",
+        "pcMemSave": "@PC:MEM=%d\n",
+        "netradioMemSave": "@NETRADIO:MEM=%d\n",
+        "usbMemSave": "@USB:MEM=%d\n",
+        "siriusMemSave": "@SIRIUS:MEM=%d\n",
+        "cmd9": "@HDRADIO:FMFREQ=%d\n",
+        "cmd10": "@HDRADIO:AMFREQ=%d\n",
+        "cmd11": "@SIRIUS:CHSEL=%d\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "MAIN:SLEEP=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "MAIN:VOL=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "MAIN:AUDSEL=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "MAIN:DECODERSEL=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "MAIN:PUREDIRMODE=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "MAIN:ADAPTIVEDRC=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "MAIN:LIPSYNCMODE=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "MAIN:STRAIGHT=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "MAIN:ENHANCER=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "MAIN:SOUNDPRG=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "MAIN:ADAPTIVEDSP=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "MAIN:ADAPTIVEDSP=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "MAIN:EXSURDECODER=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "MAIN:2CHDECODER=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "MAIN:HDMIOUT=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "MAIN:HDMIPROCESSING=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "MAIN:HDMIASPECT=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "MAIN:HDMIRESOL=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "MAIN:ZONENAME=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "MAIN:SCENE1NAME=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "MAIN:SCENE2NAME=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "MAIN:SCENE3NAME=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "MAIN:SCENE4NAME=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "MAIN:SCENE5NAME=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "MAIN:SCENE6NAME=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "MAIN:SCENE7NAME=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "MAIN:SCENE8NAME=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "MAIN:SCENE9NAME=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "MAIN:SCENE10NAME=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "MAIN:SCENE11NAME=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "MAIN:SCENE12NAME=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "=",
+      "signal": "MainData"
+    },
+    {
+      "pattern": "ZONE2:SLEEP=",
+      "signal": "Zone2Data"
+    },
+    {
+      "pattern": "=",
+      "signal": "Zone2Data"
+    },
+    {
+      "pattern": "ZONE2:VOL=",
+      "signal": "Zone2Data"
+    },
+    {
+      "pattern": "=",
+      "signal": "Zone2Data"
+    },
+    {
+      "pattern": "ZONE2:ZONENAME=",
+      "signal": "Zone2Data"
+    },
+    {
+      "pattern": "=",
+      "signal": "Zone2Data"
+    },
+    {
+      "pattern": "ZONE2:SCENE1NAME=",
+      "signal": "Zone2Data"
+    },
+    {
+      "pattern": "=",
+      "signal": "Zone2Data"
+    },
+    {
+      "pattern": "ZONE2:SCENE2NAME=",
+      "signal": "Zone2Data"
+    },
+    {
+      "pattern": "=",
+      "signal": "Zone2Data"
+    },
+    {
+      "pattern": "ZONE2:SCENE3NAME=",
+      "signal": "Zone2Data"
+    },
+    {
+      "pattern": "=",
+      "signal": "Zone2Data"
+    },
+    {
+      "pattern": "ZONE2:SCENE4NAME=",
+      "signal": "Zone2Data"
+    },
+    {
+      "pattern": "=",
+      "signal": "Zone2Data"
+    },
+    {
+      "pattern": "ZONE3:SLEEP=",
+      "signal": "Zone3Data"
+    },
+    {
+      "pattern": "=",
+      "signal": "Zone3Data"
+    },
+    {
+      "pattern": "ZONE3:VOL=",
+      "signal": "Zone3Data"
+    },
+    {
+      "pattern": "=",
+      "signal": "Zone3Data"
+    },
+    {
+      "pattern": "ZONE3:ZONENAME=",
+      "signal": "Zone3Data"
+    },
+    {
+      "pattern": "=",
+      "signal": "Zone3Data"
+    },
+    {
+      "pattern": "ZONE3:SCENE1NAME=",
+      "signal": "Zone3Data"
+    },
+    {
+      "pattern": "=",
+      "signal": "Zone3Data"
+    },
+    {
+      "pattern": "ZONE3:SCENE2NAME=",
+      "signal": "Zone3Data"
+    },
+    {
+      "pattern": "=",
+      "signal": "Zone3Data"
+    },
+    {
+      "pattern": "ZONE3:SCENE3NAME=",
+      "signal": "Zone3Data"
+    },
+    {
+      "pattern": "=",
+      "signal": "Zone3Data"
+    },
+    {
+      "pattern": "ZONE3:SCENE4NAME=",
+      "signal": "Zone3Data"
+    },
+    {
+      "pattern": "=",
+      "signal": "Zone3Data"
+    },
+    {
+      "pattern": "ZONE4:SLEEP=",
+      "signal": "Zone4Data"
+    },
+    {
+      "pattern": "=",
+      "signal": "Zone4Data"
+    },
+    {
+      "pattern": "ZONE4:ZONENAME=",
+      "signal": "Zone4Data"
+    },
+    {
+      "pattern": "=",
+      "signal": "Zone4Data"
+    },
+    {
+      "pattern": "ZONE4:SCENE1NAME=",
+      "signal": "Zone4Data"
+    },
+    {
+      "pattern": "=",
+      "signal": "Zone4Data"
+    },
+    {
+      "pattern": "ZONE4:SCENE2NAME=",
+      "signal": "Zone4Data"
+    },
+    {
+      "pattern": "=",
+      "signal": "Zone4Data"
+    },
+    {
+      "pattern": "ZONE4:SCENE3NAME=",
+      "signal": "Zone4Data"
+    },
+    {
+      "pattern": "=",
+      "signal": "Zone4Data"
+    },
+    {
+      "pattern": "ZONE4:SCENE4NAME=",
+      "signal": "Zone4Data"
+    },
+    {
+      "pattern": "=",
+      "signal": "Zone4Data"
+    },
+    {
+      "pattern": "HDRADIO:FMFREQ=",
+      "signal": "TunerData"
+    },
+    {
+      "pattern": "=",
+      "signal": "TunerData"
+    },
+    {
+      "pattern": "HDRADIO:PRGNUM=",
+      "signal": "TunerData"
+    },
+    {
+      "pattern": "=",
+      "signal": "TunerData"
+    },
+    {
+      "pattern": "HDRADIO:PRGTYPE=",
+      "signal": "TunerData"
+    },
+    {
+      "pattern": "=",
+      "signal": "TunerData"
+    },
+    {
+      "pattern": "HDRADIO:SONG=",
+      "signal": "TunerData"
+    },
+    {
+      "pattern": "=",
+      "signal": "TunerData"
+    },
+    {
+      "pattern": "HDRADIO:ARTIST=",
+      "signal": "TunerData"
+    },
+    {
+      "pattern": "=",
+      "signal": "TunerData"
+    },
+    {
+      "pattern": "HDRADIO:ALBUM=",
+      "signal": "TunerData"
+    },
+    {
+      "pattern": "=",
+      "signal": "TunerData"
+    },
+    {
+      "pattern": "HDRADIO:AVAILPRG1=Available",
+      "signal": "TunerData"
+    },
+    {
+      "pattern": "=",
+      "signal": "TunerData"
+    },
+    {
+      "pattern": "HDRADIO:AVAILPRG2=Available",
+      "signal": "TunerData"
+    },
+    {
+      "pattern": "=",
+      "signal": "TunerData"
+    },
+    {
+      "pattern": "HDRADIO:AVAILPRG3=Available",
+      "signal": "TunerData"
+    },
+    {
+      "pattern": "=",
+      "signal": "TunerData"
+    },
+    {
+      "pattern": "HDRADIO:AVAILPRG4=Available",
+      "signal": "TunerData"
+    },
+    {
+      "pattern": "=",
+      "signal": "TunerData"
+    },
+    {
+      "pattern": "HDRADIO:AVAILPRG5=Available",
+      "signal": "TunerData"
+    },
+    {
+      "pattern": "=",
+      "signal": "TunerData"
+    },
+    {
+      "pattern": "HDRADIO:AVAILPRG6=Available",
+      "signal": "TunerData"
+    },
+    {
+      "pattern": "=",
+      "signal": "TunerData"
+    },
+    {
+      "pattern": "HDRADIO:AVAILPRG7=Available",
+      "signal": "TunerData"
+    },
+    {
+      "pattern": "=",
+      "signal": "TunerData"
+    },
+    {
+      "pattern": "HDRADIO:AVAILPRG8=Available",
+      "signal": "TunerData"
+    },
+    {
+      "pattern": "=",
+      "signal": "TunerData"
+    },
+    {
+      "pattern": "NAPSTER:LISTLAYER=",
+      "signal": "NapsterData"
+    },
+    {
+      "pattern": "=",
+      "signal": "NapsterData"
+    },
+    {
+      "pattern": "NAPSTER:LISTLAYERNAME=",
+      "signal": "NapsterData"
+    },
+    {
+      "pattern": "=",
+      "signal": "NapsterData"
+    },
+    {
+      "pattern": "NAPSTER:LINE1TXT=",
+      "signal": "NapsterData"
+    },
+    {
+      "pattern": "=",
+      "signal": "NapsterData"
+    },
+    {
+      "pattern": "NAPSTER:LINE2TXT=",
+      "signal": "NapsterData"
+    },
+    {
+      "pattern": "=",
+      "signal": "NapsterData"
+    },
+    {
+      "pattern": "NAPSTER:LINE3TXT=",
+      "signal": "NapsterData"
+    },
+    {
+      "pattern": "=",
+      "signal": "NapsterData"
+    },
+    {
+      "pattern": "NAPSTER:LINE4TXT=",
+      "signal": "NapsterData"
+    },
+    {
+      "pattern": "=",
+      "signal": "NapsterData"
+    },
+    {
+      "pattern": "NAPSTER:LINE5TXT=",
+      "signal": "NapsterData"
+    },
+    {
+      "pattern": "=",
+      "signal": "NapsterData"
+    },
+    {
+      "pattern": "NAPSTER:LINE6TXT=",
+      "signal": "NapsterData"
+    },
+    {
+      "pattern": "=",
+      "signal": "NapsterData"
+    },
+    {
+      "pattern": "NAPSTER:LINE7TXT=",
+      "signal": "NapsterData"
+    },
+    {
+      "pattern": "=",
+      "signal": "NapsterData"
+    },
+    {
+      "pattern": "NAPSTER:LINE8TXT=",
+      "signal": "NapsterData"
+    },
+    {
+      "pattern": "=",
+      "signal": "NapsterData"
+    },
+    {
+      "pattern": "NAPSTER:SONG=",
+      "signal": "NapsterData"
+    },
+    {
+      "pattern": "=",
+      "signal": "NapsterData"
+    },
+    {
+      "pattern": "NAPSTER:ARTIST=",
+      "signal": "NapsterData"
+    },
+    {
+      "pattern": "=",
+      "signal": "NapsterData"
+    },
+    {
+      "pattern": "NAPSTER:ALBUM=",
+      "signal": "NapsterData"
+    },
+    {
+      "pattern": "=",
+      "signal": "NapsterData"
+    },
+    {
+      "pattern": "SIRIUSIR:LISTLAYER=",
+      "signal": "SiriusIrData"
+    },
+    {
+      "pattern": "=",
+      "signal": "SiriusIrData"
+    },
+    {
+      "pattern": "SIRIUSIR:LISTLAYERNAME=",
+      "signal": "SiriusIrData"
+    },
+    {
+      "pattern": "=",
+      "signal": "SiriusIrData"
+    },
+    {
+      "pattern": "SIRIUSIR:LINE1TXT=",
+      "signal": "SiriusIrData"
+    },
+    {
+      "pattern": "=",
+      "signal": "SiriusIrData"
+    },
+    {
+      "pattern": "SIRIUSIR:LINE2TXT=",
+      "signal": "SiriusIrData"
+    },
+    {
+      "pattern": "=",
+      "signal": "SiriusIrData"
+    },
+    {
+      "pattern": "SIRIUSIR:LINE3TXT=",
+      "signal": "SiriusIrData"
+    },
+    {
+      "pattern": "=",
+      "signal": "SiriusIrData"
+    },
+    {
+      "pattern": "SIRIUSIR:LINE4TXT=",
+      "signal": "SiriusIrData"
+    },
+    {
+      "pattern": "=",
+      "signal": "SiriusIrData"
+    },
+    {
+      "pattern": "SIRIUSIR:LINE5TXT=",
+      "signal": "SiriusIrData"
+    },
+    {
+      "pattern": "=",
+      "signal": "SiriusIrData"
+    },
+    {
+      "pattern": "SIRIUSIR:LINE6TXT=",
+      "signal": "SiriusIrData"
+    },
+    {
+      "pattern": "=",
+      "signal": "SiriusIrData"
+    },
+    {
+      "pattern": "SIRIUSIR:LINE7TXT=",
+      "signal": "SiriusIrData"
+    },
+    {
+      "pattern": "=",
+      "signal": "SiriusIrData"
+    },
+    {
+      "pattern": "SIRIUSIR:LINE8TXT=",
+      "signal": "SiriusIrData"
+    },
+    {
+      "pattern": "=",
+      "signal": "SiriusIrData"
+    },
+    {
+      "pattern": "SIRIUSIR:SONG=",
+      "signal": "SiriusIrData"
+    },
+    {
+      "pattern": "=",
+      "signal": "SiriusIrData"
+    },
+    {
+      "pattern": "SIRIUSIR:ARTIST=",
+      "signal": "SiriusIrData"
+    },
+    {
+      "pattern": "=",
+      "signal": "SiriusIrData"
+    },
+    {
+      "pattern": "SIRIUSIR:ALBUM=",
+      "signal": "SiriusIrData"
+    },
+    {
+      "pattern": "=",
+      "signal": "SiriusIrData"
+    },
+    {
+      "pattern": "SIRIUSIR:CHNAME=",
+      "signal": "SiriusIrData"
+    },
+    {
+      "pattern": "=",
+      "signal": "SiriusIrData"
+    },
+    {
+      "pattern": "RHAP:LISTLAYER=",
+      "signal": "RhapData"
+    },
+    {
+      "pattern": "=",
+      "signal": "RhapData"
+    },
+    {
+      "pattern": "RHAP:LISTLAYERNAME=",
+      "signal": "RhapData"
+    },
+    {
+      "pattern": "=",
+      "signal": "RhapData"
+    },
+    {
+      "pattern": "RHAP:LINE1TXT=",
+      "signal": "RhapData"
+    },
+    {
+      "pattern": "=",
+      "signal": "RhapData"
+    },
+    {
+      "pattern": "RHAP:LINE2TXT=",
+      "signal": "RhapData"
+    },
+    {
+      "pattern": "=",
+      "signal": "RhapData"
+    },
+    {
+      "pattern": "RHAP:LINE3TXT=",
+      "signal": "RhapData"
+    },
+    {
+      "pattern": "=",
+      "signal": "RhapData"
+    },
+    {
+      "pattern": "RHAP:LINE4TXT=",
+      "signal": "RhapData"
+    },
+    {
+      "pattern": "=",
+      "signal": "RhapData"
+    },
+    {
+      "pattern": "RHAP:LINE5TXT=",
+      "signal": "RhapData"
+    },
+    {
+      "pattern": "=",
+      "signal": "RhapData"
+    },
+    {
+      "pattern": "RHAP:LINE6TXT=",
+      "signal": "RhapData"
+    },
+    {
+      "pattern": "=",
+      "signal": "RhapData"
+    },
+    {
+      "pattern": "RHAP:LINE7TXT=",
+      "signal": "RhapData"
+    },
+    {
+      "pattern": "=",
+      "signal": "RhapData"
+    },
+    {
+      "pattern": "RHAP:LINE8TXT=",
+      "signal": "RhapData"
+    },
+    {
+      "pattern": "=",
+      "signal": "RhapData"
+    },
+    {
+      "pattern": "RHAP:SONG=",
+      "signal": "RhapData"
+    },
+    {
+      "pattern": "=",
+      "signal": "RhapData"
+    },
+    {
+      "pattern": "RHAP:ARTIST=",
+      "signal": "RhapData"
+    },
+    {
+      "pattern": "=",
+      "signal": "RhapData"
+    },
+    {
+      "pattern": "RHAP:ALBUM=",
+      "signal": "RhapData"
+    },
+    {
+      "pattern": "=",
+      "signal": "RhapData"
+    },
+    {
+      "pattern": "PC:LISTLAYER=",
+      "signal": "PcInfo"
+    },
+    {
+      "pattern": "=",
+      "signal": "PcInfo"
+    },
+    {
+      "pattern": "PC:LISTLAYERNAME=",
+      "signal": "PcInfo"
+    },
+    {
+      "pattern": "=",
+      "signal": "PcInfo"
+    },
+    {
+      "pattern": "PC:LINE1TXT=",
+      "signal": "PcInfo"
+    },
+    {
+      "pattern": "=",
+      "signal": "PcInfo"
+    },
+    {
+      "pattern": "PC:LINE2TXT=",
+      "signal": "PcInfo"
+    },
+    {
+      "pattern": "=",
+      "signal": "PcInfo"
+    },
+    {
+      "pattern": "PC:LINE3TXT=",
+      "signal": "PcInfo"
+    },
+    {
+      "pattern": "=",
+      "signal": "PcInfo"
+    },
+    {
+      "pattern": "PC:LINE4TXT=",
+      "signal": "PcInfo"
+    },
+    {
+      "pattern": "=",
+      "signal": "PcInfo"
+    },
+    {
+      "pattern": "PC:LINE5TXT=",
+      "signal": "PcInfo"
+    },
+    {
+      "pattern": "=",
+      "signal": "PcInfo"
+    },
+    {
+      "pattern": "PC:LINE6TXT=",
+      "signal": "PcInfo"
+    },
+    {
+      "pattern": "=",
+      "signal": "PcInfo"
+    },
+    {
+      "pattern": "PC:LINE7TXT=",
+      "signal": "PcInfo"
+    },
+    {
+      "pattern": "=",
+      "signal": "PcInfo"
+    },
+    {
+      "pattern": "PC:LINE8TXT=",
+      "signal": "PcInfo"
+    },
+    {
+      "pattern": "=",
+      "signal": "PcInfo"
+    },
+    {
+      "pattern": "PC:SONG=",
+      "signal": "PcInfo"
+    },
+    {
+      "pattern": "=",
+      "signal": "PcInfo"
+    },
+    {
+      "pattern": "PC:ARTIST=",
+      "signal": "PcInfo"
+    },
+    {
+      "pattern": "=",
+      "signal": "PcInfo"
+    },
+    {
+      "pattern": "PC:ALBUM=",
+      "signal": "PcInfo"
+    },
+    {
+      "pattern": "=",
+      "signal": "PcInfo"
+    },
+    {
+      "pattern": "NETRADIO:LISTLAYER=",
+      "signal": "NetRadioData"
+    },
+    {
+      "pattern": "=",
+      "signal": "NetRadioData"
+    },
+    {
+      "pattern": "NETRADIO:LISTLAYERNAME=",
+      "signal": "NetRadioData"
+    },
+    {
+      "pattern": "=",
+      "signal": "NetRadioData"
+    },
+    {
+      "pattern": "NETRADIO:LINE1TXT=",
+      "signal": "NetRadioData"
+    },
+    {
+      "pattern": "=",
+      "signal": "NetRadioData"
+    },
+    {
+      "pattern": "NETRADIO:LINE2TXT=",
+      "signal": "NetRadioData"
+    },
+    {
+      "pattern": "=",
+      "signal": "NetRadioData"
+    },
+    {
+      "pattern": "NETRADIO:LINE3TXT=",
+      "signal": "NetRadioData"
+    },
+    {
+      "pattern": "=",
+      "signal": "NetRadioData"
+    },
+    {
+      "pattern": "NETRADIO:LINE4TXT=",
+      "signal": "NetRadioData"
+    },
+    {
+      "pattern": "=",
+      "signal": "NetRadioData"
+    },
+    {
+      "pattern": "NETRADIO:LINE5TXT=",
+      "signal": "NetRadioData"
+    },
+    {
+      "pattern": "=",
+      "signal": "NetRadioData"
+    },
+    {
+      "pattern": "NETRADIO:LINE6TXT=",
+      "signal": "NetRadioData"
+    },
+    {
+      "pattern": "=",
+      "signal": "NetRadioData"
+    },
+    {
+      "pattern": "NETRADIO:LINE7TXT=",
+      "signal": "NetRadioData"
+    },
+    {
+      "pattern": "=",
+      "signal": "NetRadioData"
+    },
+    {
+      "pattern": "NETRADIO:LINE8TXT=",
+      "signal": "NetRadioData"
+    },
+    {
+      "pattern": "=",
+      "signal": "NetRadioData"
+    },
+    {
+      "pattern": "NETRADIO:SONG=",
+      "signal": "NetRadioData"
+    },
+    {
+      "pattern": "=",
+      "signal": "NetRadioData"
+    },
+    {
+      "pattern": "NETRADIO:ARTIST=",
+      "signal": "NetRadioData"
+    },
+    {
+      "pattern": "=",
+      "signal": "NetRadioData"
+    },
+    {
+      "pattern": "NETRADIO:ALBUM=",
+      "signal": "NetRadioData"
+    },
+    {
+      "pattern": "=",
+      "signal": "NetRadioData"
+    },
+    {
+      "pattern": "NETRADIO:STATION=",
+      "signal": "NetRadioData"
+    },
+    {
+      "pattern": "=",
+      "signal": "NetRadioData"
+    },
+    {
+      "pattern": "USB:LISTLAYER=",
+      "signal": "usbData"
+    },
+    {
+      "pattern": "=",
+      "signal": "usbData"
+    },
+    {
+      "pattern": "USB:LISTLAYERNAME=",
+      "signal": "usbData"
+    },
+    {
+      "pattern": "=",
+      "signal": "usbData"
+    },
+    {
+      "pattern": "USB:LINE1TXT=",
+      "signal": "usbData"
+    },
+    {
+      "pattern": "=",
+      "signal": "usbData"
+    },
+    {
+      "pattern": "USB:LINE2TXT=",
+      "signal": "usbData"
+    },
+    {
+      "pattern": "=",
+      "signal": "usbData"
+    },
+    {
+      "pattern": "USB:LINE3TXT=",
+      "signal": "usbData"
+    },
+    {
+      "pattern": "=",
+      "signal": "usbData"
+    },
+    {
+      "pattern": "USB:LINE4TXT=",
+      "signal": "usbData"
+    },
+    {
+      "pattern": "=",
+      "signal": "usbData"
+    },
+    {
+      "pattern": "USB:LINE5TXT=",
+      "signal": "usbData"
+    },
+    {
+      "pattern": "=",
+      "signal": "usbData"
+    },
+    {
+      "pattern": "USB:LINE6TXT=",
+      "signal": "usbData"
+    },
+    {
+      "pattern": "=",
+      "signal": "usbData"
+    },
+    {
+      "pattern": "USB:LINE7TXT=",
+      "signal": "usbData"
+    },
+    {
+      "pattern": "=",
+      "signal": "usbData"
+    },
+    {
+      "pattern": "USB:LINE8TXT=",
+      "signal": "usbData"
+    },
+    {
+      "pattern": "=",
+      "signal": "usbData"
+    },
+    {
+      "pattern": "USB:SONG=",
+      "signal": "usbData"
+    },
+    {
+      "pattern": "=",
+      "signal": "usbData"
+    },
+    {
+      "pattern": "USB:ARTIST=",
+      "signal": "usbData"
+    },
+    {
+      "pattern": "=",
+      "signal": "usbData"
+    },
+    {
+      "pattern": "USB:ALBUM=",
+      "signal": "usbData"
+    },
+    {
+      "pattern": "=",
+      "signal": "usbData"
+    },
+    {
+      "pattern": "PANDORA:LISTLAYER=",
+      "signal": "PandoraData"
+    },
+    {
+      "pattern": "=",
+      "signal": "PandoraData"
+    },
+    {
+      "pattern": "PANDORA:LISTLAYERNAME=",
+      "signal": "PandoraData"
+    },
+    {
+      "pattern": "=",
+      "signal": "PandoraData"
+    },
+    {
+      "pattern": "PANDORA:LINE1TXT=",
+      "signal": "PandoraData"
+    },
+    {
+      "pattern": "=",
+      "signal": "PandoraData"
+    },
+    {
+      "pattern": "PANDORA:LINE2TXT=",
+      "signal": "PandoraData"
+    },
+    {
+      "pattern": "=",
+      "signal": "PandoraData"
+    },
+    {
+      "pattern": "PANDORA:LINE3TXT=",
+      "signal": "PandoraData"
+    },
+    {
+      "pattern": "=",
+      "signal": "PandoraData"
+    },
+    {
+      "pattern": "PANDORA:LINE4TXT=",
+      "signal": "PandoraData"
+    },
+    {
+      "pattern": "=",
+      "signal": "PandoraData"
+    },
+    {
+      "pattern": "PANDORA:LINE5TXT=",
+      "signal": "PandoraData"
+    },
+    {
+      "pattern": "=",
+      "signal": "PandoraData"
+    },
+    {
+      "pattern": "PANDORA:LINE6TXT=",
+      "signal": "PandoraData"
+    },
+    {
+      "pattern": "=",
+      "signal": "PandoraData"
+    },
+    {
+      "pattern": "PANDORA:LINE7TXT=",
+      "signal": "PandoraData"
+    },
+    {
+      "pattern": "=",
+      "signal": "PandoraData"
+    },
+    {
+      "pattern": "PANDORA:LINE8TXT=",
+      "signal": "PandoraData"
+    },
+    {
+      "pattern": "=",
+      "signal": "PandoraData"
+    },
+    {
+      "pattern": "PANDORA:SONG=",
+      "signal": "PandoraData"
+    },
+    {
+      "pattern": "=",
+      "signal": "PandoraData"
+    },
+    {
+      "pattern": "PANDORA:ALBUM=",
+      "signal": "PandoraData"
+    },
+    {
+      "pattern": "=",
+      "signal": "PandoraData"
+    },
+    {
+      "pattern": "PANDORA:STATION=",
+      "signal": "PandoraData"
+    },
+    {
+      "pattern": "=",
+      "signal": "PandoraData"
+    },
+    {
+      "pattern": "IPOD:LISTLAYER=",
+      "signal": "iPodData"
+    },
+    {
+      "pattern": "=",
+      "signal": "iPodData"
+    },
+    {
+      "pattern": "IPOD:LISTLAYERNAME=",
+      "signal": "iPodData"
+    },
+    {
+      "pattern": "=",
+      "signal": "iPodData"
+    },
+    {
+      "pattern": "IPOD:LINE1TXT=",
+      "signal": "iPodData"
+    },
+    {
+      "pattern": "=",
+      "signal": "iPodData"
+    },
+    {
+      "pattern": "IPOD:LINE2TXT=",
+      "signal": "iPodData"
+    },
+    {
+      "pattern": "=",
+      "signal": "iPodData"
+    },
+    {
+      "pattern": "IPOD:LINE3TXT=",
+      "signal": "iPodData"
+    },
+    {
+      "pattern": "=",
+      "signal": "iPodData"
+    },
+    {
+      "pattern": "IPOD:LINE4TXT=",
+      "signal": "iPodData"
+    },
+    {
+      "pattern": "=",
+      "signal": "iPodData"
+    },
+    {
+      "pattern": "IPOD:LINE5TXT=",
+      "signal": "iPodData"
+    },
+    {
+      "pattern": "=",
+      "signal": "iPodData"
+    },
+    {
+      "pattern": "IPOD:LINE6TXT=",
+      "signal": "iPodData"
+    },
+    {
+      "pattern": "=",
+      "signal": "iPodData"
+    },
+    {
+      "pattern": "IPOD:LINE7TXT=",
+      "signal": "iPodData"
+    },
+    {
+      "pattern": "=",
+      "signal": "iPodData"
+    },
+    {
+      "pattern": "IPOD:LINE8TXT=",
+      "signal": "iPodData"
+    },
+    {
+      "pattern": "=",
+      "signal": "iPodData"
+    },
+    {
+      "pattern": "IPOD:SONG=",
+      "signal": "iPodData"
+    },
+    {
+      "pattern": "=",
+      "signal": "iPodData"
+    },
+    {
+      "pattern": "IPOD:ARTIST=",
+      "signal": "iPodData"
+    },
+    {
+      "pattern": "=",
+      "signal": "iPodData"
+    },
+    {
+      "pattern": "IPOD:ALBUM=",
+      "signal": "iPodData"
+    },
+    {
+      "pattern": "=",
+      "signal": "iPodData"
+    },
+    {
+      "pattern": "SIRIUS:ANTLVL=",
+      "signal": "SiriusData"
+    },
+    {
+      "pattern": "=",
+      "signal": "SiriusData"
+    },
+    {
+      "pattern": "SIRIUS:CATNAME=",
+      "signal": "SiriusData"
+    },
+    {
+      "pattern": "=",
+      "signal": "SiriusData"
+    },
+    {
+      "pattern": "SIRIUS:CHNUM=",
+      "signal": "SiriusData"
+    },
+    {
+      "pattern": "=",
+      "signal": "SiriusData"
+    },
+    {
+      "pattern": "SIRIUS:CHNAME=",
+      "signal": "SiriusData"
+    },
+    {
+      "pattern": "=",
+      "signal": "SiriusData"
+    },
+    {
+      "pattern": "SIRIUS:ARTIST=",
+      "signal": "SiriusData"
+    },
+    {
+      "pattern": "=",
+      "signal": "SiriusData"
+    },
+    {
+      "pattern": "SIRIUS:SONG=",
+      "signal": "SiriusData"
+    },
+    {
+      "pattern": "=",
+      "signal": "SiriusData"
+    },
+    {
+      "pattern": "SIRIUS:COMPOSER=",
+      "signal": "SiriusData"
+    },
+    {
+      "pattern": "=",
+      "signal": "SiriusData"
+    },
+    {
+      "pattern": "IPODUSB:LISTLAYER=",
+      "signal": "iPodUSBData"
+    },
+    {
+      "pattern": "=",
+      "signal": "iPodUSBData"
+    },
+    {
+      "pattern": "IPODUSBB:LISTLAYERNAME=",
+      "signal": "iPodUSBData"
+    },
+    {
+      "pattern": "=",
+      "signal": "iPodUSBData"
+    },
+    {
+      "pattern": "IPODUSB:LINE1TXT=",
+      "signal": "iPodUSBData"
+    },
+    {
+      "pattern": "=",
+      "signal": "iPodUSBData"
+    },
+    {
+      "pattern": "IPODUSB:LINE2TXT=",
+      "signal": "iPodUSBData"
+    },
+    {
+      "pattern": "=",
+      "signal": "iPodUSBData"
+    },
+    {
+      "pattern": "IPODUSB:LINE3TXT=",
+      "signal": "iPodUSBData"
+    },
+    {
+      "pattern": "=",
+      "signal": "iPodUSBData"
+    },
+    {
+      "pattern": "IPODUSB:LINE4TXT=",
+      "signal": "iPodUSBData"
+    },
+    {
+      "pattern": "=",
+      "signal": "iPodUSBData"
+    },
+    {
+      "pattern": "IPODUSB:LINE5TXT=",
+      "signal": "iPodUSBData"
+    },
+    {
+      "pattern": "=",
+      "signal": "iPodUSBData"
+    },
+    {
+      "pattern": "IPODUSB:LINE6TXT=",
+      "signal": "iPodUSBData"
+    },
+    {
+      "pattern": "=",
+      "signal": "iPodUSBData"
+    },
+    {
+      "pattern": "IPODUSB:LINE7TXT=",
+      "signal": "iPodUSBData"
+    },
+    {
+      "pattern": "=",
+      "signal": "iPodUSBData"
+    },
+    {
+      "pattern": "IPODUSB:LINE8TXT=",
+      "signal": "iPodUSBData"
+    },
+    {
+      "pattern": "=",
+      "signal": "iPodUSBData"
+    },
+    {
+      "pattern": "IPODUSB:SONG=",
+      "signal": "iPodUSBData"
+    },
+    {
+      "pattern": "=",
+      "signal": "iPodUSBData"
+    },
+    {
+      "pattern": "IPODUSB:ARTIST=",
+      "signal": "iPodUSBData"
+    },
+    {
+      "pattern": "=",
+      "signal": "iPodUSBData"
+    },
+    {
+      "pattern": "IPODUSB:ALBUM=",
+      "signal": "iPodUSBData"
+    },
+    {
+      "pattern": "=",
+      "signal": "iPodUSBData"
+    },
+    {
+      "pattern": "\\\\x0D\\\\x0A",
+      "signal": "SData"
+    },
+    {
+      "pattern": "MAIN",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Zone2",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Zone3",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Zone4",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "HDRADIO",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "SIRIUS",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "PANDORA",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "NAPSTER",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "SIRIUSIR",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "RHAP",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "PC",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "IPODUSB",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "USB",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "NETRADIO",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "IPOD",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\\\\x0D\\\\x0A",
+      "signal": "RS232FromDev"
+    }
+  ],
+  "sourceModule": "Yamaha RX-A3010 RS232 Command \u0026 FB Processor v1.0.usp"
+}

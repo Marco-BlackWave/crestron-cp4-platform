@@ -1,0 +1,23 @@
+{
+  "id": "set-modbus-saia",
+  "manufacturer": "set",
+  "model": "modbus saia",
+  "category": "protocol",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "set_modbus_saia_v1.1_ALE.usp"
+}

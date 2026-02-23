@@ -1,0 +1,23 @@
+{
+  "id": "modbustcp-converter-control-v4",
+  "manufacturer": "ModbusTCP",
+  "model": "Converter Control v4",
+  "category": "protocol",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "ModbusTCP Converter Control v4.usp"
+}

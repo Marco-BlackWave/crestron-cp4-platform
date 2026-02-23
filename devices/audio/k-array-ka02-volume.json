@@ -1,0 +1,18 @@
+{
+  "id": "k-array-ka02-volume",
+  "manufacturer": "K",
+  "model": "Array KA02 volume",
+  "category": "audio",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": true,
+    "inputSelect": true,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "K-Array_KA02_volume_V1.0_AZ.usp"
+}

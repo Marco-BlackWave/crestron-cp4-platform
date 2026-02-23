@@ -1,0 +1,60 @@
+{
+  "id": "denon-avr",
+  "manufacturer": "Denon",
+  "model": "AVR Series",
+  "category": "audio",
+  "protocols": {
+    "ir": {
+      "driverFile": "Denon_AVR.ir",
+      "commands": {
+        "powerOn": "POWER_ON",
+        "powerOff": "POWER_OFF",
+        "volumeUp": "VOL+",
+        "volumeDown": "VOL-",
+        "mute": "MUTE"
+      }
+    },
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "powerOn": "PWON\r",
+        "powerOff": "PWSTANDBY\r",
+        "volumeUp": "MVUP\r",
+        "volumeDown": "MVDOWN\r",
+        "mute": "MUON\r",
+        "muteOff": "MUOFF\r",
+        "volumeSet": "MV{level}\r",
+        "input_hdmi1": "SISAT/CBL\r",
+        "input_hdmi2": "SIDVD\r",
+        "input_hdmi3": "SIMPLAY\r"
+      },
+      "feedback": {
+        "powerState": { "poll": "PW?\r", "on": "PWON", "off": "PWSTANDBY" }
+      }
+    },
+    "ip": {
+      "port": 23,
+      "type": "tcp",
+      "commands": {
+        "powerOn": "PWON\r",
+        "powerOff": "PWSTANDBY\r",
+        "volumeUp": "MVUP\r",
+        "volumeDown": "MVDOWN\r",
+        "mute": "MUON\r",
+        "muteOff": "MUOFF\r",
+        "volumeSet": "MV{level}\r"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": true,
+    "volumeControl": true,
+    "inputSelect": true,
+    "feedback": true,
+    "warmupMs": 3000,
+    "cooldownMs": 1000
+  }
+}

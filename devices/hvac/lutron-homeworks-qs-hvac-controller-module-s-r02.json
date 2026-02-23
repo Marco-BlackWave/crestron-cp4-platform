@@ -1,0 +1,18 @@
+{
+  "id": "lutron-homeworks-qs-hvac-controller-module-s-r02",
+  "manufacturer": "Lutron",
+  "model": "Homeworks QS HVAC Controller Module S\u002B r02",
+  "category": "lighting",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Lutron Homeworks QS HVAC Controller Module S\u002B r02.usp"
+}

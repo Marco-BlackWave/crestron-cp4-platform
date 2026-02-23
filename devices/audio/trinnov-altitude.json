@@ -1,0 +1,19 @@
+{
+  "id": "trinnov-altitude",
+  "manufacturer": "Trinnov",
+  "model": "Altitude",
+  "category": "audio",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": true,
+    "volumeControl": true,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Trinnov_Altitude_v1.0.15.usp",
+  "externalLibrary": "TrinnovAltitude"
+}

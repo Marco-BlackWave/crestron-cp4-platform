@@ -1,0 +1,18 @@
+{
+  "id": "knx-check-fb-bit-v3",
+  "manufacturer": "KNX",
+  "model": "Check FB bit v3",
+  "category": "gateway",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "KNX Check FB bit v3.usp"
+}

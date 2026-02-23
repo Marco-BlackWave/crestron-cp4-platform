@@ -1,0 +1,18 @@
+{
+  "id": "eib-check-fb-bit-v2",
+  "manufacturer": "EIB",
+  "model": "Check FB bit v2",
+  "category": "gateway",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "EIB Check FB bit v2.usp"
+}

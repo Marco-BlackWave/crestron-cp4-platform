@@ -1,0 +1,23 @@
+{
+  "id": "zona-eib-v4",
+  "manufacturer": "Zona",
+  "model": "Eib v4",
+  "category": "gateway",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": true,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Zona-Eib_v4.usp"
+}

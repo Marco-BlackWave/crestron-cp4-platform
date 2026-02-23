@@ -1,0 +1,22 @@
+{
+  "id": "buffer-artech",
+  "manufacturer": "Buffer",
+  "model": "Artech",
+  "category": "utility",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "cmd1": "Lunghezza: %d "
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Buffer Artech.usp"
+}

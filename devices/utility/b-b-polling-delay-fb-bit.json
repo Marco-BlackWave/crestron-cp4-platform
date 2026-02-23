@@ -1,0 +1,18 @@
+{
+  "id": "b-b-polling-delay-fb-bit",
+  "manufacturer": "b\u002Bb",
+  "model": "Polling Delay FB bit",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "b\u002Bb Polling Delay FB bit.usp"
+}

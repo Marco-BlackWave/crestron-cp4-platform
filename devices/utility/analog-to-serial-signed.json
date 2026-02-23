@@ -1,0 +1,23 @@
+{
+  "id": "analog-to-serial-signed",
+  "manufacturer": "Analog",
+  "model": "To Serial signed",
+  "category": "utility",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "cmd1": "-%d.%d",
+        "cmd2": "%d.%d"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Analog To Serial_signed.usp"
+}

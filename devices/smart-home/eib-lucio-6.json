@@ -1,0 +1,23 @@
+{
+  "id": "eib-lucio-6",
+  "manufacturer": "EIB",
+  "model": "lucio 6",
+  "category": "gateway",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "EIB lucio 6.usp"
+}

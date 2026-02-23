@@ -1,0 +1,51 @@
+{
+  "id": "biamp-tesira-level-control",
+  "manufacturer": "Biamp",
+  "model": "Tesira TTP Level Control",
+  "category": "dsp",
+  "protocols": {
+    "ip": {
+      "port": 23,
+      "type": "tcp",
+      "commands": {
+        "setLevel": "{instanceTag} set level {channel} {level}\n",
+        "getLevel": "{instanceTag} get level {channel}\n",
+        "setMute": "{instanceTag} set mute {channel} {muted}\n",
+        "toggleMute": "{instanceTag} toggle mute {channel}\n",
+        "getMute": "{instanceTag} get mute {channel}\n",
+        "incrementLevel": "{instanceTag} increment level {channel} {step}\n",
+        "decrementLevel": "{instanceTag} decrement level {channel} {step}\n",
+        "subscribe": "{instanceTag} subscribe level {channel} {label} {rate}\n",
+        "unsubscribe": "{instanceTag} unsubscribe level {channel} {label}\n",
+        "subscribeMute": "{instanceTag} subscribe mute {channel} {label} {rate}\n",
+        "recallPreset": "DEVICE recallPreset {presetId}\n",
+        "recallPresetByName": "DEVICE recallPresetByName \"{presetName}\"\n",
+        "setVerbose": "SESSION set verbose true\n",
+        "setQuiet": "SESSION set verbose false\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": true,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "dsp": {
+    "maxChannels": 64,
+    "levelCommandTemplate": "{instanceTag} set level {channel} {level}\n",
+    "muteCommandTemplate": "{instanceTag} set mute {channel} {muted}\n",
+    "subscribeCommandTemplate": "{instanceTag} subscribe level {channel}\n"
+  },
+  "feedbackRules": [
+    { "pattern": "^\\+OK \"value\":([\\-\\d.]+)$", "signal": "level", "transform": "parseFloat" },
+    { "pattern": "^\\+OK \"value\":(true|false)$", "signal": "mute" },
+    { "pattern": "^\\+OK$", "signal": "commandSuccess", "value": true },
+    { "pattern": "^-ERR (.+)$", "signal": "commandError" },
+    { "pattern": "^! \"publishToken\":\"(.+?)\" \"value\":([\\-\\d.]+)$", "signal": "subscriptionUpdate" }
+  ],
+  "sourceModule": "Biamp Tesira Level Control v3.3.usp",
+  "externalLibrary": "BiampTesiraLib3"
+}

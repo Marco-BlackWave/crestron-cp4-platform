@@ -1,0 +1,31 @@
+{
+  "id": "vimar-by-me-clima",
+  "manufacturer": "VIMAR",
+  "model": "By-Me  Clima",
+  "category": "lighting",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "cmd1": "AUTO",
+        "cmd2": "%d.%d",
+        "cmd3": "%d",
+        "cmd4": " %2d.%01d "
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x00\\\\x80",
+      "signal": "TempString$"
+    }
+  ],
+  "sourceModule": "VIMAR  By-Me  Clima  1.23.usp"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "lutron-qs-cmd",
+  "manufacturer": "Lutron",
+  "model": "qs cmd",
+  "category": "lighting",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "z1On": "#DEVICE,0x%s,5,14,100\r",
+        "z1Off": "#DEVICE,0x%s,5,14,0\r",
+        "z2On": "#DEVICE,0x%s,6,14,100\r",
+        "z2Off": "#DEVICE,0x%s,6,14,0\r",
+        "z3On": "#DEVICE,0x%s,7,14,100\r",
+        "z3Off": "#DEVICE,0x%s,7,14,0\r",
+        "z4On": "#DEVICE,0x%s,8,14,100\r",
+        "z4Off": "#DEVICE,0x%s,8,14,0\r"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "lutron_qs_cmd.usp"
+}

@@ -1,0 +1,22 @@
+{
+  "id": "test-hesa",
+  "manufacturer": "Test",
+  "model": "hesa",
+  "category": "utility",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "cmd1": "\\x7E\\x01\\x1D\\x1E\\x1F\r"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Test_hesa.usp"
+}

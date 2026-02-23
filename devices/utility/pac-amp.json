@@ -1,0 +1,23 @@
+{
+  "id": "pac-amp",
+  "manufacturer": "PAC",
+  "model": "Amp",
+  "category": "utility",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "cmd1": "G1\r",
+        "cmd2": "S1=%s%s%s%s%s%s%s%s\r"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "PAC_Amp_V1.0_ALE.usp"
+}

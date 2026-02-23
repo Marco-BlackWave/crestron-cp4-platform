@@ -1,0 +1,62 @@
+{
+  "id": "autopatch-v2",
+  "manufacturer": "AMX/Autopatch",
+  "model": "Autopatch Matrix Switcher",
+  "category": "matrix",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "routeVideoAudio": "CL0I{input}O{output}T\r\n",
+        "routeVideoOnly": "CL1I{input}O{output}T\r\n",
+        "routeAudioOnly": "CL2I{input}O{output}T\r\n",
+        "disconnectOutput": "CL0O{output}DT\r\n",
+        "disconnectVideoOutput": "CL1O{output}DT\r\n",
+        "disconnectAudioOutput": "CL2O{output}DT\r\n",
+        "volumeUp": "CL0O{output}VS+T\r\n",
+        "volumeDown": "CL0O{output}VS-T\r\n",
+        "muteOutput": "CL0O{output}VMT\r\n",
+        "unmuteOutput": "CL0O{output}VUT\r\n",
+        "statusQuery": "SL0IT\r\n",
+        "statusVideoQuery": "SL1IT\r\n",
+        "statusAudioQuery": "SL2IT\r\n",
+        "systemInfo": "?T\r\n",
+        "lockFrontPanel": "LK1T\r\n",
+        "unlockFrontPanel": "LK0T\r\n"
+      },
+      "feedback": {
+        "routeConfirm": { "pattern": "^CL(\\d)I(\\d+)O(\\d+)T$" },
+        "volumeLevel": { "pattern": "^CL0O(\\d+)V(\\d+)T$" },
+        "muteState": { "pattern": "^CL0O(\\d+)V(M|U)T$" }
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": true,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "matrix": {
+    "inputs": 8,
+    "outputs": 8,
+    "routeCommandTemplate": "CL0I{input}O{output}T\r\n",
+    "muteCommandTemplate": "CL0O{output}VMT\r\n",
+    "feedbackPattern": "^CL(\\d)I(\\d+)O(\\d+)T$"
+  },
+  "feedbackRules": [
+    { "pattern": "^CL0I(\\d+)O(\\d+)T$", "signal": "routeConfirm" },
+    { "pattern": "^CL1I(\\d+)O(\\d+)T$", "signal": "videoRouteConfirm" },
+    { "pattern": "^CL2I(\\d+)O(\\d+)T$", "signal": "audioRouteConfirm" },
+    { "pattern": "^CL0O(\\d+)VMT$", "signal": "muteOn" },
+    { "pattern": "^CL0O(\\d+)VUT$", "signal": "muteOff" },
+    { "pattern": "^CL0O(\\d+)V(\\d+)T$", "signal": "volumeLevel" },
+    { "pattern": "^CL0O(\\d+)DT$", "signal": "outputDisconnected" }
+  ],
+  "sourceModule": "Autopatch_v2.usp"
+}

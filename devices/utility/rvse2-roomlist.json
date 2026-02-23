@@ -1,0 +1,41 @@
+{
+  "id": "rvse2-roomlist",
+  "manufacturer": "RVSE2",
+  "model": "RoomList",
+  "category": "utility",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\u003CRoom\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003C/RoomID\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003C/RoomName\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003C/Room\u003E",
+      "signal": "sRemoved"
+    }
+  ],
+  "sourceModule": "RVSE2_RoomList_v2.1\u002B.usp"
+}

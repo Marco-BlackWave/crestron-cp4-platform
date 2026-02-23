@@ -1,0 +1,28 @@
+{
+  "id": "vimar-by-me-ballast-1856",
+  "manufacturer": "VIMAR",
+  "model": "By-Me Ballast 1856",
+  "category": "lighting",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\xCA\\\\x60\\\\x01",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\\\\x81\\\\x00",
+      "signal": "TempString$"
+    }
+  ],
+  "sourceModule": "VIMAR By-Me Ballast 1856  1.22.usp"
+}

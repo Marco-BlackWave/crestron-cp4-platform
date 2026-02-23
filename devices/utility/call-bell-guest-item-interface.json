@@ -1,0 +1,24 @@
+{
+  "id": "call-bell-guest-item-interface",
+  "manufacturer": "Call",
+  "model": "Bell Guest Item Interface",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": ",",
+      "signal": "temp"
+    }
+  ],
+  "sourceModule": "Call Bell Guest Item Interface v1.1.1.usp"
+}

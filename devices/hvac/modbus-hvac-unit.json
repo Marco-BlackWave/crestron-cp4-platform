@@ -1,0 +1,73 @@
+{
+  "id": "modbus-hvac-unit",
+  "manufacturer": "Generic",
+  "model": "Modbus HVAC Unit (RTU/TCP)",
+  "category": "hvac",
+  "protocols": {
+    "ip": {
+      "port": 502,
+      "type": "tcp",
+      "commands": {
+        "readHoldingRegisters": "{unitId}0300{startAddr}{quantity}{crc}",
+        "readInputRegisters": "{unitId}0400{startAddr}{quantity}{crc}",
+        "writeSingleRegister": "{unitId}0600{regAddr}{value}{crc}",
+        "writeMultipleRegisters": "{unitId}1000{startAddr}{quantity}{byteCount}{data}{crc}",
+        "readCoils": "{unitId}0100{startAddr}{quantity}{crc}",
+        "readDiscreteInputs": "{unitId}0200{startAddr}{quantity}{crc}",
+        "writeSingleCoil": "{unitId}0500{coilAddr}{value}{crc}",
+        "writeMultipleCoils": "{unitId}0F00{startAddr}{quantity}{byteCount}{data}{crc}",
+        "readTemperature": "{unitId}040000000001{crc}",
+        "readSetpoint": "{unitId}030000000001{crc}",
+        "writeSetpoint": "{unitId}060000{value}{crc}",
+        "readFanSpeed": "{unitId}030001000001{crc}",
+        "writeFanSpeed": "{unitId}060001{value}{crc}",
+        "readMode": "{unitId}030002000001{crc}",
+        "writeMode": "{unitId}060002{value}{crc}",
+        "readOnOff": "{unitId}010000000001{crc}",
+        "writeOnOff": "{unitId}050000{value}{crc}"
+      }
+    },
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "readTemperature": "{unitId}040000000001{crc}",
+        "readSetpoint": "{unitId}030000000001{crc}",
+        "writeSetpoint": "{unitId}060000{value}{crc}",
+        "readFanSpeed": "{unitId}030001000001{crc}",
+        "writeFanSpeed": "{unitId}060001{value}{crc}",
+        "readMode": "{unitId}030002000001{crc}",
+        "writeMode": "{unitId}060002{value}{crc}",
+        "readOnOff": "{unitId}010000000001{crc}",
+        "writeOnOff": "{unitId}050000{value}{crc}"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": true,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "gateway": {
+    "objects": [
+      { "id": "0", "name": "Room Temperature", "type": "temperature", "dataType": "16bit", "register": "input:0" },
+      { "id": "1", "name": "Setpoint", "type": "setpoint", "dataType": "16bit", "register": "holding:0" },
+      { "id": "2", "name": "Fan Speed", "type": "fan", "dataType": "16bit", "register": "holding:1" },
+      { "id": "3", "name": "Mode", "type": "mode", "dataType": "16bit", "register": "holding:2" },
+      { "id": "4", "name": "On/Off", "type": "switch", "dataType": "1bit", "register": "coil:0" }
+    ]
+  },
+  "feedbackRules": [
+    { "pattern": "^{unitId}04(.{4})$", "signal": "temperature" },
+    { "pattern": "^{unitId}03(.{4})$", "signal": "registerValue" },
+    { "pattern": "^{unitId}01(.{2})$", "signal": "coilStatus" },
+    { "pattern": "^{unitId}06(.{8})$", "signal": "writeConfirm" },
+    { "pattern": "^{unitId}05(.{8})$", "signal": "coilWriteConfirm" },
+    { "pattern": "^{unitId}8([0-9A-F])(.{2})$", "signal": "modbusError" }
+  ]
+}

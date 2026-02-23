@@ -1,0 +1,21 @@
+{
+  "id": "sony-brc-x400-srg-x-series",
+  "manufacturer": "Sony",
+  "model": "BRC-X400 SRG-X series",
+  "category": "dsp",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "dsp": {
+    "maxChannels": 8
+  },
+  "sourceModule": "Sony_BRC-X400_SRG-X_series.usp"
+}

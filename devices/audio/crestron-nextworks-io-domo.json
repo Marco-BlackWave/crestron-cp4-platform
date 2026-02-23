@@ -1,0 +1,50 @@
+{
+  "id": "crestron-nextworks-io-domo",
+  "manufacturer": "Crestron",
+  "model": "Nextworks IO Domo",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "cmd1": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:100|cid:%s|dev_id:%s|errcode:90001!###",
+        "cmd2": "@@@ver:9.5|%s%s%s",
+        "cmd3": "@@@ver:9.5|%s%s"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "!\\#\\#\\#",
+      "signal": "RxFromServer$"
+    },
+    {
+      "pattern": "dev_id:",
+      "signal": "app_out$"
+    },
+    {
+      "pattern": "numseq:",
+      "signal": "app_out$"
+    },
+    {
+      "pattern": "!\\#\\#\\#",
+      "signal": "FromModuleDomo$"
+    },
+    {
+      "pattern": "cid:",
+      "signal": "deposit$"
+    }
+  ],
+  "sourceModule": "Crestron_Nextworks_IO_Domo_v1.7.usp"
+}

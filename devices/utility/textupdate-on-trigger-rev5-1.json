@@ -1,0 +1,18 @@
+{
+  "id": "textupdate-on-trigger-rev5-1",
+  "manufacturer": "TextUpdate",
+  "model": "on Trigger rev5.1",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "TextUpdate on Trigger rev5.1.usp"
+}

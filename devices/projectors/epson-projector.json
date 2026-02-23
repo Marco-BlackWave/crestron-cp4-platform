@@ -1,0 +1,62 @@
+{
+  "id": "epson-projector",
+  "manufacturer": "Epson",
+  "model": "ESC/VP21 Compatible",
+  "category": "projector",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "powerOn": "PWR ON\r",
+        "powerOff": "PWR OFF\r",
+        "powerQuery": "PWR?\r",
+        "input_hdmi1": "SOURCE 30\r",
+        "input_hdmi2": "SOURCE A0\r",
+        "input_vga": "SOURCE 10\r",
+        "input_video": "SOURCE 20\r",
+        "input_svideo": "SOURCE 41\r",
+        "input_lan": "SOURCE 52\r",
+        "input_hdbaset": "SOURCE 53\r",
+        "inputQuery": "SOURCE?\r",
+        "muteOn": "MUTE ON\r",
+        "muteOff": "MUTE OFF\r",
+        "muteQuery": "MUTE?\r",
+        "freezeOn": "FREEZE ON\r",
+        "freezeOff": "FREEZE OFF\r",
+        "freezeQuery": "FREEZE?\r",
+        "lampQuery": "LAMP?\r",
+        "errorQuery": "ERR?\r",
+        "serialQuery": "SNO?\r"
+      },
+      "feedback": {
+        "powerState": { "poll": "PWR?\r", "on": "PWR=01", "off": "PWR=00", "warmup": "PWR=02", "cooldown": "PWR=03" },
+        "inputSource": { "poll": "SOURCE?\r" },
+        "lampHours": { "poll": "LAMP?\r" },
+        "muteState": { "poll": "MUTE?\r" }
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": true,
+    "volumeControl": false,
+    "inputSelect": true,
+    "feedback": true,
+    "warmupMs": 30000,
+    "cooldownMs": 15000
+  },
+  "feedbackRules": [
+    { "pattern": "^PWR=01$", "signal": "power", "value": true },
+    { "pattern": "^PWR=00$", "signal": "power", "value": false },
+    { "pattern": "^PWR=02$", "signal": "warmingUp", "value": true },
+    { "pattern": "^PWR=03$", "signal": "coolingDown", "value": true },
+    { "pattern": "^LAMP=(\\d+)", "signal": "lampHours", "transform": "parseInt" },
+    { "pattern": "^SOURCE=(.+)$", "signal": "inputSource" },
+    { "pattern": "^MUTE=ON$", "signal": "mute", "value": true },
+    { "pattern": "^MUTE=OFF$", "signal": "mute", "value": false },
+    { "pattern": "^FREEZE=ON$", "signal": "freeze", "value": true },
+    { "pattern": "^FREEZE=OFF$", "signal": "freeze", "value": false }
+  ]
+}

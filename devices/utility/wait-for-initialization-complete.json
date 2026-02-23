@@ -1,0 +1,18 @@
+{
+  "id": "wait-for-initialization-complete",
+  "manufacturer": "Wait",
+  "model": "For Initialization Complete",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Wait For Initialization Complete.usp"
+}

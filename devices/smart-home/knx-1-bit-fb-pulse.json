@@ -1,0 +1,23 @@
+{
+  "id": "knx-1-bit-fb-pulse",
+  "manufacturer": "KNX",
+  "model": "1 Bit FB Pulse",
+  "category": "gateway",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "setOn": "\\xF0\\x06",
+        "setOff": "\\xF0\\x06"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Crestron CI-KNX 1 Bit FB Pulse v1.6.usp"
+}

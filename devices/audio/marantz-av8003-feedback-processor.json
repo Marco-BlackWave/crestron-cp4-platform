@@ -1,0 +1,373 @@
+{
+  "id": "marantz-av8003-feedback-processor",
+  "manufacturer": "Marantz",
+  "model": "AV8003 Feedback Processor",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "@PWR:2",
+      "signal": "s"
+    },
+    {
+      "pattern": "@PWR:1",
+      "signal": "s"
+    },
+    {
+      "pattern": "@INP:0",
+      "signal": "s"
+    },
+    {
+      "pattern": "@INP:1",
+      "signal": "s"
+    },
+    {
+      "pattern": "@INP:2",
+      "signal": "s"
+    },
+    {
+      "pattern": "@INP:3",
+      "signal": "s"
+    },
+    {
+      "pattern": "@INP:4",
+      "signal": "s"
+    },
+    {
+      "pattern": "@INP:5",
+      "signal": "s"
+    },
+    {
+      "pattern": "@INP:6",
+      "signal": "s"
+    },
+    {
+      "pattern": "@INP:7",
+      "signal": "s"
+    },
+    {
+      "pattern": "@INP:8",
+      "signal": "s"
+    },
+    {
+      "pattern": "@ISG:1",
+      "signal": "s"
+    },
+    {
+      "pattern": "@ISG:2",
+      "signal": "s"
+    },
+    {
+      "pattern": "@ISG:3",
+      "signal": "s"
+    },
+    {
+      "pattern": "@ISG:4",
+      "signal": "s"
+    },
+    {
+      "pattern": "@IPC:1",
+      "signal": "s"
+    },
+    {
+      "pattern": "@IPC:2",
+      "signal": "s"
+    },
+    {
+      "pattern": "@AMT:1",
+      "signal": "s"
+    },
+    {
+      "pattern": "@AMT:2",
+      "signal": "s"
+    },
+    {
+      "pattern": "@VMT:1",
+      "signal": "s"
+    },
+    {
+      "pattern": "@VMT:2",
+      "signal": "s"
+    },
+    {
+      "pattern": "@ATT:0",
+      "signal": "s"
+    },
+    {
+      "pattern": "@ATT:1",
+      "signal": "s"
+    },
+    {
+      "pattern": "@ATT:2",
+      "signal": "s"
+    },
+    {
+      "pattern": "@SLP:000",
+      "signal": "s"
+    },
+    {
+      "pattern": "@MSL:000",
+      "signal": "s"
+    },
+    {
+      "pattern": "@MSL=000",
+      "signal": "s"
+    },
+    {
+      "pattern": "@DIP:1",
+      "signal": "s"
+    },
+    {
+      "pattern": "@DIP:2",
+      "signal": "s"
+    },
+    {
+      "pattern": "@DIP:3",
+      "signal": "s"
+    },
+    {
+      "pattern": "@DIP:4",
+      "signal": "s"
+    },
+    {
+      "pattern": "@DIP:5",
+      "signal": "s"
+    },
+    {
+      "pattern": "@FKL:1",
+      "signal": "s"
+    },
+    {
+      "pattern": "@FKL:2",
+      "signal": "s"
+    },
+    {
+      "pattern": "@OSD:1",
+      "signal": "s"
+    },
+    {
+      "pattern": "@OSD:2",
+      "signal": "s"
+    },
+    {
+      "pattern": "@MNU:1",
+      "signal": "s"
+    },
+    {
+      "pattern": "@MNU:2",
+      "signal": "s"
+    },
+    {
+      "pattern": "@SSU:1",
+      "signal": "s"
+    },
+    {
+      "pattern": "@SSU:2",
+      "signal": "s"
+    },
+    {
+      "pattern": "@TMD:0",
+      "signal": "s"
+    },
+    {
+      "pattern": "@TMD:1",
+      "signal": "s"
+    },
+    {
+      "pattern": "@TMD:2",
+      "signal": "s"
+    },
+    {
+      "pattern": "@TMD:3",
+      "signal": "s"
+    },
+    {
+      "pattern": "@TPI:1",
+      "signal": "s"
+    },
+    {
+      "pattern": "@TPI:2",
+      "signal": "s"
+    },
+    {
+      "pattern": "@XDP:1",
+      "signal": "s"
+    },
+    {
+      "pattern": "@XDP:2",
+      "signal": "s"
+    },
+    {
+      "pattern": "@XDP:3",
+      "signal": "s"
+    },
+    {
+      "pattern": "@XDP:4",
+      "signal": "s"
+    },
+    {
+      "pattern": "@SST:0",
+      "signal": "s"
+    },
+    {
+      "pattern": "@SST:1",
+      "signal": "s"
+    },
+    {
+      "pattern": "@SST:2",
+      "signal": "s"
+    },
+    {
+      "pattern": "@SST:3",
+      "signal": "s"
+    },
+    {
+      "pattern": "@SST:4",
+      "signal": "s"
+    },
+    {
+      "pattern": "@SS1\\#0",
+      "signal": "s"
+    },
+    {
+      "pattern": "@SS1\\#1",
+      "signal": "s"
+    },
+    {
+      "pattern": "@SS1\\#2",
+      "signal": "s"
+    },
+    {
+      "pattern": "@SS1\\#3",
+      "signal": "s"
+    },
+    {
+      "pattern": "@SS1\\#4",
+      "signal": "s"
+    },
+    {
+      "pattern": "@SS2\\#0",
+      "signal": "s"
+    },
+    {
+      "pattern": "@SS2\\#1",
+      "signal": "s"
+    },
+    {
+      "pattern": "@SS2\\#2",
+      "signal": "s"
+    },
+    {
+      "pattern": "@SS2\\#3",
+      "signal": "s"
+    },
+    {
+      "pattern": "@SS2\\#4",
+      "signal": "s"
+    },
+    {
+      "pattern": "\\\\x0D",
+      "signal": "fromDevice$"
+    },
+    {
+      "pattern": "@PWR:",
+      "signal": "g_sTempString$"
+    },
+    {
+      "pattern": "@INP:",
+      "signal": "g_sTempString$"
+    },
+    {
+      "pattern": "@ISG:",
+      "signal": "g_sTempString$"
+    },
+    {
+      "pattern": "@IPC:",
+      "signal": "g_sTempString$"
+    },
+    {
+      "pattern": "@AMT:",
+      "signal": "g_sTempString$"
+    },
+    {
+      "pattern": "@VMT:",
+      "signal": "g_sTempString$"
+    },
+    {
+      "pattern": "@ATT:",
+      "signal": "g_sTempString$"
+    },
+    {
+      "pattern": "@MSL:",
+      "signal": "g_sTempString$"
+    },
+    {
+      "pattern": "@MSL=",
+      "signal": "g_sTempString$"
+    },
+    {
+      "pattern": "@SLP:",
+      "signal": "g_sTempString$"
+    },
+    {
+      "pattern": "@DIP:",
+      "signal": "g_sTempString$"
+    },
+    {
+      "pattern": "@FKL:",
+      "signal": "g_sTempString$"
+    },
+    {
+      "pattern": "@OSD:",
+      "signal": "g_sTempString$"
+    },
+    {
+      "pattern": "@MNU:",
+      "signal": "g_sTempString$"
+    },
+    {
+      "pattern": "@SSU:",
+      "signal": "g_sTempString$"
+    },
+    {
+      "pattern": "@TMD:",
+      "signal": "g_sTempString$"
+    },
+    {
+      "pattern": "@TPI:",
+      "signal": "g_sTempString$"
+    },
+    {
+      "pattern": "@XDP:",
+      "signal": "g_sTempString$"
+    },
+    {
+      "pattern": "@SST:",
+      "signal": "g_sTempString$"
+    },
+    {
+      "pattern": "@SS1\\#",
+      "signal": "g_sTempString$"
+    },
+    {
+      "pattern": "@SS2\\#",
+      "signal": "g_sTempString$"
+    }
+  ],
+  "sourceModule": "Marantz AV8003 Feedback Processor.usp"
+}

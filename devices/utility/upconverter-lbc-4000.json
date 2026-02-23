@@ -1,0 +1,57 @@
+{
+  "id": "upconverter-lbc-4000",
+  "manufacturer": "upconverter",
+  "model": "LBC 4000",
+  "category": "utility",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "sendGain": "\u003C0001/ATT_A_%s\r ",
+        "sendFreq": "\u003C0001/MUT_A_OFF\r",
+        "cmd3": "\u003C0001/FRE_A_%s\r ",
+        "cmd4": "%s dB",
+        "cmd5": "%s mHz",
+        "cmd6": "%s MHz"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "FRE_A_",
+      "signal": "RX$"
+    },
+    {
+      "pattern": "ATT_A_",
+      "signal": "RX$"
+    },
+    {
+      "pattern": "INVALID\\ PARAM",
+      "signal": "RX$"
+    },
+    {
+      "pattern": "FRE_A_",
+      "signal": "RX$"
+    },
+    {
+      "pattern": "\\\\x0D\\\\x0A",
+      "signal": "RX$"
+    },
+    {
+      "pattern": "ATT_A_",
+      "signal": "RX$"
+    },
+    {
+      "pattern": "\\\\x0D\\\\x0A",
+      "signal": "RX$"
+    }
+  ],
+  "sourceModule": "upconverter_LBC_4000_v1.2_AZ.usp"
+}

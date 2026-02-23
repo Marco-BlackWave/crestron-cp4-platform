@@ -1,0 +1,21 @@
+{
+  "id": "tcp-ip-client",
+  "manufacturer": "TCP",
+  "model": "IP Client",
+  "category": "utility",
+  "protocols": {
+    "ip": {
+      "port": 23,
+      "type": "tcp"
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "TCP_IP_Client_V1.0_AZ.usp"
+}

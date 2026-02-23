@@ -1,0 +1,31 @@
+{
+  "id": "crestron-cgeib-ip-group-address-4-byte-to-fp",
+  "manufacturer": "Crestron",
+  "model": "CGEIB(-IP) Group Address 4 Byte to FP",
+  "category": "gateway",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "cmd1": "Sign = %d",
+        "cmd2": "Exponent = %d",
+        "cmd3": "Mantissa = %lu"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "/",
+      "signal": "Group_Address"
+    }
+  ],
+  "sourceModule": "Crestron CGEIB(-IP) Group Address 4 Byte to FP v2.4.usp",
+  "externalLibrary": "CI_KNX_4Byte_FP"
+}

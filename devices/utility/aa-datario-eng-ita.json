@@ -1,0 +1,25 @@
+{
+  "id": "aa-datario-eng-ita",
+  "manufacturer": "AA",
+  "model": "Datario Eng Ita",
+  "category": "utility",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "tempoattuale": "%02d/%02d/%02d  %s ",
+        "cmd2": "%02d/%02d/%02d\\",
+        "cmd3": "%s %d, %d",
+        "cmd4": "%d %s, %d"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "AA_Datario_Eng_Ita.usp"
+}

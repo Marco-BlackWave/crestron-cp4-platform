@@ -1,0 +1,23 @@
+{
+  "id": "fdk-fancoil-dometic",
+  "manufacturer": "fdk",
+  "model": "fancoil dometic",
+  "category": "hvac",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": true,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "fdk_fancoil_dometic_v1.1_AA.usp"
+}

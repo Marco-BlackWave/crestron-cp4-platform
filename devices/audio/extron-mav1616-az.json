@@ -1,0 +1,26 @@
+{
+  "id": "extron-mav1616-az",
+  "manufacturer": "Extron",
+  "model": "mav1616 AZ",
+  "category": "audio",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "clearAll": "0*!",
+        "presetOut": "%s*%u$",
+        "cmd3": "%u*%u$",
+        "cmd4": "%u*!",
+        "cmd5": "%u*%uV\r"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "extron_mav1616_AZ_v1.1.usp"
+}

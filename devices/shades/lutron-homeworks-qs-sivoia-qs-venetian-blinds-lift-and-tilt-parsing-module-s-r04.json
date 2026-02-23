@@ -1,0 +1,28 @@
+{
+  "id": "lutron-homeworks-qs-sivoia-qs-venetian-blinds-lift-and-tilt-parsing-module-s-r04",
+  "manufacturer": "Lutron",
+  "model": "Homeworks QS Sivoia QS Venetian Blinds Lift and Tilt Parsing Module S\u002B r04",
+  "category": "lighting",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "~OUTPUT,",
+      "signal": "IN$"
+    },
+    {
+      "pattern": "\\\\x0D",
+      "signal": "IN$"
+    }
+  ],
+  "sourceModule": "Lutron Homeworks QS Sivoia QS Venetian Blinds Lift and Tilt Parsing Module S\u002B r04.usp"
+}

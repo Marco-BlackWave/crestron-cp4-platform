@@ -1,0 +1,23 @@
+{
+  "id": "setsw-generic",
+  "manufacturer": "SetSw",
+  "model": "Generic",
+  "category": "utility",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "ein": "\\xFE",
+        "aus": "\\xFE"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "SetSw.usp"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "crestron-clw",
+  "manufacturer": "Crestron",
+  "model": "CLW Dimmer",
+  "category": "lighting",
+  "protocols": {},
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  }
+}

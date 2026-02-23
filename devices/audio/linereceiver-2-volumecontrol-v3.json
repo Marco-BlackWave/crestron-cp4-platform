@@ -1,0 +1,69 @@
+{
+  "id": "linereceiver-2-volumecontrol-v3",
+  "manufacturer": "LineReceiver",
+  "model": "2 VolumeControl v3",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "volup": "$MUTE N$\r\n",
+        "voldown": "$MUTE N$\r\n",
+        "mutetoggle": "$MUTE N$\r\n",
+        "muteY": "$MUTE Y$\r\n",
+        "muteN": "$MUTE N$\r\n",
+        "stdbyToggle": "$ORIGIN ZONETYPE_ROOM$\r\n",
+        "stdbyY": "$ORIGIN ZONETYPE_ROOM$\r\n",
+        "stdbyN": "$ORIGIN ZONETYPE_ROOM$\r\n",
+        "volupRoom": "$ORIGIN ZONETYPE_ROOM$\r\n",
+        "voldownRoom": "$ORIGIN ZONETYPE_ROOM$\r\n",
+        "mutetoggleRoom": "$ORIGIN ZONETYPE_ROOM$\r\n",
+        "muteYRoom": "$ORIGIN ZONETYPE_ROOM$\r\n",
+        "muteNRoom": "$ORIGIN ZONETYPE_ROOM$\r\n",
+        "stdbyToggleRoom": "$ORIGIN ZONETYPE_ROOM$\r\n",
+        "stdbyYRoom": "$ORIGIN ZONETYPE_ROOM$\r\n",
+        "stdbyNRoom": "$ORIGIN ZONETYPE_ROOM$\r\n",
+        "volupSubzone": "$ORIGIN ZONETYPE_SUBZONE$\r\n",
+        "voldownSubzone": "$ORIGIN ZONETYPE_SUBZONE$\r\n",
+        "mutetoggleSubzone": "$ORIGIN ZONETYPE_SUBZONE$\r\n",
+        "muteYSubzone": "$ORIGIN ZONETYPE_SUBZONE$\r\n",
+        "muteNSubzone": "$ORIGIN ZONETYPE_SUBZONE$\r\n",
+        "stdbyToggleSubzone": "$ORIGIN ZONETYPE_SUBZONE$\r\n",
+        "stdbyYSubzone": "$ORIGIN ZONETYPE_SUBZONE$\r\n",
+        "stdbyNSubzone": "$ORIGIN ZONETYPE_SUBZONE$\r\n",
+        "cmd25": "$VOL ?$\r\n",
+        "cmd26": "$STANDBY ON$\r\n",
+        "cmd27": "$STANDBY OFF$\r\n",
+        "cmd28": "$LISTEN 3$\r\n",
+        "cmd29": "$VOL = %02d$\r\n",
+        "cmd30": "$LISTEN SOURCE %1d$\r\n",
+        "cmd31": "MUTED",
+        "cmd32": "VALUE = %2d",
+        "cmd33": "[%1dMLIS=%1d]\r\n",
+        "cmd34": "[%1dMLIS=D]\r\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": true,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x0A",
+      "signal": "Lnrcv2_Rx$"
+    },
+    {
+      "pattern": "\\$VOL\\ ",
+      "signal": "TempString$"
+    }
+  ],
+  "sourceModule": "LineReceiver_2_VolumeControl_v3.usp"
+}

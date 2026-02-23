@@ -1,0 +1,28 @@
+{
+  "id": "sony-serialdriver",
+  "manufacturer": "Sony",
+  "model": "SerialDriver",
+  "category": "utility",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "triggerPoweron": "\\x8C\\x00\\x00\\x02\\x01\\x8F",
+        "triggerPoweroff": "\\x8C\\x00\\x00\\x02\\x00\\x8E",
+        "triggerHdmi1": "\\x8C\\x00\\x02\\x03\\x04\\x01\\x96",
+        "triggerHdmi2": "\\x8C\\x00\\x02\\x03\\x04\\x02\\x97",
+        "triggerHdmi3": "\\x8C\\x00\\x02\\x03\\x04\\x03\\x98",
+        "triggerHdmi4": "\\x8C\\x00\\x02\\x03\\x04\\x04\\x99",
+        "triggerEnableStdby": "\\x8C\\x00\\x01\\x02\\x01\\x90"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": true,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "SonySerialDriver.usp"
+}

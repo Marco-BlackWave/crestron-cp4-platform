@@ -1,0 +1,77 @@
+{
+  "id": "denon-equalizer",
+  "manufacturer": "Denon",
+  "model": "Equalizer",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "eqOn": "PSTONE CTRL ON\\X0D",
+        "eqOff": "PSTONE CTRL OFF\\X0D",
+        "bassUp": "PSBAS UP\\X0D",
+        "bassDw": "PSBAS DOWN\\X0D",
+        "trebleUp": "PSTRE UP\\X0D",
+        "trebleDw": "PSTRE DOWN\\X0D",
+        "z2bassUp": "Z2PSBAS UP\\X0D",
+        "z2bassDw": "Z2PSBAS DOWN\\X0D",
+        "z2trebleUp": "Z2PSTRE UP\\X0D",
+        "z2trebleDw": "Z2PSTRE DOWN\\X0D",
+        "z3bassUp": "Z3PSBAS UP\\X0D",
+        "z3bassDw": "Z3PSBAS DOWN\\X0D",
+        "z3trebleUp": "Z3PSTRE UP\\X0D",
+        "z3trebleDw": "Z3PSTRE DOWN\\X0D"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "PSBAS",
+      "signal": "avr_rx$"
+    },
+    {
+      "pattern": "PSTRE",
+      "signal": "avr_rx$"
+    },
+    {
+      "pattern": "Z2PSBAS",
+      "signal": "avr_rx$"
+    },
+    {
+      "pattern": "Z2PSTRE",
+      "signal": "avr_rx$"
+    },
+    {
+      "pattern": "Z3PSBAS",
+      "signal": "avr_rx$"
+    },
+    {
+      "pattern": "Z3PSTRE",
+      "signal": "avr_rx$"
+    },
+    {
+      "pattern": "PS",
+      "signal": "avr_rx$"
+    },
+    {
+      "pattern": "Z2PS",
+      "signal": "avr_rx$"
+    },
+    {
+      "pattern": "Z3PS",
+      "signal": "avr_rx$"
+    }
+  ],
+  "sourceModule": "Denon_Equalizer_V1.1_AZ.usp"
+}

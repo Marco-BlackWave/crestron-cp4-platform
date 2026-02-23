@@ -1,0 +1,32 @@
+{
+  "id": "integra-dtr-80-3-ip-processor",
+  "manufacturer": "Integra",
+  "model": "DTR-80.3 IP Processor",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "tunerKey": "%s kHz",
+        "volumeUp": "%s%s%s%s",
+        "volumeDown": "%s%s%s%s",
+        "cmd4": "%s.%s MHz",
+        "cmd5": "%s MHz",
+        "cmd6": "%s%s\r",
+        "cmd7": "%s%02X\r"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Integra DTR-80.3 IP Processor v1.2.usp"
+}

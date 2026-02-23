@@ -1,0 +1,34 @@
+{
+  "id": "pioneer-bdp-09fd-feedback-processor",
+  "manufacturer": "Pioneer",
+  "model": "BDP-09FD Feedback Processor",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "cmd1": "%d",
+        "cmd2": "%02d:%02d",
+        "cmd3": "%d:%02d:%02d"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x0D\\\\x0A",
+      "signal": "From_Device"
+    }
+  ],
+  "sourceModule": "Pioneer BDP-09FD Feedback Processor v1.0.usp"
+}

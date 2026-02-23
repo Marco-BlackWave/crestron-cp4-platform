@@ -1,0 +1,25 @@
+{
+  "id": "b-o-net-remote-command",
+  "manufacturer": "B\u0026O",
+  "model": "Net Remote Command",
+  "category": "audio",
+  "protocols": {
+    "ip": {
+      "port": 23,
+      "type": "tcp",
+      "commands": {
+        "cmd1": "\\\\%s"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": true,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "B\u0026O Net Remote Command v1.5.7.usp",
+  "externalLibrary": "BeoNetRemote"
+}

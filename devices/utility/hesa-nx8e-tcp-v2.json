@@ -1,0 +1,22 @@
+{
+  "id": "hesa-nx8e-tcp-v2",
+  "manufacturer": "Hesa",
+  "model": "NX8E TCP V2",
+  "category": "utility",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "cmd1": "\\x7E\\x01\\x1D\\x1E\\x1F\r"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Hesa_NX8E_TCP_V2.usp"
+}

@@ -1,0 +1,22 @@
+{
+  "id": "sky-q-ip",
+  "manufacturer": "Sky",
+  "model": "Q IP",
+  "category": "utility",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "btnPower": "\\x04\\x01\\x00\\x00\\x00\\x00"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Sky_Q_IP_V1.0_AZ.usp"
+}

@@ -1,0 +1,22 @@
+{
+  "id": "lutron-homeworks-variable-load-fade",
+  "manufacturer": "Lutron",
+  "model": "Homeworks Variable Load Fade",
+  "category": "lighting",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "cmd1": "FADEDIM,%u,%s,00:00:00,[%s]\r"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": true,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Lutron Homeworks Variable Load Fade v1.0.usp"
+}

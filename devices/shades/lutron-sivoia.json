@@ -1,0 +1,26 @@
+{
+  "id": "lutron-sivoia",
+  "manufacturer": "Lutron",
+  "model": "Sivoia QS",
+  "category": "shade",
+  "protocols": {
+    "ip": {
+      "port": 23,
+      "type": "tcp",
+      "commands": {
+        "open": "#OUTPUT,{shadeId},1,100\r\n",
+        "close": "#OUTPUT,{shadeId},1,0\r\n",
+        "stop": "#OUTPUT,{shadeId},2\r\n",
+        "setPosition": "#OUTPUT,{shadeId},1,{percent}\r\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  }
+}

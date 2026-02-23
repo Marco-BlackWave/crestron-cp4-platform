@@ -1,0 +1,18 @@
+{
+  "id": "rvse2-auto-update",
+  "manufacturer": "RVSE2",
+  "model": "Auto Update",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "RVSE2_Auto_Update_v2.1\u002B.usp"
+}

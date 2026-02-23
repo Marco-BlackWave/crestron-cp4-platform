@@ -1,0 +1,93 @@
+{
+  "id": "mygenie2-seatelcoastal24-v0-04",
+  "manufacturer": "MYGenie2",
+  "model": "SeatelCoastal24(V0-04)",
+  "category": "utility",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\r",
+      "signal": "TxQueueH"
+    },
+    {
+      "pattern": "\\\\r",
+      "signal": "TxQueueL"
+    },
+    {
+      "pattern": "\\\\r",
+      "signal": "Rx$"
+    },
+    {
+      "pattern": "E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "A",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "p",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "R",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "A",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "A",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "L",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "t",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "N",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "L",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "L",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "N",
+      "signal": "sTemp"
+    }
+  ],
+  "sourceModule": "MYGenie2_SeatelCoastal24(V0-04).usp"
+}

@@ -1,0 +1,53 @@
+{
+  "id": "apart-pr4000r",
+  "manufacturer": "APart",
+  "model": "PR4000R",
+  "category": "dsp",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "storePreset": "str preset ",
+        "recallPreset": "rcl preset ",
+        "setFrequency": "set mantun "
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "dsp": {
+    "maxChannels": 8
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x0A",
+      "signal": "FromDevice"
+    },
+    {
+      "pattern": "RDSPS",
+      "signal": "temp"
+    },
+    {
+      "pattern": "RDSPS",
+      "signal": "temp"
+    },
+    {
+      "pattern": "RDSPS",
+      "signal": "temp"
+    },
+    {
+      "pattern": "RDSPS",
+      "signal": "temp"
+    }
+  ],
+  "sourceModule": "APart PR4000R v1.0.usp"
+}

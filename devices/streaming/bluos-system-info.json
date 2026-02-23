@@ -1,0 +1,19 @@
+{
+  "id": "bluos-system-info",
+  "manufacturer": "BluOS",
+  "model": "System Info",
+  "category": "media",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "BluOS System Info v1.6.0.usp",
+  "externalLibrary": "Ultamation.SimplSharp.BluOSClient"
+}

@@ -1,0 +1,61 @@
+{
+  "id": "biamp-on-off-processor",
+  "manufacturer": "Biamp",
+  "model": "On-Off Processor",
+  "category": "dsp",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "volMuteOn": "SETD %s 1\n",
+        "volMuteOff": "SETD %s 0\n",
+        "pollMute": "GETD %s\n",
+        "cmd4": "%s %s %s %s",
+        "cmd5": "%s %s %s",
+        "cmd6": "%s %s",
+        "cmd7": "%s=%s\r\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": true,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "dsp": {
+    "maxChannels": 8
+  },
+  "feedbackRules": [
+    {
+      "pattern": "1",
+      "signal": "sVal"
+    },
+    {
+      "pattern": "hello",
+      "signal": "paramData"
+    },
+    {
+      "pattern": "-ERR",
+      "signal": "paramData"
+    },
+    {
+      "pattern": "\\\\n",
+      "signal": "Device_RX$"
+    },
+    {
+      "pattern": "\\\\n",
+      "signal": "Device_RX$"
+    },
+    {
+      "pattern": "\\\\x20",
+      "signal": "Mute_Device_Instance"
+    }
+  ],
+  "sourceModule": "Biamp On-Off Processor v7.5.1.usp"
+}

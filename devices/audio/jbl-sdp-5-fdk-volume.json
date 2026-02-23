@@ -1,0 +1,32 @@
+{
+  "id": "jbl-sdp-5-fdk-volume",
+  "manufacturer": "JBL",
+  "model": "SDP-5 fdk volume",
+  "category": "audio",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x16\\\\x01\\\\x06",
+      "signal": "rx$"
+    },
+    {
+      "pattern": "\\\\xF1\\\\x07\\\\x05\\\\x04\\\\x1E\\\\x01\\\\x00\\\\x04",
+      "signal": "rx$"
+    },
+    {
+      "pattern": "\\\\xF1\\\\x07\\\\x05\\\\x04\\\\x1E\\\\x01\\\\x00\\\\x05",
+      "signal": "rx$"
+    }
+  ],
+  "sourceModule": "JBL_SDP-5_fdk_volume_V1.0_AZ.usp"
+}

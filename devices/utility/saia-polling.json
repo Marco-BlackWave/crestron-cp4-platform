@@ -1,0 +1,18 @@
+{
+  "id": "saia-polling",
+  "manufacturer": "saia",
+  "model": "polling",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "saia_polling_v1.0_ALE.usp"
+}

@@ -1,0 +1,46 @@
+{
+  "id": "shelly-dimmer",
+  "manufacturer": "Shelly",
+  "model": "Dimmer 1/2 / Plus 0-10V Dimmer",
+  "category": "lighting",
+  "protocols": {
+    "ip": {
+      "port": 80,
+      "type": "tcp",
+      "commands": {
+        "lightOn": "GET /light/{channel}?turn=on HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "lightOff": "GET /light/{channel}?turn=off HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "lightToggle": "GET /light/{channel}?turn=toggle HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "setBrightness": "GET /light/{channel}?brightness={level} HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "setOnBrightness": "GET /light/{channel}?turn=on&brightness={level} HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "setTransition": "GET /light/{channel}?turn=on&brightness={level}&transition={ms} HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "dimUp": "GET /light/{channel}?dim=up&step={step} HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "dimDown": "GET /light/{channel}?dim=down&step={step} HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "status": "GET /status HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "gen2LightOn": "GET /rpc/Light.Set?id={channel}&on=true HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "gen2LightOff": "GET /rpc/Light.Set?id={channel}&on=false HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "gen2SetBrightness": "GET /rpc/Light.Set?id={channel}&on=true&brightness={level} HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "gen2LightToggle": "GET /rpc/Light.Toggle?id={channel} HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "gen2LightStatus": "GET /rpc/Light.GetStatus?id={channel} HTTP/1.1\r\nHost: {host}\r\n\r\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": true,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    { "pattern": "\"ison\":true", "signal": "lightState", "value": true },
+    { "pattern": "\"ison\":false", "signal": "lightState", "value": false },
+    { "pattern": "\"brightness\":(\\d+)", "signal": "brightness", "transform": "parseInt" },
+    { "pattern": "\"output\":true", "signal": "lightState", "value": true },
+    { "pattern": "\"output\":false", "signal": "lightState", "value": false },
+    { "pattern": "\"power\":([\\d.]+)", "signal": "power", "transform": "parseFloat" }
+  ],
+  "sourceModule": "Shelly Dimmer v7.1.usp",
+  "externalLibrary": "Shelly"
+}

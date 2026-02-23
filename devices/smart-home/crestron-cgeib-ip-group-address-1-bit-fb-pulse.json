@@ -1,0 +1,29 @@
+{
+  "id": "crestron-cgeib-ip-group-address-1-bit-fb-pulse",
+  "manufacturer": "Crestron",
+  "model": "CGEIB(-IP) Group Address 1 Bit FB Pulse",
+  "category": "gateway",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "/",
+      "signal": "Group_Address"
+    }
+  ],
+  "sourceModule": "Crestron CGEIB(-IP) Group Address 1 Bit FB Pulse v2.3.usp"
+}

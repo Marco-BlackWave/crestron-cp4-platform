@@ -1,0 +1,24 @@
+{
+  "id": "irrigazione-v1-1-ale",
+  "manufacturer": "Irrigazione",
+  "model": "v1.1 ALE",
+  "category": "shades",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "stagione1": "Estate",
+        "stagione2": "Inverno",
+        "stagione3": "Primavera"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Irrigazione_v1.1_ALE.usp"
+}

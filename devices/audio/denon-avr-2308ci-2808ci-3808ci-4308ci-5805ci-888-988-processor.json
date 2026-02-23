@@ -1,0 +1,293 @@
+{
+  "id": "denon-avr-2308ci-2808ci-3808ci-4308ci-5805ci-888-988-processor",
+  "manufacturer": "Denon",
+  "model": "AVR-2308CI\u002B2808CI\u002B3808CI\u002B4308CI\u002B5805CI\u002B888\u002B988 Processor",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "enterAmFm": "TFAN0%s00\r",
+        "enterHd": "TFHD0%s00\r",
+        "enterXm": "TFXM%s\r",
+        "enterDab": "TFDA%s\r",
+        "cmd5": "TFAN%s00\r",
+        "cmd6": "TFAN%s0\r",
+        "cmd7": "TFAN%s\r",
+        "cmd8": "TFAN00%s0\r",
+        "cmd9": "TFAN00%s\r",
+        "cmd10": "TFAN0%s\r",
+        "cmd11": "TFHD%s00\r",
+        "cmd12": "TFHD%s0\r",
+        "cmd13": "TFHD%s\r",
+        "cmd14": "TFHD00%s0\r",
+        "cmd15": "TFHD00%s\r",
+        "cmd16": "TFHD0%s\r",
+        "cmd17": "TFXM0%s\r",
+        "cmd18": "TFXM00%s\r"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x00",
+      "signal": "sTemp$"
+    },
+    {
+      "pattern": "\\\\x00",
+      "signal": "sTemp$"
+    },
+    {
+      "pattern": "\\\\x00",
+      "signal": "Direct_Key_AM_FM$"
+    },
+    {
+      "pattern": "\\\\x00",
+      "signal": "Direct_Key_HD$"
+    },
+    {
+      "pattern": "\\\\x00",
+      "signal": "Direct_Key_XM$"
+    },
+    {
+      "pattern": "\\\\x00",
+      "signal": "Direct_Key_DAB$"
+    },
+    {
+      "pattern": "\\\\x0D",
+      "signal": "FromDevice$"
+    },
+    {
+      "pattern": "MUON",
+      "signal": "FromDevice$"
+    },
+    {
+      "pattern": "Z2MUON",
+      "signal": "FromDevice$"
+    },
+    {
+      "pattern": "Z3MUON",
+      "signal": "FromDevice$"
+    },
+    {
+      "pattern": "MUOFF",
+      "signal": "FromDevice$"
+    },
+    {
+      "pattern": "Z2MUOFF",
+      "signal": "FromDevice$"
+    },
+    {
+      "pattern": "Z3MUOFF",
+      "signal": "FromDevice$"
+    },
+    {
+      "pattern": "MVMAX",
+      "signal": "FromDevice$"
+    },
+    {
+      "pattern": "\\\\x0D",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "HDST\\ NAME",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "HDSTL\\ NAME",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "HDSIG",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "HDMLT\\ CURRENT",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "HDMLT\\ CAST\\ CH",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "HDPTY",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "HD\\ ARTIST",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "HD\\ TITLE",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "HD\\ ALBUM",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "HD\\ GENRE",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "TPXMA",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "XMCH\\ NAME\\ ",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "XMARTIST\\ ",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "XMTITLE\\ ",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "XMXMID\\ ",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "XMSIGNAL\\ ",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "DABST\\ NAME",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "DABSTL\\ NAME",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "DABEN\\ NAME",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "DABPTY",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "DAB",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "DAB",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "DABMODE",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "DABSIG",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "DABTIME",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "DABDATE",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "IPA0",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "IPA1",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "IPA2",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "IPA3",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "IPA4",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "IPA5",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "IPA6",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "IPA7",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "IPA8",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "NSA0",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "NSA1",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "NSA2",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "NSA3",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "NSA4",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "NSA5",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "NSA6",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "NSA7",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "NSA8",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "CMP",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "CMP",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "CMP",
+      "signal": "Tempstring$"
+    }
+  ],
+  "sourceModule": "Denon AVR-2308CI\u002B2808CI\u002B3808CI\u002B4308CI\u002B5805CI\u002B888\u002B988 Processor.usp"
+}

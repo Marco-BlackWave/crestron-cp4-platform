@@ -1,0 +1,24 @@
+{
+  "id": "powersoft-mezzo",
+  "manufacturer": "Powersoft",
+  "model": "Mezzo",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": true,
+    "volumeControl": false,
+    "inputSelect": true,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Powersoft Mezzo 2.0.usp",
+  "externalLibrary": "MathOperation"
+}

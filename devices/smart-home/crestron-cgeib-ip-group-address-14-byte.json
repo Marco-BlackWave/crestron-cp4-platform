@@ -1,0 +1,28 @@
+{
+  "id": "crestron-cgeib-ip-group-address-14-byte",
+  "manufacturer": "Crestron",
+  "model": "CGEIB(-IP) Group Address 14 Byte",
+  "category": "gateway",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x00",
+      "signal": "str"
+    },
+    {
+      "pattern": "/",
+      "signal": "Group_Address"
+    }
+  ],
+  "sourceModule": "Crestron CGEIB(-IP) Group Address 14 Byte v2.3.usp"
+}

@@ -1,0 +1,63 @@
+{
+  "id": "apple-tv-command-processor",
+  "manufacturer": "Apple",
+  "model": "TV Command Processor",
+  "category": "display",
+  "protocols": {
+    "ip": {
+      "port": 80,
+      "type": "tcp"
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": true,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\?",
+      "signal": "_txBuffer"
+    },
+    {
+      "pattern": "\\?",
+      "signal": "_txBuffer"
+    },
+    {
+      "pattern": "\\?",
+      "signal": "_txBuffer"
+    },
+    {
+      "pattern": "index=",
+      "signal": "cmd1$"
+    },
+    {
+      "pattern": "index=",
+      "signal": "cmd2$"
+    },
+    {
+      "pattern": "\\?",
+      "signal": "cmd$"
+    },
+    {
+      "pattern": "set-genius-seed",
+      "signal": "cmd$"
+    },
+    {
+      "pattern": "\u0026query",
+      "signal": "_browse"
+    },
+    {
+      "pattern": "\u0026query",
+      "signal": "_browse"
+    },
+    {
+      "pattern": "\u0026query",
+      "signal": "_browse"
+    }
+  ],
+  "sourceModule": "Autonomic Apple TV Command Processor v1.2.usp"
+}

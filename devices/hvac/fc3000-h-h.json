@@ -1,0 +1,45 @@
+{
+  "id": "fc3000-h-h",
+  "manufacturer": "FC3000",
+  "model": "H\u0026H",
+  "category": "hvac",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "poll": "\\x3A\\x30\\x31\\x30\\x33\\x30\\x30\\x30\\x30\\x30\\x30\\x30\\x33\\x46\\x39\r\n",
+        "cmdOn": "\\x3A\\x30\\x31\\x30\\x36\\x30\\x30\\x30\\x32\\x30\\x30\\x30\\x31\\x46\\x36\r\n",
+        "cmdOff": "\\x3A\\x30\\x31\\x30\\x36\\x30\\x30\\x30\\x32\\x30\\x30\\x30\\x30\\x46\\x37\r\n",
+        "toogle": "\\x3A\\x30\\x31\\x30\\x36\\x30\\x30\\x30\\x32\\x30\\x30\\x30\\x31\\x46\\x36\r\n",
+        "cmdFanUp": "\\x3A\\x30\\x31\\x30\\x36\\x30\\x30\\x30\\x31\\x30\\x30\\x30%s",
+        "cmdFanDown": "\\x3A\\x30\\x31\\x30\\x36\\x30\\x30\\x30\\x31\\x30\\x30\\x30%s",
+        "cmdFanDownKnx": "\\x3A\\x30\\x31\\x30\\x36\\x30\\x30\\x30\\x31\\x30\\x30\\x30%s",
+        "cmdFanUpKnx": "\\x3A\\x30\\x31\\x30\\x36\\x30\\x30\\x30\\x31\\x30\\x30\\x30%s",
+        "cmdTempUp": "\\x3A\\x30\\x31\\x30\\x36\\x30\\x30\\x30\\x30%s",
+        "cmdTempDown": "\\x3A\\x30\\x31\\x30\\x36\\x30\\x30\\x30\\x30%s"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x0D\\\\x0A",
+      "signal": "rx$"
+    },
+    {
+      "pattern": "\\\\x0D\\\\x0A",
+      "signal": "rx$"
+    }
+  ],
+  "sourceModule": "FC3000_H\u0026H_V1.7_AB.usp"
+}

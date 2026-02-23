@@ -1,0 +1,22 @@
+{
+  "id": "denon-v1-2-az",
+  "manufacturer": "Denon",
+  "model": "V1.2 AZ",
+  "category": "audio",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "cmd1": "%s%02d\r"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": true,
+    "inputSelect": true,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "volume_bar_denon_V1.2_AZ.usp"
+}

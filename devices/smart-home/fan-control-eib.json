@@ -1,0 +1,18 @@
+{
+  "id": "fan-control-eib",
+  "manufacturer": "fan",
+  "model": "control eib",
+  "category": "gateway",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "fan_control_eib_V1.4_AZ.usp"
+}

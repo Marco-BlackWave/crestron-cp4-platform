@@ -1,0 +1,18 @@
+{
+  "id": "rc-orario",
+  "manufacturer": "RC",
+  "model": "Orario",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "RC_Orario.usp"
+}

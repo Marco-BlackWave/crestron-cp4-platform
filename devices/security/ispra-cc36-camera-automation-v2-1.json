@@ -1,0 +1,40 @@
+{
+  "id": "ispra-cc36-camera-automation-v2-1",
+  "manufacturer": "ISPRA",
+  "model": "CC36 Camera Automation v2 1",
+  "category": "shades",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\r",
+      "signal": "Read_Data"
+    },
+    {
+      "pattern": ";",
+      "signal": "String_To_Treate"
+    },
+    {
+      "pattern": ";",
+      "signal": "String_To_Treate"
+    },
+    {
+      "pattern": ";",
+      "signal": "String_To_Treate"
+    },
+    {
+      "pattern": ";",
+      "signal": "String_To_Treate"
+    }
+  ],
+  "sourceModule": "ISPRA_CC36_Camera_Automation_v2_1.usp"
+}

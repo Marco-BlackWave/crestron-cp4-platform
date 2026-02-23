@@ -1,0 +1,18 @@
+{
+  "id": "ultamation-analog-to-serial-string-v2",
+  "manufacturer": "Ultamation",
+  "model": "Analog to Serial String v2",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Ultamation Analog to Serial String v2.usp"
+}

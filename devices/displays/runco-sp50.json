@@ -1,0 +1,26 @@
+{
+  "id": "runco-sp50",
+  "manufacturer": "Runco",
+  "model": "SP50",
+  "category": "display",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "cmd1": "%c%c%c%c%c%c%c"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": true,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Runco_SP50.usp"
+}

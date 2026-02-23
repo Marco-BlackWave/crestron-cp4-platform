@@ -1,0 +1,28 @@
+{
+  "id": "hostname-to-name",
+  "manufacturer": "hostname",
+  "model": "to name",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "-",
+      "signal": "app$"
+    },
+    {
+      "pattern": "-",
+      "signal": "app$"
+    }
+  ],
+  "sourceModule": "hostname_to_name_V1.2_AZ.usp"
+}

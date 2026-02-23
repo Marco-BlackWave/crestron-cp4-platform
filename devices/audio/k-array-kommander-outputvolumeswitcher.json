@@ -1,0 +1,18 @@
+{
+  "id": "k-array-kommander-outputvolumeswitcher",
+  "manufacturer": "K",
+  "model": "Array Kommander OutputVolumeSwitcher",
+  "category": "audio",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "K_Array_Kommander_OutputVolumeSwitcher_1.3.1_RC1.usp"
+}

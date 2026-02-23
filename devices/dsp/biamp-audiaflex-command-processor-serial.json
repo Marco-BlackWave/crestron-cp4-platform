@@ -1,0 +1,44 @@
+{
+  "id": "biamp-audiaflex-command-processor-serial",
+  "manufacturer": "Biamp",
+  "model": "AudiaFlex Command Processor Serial",
+  "category": "dsp",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "dsp": {
+    "maxChannels": 8
+  },
+  "feedbackRules": [
+    {
+      "pattern": "Send\\ Name",
+      "signal": "sTempModules"
+    },
+    {
+      "pattern": "=",
+      "signal": "sTempModules"
+    },
+    {
+      "pattern": "=",
+      "signal": "sTempModules"
+    },
+    {
+      "pattern": "GET",
+      "signal": "sTempModules"
+    }
+  ],
+  "sourceModule": "BiAmp AudiaFlex Command Processor Serial v7.4.usp"
+}

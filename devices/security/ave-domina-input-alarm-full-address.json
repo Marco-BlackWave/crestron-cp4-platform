@@ -1,0 +1,18 @@
+{
+  "id": "ave-domina-input-alarm-full-address",
+  "manufacturer": "AVE",
+  "model": "Domina Input-Alarm Full-Address",
+  "category": "security",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "AVE-Domina_Input-Alarm_Full-Address_v2.01.usp"
+}

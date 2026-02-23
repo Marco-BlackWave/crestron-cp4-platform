@@ -1,0 +1,257 @@
+{
+  "id": "rvse2-room-configuration",
+  "manufacturer": "RVSE2",
+  "model": "Room Configuration",
+  "category": "utility",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\u003C/ID\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003C/Name\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003C/Description\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003C/Location\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003C/TimeZone\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CCustomFields\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CCapabilities\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003C/CustomFields\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CCustomField\\ ID=\\\\x22MenuShowMeetingInfo\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CCustomField\\ ID=\\\\x22MenuShowMeetingSubject\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CCustomField\\ ID=\\\\x22MenuShowMeetingOrganizer\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CCustomField\\ ID=\\\\x22MenuShowMeetingTimes\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CCustomField\\ ID=\\\\x22MenuShowAvailableTime\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CCustomField\\ ID=\\\\x22MenuBkgdImageURL\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CCustomField\\ ID=\\\\x22MenuLogoImageURL\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CCustomField\\ ID=\\\\x22MenuShowDayView\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CCustomField\\ ID=\\\\x22MenuShowAvailableRooms\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CCustomField\\ ID=\\\\x22MenuShowReserveNow\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CCustomField\\ ID=\\\\x22MenuShowSearchWizard\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CCustomField\\ ID=\\\\x22MenuDayViewEnInfo\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CCustomField\\ ID=\\\\x22MenuDayViewEnReserve\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CCustomField\\ ID=\\\\x22MenuDayViewEnPrevDay\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CCustomField\\ ID=\\\\x22DefaultSubject\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CCustomField\\ ID=\\\\x22DefaultOrganizer\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CCustomField\\ ID=\\\\x22RoomPrivacyLevel\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CCustomField\\ ID=\\\\x22IncludeInAvailRooms\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CCustomField\\ ID=\\\\x22EnFreeUpRoom\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CCustomField\\ ID=\\\\x22FreeUpRoomEnUseMin\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CCustomField\\ ID=\\\\x22FreeUpRoomEnUsePer\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CCustomField\\ ID=\\\\x22FreeUpRoomEnMin\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CCustomField\\ ID=\\\\x22FreeUpRoomEnPer\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CCustomField\\ ID=\\\\x22EnDeclineForNoShow\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CCustomField\\ ID=\\\\x22DeclineForNoShowAppliesDur\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CCustomField\\ ID=\\\\x22DeclineForNoShowMin\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CCustomField\\ ID=\\\\x22DeclineForNoShowPer\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CCustomField\\ ID=\\\\x22DeclineForNoShowEnCheckAtExactMin\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CCustomField\\ ID=\\\\x22EnStartMeeting\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CCustomField\\ ID=\\\\x22ReserveNowEvenEndTime\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CCustomField\\ ID=\\\\x22ReserveNowTimeSelection\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CCustomField\\ ID=\\\\x22ReserveNowMaxDur\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CCustomField\\ ID=\\\\x22RoomFriendlyName\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CCustomField\\ ID=\\\\x22MotionSensorType\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CCustomField\\ ID=\\\\x22MotionSensorOutput\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CCustomField\\ ID=\\\\x22MotionSensorTimeout\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CCustomField\\ ID=\\\\x22MotionSensorLEDSTrack\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CCustomField\\ ID=\\\\x22DateFormat\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CCustomField\\ ID=\\\\x22TimeFormat\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CCustomField\\ ID=\\\\x22EnBroadcastMessage\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CCustomField\\ ID=\\\\x22EnToolsMenu\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CCustomField\\ ID=\\\\x22MenuEnWakeupToMeeting\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003C/CustomField\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003C/CustomFieldType\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003C/CustomFieldValue\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "1",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003C/Capabilities\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CPushModel\\ Enabled",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "1",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "RVSERoomConfigUpdate",
+      "signal": "g_sRXData"
+    }
+  ],
+  "sourceModule": "RVSE2_Room_Configuration_v3.1\u002B.usp"
+}

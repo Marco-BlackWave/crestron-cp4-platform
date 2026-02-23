@@ -1,0 +1,24 @@
+{
+  "id": "powersoft-ca-1604",
+  "manufacturer": "powersoft",
+  "model": "ca-1604",
+  "category": "display",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": true,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "powersoft_ca-1604.usp",
+  "externalLibrary": "MathOperation"
+}

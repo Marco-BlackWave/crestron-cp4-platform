@@ -1,0 +1,55 @@
+{
+  "id": "condaria-polling-v2-ale",
+  "manufacturer": "Condaria",
+  "model": "polling V2 Ale",
+  "category": "utility",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "poll": "\\xFE\\x01\\x84",
+        "cmd2": "\\xFE\\x01\\x85",
+        "cmd3": "\\xFE\\x01\\x86",
+        "cmd4": "\\xFE\\x02\\x84",
+        "cmd5": "\\xFE\\x02\\x85",
+        "cmd6": "\\xFE\\x02\\x86",
+        "cmd7": "\\xFE\\x03\\x84",
+        "cmd8": "\\xFE\\x03\\x85",
+        "cmd9": "\\xFE\\x03\\x86",
+        "cmd10": "\\xFE\\x04\\x84",
+        "cmd11": "\\xFE\\x04\\x85",
+        "cmd12": "\\xFE\\x04\\x86",
+        "cmd13": "\\xFE\\x05\\x84",
+        "cmd14": "\\xFE\\x05\\x85",
+        "cmd15": "\\xFE\\x05\\x86",
+        "cmd16": "\\xFE\\x06\\x84",
+        "cmd17": "\\xFE\\x06\\x85",
+        "cmd18": "\\xFE\\x06\\x86",
+        "cmd19": "\\xFE\\x07\\x84",
+        "cmd20": "\\xFE\\x07\\x85",
+        "cmd21": "\\xFE\\x07\\x86",
+        "cmd22": "\\xFE\\x08\\x84",
+        "cmd23": "\\xFE\\x08\\x85",
+        "cmd24": "\\xFE\\x08\\x86",
+        "cmd25": "\\xFE\\x09\\x84",
+        "cmd26": "\\xFE\\x09\\x85",
+        "cmd27": "\\xFE\\x09\\x86",
+        "cmd28": "\\xFE\n\\x84",
+        "cmd29": "\\xFE\n\\x85",
+        "cmd30": "\\xFE\n\\x86"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Condaria_polling_V2_Ale.usp"
+}

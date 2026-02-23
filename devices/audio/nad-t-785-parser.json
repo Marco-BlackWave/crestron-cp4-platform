@@ -1,0 +1,133 @@
+{
+  "id": "nad-t-785-parser",
+  "manufacturer": "NAD",
+  "model": "T-785 Parser",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "trebleUp": "Main.Treble=-10\r",
+        "trebleDown": "Main.Treble=-10\r",
+        "bassUp": "Main.Bass=-10\r",
+        "bassDown": "Main.Bass=-10\r",
+        "surroundTrimUp": "Main.Trim.Surround=-6\r",
+        "surroundTrimDown": "Main.Trim.Surround=-6\r",
+        "centerTrimUp": "Main.Trim.Center=-6\r",
+        "centerTrimDown": "Main.Trim.Center=-6\r",
+        "subTrimUp": "Main.Trim.Sub=-6\r",
+        "subTrimDown": "Main.Trim.Sub=-6\r",
+        "cmd11": "Main.Treble=-8\r",
+        "cmd12": "Main.Treble=-6\r",
+        "cmd13": "Main.Treble=-4\r",
+        "cmd14": "Main.Treble=-2\r",
+        "cmd15": "Main.Treble=0\r",
+        "cmd16": "Main.Treble=2\r",
+        "cmd17": "Main.Treble=4\r",
+        "cmd18": "Main.Treble=6\r",
+        "cmd19": "Main.Treble=8\r",
+        "cmd20": "Main.Treble=10\r",
+        "cmd21": "Main.Bass=-8\r",
+        "cmd22": "Main.Bass=-6\r",
+        "cmd23": "Main.Bass=-4\r",
+        "cmd24": "Main.Bass=-2\r",
+        "cmd25": "Main.Bass=0\r",
+        "cmd26": "Main.Bass=2\r",
+        "cmd27": "Main.Bass=4\r",
+        "cmd28": "Main.Bass=6\r",
+        "cmd29": "Main.Bass=8\r",
+        "cmd30": "Main.Bass=10\r",
+        "cmd31": "Main.Trim.Surround=-5\r",
+        "cmd32": "Main.Trim.Surround=-4\r",
+        "cmd33": "Main.Trim.Surround=-3\r",
+        "cmd34": "Main.Trim.Surround=-2\r",
+        "cmd35": "Main.Trim.Surround=-1\r",
+        "cmd36": "Main.Trim.Surround=0\r",
+        "cmd37": "Main.Trim.Surround=1\r",
+        "cmd38": "Main.Trim.Surround=2\r",
+        "cmd39": "Main.Trim.Surround=3\r",
+        "cmd40": "Main.Trim.Surround=4\r",
+        "cmd41": "Main.Trim.Surround=5\r",
+        "cmd42": "Main.Trim.Surround=6\r",
+        "cmd43": "Main.Trim.Center=-5\r",
+        "cmd44": "Main.Trim.Center=-4\r",
+        "cmd45": "Main.Trim.Center=-3\r",
+        "cmd46": "Main.Trim.Center=-2\r",
+        "cmd47": "Main.Trim.Center=-1\r",
+        "cmd48": "Main.Trim.Center=0\r",
+        "cmd49": "Main.Trim.Center=1\r",
+        "cmd50": "Main.Trim.Center=2\r",
+        "cmd51": "Main.Trim.Center=3\r",
+        "cmd52": "Main.Trim.Center=4\r",
+        "cmd53": "Main.Trim.Center=5\r",
+        "cmd54": "Main.Trim.Center=6\r",
+        "cmd55": "Main.Trim.Sub=-5\r",
+        "cmd56": "Main.Trim.Sub=-4\r",
+        "cmd57": "Main.Trim.Sub=-3\r",
+        "cmd58": "Main.Trim.Sub=-2\r",
+        "cmd59": "Main.Trim.Sub=-1\r",
+        "cmd60": "Main.Trim.Sub=0\r",
+        "cmd61": "Main.Trim.Sub=1\r",
+        "cmd62": "Main.Trim.Sub=2\r",
+        "cmd63": "Main.Trim.Sub=3\r",
+        "cmd64": "Main.Trim.Sub=4\r",
+        "cmd65": "Main.Trim.Sub=5\r",
+        "cmd66": "Main.Trim.Sub=6\r"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "C",
+      "signal": "Direct_Key$"
+    },
+    {
+      "pattern": "-",
+      "signal": "sMainVolume"
+    },
+    {
+      "pattern": "-",
+      "signal": "sZone2Volume"
+    },
+    {
+      "pattern": "-",
+      "signal": "sZone3Volume"
+    },
+    {
+      "pattern": "-",
+      "signal": "sZone4Volume"
+    },
+    {
+      "pattern": "-",
+      "signal": "sTreble"
+    },
+    {
+      "pattern": "-",
+      "signal": "sBass"
+    },
+    {
+      "pattern": "-",
+      "signal": "sSurroundTrim"
+    },
+    {
+      "pattern": "-",
+      "signal": "sCenterTrim"
+    },
+    {
+      "pattern": "-",
+      "signal": "sSubTrim"
+    }
+  ],
+  "sourceModule": "NAD T-785 Parser.usp"
+}

@@ -1,0 +1,140 @@
+{
+  "id": "rvse2-schedule-interface-ui",
+  "manufacturer": "RVSE2",
+  "model": "Schedule Interface UI",
+  "category": "utility",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "addAppointmentSave": "0"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\u003CEvent\u003E",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "\u003C/Event\u003E",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "\u003C/MeetingID\u003E",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "\u003C/StartDate\u003E",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "\u003C/StartTime\u003E",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "\u003C/StartBlock\u003E",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "\u003C/EndDate\u003E",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "\u003C/EndTime\u003E",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "\u003C/EndBlock\u003E",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "\u003C/Organizer\u003E",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "\u003C/IsPrivate\u003E",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "1",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "\u003C/IsExchangePrivate\u003E",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "\u003C/Subject\u003E",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "\u003C/dtStart\u003E",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "\u003C/dtEnd\u003E",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "\u003CSubject\u003E",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "\u003CErrors\u003E",
+      "signal": "sData"
+    },
+    {
+      "pattern": "\u003CError\u003E",
+      "signal": "sData"
+    },
+    {
+      "pattern": "\u003CRequired\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003COptional\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003C/Required\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003C/Attendee\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "Conf\\ Room",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003C/Optional\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CType\u003EEventList\u003C/Type\u003E",
+      "signal": "g_sRXData1"
+    },
+    {
+      "pattern": "\u003CType\u003EScheduleResponse\u003C/Type\u003E",
+      "signal": "g_sRXData1"
+    },
+    {
+      "pattern": "\u003CType\u003ECreateResponse\u003C/Type\u003E",
+      "signal": "g_sRXData1"
+    }
+  ],
+  "sourceModule": "RVSE2_Schedule_Interface_UI_v3.1\u002B.usp"
+}

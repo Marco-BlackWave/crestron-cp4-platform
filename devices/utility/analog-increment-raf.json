@@ -1,0 +1,18 @@
+{
+  "id": "analog-increment-raf",
+  "manufacturer": "Analog",
+  "model": "Increment raf",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Analog Increment raf.usp"
+}

@@ -1,0 +1,83 @@
+{
+  "id": "canon-realis-wux4000-ip",
+  "manufacturer": "Canon",
+  "model": "REALiS WUX4000 IP",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "brightnessUp": "BRI=%d%s",
+        "brightnessDown": "BRI=%d%s",
+        "contrastUp": "CONT=%d%s",
+        "contrastDown": "CONT=%d%s",
+        "sharpnessUp": "SHARP=%d%s",
+        "sharpnessDown": "SHARP=%d%s",
+        "saturationUp": "SAT=%d%s",
+        "saturationDown": "SAT=%d%s",
+        "hueUp": "HUE=%d%s",
+        "hueDown": "HUE=%d%s",
+        "volumeUp": "AVOL=%d%s",
+        "volumeDown": "AVOL=%d%s"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": true,
+    "inputSelect": true,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "i:OK",
+      "signal": "sResponseTemp"
+    },
+    {
+      "pattern": "i:BUSY",
+      "signal": "sResponseTemp"
+    },
+    {
+      "pattern": "i:INPUT_NOT_FOUND",
+      "signal": "sResponseTemp"
+    },
+    {
+      "pattern": "e:",
+      "signal": "sResponseTemp"
+    },
+    {
+      "pattern": "g:POWER=",
+      "signal": "sResponseTemp"
+    },
+    {
+      "pattern": "g:BLANK=",
+      "signal": "sResponseTemp"
+    },
+    {
+      "pattern": "g:INPUT=",
+      "signal": "sResponseTemp"
+    },
+    {
+      "pattern": "g:ASPECT=",
+      "signal": "sResponseTemp"
+    },
+    {
+      "pattern": "g:MUTE=",
+      "signal": "sResponseTemp"
+    },
+    {
+      "pattern": "g:LAMP=",
+      "signal": "sResponseTemp"
+    },
+    {
+      "pattern": "g:IMAGE=",
+      "signal": "sResponseTemp"
+    }
+  ],
+  "sourceModule": "Canon REALiS WUX4000 IP v1.0 Processor.usp"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "test-files",
+  "manufacturer": "Test",
+  "model": "files",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Test_files_V1.0_ALE.usp"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "tcp-ip-server",
+  "manufacturer": "TCP",
+  "model": "IP Server",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "TCP_IP_Server_V1.0_AZ.usp"
+}

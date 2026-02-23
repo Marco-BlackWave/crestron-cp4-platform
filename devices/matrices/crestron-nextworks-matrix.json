@@ -1,0 +1,119 @@
+{
+  "id": "crestron-nextworks-matrix",
+  "manufacturer": "Crestron",
+  "model": "Nextworks MATRIX",
+  "category": "matrix",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "cmd1": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:100%serrcode:%s!###",
+        "cmd2": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:90|subcmd_type:210%sobject:1|channel:%s|vol_abs:%s|muted:%s!###",
+        "cmd3": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:%s|cmd_type:90|subcmd_type:230%sobject:1|source:%s|output:%s|connected:True!###",
+        "cmd4": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:%s|cmd_type:90|subcmd_type:230%sobject:1|source:%s|output:%s|connected:False!###",
+        "cmd5": "@@@ver:9.5|type:1|handshake:1|numseq:%s|count:0!###",
+        "cmd6": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:0!###",
+        "cmd7": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:90|subcmd_type:230%sobject:1|output:%s|source:%s|connected:True!###",
+        "cmd8": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:90|subcmd_type:250|avo:1|preset:%d!###",
+        "cmd9": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:90|subcmd_type:239%s",
+        "cmd10": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:90|subcmd_type:215%s",
+        "cmd11": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:90|subcmd_type:216%s",
+        "cmd12": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:90|subcmd_type:257%s",
+        "cmd13": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:%s|cmd_type:90|subcmd_type:210%sobject:1|channel:1|vol_abs:%s|muted:%s!###",
+        "cmd14": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:%s|cmd_type:90|subcmd_type:210%sobject:1|channel:%s|vol_abs:%s|muted:%s!###",
+        "cmd15": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:%s|cmd_type:90|subcmd_type:230%sobject:1|source:%s|output:%s|connected:%s!###",
+        "cmd16": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:%s|cmd_type:90|subcmd_type:254|id:%s|name:%s!###"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "matrix": {
+    "inputs": 8,
+    "outputs": 8
+  },
+  "feedbackRules": [
+    {
+      "pattern": "channel:",
+      "signal": "s$"
+    },
+    {
+      "pattern": "output:",
+      "signal": "s$"
+    },
+    {
+      "pattern": "channel:",
+      "signal": "s$"
+    },
+    {
+      "pattern": "vol_abs:",
+      "signal": "s$"
+    },
+    {
+      "pattern": "vol_rel:",
+      "signal": "s$"
+    },
+    {
+      "pattern": "channel:",
+      "signal": "s$"
+    },
+    {
+      "pattern": "mute:True",
+      "signal": "s$"
+    },
+    {
+      "pattern": "channel:",
+      "signal": "s$"
+    },
+    {
+      "pattern": "source:",
+      "signal": "s$"
+    },
+    {
+      "pattern": "output:",
+      "signal": "s$"
+    },
+    {
+      "pattern": "True",
+      "signal": "s$"
+    },
+    {
+      "pattern": "output:",
+      "signal": "s$"
+    },
+    {
+      "pattern": "preset:",
+      "signal": "s$"
+    },
+    {
+      "pattern": "!\\#\\#\\#",
+      "signal": "Rx_From_IO$"
+    },
+    {
+      "pattern": "!\\#\\#\\#",
+      "signal": "Rx_From_IO$"
+    },
+    {
+      "pattern": "!\\#\\#\\#",
+      "signal": "Rx_From_IO$"
+    },
+    {
+      "pattern": "subcmd_type:",
+      "signal": "app_amp$"
+    },
+    {
+      "pattern": "numseq:",
+      "signal": "app_amp$"
+    },
+    {
+      "pattern": "x",
+      "signal": "MatrixSize"
+    }
+  ],
+  "sourceModule": "Crestron_Nextworks_MATRIX_v2.1.usp"
+}

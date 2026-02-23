@@ -1,0 +1,38 @@
+{
+  "id": "symetrix-fader-processor",
+  "manufacturer": "Symetrix",
+  "model": "Fader Processor",
+  "category": "dsp",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "cmd1": "Off",
+        "cmd2": "%d dB",
+        "cmd3": "\u002B%d dB",
+        "cmd4": "CS\\x20%u\\x20%u\\x20\r"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "dsp": {
+    "maxChannels": 8
+  },
+  "feedbackRules": [
+    {
+      "pattern": "=",
+      "signal": "proc$"
+    }
+  ],
+  "sourceModule": "Symetrix Fader Processor v1.0.usp"
+}

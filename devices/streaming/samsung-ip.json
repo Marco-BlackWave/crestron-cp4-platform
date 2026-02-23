@@ -1,0 +1,19 @@
+{
+  "id": "samsung-ip",
+  "manufacturer": "Samsung",
+  "model": "IP",
+  "category": "media",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": true,
+    "volumeControl": true,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "CrestronCertifiedDriversSamsungIP v1.1.usp",
+  "externalLibrary": "FlatPanelDisplay_Samsung_UN55LS03N_IP"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "dynamic-text",
+  "manufacturer": "Dynamic",
+  "model": "Text",
+  "category": "utility",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "cmdOff": "\u003CP\u003E\u003CFONT size=\\x22%s\\x22 face=\\x22%s\\x22 color=\\x22#000000\\x22\u003E%s\u003C/FONT\u003E\u003C/P\u003E",
+        "cmd2": "\u003CP\u003E\u003CFONT size=\\x22%s\\x22 face=\\x22%s\\x22 color=\\x22#%02x%02x%02x\\x22\u003E%s\u003C/FONT\u003E\u003C/P\u003E"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Dynamic_Text_V1.1_AZ.usp"
+}

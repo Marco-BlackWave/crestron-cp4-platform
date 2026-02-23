@@ -1,0 +1,89 @@
+{
+  "id": "biamp-audia-flex-dsp-bfbp-v4",
+  "manufacturer": "Biamp",
+  "model": "Audia Flex DSP BFBP v4",
+  "category": "dsp",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "pollLevel": "GETL %s %s %s %s\n",
+        "pollMute": "GET %s %s %s %s\n",
+        "muteOn": "SET %s %s %s %s 1\n",
+        "muteOff": "SET %s %s %s %s 0\n",
+        "cmd5": "GETL %s %s %s %s %s\n",
+        "cmd6": "GETL %s %s %s\n",
+        "cmd7": "GET %s %s %s %s %s\n",
+        "cmd8": "GET %s %s %s\n",
+        "cmd9": "SET %s %s %s %s %s 1\n",
+        "cmd10": "SET %s %s %s 1\n",
+        "cmd11": "SET %s %s %s %s %s 0\n",
+        "cmd12": "SET %s %s %s 0\n",
+        "cmd13": "SETL %s %s %s %s %d\n",
+        "cmd14": "SETL %s %s %s %s %s %d\n",
+        "cmd15": "SETL %s %s %s %d\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "dsp": {
+    "maxChannels": 8
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\xF7",
+      "signal": "FROM_SMPL$"
+    },
+    {
+      "pattern": "\\\\xF0",
+      "signal": "TEMPSTRING$"
+    },
+    {
+      "pattern": "\\\\xF7",
+      "signal": "TEMPSTRING$"
+    },
+    {
+      "pattern": "\\\\x80",
+      "signal": "TEMPSTRING$"
+    },
+    {
+      "pattern": "\\\\x81",
+      "signal": "TEMPSTRING$"
+    },
+    {
+      "pattern": "\\\\x82",
+      "signal": "TEMPSTRING$"
+    },
+    {
+      "pattern": "\\\\x83",
+      "signal": "TEMPSTRING$"
+    },
+    {
+      "pattern": "\\\\x84",
+      "signal": "TEMPSTRING$"
+    },
+    {
+      "pattern": "\\\\x85",
+      "signal": "TEMPSTRING$"
+    },
+    {
+      "pattern": "LVL",
+      "signal": "TEMPSTRING$"
+    },
+    {
+      "pattern": "MUTE",
+      "signal": "TEMPSTRING$"
+    }
+  ],
+  "sourceModule": "Biamp Audia Flex DSP BFBP v4.usp"
+}

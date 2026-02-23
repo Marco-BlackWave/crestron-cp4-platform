@@ -1,0 +1,31 @@
+{
+  "id": "biamp-audiaflex-command-processor",
+  "manufacturer": "Biamp",
+  "model": "AudiaFlex Command Processor",
+  "category": "dsp",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "dsp": {
+    "maxChannels": 8
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x0A",
+      "signal": "From_Modules"
+    },
+    {
+      "pattern": "GET",
+      "signal": "sTempModules"
+    }
+  ],
+  "sourceModule": "BiAmp AudiaFlex Command Processor v7.0.usp"
+}

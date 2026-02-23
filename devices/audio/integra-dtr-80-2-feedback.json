@@ -1,0 +1,36 @@
+{
+  "id": "integra-dtr-80-2-feedback",
+  "manufacturer": "Integra",
+  "model": "DTR-80.2 Feedback",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "passwordKey": "%s%02s\r"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x1A",
+      "signal": "From_Device$"
+    },
+    {
+      "pattern": "\\\\x1A",
+      "signal": "sTemp"
+    }
+  ],
+  "sourceModule": "Integra DTR-80.2 Feedback v1.0.usp"
+}

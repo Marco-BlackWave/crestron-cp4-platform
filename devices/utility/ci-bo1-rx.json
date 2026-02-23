@@ -1,0 +1,23 @@
+{
+  "id": "ci-bo1-rx",
+  "manufacturer": "CI",
+  "model": "BO1 Rx",
+  "category": "utility",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": true,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "CI-BO1 Rx.usp"
+}

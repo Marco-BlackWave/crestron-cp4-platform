@@ -1,0 +1,19 @@
+{
+  "id": "bose-ex-series-standard-mixer-crosspoint-control",
+  "manufacturer": "Bose",
+  "model": "EX Series Standard Mixer Crosspoint Control",
+  "category": "audio",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Bose EX Series Standard Mixer Crosspoint Control.usp",
+  "externalLibrary": "BoseExSeriesLib"
+}

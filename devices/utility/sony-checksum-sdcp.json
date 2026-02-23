@@ -1,0 +1,24 @@
+{
+  "id": "sony-checksum-sdcp",
+  "manufacturer": "Sony",
+  "model": "Checksum SDCP",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\xA9",
+      "signal": "From_Smpl$"
+    }
+  ],
+  "sourceModule": "Sony Checksum SDCP.usp"
+}

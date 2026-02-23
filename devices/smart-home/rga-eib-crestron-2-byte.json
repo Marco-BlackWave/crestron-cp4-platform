@@ -1,0 +1,27 @@
+{
+  "id": "rga-eib-crestron-2-byte",
+  "manufacturer": "RGA",
+  "model": "EIB-CRESTRON 2 Byte",
+  "category": "gateway",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "cmd1": "\\x00%c%c\\x00",
+        "cmd2": "\\x02%c%c%c"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "RGA EIB-CRESTRON 2 Byte.usp"
+}

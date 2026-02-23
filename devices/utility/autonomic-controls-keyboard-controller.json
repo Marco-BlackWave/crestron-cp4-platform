@@ -1,0 +1,18 @@
+{
+  "id": "autonomic-controls-keyboard-controller",
+  "manufacturer": "Autonomic",
+  "model": "Controls Keyboard Controller",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Autonomic Controls Keyboard Controller 1.1.usp"
+}

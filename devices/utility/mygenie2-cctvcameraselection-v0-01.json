@@ -1,0 +1,18 @@
+{
+  "id": "mygenie2-cctvcameraselection-v0-01",
+  "manufacturer": "MYGenie2",
+  "model": "CCTVCameraSelection(V0-01)",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "MYGenie2_CCTVCameraSelection(V0-01).usp"
+}

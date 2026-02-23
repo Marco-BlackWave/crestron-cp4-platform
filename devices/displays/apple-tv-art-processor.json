@@ -1,0 +1,27 @@
+{
+  "id": "apple-tv-art-processor",
+  "manufacturer": "Apple",
+  "model": "TV Art Processor",
+  "category": "display",
+  "protocols": {
+    "ip": {
+      "port": 23,
+      "type": "tcp"
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "nowplaying",
+      "signal": "cmd$"
+    }
+  ],
+  "sourceModule": "Autonomic Apple TV Art Processor v1.2.usp"
+}

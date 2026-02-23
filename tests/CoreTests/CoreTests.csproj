@@ -1,0 +1,78 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" Version="6.0.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageReference Include="xunit" Version="2.5.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+  <!-- Link Core source files (no Crestron dependencies) -->
+  <ItemGroup>
+    <Compile Include="..\..\src\ProcessorSide\Core\Signals\ISignal.cs" Link="Core\Signals\ISignal.cs" />
+    <Compile Include="..\..\src\ProcessorSide\Core\Signals\Signal.cs" Link="Core\Signals\Signal.cs" />
+    <Compile Include="..\..\src\ProcessorSide\Core\Signals\SignalRegistry.cs" Link="Core\Signals\SignalRegistry.cs" />
+    <Compile Include="..\..\src\ProcessorSide\Core\Diagnostics\ILogger.cs" Link="Core\Diagnostics\ILogger.cs" />
+    <Compile Include="..\..\src\ProcessorSide\Core\CoreEngine.cs" Link="Core\CoreEngine.cs" />
+    <Compile Include="..\..\src\ProcessorSide\Configuration\JoinListConfig.cs" Link="Configuration\JoinListConfig.cs" />
+    <Compile Include="..\..\src\ProcessorSide\Configuration\JoinListValidator.cs" Link="Configuration\JoinListValidator.cs" />
+    <!-- New platform files (no Crestron dependencies) -->
+    <Compile Include="..\..\src\ProcessorSide\Configuration\SystemConfig.cs" Link="Configuration\SystemConfig.cs" />
+    <Compile Include="..\..\src\ProcessorSide\Configuration\SystemConfigValidator.cs" Link="Configuration\SystemConfigValidator.cs" />
+    <Compile Include="..\..\src\ProcessorSide\Configuration\JoinMap.cs" Link="Configuration\JoinMap.cs" />
+    <Compile Include="..\..\src\ProcessorSide\Configuration\JoinContractExporter.cs" Link="Configuration\JoinContractExporter.cs" />
+    <Compile Include="..\..\src\ProcessorSide\Devices\IDeviceDriver.cs" Link="Devices\IDeviceDriver.cs" />
+    <Compile Include="..\..\src\ProcessorSide\Devices\IDisplayDriver.cs" Link="Devices\IDisplayDriver.cs" />
+    <Compile Include="..\..\src\ProcessorSide\Devices\IAudioDriver.cs" Link="Devices\IAudioDriver.cs" />
+    <Compile Include="..\..\src\ProcessorSide\Devices\ILightingDriver.cs" Link="Devices\ILightingDriver.cs" />
+    <Compile Include="..\..\src\ProcessorSide\Devices\IShadeDriver.cs" Link="Devices\IShadeDriver.cs" />
+    <Compile Include="..\..\src\ProcessorSide\Devices\IHvacDriver.cs" Link="Devices\IHvacDriver.cs" />
+    <Compile Include="..\..\src\ProcessorSide\Devices\ISecurityDriver.cs" Link="Devices\ISecurityDriver.cs" />
+    <Compile Include="..\..\src\ProcessorSide\Devices\DeviceProfileLoader.cs" Link="Devices\DeviceProfileLoader.cs" />
+    <Compile Include="..\..\src\ProcessorSide\Subsystems\ISubsystem.cs" Link="Subsystems\ISubsystem.cs" />
+    <Compile Include="..\..\src\ProcessorSide\Subsystems\SecuritySubsystem.cs" Link="Subsystems\SecuritySubsystem.cs" />
+    <Compile Include="..\..\src\ProcessorSide\Infrastructure\IFileSystem.cs" Link="Infrastructure\IFileSystem.cs" />
+    <Compile Include="..\..\src\ProcessorSide\Transport\ITransport.cs" Link="Transport\ITransport.cs" />
+    <!-- New driver interfaces -->
+    <Compile Include="..\..\src\ProcessorSide\Devices\IMatrixDriver.cs" Link="Devices\IMatrixDriver.cs" />
+    <Compile Include="..\..\src\ProcessorSide\Devices\IProjectorDriver.cs" Link="Devices\IProjectorDriver.cs" />
+    <Compile Include="..\..\src\ProcessorSide\Devices\IDspDriver.cs" Link="Devices\IDspDriver.cs" />
+    <Compile Include="..\..\src\ProcessorSide\Devices\IMediaDriver.cs" Link="Devices\IMediaDriver.cs" />
+    <Compile Include="..\..\src\ProcessorSide\Devices\IGatewayDriver.cs" Link="Devices\IGatewayDriver.cs" />
+    <!-- New drivers -->
+    <Compile Include="..\..\src\ProcessorSide\Devices\Drivers\ProfileDrivenMatrix.cs" Link="Devices\Drivers\ProfileDrivenMatrix.cs" />
+    <Compile Include="..\..\src\ProcessorSide\Devices\Drivers\ProfileDrivenProjector.cs" Link="Devices\Drivers\ProfileDrivenProjector.cs" />
+    <Compile Include="..\..\src\ProcessorSide\Devices\Drivers\ProfileDrivenDsp.cs" Link="Devices\Drivers\ProfileDrivenDsp.cs" />
+    <Compile Include="..\..\src\ProcessorSide\Devices\Drivers\ProfileDrivenMedia.cs" Link="Devices\Drivers\ProfileDrivenMedia.cs" />
+    <Compile Include="..\..\src\ProcessorSide\Devices\Drivers\ProfileDrivenGateway.cs" Link="Devices\Drivers\ProfileDrivenGateway.cs" />
+    <Compile Include="..\..\src\ProcessorSide\Devices\Drivers\BssSoundwebDriver.cs" Link="Devices\Drivers\BssSoundwebDriver.cs" />
+    <Compile Include="..\..\src\ProcessorSide\Devices\Drivers\ShellyDriver.cs" Link="Devices\Drivers\ShellyDriver.cs" />
+    <Compile Include="..\..\src\ProcessorSide\Devices\Drivers\ElkM1Driver.cs" Link="Devices\Drivers\ElkM1Driver.cs" />
+    <!-- Utilities -->
+    <Compile Include="..\..\src\ProcessorSide\Utilities\Crc16.cs" Link="Utilities\Crc16.cs" />
+    <Compile Include="..\..\src\ProcessorSide\Utilities\VolumeRamp.cs" Link="Utilities\VolumeRamp.cs" />
+    <Compile Include="..\..\src\ProcessorSide\Utilities\FeedbackParser.cs" Link="Utilities\FeedbackParser.cs" />
+    <Compile Include="..\..\src\ProcessorSide\Utilities\CommandQueue.cs" Link="Utilities\CommandQueue.cs" />
+    <Compile Include="..\..\src\ProcessorSide\Utilities\TemperatureConverter.cs" Link="Utilities\TemperatureConverter.cs" />
+    <Compile Include="..\..\src\ProcessorSide\Utilities\StringTokenizer.cs" Link="Utilities\StringTokenizer.cs" />
+    <Compile Include="..\..\src\ProcessorSide\Utilities\HexEncoder.cs" Link="Utilities\HexEncoder.cs" />
+    <Compile Include="..\..\src\ProcessorSide\Utilities\AnalogScaler.cs" Link="Utilities\AnalogScaler.cs" />
+    <Compile Include="..\..\src\ProcessorSide\Utilities\GatherBuffer.cs" Link="Utilities\GatherBuffer.cs" />
+    <Compile Include="..\..\src\ProcessorSide\Utilities\PollScheduler.cs" Link="Utilities\PollScheduler.cs" />
+    <Compile Include="..\..\src\ProcessorSide\Utilities\RetryHandler.cs" Link="Utilities\RetryHandler.cs" />
+    <Compile Include="..\..\src\ProcessorSide\Utilities\TimeFormatter.cs" Link="Utilities\TimeFormatter.cs" />
+  </ItemGroup>
+
+</Project>

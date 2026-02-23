@@ -1,0 +1,23 @@
+{
+  "id": "knx-v1-0-az",
+  "manufacturer": "KNX",
+  "model": "V1.0 AZ",
+  "category": "gateway",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Condaria_knx_V1.0_AZ.usp"
+}

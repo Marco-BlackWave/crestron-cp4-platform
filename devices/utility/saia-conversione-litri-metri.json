@@ -1,0 +1,18 @@
+{
+  "id": "saia-conversione-litri-metri",
+  "manufacturer": "saia",
+  "model": "conversione litri metri",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": true,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "saia_conversione_litri_metri_v1.0_ALE.usp"
+}

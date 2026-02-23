@@ -1,0 +1,18 @@
+{
+  "id": "start-operation-v1-ale",
+  "manufacturer": "Start",
+  "model": "Operation V1 ALE",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Start_Operation_V1_ALE.usp"
+}

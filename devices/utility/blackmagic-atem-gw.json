@@ -1,0 +1,34 @@
+{
+  "id": "blackmagic-atem-gw",
+  "manufacturer": "BlackMagic",
+  "model": "ATEM GW",
+  "category": "utility",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "take": "Take\n\r",
+        "cmd2": "Prog%d\n\r",
+        "cmd3": "Prev%d\n\r"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "Prog",
+      "signal": "receive"
+    },
+    {
+      "pattern": "Prev",
+      "signal": "receive"
+    }
+  ],
+  "sourceModule": "BlackMagic ATEM GW.usp"
+}

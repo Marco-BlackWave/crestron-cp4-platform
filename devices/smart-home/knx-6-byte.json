@@ -1,0 +1,19 @@
+{
+  "id": "knx-6-byte",
+  "manufacturer": "KNX",
+  "model": "6 Byte",
+  "category": "gateway",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Crestron KNX 6 Byte v3.2.usp",
+  "externalLibrary": "CrestronKNXLibrary"
+}

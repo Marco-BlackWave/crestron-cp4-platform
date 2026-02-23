@@ -1,0 +1,61 @@
+{
+  "id": "epson-brightlink-436wi-ip",
+  "manufacturer": "Epson",
+  "model": "Brightlink 436Wi IP",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x0D",
+      "signal": "FROM_DEVICE$"
+    },
+    {
+      "pattern": "=",
+      "signal": "FROM_DEVICE$"
+    },
+    {
+      "pattern": "CONTRAST",
+      "signal": "Temp$"
+    },
+    {
+      "pattern": "BRIGHT",
+      "signal": "Temp$"
+    },
+    {
+      "pattern": "DENSITY",
+      "signal": "Temp$"
+    },
+    {
+      "pattern": "TINT",
+      "signal": "Temp$"
+    },
+    {
+      "pattern": "SHARP",
+      "signal": "Temp$"
+    },
+    {
+      "pattern": "VOL",
+      "signal": "Temp$"
+    },
+    {
+      "pattern": "LAMP",
+      "signal": "Temp$"
+    }
+  ],
+  "sourceModule": "Epson Brightlink 436Wi IP v1.0 Processor.usp"
+}

@@ -1,0 +1,52 @@
+{
+  "id": "vimar-byme-dimmer-1853",
+  "manufacturer": "VIMAR",
+  "model": "ByMe Dimmer 1853",
+  "category": "lighting",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\xCA\\\\x40\\\\x01",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\\\\x81\\\\x00",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\\\\x81\\\\x00\\\\x81",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\\\\x81\\\\x00\\\\x88",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\\\\x81\\\\x00\\\\x80",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\\\\x81\\\\x00\\\\x81",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\\\\x81\\\\x00\\\\x88",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\\\\x81\\\\x00\\\\x80",
+      "signal": "TempString$"
+    }
+  ],
+  "sourceModule": "VIMAR ByMe Dimmer 1853 1.23.usp"
+}

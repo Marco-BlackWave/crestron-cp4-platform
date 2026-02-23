@@ -1,0 +1,96 @@
+{
+  "id": "unidiskscdriver2-generic",
+  "manufacturer": "UnidiskSCdriver2",
+  "model": "Generic",
+  "category": "shades",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "play": "$PLAY$\r\n",
+        "pause": "$PAUSE$\r\n",
+        "stop": "$STOP$\r\n",
+        "skipM": "$SKIP -$\r\n",
+        "skipP": "$SKIP \u002B$\r\n",
+        "searchM": "$SEARCH \u003C 2X$\r\n",
+        "searchP": "$SEARCH \u003E 2X$\r\n",
+        "openclose": "$CLOSE$\r\n",
+        "chapterM": "$CHAPTER -$\r\n",
+        "chapterP": "$CHAPTER \u002B$\r\n",
+        "repeatY": "$REPEAT Y$\r\n",
+        "repeatN": "$REPEAT N$\r\n",
+        "keyUp": "$KEY UP$\r\n",
+        "keyDown": "$KEY DOWN$\r\n",
+        "keyLeft": "$KEY LEFT$\r\n",
+        "keyRight": "$KEY RIGHT$\r\n",
+        "keyEnter": "$KEY ENTER$\r\n",
+        "zoom": "$ZOOM \u002B$\r\n",
+        "angle": "$ANGLE \u002B$\r\n",
+        "menutitle": "$MENU TITLE$\r\n",
+        "menudvd": "$MENU DVD$\r\n",
+        "sacdlayer": "$LAYER \u002B$\r\n",
+        "setupY": "$SETUP Y$\r\n",
+        "setupN": "$SETUP N$\r\n",
+        "setuptoggle": "$SETUP Y$\r\n",
+        "volpiu": "$VOL \u002B$\r\n",
+        "volmeno": "$VOL -$\r\n",
+        "mutetoggle": "$MUTE Y$\r\n",
+        "cmd29": "$SEARCH \u003C 4X$\r\n",
+        "cmd30": "$SEARCH \u003C 6X$\r\n",
+        "cmd31": "$SEARCH \u003C 8X$\r\n",
+        "cmd32": "$SEARCH \u003E 4X$\r\n",
+        "cmd33": "$SEARCH \u003E 6X$\r\n",
+        "cmd34": "$SEARCH \u003E 8X$\r\n",
+        "cmd35": "$SEARCH STOP$\r\n",
+        "cmd36": "$OPEN$\r\n",
+        "cmd37": "$MUTE N$\r\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": true,
+    "volumeControl": true,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x0A",
+      "signal": "Uni_Rx$"
+    },
+    {
+      "pattern": "PLAYING",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "PAUSED",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "STOPPED",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "OPENED",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "CLOSED",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "SETUP\\ OFF",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "SETUP\\ ON",
+      "signal": "TempString$"
+    }
+  ],
+  "sourceModule": "UnidiskSCdriver2.usp"
+}

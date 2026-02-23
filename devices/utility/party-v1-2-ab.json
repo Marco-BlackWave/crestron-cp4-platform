@@ -1,0 +1,18 @@
+{
+  "id": "party-v1-2-ab",
+  "manufacturer": "Party",
+  "model": "V1.2 AB",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": true,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Party_V1.2_AB.usp"
+}

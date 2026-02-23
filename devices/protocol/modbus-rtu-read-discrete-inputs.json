@@ -1,0 +1,33 @@
+{
+  "id": "modbus-rtu-read-discrete-inputs",
+  "manufacturer": "MODBUS",
+  "model": "RTU Read Discrete Inputs",
+  "category": "protocol",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "array_index=",
+      "signal": "From_Processor"
+    },
+    {
+      "pattern": "array_index=",
+      "signal": "From_Processor"
+    }
+  ],
+  "sourceModule": "MODBUS-RTU Read Discrete Inputs v1.1.usp"
+}

@@ -1,0 +1,22 @@
+{
+  "id": "xt1000-volume-converter",
+  "manufacturer": "XT1000",
+  "model": "Volume Converter",
+  "category": "audio",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "cmd1": "AT[\u0026SV%03d\r"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": true,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "XT1000_Volume_Converter.usp"
+}

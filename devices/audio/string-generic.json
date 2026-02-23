@@ -1,0 +1,18 @@
+{
+  "id": "string-generic",
+  "manufacturer": "string",
+  "model": "Generic",
+  "category": "audio",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "string.usp"
+}

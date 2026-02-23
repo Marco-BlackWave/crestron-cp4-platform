@@ -1,0 +1,26 @@
+{
+  "id": "nexia-router",
+  "manufacturer": "nexia",
+  "model": "router",
+  "category": "matrix",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "cmd1": "SET %01d SRCSELSRC %01d %01d %01d\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "matrix": {
+    "inputs": 8,
+    "outputs": 8
+  },
+  "sourceModule": "nexia_router_V1.1_ALE.usp"
+}

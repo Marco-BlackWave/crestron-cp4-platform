@@ -1,0 +1,23 @@
+{
+  "id": "keypad-audio",
+  "manufacturer": "keypad",
+  "model": "audio",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": true,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "keypad_audio_v1.0_AZ.usp"
+}

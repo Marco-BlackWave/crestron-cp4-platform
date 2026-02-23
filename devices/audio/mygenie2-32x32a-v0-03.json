@@ -1,0 +1,18 @@
+{
+  "id": "mygenie2-32x32a-v0-03",
+  "manufacturer": "MyGenie2",
+  "model": "32x32A(V0-03)",
+  "category": "audio",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "MyGenie2_32x32A(V0-03).usp"
+}

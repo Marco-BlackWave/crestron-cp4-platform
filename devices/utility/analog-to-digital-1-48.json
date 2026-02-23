@@ -1,0 +1,18 @@
+{
+  "id": "analog-to-digital-1-48",
+  "manufacturer": "Analog",
+  "model": "to digital 1 48",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": true,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Analog to digital 1_48.usp"
+}

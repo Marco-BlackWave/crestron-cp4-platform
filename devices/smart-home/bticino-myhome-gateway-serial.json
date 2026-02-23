@@ -1,0 +1,23 @@
+{
+  "id": "bticino-myhome-gateway-serial",
+  "manufacturer": "Bticino",
+  "model": "Myhome Gateway Serial",
+  "category": "gateway",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Bticino-Myhome_Gateway_Serial_v2.01.usp"
+}

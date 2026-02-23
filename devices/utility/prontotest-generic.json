@@ -1,0 +1,60 @@
+{
+  "id": "prontotest-generic",
+  "manufacturer": "ProntoTest",
+  "model": "Generic",
+  "category": "utility",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "digital": "BUTTON"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\uFFFD\uFFFD",
+      "signal": "DATA$"
+    },
+    {
+      "pattern": "\uFFFD\uFFFD1",
+      "signal": "DATA$"
+    },
+    {
+      "pattern": "\uFFFD\uFFFD",
+      "signal": "DATA$"
+    },
+    {
+      "pattern": "\uFFFD\uFFFD",
+      "signal": "DATA$"
+    },
+    {
+      "pattern": "SYNC",
+      "signal": "DATA$"
+    },
+    {
+      "pattern": "BUTTON",
+      "signal": "Identifier"
+    },
+    {
+      "pattern": "ANALOG",
+      "signal": "Identifier"
+    },
+    {
+      "pattern": "TEXT",
+      "signal": "Identifier"
+    }
+  ],
+  "sourceModule": "ProntoTest.usp"
+}

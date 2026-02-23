@@ -1,0 +1,18 @@
+{
+  "id": "analog-to-serial-info",
+  "manufacturer": "Analog",
+  "model": "To Serial info",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": true,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Analog_To_Serial_info_V1.0_AZ.usp"
+}

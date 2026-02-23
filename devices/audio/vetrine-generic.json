@@ -1,0 +1,24 @@
+{
+  "id": "vetrine-generic",
+  "manufacturer": "Vetrine",
+  "model": "Generic",
+  "category": "audio",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "seqoff": "FADEDIM, 0, 0, 0, %s\r",
+        "cmd2": "FADEDIM, 90, %d, 0, %s\r",
+        "cmd3": "FADEDIM, 0, %d, 0, %s\r"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": true,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Vetrine.usp"
+}

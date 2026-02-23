@@ -1,0 +1,36 @@
+{
+  "id": "mygenie2-cecdisplays-v0-02",
+  "manufacturer": "MYGenie2",
+  "model": "CECDisplays(V0-02)",
+  "category": "display",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x04\\\\x90\\\\x00",
+      "signal": "Rx$"
+    },
+    {
+      "pattern": "\\\\x04\\\\x90\\\\x01",
+      "signal": "Rx$"
+    },
+    {
+      "pattern": "\\\\x04\\\\x90\\\\x02",
+      "signal": "Rx$"
+    },
+    {
+      "pattern": "\\\\x04\\\\x90\\\\x03",
+      "signal": "Rx$"
+    }
+  ],
+  "sourceModule": "MYGenie2_CECDisplays(V0-02).usp"
+}

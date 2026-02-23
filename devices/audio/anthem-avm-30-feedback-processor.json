@@ -1,0 +1,44 @@
+{
+  "id": "anthem-avm-30-feedback-processor",
+  "manufacturer": "Anthem",
+  "model": "AVM 30 Feedback Processor",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "checkStation": "TT?\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x0A",
+      "signal": "From_Device$"
+    },
+    {
+      "pattern": "\\\\x0A",
+      "signal": "From_Device$"
+    },
+    {
+      "pattern": "\\.",
+      "signal": "New_Vol$"
+    },
+    {
+      "pattern": "-",
+      "signal": "Temp$"
+    }
+  ],
+  "sourceModule": "Anthem AVM 30 Feedback Processor.usp"
+}

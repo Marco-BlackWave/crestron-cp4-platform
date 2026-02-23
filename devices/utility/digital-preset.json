@@ -1,0 +1,28 @@
+{
+  "id": "digital-preset",
+  "manufacturer": "Digital",
+  "model": "preset",
+  "category": "utility",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "cmd1": "Save %s %d OK",
+        "cmd2": "Errore scrittura%d",
+        "cmd3": "Errore lettura%d"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Digital_preset_V3.4_AZ.usp"
+}

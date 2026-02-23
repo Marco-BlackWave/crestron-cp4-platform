@@ -1,0 +1,220 @@
+{
+  "id": "kivorserver-generic",
+  "manufacturer": "KivorServer",
+  "model": "Generic",
+  "category": "media",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "closedatabases": "#CN01F%c#@server@$SEARCH$\u003CCACHE\u003E\u003CCLOSE\u003E\u003CMARKER\u003E%s~\n",
+        "cmd2": "#CN01F%c#@server@$SEARCH$\u003CCACHE\u003E\u003COPEN\u003EMEDIA~\n",
+        "cmd3": "#CN01F%c#@server@$SEARCH$\u003CCACHE\u003E\u003COPEN\u003EARTISTMEDIA~\n",
+        "cmd4": "#CN01F%c#@server@$SEARCH$\u003CCACHE\u003E\u003COPEN\u003EGENREMEDIA~\n",
+        "cmd5": "#CN01F%c#@server@$SEARCH$\u003CCACHE\u003E\u003COPEN\u003EPLAYLIST~\n",
+        "cmd6": "#CN%02dF0#@Z%02d@$SELECT$\u003CMEDIA\u003E\u003CNUM\u003E001~\r\n",
+        "cmd7": "#CN%02dF0#@Z%02d@$PLAY$~\r\n",
+        "cmd8": "#CN%02dF%c#@Z%02d@$STATUS$\u003CPLAY\u003E~\r\n",
+        "cmd9": "#CN%02dF%c#@Z%02d@$STATUS$\u003CTRACK\u003E~\r\n",
+        "cmd10": "#CN%02dF%cA#@server@$SEARCH$\u003CMEDIA\u003E\u003CID\u003E%s\u003CTRACK\u003E\u003CFROM\u003E1\u003CFOR\u003E%d\u003CNONE\u003E~\r\n",
+        "cmd11": "#CN%02dF%cB#@server@$SEARCH$\u003CPLAYLIST\u003E\u003CID\u003E%s\u003CTRACK\u003E\u003CFROM\u003E1\u003CFOR\u003E%d\u003CNONE\u003E~\r\n",
+        "cmd12": "#CN%02dF%c#@server@$SEARCH$\u003CCACHE\u003E\u003CLIST\u003E\u003CMARKER\u003E%s\u003CFROM\u003E%s\u003CFOR\u003E1~\r\n",
+        "cmd13": "#CN%02dF%c#@Z%02d@$SEARCH$\u003CLIST\u003E\u003CTAG\u003E%s\u003CORDERED\u003E\u003CCAT\u003ENAME\u003CCAT\u003EARTIST\u003CCAT\u003EMEDIAID\u003CCAT\u003EMEDIANAME\u003CCAT\u003ETRACKNUM\u003CFROM\u003E1\u003CFOR\u003E1~\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\#Z",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "@CN",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "@PC",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\u003CERROR\u003E",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\u003CERROR\u003E\u003CMESSAGE\u003E16",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\u003CERROR\u003E\u003CMESSAGE\u003E01",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\u003CERROR\u003E\u003CMESSAGE\u003E03",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\\$UPDATE\\$",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\u003CMODE\u003E",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\u003CRECORD\u003E",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\u003CNUM\u003E",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\u003CCACHE\u003E",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\u003CCACHE\u003E",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\u003CCLOSE\u003E",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\u003CRANDOM\u003E",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "@",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\u003CMODE\u003E",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\u003CNAME\u003E",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\u003CARTIST\u003E",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\u003CORIG\u003E",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\u003CTYPE\u003E",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\u003CNAME\u003E",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\u003CARTIST\u003E",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\u003CEOF\u003E",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "~",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\u003CID\u003E",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\u003CID\u003E",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\u003CTOTAL\u003E",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\u003CNAME\u003E",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\u003CFROM\u003E",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\u003COPEN\u003E",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\u003CNAME\u003E",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\u003CNAME\u003E",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\u003CFROM\u003E",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\u003CNAME\u003E",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\u003CFROM\u003E",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\u003CNAME\u003E",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\u003CFROM\u003E",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\u003CFROM\u003E",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\u003CCOUNT\u003E",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\u003CTAG\u003E",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\u003COK\u003E\u003CLIST\u003E\u003CTAG\u003E",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\u003CAT\u003E",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\u003CTAG\u003E",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\\\\x0A",
+      "signal": "Imerge_Rx$"
+    }
+  ],
+  "sourceModule": "KivorServer.usp"
+}

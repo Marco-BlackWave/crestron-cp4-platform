@@ -1,0 +1,18 @@
+{
+  "id": "b-b-check-multi-shot-1-fb-bit",
+  "manufacturer": "b\u002Bb",
+  "model": "Check Multi Shot 1 FB bit",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "b\u002Bb Check Multi Shot 1 FB bit.usp"
+}

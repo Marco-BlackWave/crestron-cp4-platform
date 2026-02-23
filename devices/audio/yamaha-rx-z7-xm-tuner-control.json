@@ -1,0 +1,41 @@
+{
+  "id": "yamaha-rx-z7-xm-tuner-control",
+  "manufacturer": "Yamaha",
+  "model": "RX-Z7 XM Tuner Control",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "key": "0,1,*,GET,XM(Play_Info),*\r\n",
+        "cmd2": "%s(Play_Control(Ch_Number=%s)),*\r\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "2",
+      "signal": "sFreqRequest"
+    },
+    {
+      "pattern": "2",
+      "signal": "sFreqRequest"
+    },
+    {
+      "pattern": "5",
+      "signal": "sFreqRequest"
+    }
+  ],
+  "sourceModule": "Yamaha RX-Z7 XM Tuner Control v2.0.usp"
+}

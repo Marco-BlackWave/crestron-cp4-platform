@@ -1,0 +1,19 @@
+{
+  "id": "knx-2-byte",
+  "manufacturer": "KNX",
+  "model": "2 Byte",
+  "category": "gateway",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Crestron KNX 2 Byte v3.2_AZ.usp",
+  "externalLibrary": "CrestronKNXLibrary"
+}

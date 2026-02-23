@@ -1,0 +1,27 @@
+{
+  "id": "extron-relay",
+  "manufacturer": "Extron",
+  "model": "Relay",
+  "category": "shades",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "btnpulseon": "%s*3*%sO\r\n",
+        "btnon": "%s*1O\r\n",
+        "btnoff": "%s*0O\r\n",
+        "btnblindup": "%s*0O\r\n",
+        "btnblinddw": "%s*0O\r\n",
+        "btnblindstop": "%s*0O\r\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Extron_Relay_V1.0_AZ.usp"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "auto-vol-ab",
+  "manufacturer": "auto",
+  "model": "vol AB",
+  "category": "utility",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "cmd1": "\u003C",
+        "cmd2": "=",
+        "cmd3": "\u003E"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "auto_vol_AB_v1.0.usp"
+}

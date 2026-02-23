@@ -1,0 +1,18 @@
+{
+  "id": "analog-to-digital-con-punto-decimale",
+  "manufacturer": "analog",
+  "model": "to digital con punto decimale",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "analog to digital con punto decimale.usp"
+}

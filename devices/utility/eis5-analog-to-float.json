@@ -1,0 +1,18 @@
+{
+  "id": "eis5-analog-to-float",
+  "manufacturer": "EIS5",
+  "model": "Analog To Float",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": true,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "EIS5_Analog_To_Float.usp"
+}

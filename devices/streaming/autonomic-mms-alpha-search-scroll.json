@@ -1,0 +1,18 @@
+{
+  "id": "autonomic-mms-alpha-search-scroll",
+  "manufacturer": "Autonomic",
+  "model": "MMS Alpha Search Scroll",
+  "category": "media",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Autonomic MMS Alpha Search Scroll v3.0.usp"
+}

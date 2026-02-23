@@ -1,0 +1,40 @@
+{
+  "id": "vimar-byme-dimmer-20528-16968-16968-b-14528",
+  "manufacturer": "VIMAR",
+  "model": "ByMe Dimmer 20528 16968 16968.B 14528",
+  "category": "lighting",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\xCA\\\\x40\\\\x09",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\\\\x81\\\\x00",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\\\\x81\\\\x00\\\\x81",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\\\\x81\\\\x00\\\\x88",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\\\\x81\\\\x00\\\\x80",
+      "signal": "TempString$"
+    }
+  ],
+  "sourceModule": "VIMAR ByMe Dimmer 20528_16968_16968.B_14528 1.23.usp"
+}

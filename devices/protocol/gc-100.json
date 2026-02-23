@@ -1,0 +1,31 @@
+{
+  "id": "gc-100",
+  "manufacturer": "GC",
+  "model": "100",
+  "category": "shades",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "getConfigP": "getdevices",
+        "versionP": "version",
+        "pollP": "getstate",
+        "stopirP": "stopir,"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "serialoverflow",
+      "signal": "Command$"
+    }
+  ],
+  "sourceModule": "GC-100 v1.1.usp"
+}

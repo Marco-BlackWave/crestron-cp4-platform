@@ -1,0 +1,72 @@
+{
+  "id": "generic-yahoo-rss-engine",
+  "manufacturer": "Generic",
+  "model": "Yahoo RSS Engine",
+  "category": "utility",
+  "protocols": {
+    "ip": {
+      "port": 23,
+      "type": "tcp",
+      "commands": {
+        "cmd1": "Total of %d Feeds available",
+        "cmd2": "GET %s HTTP/1.0\r\nHost: %s\r\n\r\n",
+        "cmd3": "GET %s%s\u0026zip=%s\u0026severity=%d\u0026radius=%d\u0026image_height=%d\u0026image_width=%d HTTP/1.0\r\nHost: %s\r\n\r\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\u003Crss",
+      "signal": "Rx$"
+    },
+    {
+      "pattern": "\u003C/rss\u003E",
+      "signal": "Rx$"
+    },
+    {
+      "pattern": "\u003Crss",
+      "signal": "Rx$"
+    },
+    {
+      "pattern": "\u003C/rss\u003E",
+      "signal": "Rx$"
+    },
+    {
+      "pattern": "\u003Crss",
+      "signal": "Rx$"
+    },
+    {
+      "pattern": "\u003C/rss\u003E",
+      "signal": "Rx$"
+    },
+    {
+      "pattern": "\u003Ctitle\u003E",
+      "signal": "Rx$"
+    },
+    {
+      "pattern": "\u003C/title\u003E",
+      "signal": "Rx$"
+    },
+    {
+      "pattern": "\u003Ccopyright\u003E",
+      "signal": "Rx$"
+    },
+    {
+      "pattern": "\u003C/copyright\u003E",
+      "signal": "Rx$"
+    },
+    {
+      "pattern": "\u003Citem\u003E",
+      "signal": "Rx$"
+    }
+  ],
+  "sourceModule": "Generic Yahoo RSS Engine 1.2.usp"
+}

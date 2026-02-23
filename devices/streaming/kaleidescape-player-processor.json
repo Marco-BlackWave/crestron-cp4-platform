@@ -1,0 +1,74 @@
+{
+  "id": "kaleidescape-player-processor",
+  "manufacturer": "Kaleidescape",
+  "model": "Strato/Alto Player",
+  "category": "media",
+  "protocols": {
+    "ip": {
+      "port": 10000,
+      "type": "tcp",
+      "commands": {
+        "play": "01/1/PLAY:\r\n",
+        "pause": "01/1/PAUSE:\r\n",
+        "stop": "01/1/STOP:\r\n",
+        "next": "01/1/NEXT:\r\n",
+        "previous": "01/1/PREVIOUS:\r\n",
+        "forward": "01/1/FORWARD:\r\n",
+        "reverse": "01/1/REVERSE:\r\n",
+        "menuToggle": "01/1/MENU_TOGGLE:\r\n",
+        "up": "01/1/UP:\r\n",
+        "down": "01/1/DOWN:\r\n",
+        "left": "01/1/LEFT:\r\n",
+        "right": "01/1/RIGHT:\r\n",
+        "select": "01/1/SELECT:\r\n",
+        "goMovieCovers": "01/1/GO_MOVIE_COVERS:\r\n",
+        "goMusicCovers": "01/1/GO_MUSIC_COVERS:\r\n",
+        "goNowPlaying": "01/1/GO_NOW_PLAYING:\r\n",
+        "getPlayStatus": "01/1/GET_PLAYING_TITLE_NAME:\r\n",
+        "getMovieLocation": "01/1/GET_MOVIE_LOCATION:\r\n",
+        "getMusicNowPlaying": "01/1/GET_MUSIC_NOW_PLAYING:\r\n",
+        "getDevicePower": "01/1/GET_DEVICE_POWER_STATE:\r\n",
+        "getSystemVersion": "01/1/GET_SYSTEM_VERSION:\r\n",
+        "enableEvents": "01/1/ENABLE_EVENTS:\r\n",
+        "disableEvents": "01/1/DISABLE_EVENTS:\r\n",
+        "leavePowerStandby": "01/1/LEAVE_STANDBY:\r\n",
+        "enterPowerStandby": "01/1/ENTER_STANDBY:\r\n",
+        "getDeviceInfo": "01/1/GET_DEVICE_INFO:\r\n",
+        "getFriendlyName": "01/1/GET_FRIENDLY_NAME:\r\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": true,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 3000,
+    "cooldownMs": 0
+  },
+  "media": {
+    "transportCommands": {
+      "play": "01/1/PLAY:\r\n",
+      "pause": "01/1/PAUSE:\r\n",
+      "stop": "01/1/STOP:\r\n",
+      "next": "01/1/NEXT:\r\n",
+      "previous": "01/1/PREVIOUS:\r\n"
+    }
+  },
+  "feedbackRules": [
+    { "pattern": "^PLAYING_TITLE_NAME:(.+)$", "signal": "titleName" },
+    { "pattern": "^MOVIE_LOCATION:(\\d+)/(\\d+)/(\\d+)$", "signal": "movieLocation" },
+    { "pattern": "^DEVICE_POWER_STATE:(.+)$", "signal": "powerState" },
+    { "pattern": "^MUSIC_NOW_PLAYING:(.+)/(.+)/(.+)$", "signal": "musicNowPlaying" },
+    { "pattern": "^SYSTEM_VERSION:(.+)$", "signal": "systemVersion" },
+    { "pattern": "^MOVIE_MEDIA_TYPE:(.+)$", "signal": "mediaType" },
+    { "pattern": "^MOVIE_TITLE_NAME:(.+)$", "signal": "movieTitle" },
+    { "pattern": "^MUSIC_TITLE_NAME:(.+)$", "signal": "musicTitle" },
+    { "pattern": "^MUSIC_ARTIST_NAME:(.+)$", "signal": "musicArtist" },
+    { "pattern": "^MUSIC_ALBUM_NAME:(.+)$", "signal": "musicAlbum" },
+    { "pattern": "^HIGHLIGHTED_SELECTION:(.+)$", "signal": "highlightedSelection" },
+    { "pattern": "^FRIENDLY_NAME:(.+)$", "signal": "friendlyName" },
+    { "pattern": "^PLAYER_RESTART:$", "signal": "playerRestart" }
+  ],
+  "sourceModule": "Kaleidescape Player Processor.usp"
+}

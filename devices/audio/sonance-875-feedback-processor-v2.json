@@ -1,0 +1,18 @@
+{
+  "id": "sonance-875-feedback-processor-v2",
+  "manufacturer": "sonance",
+  "model": "875 feedback processor v2",
+  "category": "audio",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "sonance_875_feedback_processor_v2.usp"
+}

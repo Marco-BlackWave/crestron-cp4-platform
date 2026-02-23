@@ -1,0 +1,41 @@
+{
+  "id": "yachtica-memory-v1-ale",
+  "manufacturer": "Yachtica",
+  "model": "memory V1 ALE",
+  "category": "utility",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "btn1": "%s\\x00\\%s\\x01",
+        "btn2": "%s\\x00\\%s\\x02",
+        "btn3": "%s\\x00\\%s\\x04",
+        "btn4": "%s\\x00\\%s\\x08",
+        "btn5": "%s\\x00\\%s\\x10",
+        "btn6": "%s\\x00\\%s\\x20",
+        "btn7": "%s\\x00\\%s\\x40",
+        "btn8": "%s\\x00\\%s\\x80",
+        "cmd9": "%s\\x10\\%s\\x01",
+        "cmd10": "%s\\x10\\%s\\x02",
+        "cmd11": "%s\\x10\\%s\\x04",
+        "cmd12": "%s\\x10\\%s\\x08",
+        "cmd13": "%s\\x10\\%s\\x10",
+        "cmd14": "%s\\x10\\%s\\x20",
+        "cmd15": "%s\\x10\\%s\\x40",
+        "cmd16": "%s\\x10\\%s\\x80"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Yachtica_memory_V1_ALE.usp"
+}

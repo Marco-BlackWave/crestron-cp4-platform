@@ -1,0 +1,45 @@
+{
+  "id": "make-string-setup",
+  "manufacturer": "make",
+  "model": "string setup",
+  "category": "utility",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "ok": "IPA 0 %s\r",
+        "aggiornaIp": "IPA\r",
+        "aggiornaMask": "IPM\r",
+        "aggiornaEib": "IPT -I:3\r",
+        "cmd5": "IPM 0 %s\r",
+        "cmd6": "ADDS 3 %s 0 3671\r"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "ss:",
+      "signal": "in_buffer$"
+    },
+    {
+      "pattern": "sk:",
+      "signal": "in_buffer$"
+    },
+    {
+      "pattern": "3671",
+      "signal": "in_buffer$"
+    }
+  ],
+  "sourceModule": "make_string_setup.usp"
+}

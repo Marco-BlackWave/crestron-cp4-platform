@@ -1,0 +1,21 @@
+{
+  "id": "protezione-hw",
+  "manufacturer": "Protezione",
+  "model": "HW",
+  "category": "utility",
+  "protocols": {
+    "ip": {
+      "port": 23,
+      "type": "tcp"
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Protezione_HW.usp"
+}

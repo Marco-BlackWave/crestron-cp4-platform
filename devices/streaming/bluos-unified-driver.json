@@ -1,0 +1,79 @@
+{
+  "id": "bluos-unified-driver",
+  "manufacturer": "Bluesound/NAD/DALI",
+  "model": "BluOS Player (NODE, Pulse, NAD, DALI)",
+  "category": "media",
+  "protocols": {
+    "ip": {
+      "port": 11000,
+      "type": "tcp",
+      "commands": {
+        "play": "GET /Play HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "pause": "GET /Pause HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "stop": "GET /Stop HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "next": "GET /Skip HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "previous": "GET /Back HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "volumeSet": "GET /Volume?level={level} HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "volumeUp": "GET /Volume?tell_levels=1&db=1 HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "volumeDown": "GET /Volume?tell_levels=1&db=-1 HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "muteOn": "GET /Volume?mute=1 HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "muteOff": "GET /Volume?mute=0 HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "muteToggle": "GET /Volume?mute HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "status": "GET /Status HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "syncStatus": "GET /SyncStatus HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "shuffle": "GET /Shuffle?state={state} HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "repeat": "GET /Repeat?state={state} HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "presets": "GET /Presets HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "presetRecall": "GET /Preset?id={id} HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "browseInputs": "GET /RadioBrowse?service=Capture HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "selectInput": "GET /Play?url=Capture:{input}&preset_id&image=/images/inputIcon.png HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "selectInputHdmi": "GET /Play?url=Capture:hw:0,0/2/48000&preset_id&image=/images/inputIcon.png HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "selectInputOptical": "GET /Play?url=Capture:hw:1,0/2/48000&preset_id&image=/images/inputIcon.png HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "selectInputBluetooth": "GET /Play?url=Capture:BT&preset_id&image=/images/inputIcon.png HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "groupCreate": "GET /AddSlave?slave={slaveIp}&group=create HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "groupRemove": "GET /RemoveSlave?slave={slaveIp} HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "powerStandby": "GET /Standby HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "powerOn": "GET /Play HTTP/1.1\r\nHost: {host}\r\n\r\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": true,
+    "inputSelect": true,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "media": {
+    "transportCommands": {
+      "play": "GET /Play HTTP/1.1\r\nHost: {host}\r\n\r\n",
+      "pause": "GET /Pause HTTP/1.1\r\nHost: {host}\r\n\r\n",
+      "stop": "GET /Stop HTTP/1.1\r\nHost: {host}\r\n\r\n",
+      "next": "GET /Skip HTTP/1.1\r\nHost: {host}\r\n\r\n",
+      "previous": "GET /Back HTTP/1.1\r\nHost: {host}\r\n\r\n"
+    },
+    "nowPlayingFeedback": {
+      "trackPattern": "<title1>(.+?)</title1>",
+      "artistPattern": "<title2>(.+?)</title2>",
+      "albumPattern": "<title3>(.+?)</title3>"
+    }
+  },
+  "feedbackRules": [
+    { "pattern": "<state>(.+?)</state>", "signal": "playState" },
+    { "pattern": "<title1>(.+?)</title1>", "signal": "trackName" },
+    { "pattern": "<title2>(.+?)</title2>", "signal": "artistName" },
+    { "pattern": "<title3>(.+?)</title3>", "signal": "albumName" },
+    { "pattern": "<volume>(-?\\d+)</volume>", "signal": "volume", "transform": "parseInt" },
+    { "pattern": "<mute>(\\d)</mute>", "signal": "mute" },
+    { "pattern": "<shuffle>(\\d)</shuffle>", "signal": "shuffle" },
+    { "pattern": "<repeat>(\\d)</repeat>", "signal": "repeat" },
+    { "pattern": "<secs>(\\d+)</secs>", "signal": "position", "transform": "parseInt" },
+    { "pattern": "<totlen>(\\d+)</totlen>", "signal": "duration", "transform": "parseInt" },
+    { "pattern": "<service>(.+?)</service>", "signal": "currentService" },
+    { "pattern": "<image>(.+?)</image>", "signal": "albumArt" },
+    { "pattern": "<quality>(.+?)</quality>", "signal": "audioQuality" }
+  ],
+  "sourceModule": "BluOS Unified Driver v1.6.0.usp",
+  "externalLibrary": "Ultamation.SimplSharp.BluOSClient"
+}

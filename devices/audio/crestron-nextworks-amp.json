@@ -1,0 +1,109 @@
+{
+  "id": "crestron-nextworks-amp",
+  "manufacturer": "Crestron",
+  "model": "Nextworks AMP",
+  "category": "audio",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "cmd1": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:100%serrcode:%s!###",
+        "cmd2": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:90|subcmd_type:150%s|mode:%s!###",
+        "cmd3": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:90|subcmd_type:100%s|vol_abs:%s|muted:%s!###",
+        "cmd4": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:90|subcmd_type:110%s|source:%s!###",
+        "cmd5": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:%s|cmd_type:90|subcmd_type:114|id:%s|name:%s!###",
+        "cmd6": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:90|subcmd_type:120%s|dsp:%s!###",
+        "cmd7": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:%s|cmd_type:90|subcmd_type:124|id:%s|name:%s!###",
+        "cmd8": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:%s|cmd_type:90|subcmd_type:116|id:%s|name:%s!###",
+        "cmd9": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:90|subcmd_type:100%s|vol_abs:%s|muted:false!###",
+        "cmd10": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:90|subcmd_type:100%s|vol_abs:%s|muted:true!###",
+        "cmd11": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:90|subcmd_type:150%s|mode:0!###",
+        "cmd12": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:90|subcmd_type:150%s|mode:1!###",
+        "cmd13": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:90|subcmd_type:120%s|dsp:1!###",
+        "cmd14": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:90|subcmd_type:140|avo:%s!###",
+        "cmd15": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:90|subcmd_type:141|avo:%s!###",
+        "cmd16": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:0!###",
+        "cmd17": "@@@ver:9.5|numseq:%s|type:0|handshake:1|count:1|cmd_type:90|subcmd_type:140|avo:%s!###",
+        "cmd18": "@@@ver:9.5|numseq:%s|type:0|handshake:1|count:1|cmd_type:90|subcmd_type:141|avo:%s!###"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\|zone:",
+      "signal": "Rx_From_IO$"
+    },
+    {
+      "pattern": "!\\#\\#\\#",
+      "signal": "Rx_From_IO$"
+    },
+    {
+      "pattern": "!\\#\\#\\#",
+      "signal": "Rx_From_IO$"
+    },
+    {
+      "pattern": "!\\#\\#\\#",
+      "signal": "Rx_From_IO$"
+    },
+    {
+      "pattern": "vol_abs:",
+      "signal": "s$"
+    },
+    {
+      "pattern": "vol_rel:",
+      "signal": "s$"
+    },
+    {
+      "pattern": "incr:True",
+      "signal": "s$"
+    },
+    {
+      "pattern": "incr:False",
+      "signal": "s$"
+    },
+    {
+      "pattern": "mute:True",
+      "signal": "s$"
+    },
+    {
+      "pattern": "mute:False",
+      "signal": "s$"
+    },
+    {
+      "pattern": "mode:0",
+      "signal": "s$"
+    },
+    {
+      "pattern": "mode:1",
+      "signal": "s$"
+    },
+    {
+      "pattern": "mode:2",
+      "signal": "s$"
+    },
+    {
+      "pattern": "source:",
+      "signal": "s$"
+    },
+    {
+      "pattern": "dsp:",
+      "signal": "s$"
+    },
+    {
+      "pattern": "subcmd_type:",
+      "signal": "app_amp$"
+    },
+    {
+      "pattern": "numseq:",
+      "signal": "app_amp$"
+    }
+  ],
+  "sourceModule": "Crestron_Nextworks_AMP_v2.7.usp"
+}

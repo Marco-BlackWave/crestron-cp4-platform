@@ -1,0 +1,304 @@
+{
+  "id": "rvse2-schedule-interface-workday",
+  "manufacturer": "RVSE2",
+  "model": "Schedule Interface Workday",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": ":",
+      "signal": "sData"
+    },
+    {
+      "pattern": "\u003CErrors\u003E",
+      "signal": "sData"
+    },
+    {
+      "pattern": "\u003CEvent\u003E",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "\u003C/Event\u003E",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "\u003CAction\\ ID=",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "New",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "Change",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "Remove",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "\u003C/MeetingID\u003E",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "\u003C/RVMeetingID\u003E",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "\u003C/Recurring\u003E",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "True",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "\u003C/InstanceID\u003E",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "\u003C/dtStart\u003E",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "\u003C/dtEnd\u003E",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "\u003C/Organizer\u003E",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "\u003C/IsPrivate\u003E",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "1",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "\u003C/IsExchangePrivate\u003E",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "\u003CLiveMeeting\u003E",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "\u003CSubject\u003E",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "\u003C/ScheduleResponse\u003E",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "\u003C/LiveMeeting\u003E",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "\u003C/URL\u003E",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "\u003C/Subject\u003E",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "\u003C/WelcomeMessage\u003E",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "\u003CAttendees\u003E",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "\u003C/Attendees\u003E",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "\u003CRequired\u003E",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "\u003C/Required\u003E",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "\u003COptional\u003E",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "\u003C/Optional\u003E",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "\u003C/Attendee\u003E",
+      "signal": "sRemovedData"
+    },
+    {
+      "pattern": "\u003C/MeetingID\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003C/RequestID\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "RequestRVID\u003C/ActionID\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "RegisterPushModel\u003C/ActionID\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "MeetingChange\u003C/ActionID\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "Subscription\u003C/ActionID\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "Backlog\u003C/ActionID\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003C/ActionResponse\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CParameter\\ ID=\\\\x22MeetingID\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CParameter\\ ID=\\\\x22RVMeetingID\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CParameter\\ ID=\\\\x22Registered\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "1",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CParameter\\ ID=\\\\x22GroupwareID\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CParameter\\ ID=\\\\x22Status\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CParameter\\ ID=\\\\x22Message\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CParameter\\ ID=\\\\x22Active\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003CParameter\\ ID=\\\\x22Text\\\\x22",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "ActionRegisterPush",
+      "signal": "sActionRequestID"
+    },
+    {
+      "pattern": "Conf\\ Room",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003CRequestID\u003ERVRequest\u003C/RequestID\u003E",
+      "signal": "g_sRXData1"
+    },
+    {
+      "pattern": "Action\\ ID=\\\\x22RequestSchedule\\\\x22",
+      "signal": "g_sRXData1"
+    },
+    {
+      "pattern": "\u003CRequestID\u003EUserSchedule",
+      "signal": "g_sRXData1"
+    },
+    {
+      "pattern": "\u003CRequestID\u003EUserInfo",
+      "signal": "g_sRXData1"
+    },
+    {
+      "pattern": "\u003CRequestID\u003EUserCreate",
+      "signal": "g_sRXData2"
+    },
+    {
+      "pattern": "\u003CRequestID\u003EAvailRoomsCreate",
+      "signal": "g_sRXData2"
+    },
+    {
+      "pattern": "\u003CRequestID\u003ERequestApptRefresh\u003C/RequestID\u003E",
+      "signal": "g_sRXData3"
+    },
+    {
+      "pattern": "\u003CRequestID\u003ESchedAlertSubscription\u003C/RequestID\u003E",
+      "signal": "g_sRXData3"
+    },
+    {
+      "pattern": "\u003CRequestID\u003ESchedAlertBacklog\u003C/RequestID\u003E",
+      "signal": "g_sRXData3"
+    },
+    {
+      "pattern": "\u003CMeetingPresetModule\u003EHello\u003C/MeetingPresetModule\u003E",
+      "signal": "From_MeetingPreset_Mod_DataOut$"
+    },
+    {
+      "pattern": "\u003CStartedEvent\u003E",
+      "signal": "From_MeetingPreset_Mod_DataOut$"
+    },
+    {
+      "pattern": "\u003CEndMeeting\u003E",
+      "signal": "From_MeetingPreset_Mod_DataOut$"
+    },
+    {
+      "pattern": "\u003CWelcomeMsg\u003E",
+      "signal": "From_MeetingPreset_Mod_DataOut$"
+    },
+    {
+      "pattern": "\u003CRemoteSystemData\u003EHello\u003C/RemoteSystemData\u003E",
+      "signal": "From_Remote_Sys_Mod_DataOut$"
+    },
+    {
+      "pattern": "\u003CGet\\ ID=\\\\x22AllData\\\\x22\\ /\u003E",
+      "signal": "From_Remote_Sys_Mod_DataOut$"
+    },
+    {
+      "pattern": "\u003CGet\\ ID=\\\\x22WorkdaySchedule\\\\x22\\ /\u003E",
+      "signal": "From_Remote_Sys_Mod_DataOut$"
+    },
+    {
+      "pattern": "\u003CGet\\ ID=\\\\x22CurrentMeetingInfo\\\\x22\\ /\u003E",
+      "signal": "From_Remote_Sys_Mod_DataOut$"
+    },
+    {
+      "pattern": "\u003CGet\\ ID=\\\\x22NextReservation\\\\x22\\ /\u003E",
+      "signal": "From_Remote_Sys_Mod_DataOut$"
+    },
+    {
+      "pattern": "\u003CGet\\ ID=\\\\x22DateTime\\\\x22\\ /\u003E",
+      "signal": "From_Remote_Sys_Mod_DataOut$"
+    }
+  ],
+  "sourceModule": "RVSE2_Schedule_Interface_Workday_v7.1\u002B.usp"
+}

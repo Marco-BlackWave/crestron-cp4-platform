@@ -1,0 +1,47 @@
+{
+  "id": "bss-blu-level-control",
+  "manufacturer": "BSS",
+  "model": "BLU Level Control Module",
+  "category": "dsp",
+  "protocols": {
+    "ip": {
+      "port": 1023,
+      "type": "tcp",
+      "commands": {
+        "setLevel": "SS {nodeAddr} {virtualDevice} {objectId} 0 0 {value}",
+        "getLevel": "SG {nodeAddr} {virtualDevice} {objectId} 0 0",
+        "setMute": "SS {nodeAddr} {virtualDevice} {objectId} 1 0 {value}",
+        "getMute": "SG {nodeAddr} {virtualDevice} {objectId} 1 0",
+        "subscribeLevel": "SU {nodeAddr} {virtualDevice} {objectId} 0 0 {rate}",
+        "subscribeMute": "SU {nodeAddr} {virtualDevice} {objectId} 1 0 {rate}",
+        "unsubscribeLevel": "US {nodeAddr} {virtualDevice} {objectId} 0 0",
+        "unsubscribeMute": "US {nodeAddr} {virtualDevice} {objectId} 1 0",
+        "incrementLevel": "SI {nodeAddr} {virtualDevice} {objectId} 0 0 {step}",
+        "decrementLevel": "SD {nodeAddr} {virtualDevice} {objectId} 0 0 {step}"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": true,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "dsp": {
+    "maxChannels": 8,
+    "objectIdFormat": "hex",
+    "levelCommandTemplate": "SS {nodeAddr} {virtualDevice} {objectId} 0 0 {level}",
+    "muteCommandTemplate": "SS {nodeAddr} {virtualDevice} {objectId} 1 0 {muted}",
+    "subscribeCommandTemplate": "SU {nodeAddr} {virtualDevice} {objectId} 0 0 500"
+  },
+  "feedbackRules": [
+    { "pattern": "^SS (.+) (.+) (.+) 0 0 (.+)$", "signal": "levelValue" },
+    { "pattern": "^SS (.+) (.+) (.+) 1 0 (.+)$", "signal": "muteState" },
+    { "pattern": "^ACK$", "signal": "commandAck" },
+    { "pattern": "^NAK (.+)$", "signal": "commandError" }
+  ],
+  "sourceModule": "BSS BLU Level Control Module v1.0.usp",
+  "externalLibrary": "BSSCommLIB"
+}

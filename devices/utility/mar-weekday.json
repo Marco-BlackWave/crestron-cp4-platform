@@ -1,0 +1,18 @@
+{
+  "id": "mar-weekday",
+  "manufacturer": "MAR",
+  "model": "WeekDay",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "MAR WeekDay.usp"
+}

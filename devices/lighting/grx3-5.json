@@ -1,0 +1,62 @@
+{
+  "id": "grx3-5",
+  "manufacturer": "GRX3",
+  "model": "5",
+  "category": "dsp",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "col1": "GSS, [1:4:1], 11\r",
+        "col2": "GSS, [1:4:1], 12\r",
+        "col3": "GSS, [1:4:1], 13\r",
+        "col4": "GSS, [1:4:1], 14\r",
+        "col5": "GSS, [1:4:1], 15\r",
+        "col6": "GSS, [1:4:1], 16\r",
+        "alloff": "GSS, [1:4:1], 0\r",
+        "cmd8": "GSS, [1:4:2], 11\r",
+        "cmd9": "GSS, [1:4:3], 11\r",
+        "cmd10": "GSS, [1:4:4], 11\r",
+        "cmd11": "GSS, [1:4:5], 11\r",
+        "cmd12": "GSS, [1:4:2], 12\r",
+        "cmd13": "GSS, [1:4:3], 12\r",
+        "cmd14": "GSS, [1:4:4], 12\r",
+        "cmd15": "GSS, [1:4:5], 12\r",
+        "cmd16": "GSS, [1:4:2], 13\r",
+        "cmd17": "GSS, [1:4:3], 13\r",
+        "cmd18": "GSS, [1:4:4], 13\r",
+        "cmd19": "GSS, [1:4:5], 13\r",
+        "cmd20": "GSS, [1:4:2], 14\r",
+        "cmd21": "GSS, [1:4:3], 14\r",
+        "cmd22": "GSS, [1:4:4], 14\r",
+        "cmd23": "GSS, [1:4:5], 14\r",
+        "cmd24": "GSS, [1:4:2], 15\r",
+        "cmd25": "GSS, [1:4:3], 15\r",
+        "cmd26": "GSS, [1:4:4], 15\r",
+        "cmd27": "GSS, [1:4:5], 15\r",
+        "cmd28": "GSS, [1:4:2], 16\r",
+        "cmd29": "GSS, [1:4:3], 16\r",
+        "cmd30": "GSS, [1:4:4], 16\r",
+        "cmd31": "GSS, [1:4:5], 16\r",
+        "cmd32": "GSS, [1:4:2], 0\r",
+        "cmd33": "GSS, [1:4:3], 0\r",
+        "cmd34": "GSS, [1:4:4], 0\r",
+        "cmd35": "GSS, [1:4:5], 0\r",
+        "cmd36": "GSS, [1:4:3], %02d\r",
+        "cmd37": "GSS, [1:4:4], %02d\r",
+        "cmd38": "GSS, [1:4:5], %02d\r"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "dsp": {
+    "maxChannels": 8
+  },
+  "sourceModule": "GRX3-5.usp"
+}

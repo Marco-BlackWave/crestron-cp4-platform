@@ -1,0 +1,26 @@
+{
+  "id": "hi-lite-grx1-2",
+  "manufacturer": "Hi",
+  "model": "LITE GRX1-2",
+  "category": "dsp",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "cmd1": "GSS, [1:4:1], %02d\r",
+        "cmd2": "GSS, [1:4:2], %02d\r"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "dsp": {
+    "maxChannels": 8
+  },
+  "sourceModule": "Hi-LITE GRX1-2.usp"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "ring-counter-analog",
+  "manufacturer": "Ring",
+  "model": "counter analog",
+  "category": "utility",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "up": "Velocit\uFFFD %01d",
+        "down": "Velocit\uFFFD %01d",
+        "in": "Velocit\uFFFD %01d"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Ring_counter_analog_V1.2_AZ.usp"
+}

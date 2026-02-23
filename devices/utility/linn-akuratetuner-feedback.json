@@ -1,0 +1,18 @@
+{
+  "id": "linn-akuratetuner-feedback",
+  "manufacturer": "Linn",
+  "model": "AkurateTuner Feedback",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Linn_AkurateTuner_Feedback.usp"
+}

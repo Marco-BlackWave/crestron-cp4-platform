@@ -1,0 +1,23 @@
+{
+  "id": "shelly-flood-v3",
+  "manufacturer": "Shelly",
+  "model": "Flood v3",
+  "category": "gateway",
+  "protocols": {
+    "ip": {
+      "port": 80,
+      "type": "tcp",
+      "commands": {}
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Shelly Flood v3.usp",
+  "externalLibrary": "Shelly"
+}

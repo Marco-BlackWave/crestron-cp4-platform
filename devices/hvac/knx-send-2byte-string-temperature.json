@@ -1,0 +1,18 @@
+{
+  "id": "knx-send-2byte-string-temperature",
+  "manufacturer": "KNX",
+  "model": "Send 2Byte String Temperature",
+  "category": "hvac",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "KNX Send 2Byte String Temperature.usp"
+}

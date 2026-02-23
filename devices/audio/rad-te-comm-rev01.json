@@ -1,0 +1,92 @@
+{
+  "id": "rad-te-comm-rev01",
+  "manufacturer": "RAD",
+  "model": "TE Comm Rev01",
+  "category": "audio",
+  "protocols": {
+    "ip": {
+      "port": 23,
+      "type": "tcp",
+      "commands": {
+        "cmd1": "..ringing..",
+        "cmd2": "DISCONNECTED.",
+        "cmd3": "%s (%s %s) %s",
+        "cmd4": "[%s]%s - %s cause %s num=%s",
+        "cmd5": "[%s]%s %s",
+        "cmd6": "[%s]%s",
+        "cmd7": "%s (%s %s) from : %s",
+        "cmd8": "CONNECTED (%s %s) %s",
+        "cmd9": "[%s]%s - %s cause %s",
+        "cmd10": "[%s]..call suspended..",
+        "cmd11": "[%s]..call resumed..",
+        "cmd12": "call (%s %s) %s",
+        "cmd13": "\\xAA\\xAA\\x00\\x00%c%c%s%s",
+        "cmd14": "%s: Wdog reached the max timeout errors !",
+        "cmd15": "%s: Wdog timeout nr.%u",
+        "cmd16": "%s: TX bus busy. !!.",
+        "cmd17": "%s: TX bus busy. Low prio --\u003E OneBuffer.",
+        "cmd18": "%s: Possible data lost, TX BUFFER FULL (will be cleared)!!!!",
+        "cmd19": "%s: GET connection to %s HWrev.%s Cam:%s MCU=%u.",
+        "cmd20": "%s: IPV session ENDED.",
+        "cmd21": "%s: IPV connection ERROR -bad parameter:%s-",
+        "cmd22": "%s: IPV connection ERROR -unknown message-",
+        "cmd23": "%s: IPV connection ERROR -wrong message length-",
+        "cmd24": "%s: IPV connection ERROR -bad mode-",
+        "cmd25": "%s: IPV connection ERROR -unable to execute:system timeout-",
+        "cmd26": "%s: IPV connection ERROR -unable to execute:system was busy-",
+        "cmd27": "%s: IPV connection ERROR -unable to execute command-",
+        "cmd28": "%s: IPV connection ERROR %s HWrev.%s Cam:%s MCU=%u.",
+        "cmd29": "%s: No more data on CMDHiBuff rx buff=%s",
+        "cmd30": "%s: No more data on CMDLow rx buff=%s",
+        "cmd31": "%s: HiPriority Buffer is=%u. Low prio --\u003E OneBuffer.",
+        "cmd32": "%s: No more data on VHiBuff rx buff=\\x02%s\\x03",
+        "cmd33": "%s: OK,got a correct seq (rx len=%u) : %s",
+        "cmd34": "%s: ERROR,bad length! (rx len=%u) : %s",
+        "cmd35": "%s: ERROR, Comm start not found! (rx len=%u) : %s",
+        "cmd36": "%s: Bed data on CHiBuff(no 0d) rx(len=%u) : %s",
+        "cmd37": "%s: Bed data on CHiBuff(no AA) rx(len=%u) : %s",
+        "cmd38": "%s: Loop Ended :Proceed to process Vbuffer",
+        "cmd39": "%s: Guardian: Start checking TCP/IP comm...."
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "-",
+      "signal": "StrVol"
+    },
+    {
+      "pattern": "AT\\[\u003C",
+      "signal": "commd$"
+    },
+    {
+      "pattern": "OK",
+      "signal": "commd$"
+    },
+    {
+      "pattern": "\\\\xAA\\\\xAA",
+      "signal": "LocalString"
+    },
+    {
+      "pattern": "\\\\xAA\\\\xAA\\\\x00\\\\x00",
+      "signal": "LocalString"
+    },
+    {
+      "pattern": "\\\\xAA\\\\xAA",
+      "signal": "LocalString"
+    },
+    {
+      "pattern": "\\\\xAA\\\\xAA\\\\x00\\\\x00",
+      "signal": "LocalString"
+    }
+  ],
+  "sourceModule": "RAD_TE_Comm_Rev01.usp"
+}

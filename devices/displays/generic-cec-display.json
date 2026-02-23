@@ -1,0 +1,25 @@
+{
+  "id": "generic-cec-display",
+  "manufacturer": "Generic",
+  "model": "CEC-Compatible Display",
+  "category": "display",
+  "protocols": {
+    "ir": {
+      "driverFile": "Generic_TV.ir",
+      "commands": {
+        "powerToggle": "POWER",
+        "volumeUp": "VOL+",
+        "volumeDown": "VOL-",
+        "mute": "MUTE"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": true,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 5000,
+    "cooldownMs": 2000
+  }
+}

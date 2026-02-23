@@ -1,0 +1,97 @@
+{
+  "id": "sonance-dsp-amp-vol-feedback",
+  "manufacturer": "Sonance",
+  "model": "DSP AMP Vol Feedback",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "All\\ Groups\\ Vol=",
+      "signal": "Temp"
+    },
+    {
+      "pattern": "db",
+      "signal": "Temp"
+    },
+    {
+      "pattern": "Group:A\\ Vol=",
+      "signal": "Temp"
+    },
+    {
+      "pattern": "db",
+      "signal": "Temp"
+    },
+    {
+      "pattern": "Group:B\\ Vol=",
+      "signal": "Temp"
+    },
+    {
+      "pattern": "db",
+      "signal": "Temp"
+    },
+    {
+      "pattern": "Group:C\\ Vol=",
+      "signal": "Temp"
+    },
+    {
+      "pattern": "db",
+      "signal": "Temp"
+    },
+    {
+      "pattern": "Group:D\\ Vol=",
+      "signal": "Temp"
+    },
+    {
+      "pattern": "db",
+      "signal": "Temp"
+    },
+    {
+      "pattern": "Group:E\\ Vol=",
+      "signal": "Temp"
+    },
+    {
+      "pattern": "db",
+      "signal": "Temp"
+    },
+    {
+      "pattern": "Group:F\\ Vol=",
+      "signal": "Temp"
+    },
+    {
+      "pattern": "db",
+      "signal": "Temp"
+    },
+    {
+      "pattern": "Group:G\\ Vol=",
+      "signal": "Temp"
+    },
+    {
+      "pattern": "db",
+      "signal": "Temp"
+    },
+    {
+      "pattern": "Group:H\\ Vol=",
+      "signal": "Temp"
+    },
+    {
+      "pattern": "db",
+      "signal": "Temp"
+    }
+  ],
+  "sourceModule": "Sonance DSP AMP Vol Feedback.usp"
+}

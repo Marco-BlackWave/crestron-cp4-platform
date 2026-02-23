@@ -1,0 +1,18 @@
+{
+  "id": "rvse2-time-to-bargraph",
+  "manufacturer": "RVSE2",
+  "model": "Time To Bargraph",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "RVSE2_Time_To_Bargraph_v1.1\u002B.usp"
+}

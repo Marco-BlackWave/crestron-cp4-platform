@@ -1,0 +1,28 @@
+{
+  "id": "vimar-by-me-switch-1850-14535",
+  "manufacturer": "VIMAR",
+  "model": "By-Me Switch 1850-14535",
+  "category": "lighting",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\xCA\\\\x10\\\\x01",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\\\\x81\\\\x00",
+      "signal": "TempString$"
+    }
+  ],
+  "sourceModule": "VIMAR By-Me Switch 1850-14535  1.22.usp"
+}

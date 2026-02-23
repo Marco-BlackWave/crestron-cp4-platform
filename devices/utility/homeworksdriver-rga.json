@@ -1,0 +1,45 @@
+{
+  "id": "homeworksdriver-rga",
+  "manufacturer": "HomeworksDriver",
+  "model": "RGA",
+  "category": "utility",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "connect": "crestron, audio\r\n",
+        "disconnect": "quit\r\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "LOGIN:",
+      "signal": "Homeworks_Rx$"
+    },
+    {
+      "pattern": "login\\ incorrect",
+      "signal": "Homeworks_Rx$"
+    },
+    {
+      "pattern": "\\\\x0A",
+      "signal": "Homeworks_Rx$"
+    },
+    {
+      "pattern": "login\\ successful",
+      "signal": "TempString$"
+    }
+  ],
+  "sourceModule": "HomeworksDriver RGA.usp"
+}

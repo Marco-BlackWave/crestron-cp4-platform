@@ -1,0 +1,27 @@
+{
+  "id": "integra-feedback-processor",
+  "manufacturer": "Integra",
+  "model": "Feedback Processor",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "cmd1": "%02d/%02d",
+        "cmd2": "%02d:%02d:%02d"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Integra Feedback Processor v0.1.usp"
+}

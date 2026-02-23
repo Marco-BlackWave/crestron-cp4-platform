@@ -1,0 +1,33 @@
+{
+  "id": "rvse2-auto-time-sync",
+  "manufacturer": "RVSE2",
+  "model": "Auto Time Sync",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\u003C/LocalDateTime\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003C/LocalTimeResponse\u003E",
+      "signal": "From_RV_LocalDateTimeResponse$"
+    }
+  ],
+  "sourceModule": "RVSE2_Auto_Time_Sync_v1.1\u002B.usp"
+}

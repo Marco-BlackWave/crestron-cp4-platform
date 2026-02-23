@@ -1,0 +1,23 @@
+{
+  "id": "el-driver",
+  "manufacturer": "EL",
+  "model": "Driver",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 57600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "EL-Driver 1.28.usp"
+}

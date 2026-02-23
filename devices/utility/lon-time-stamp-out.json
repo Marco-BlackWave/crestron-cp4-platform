@@ -1,0 +1,18 @@
+{
+  "id": "lon-time-stamp-out",
+  "manufacturer": "LON",
+  "model": "Time Stamp Out",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "LON Time_Stamp Out.usp"
+}

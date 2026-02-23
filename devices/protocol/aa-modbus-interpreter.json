@@ -1,0 +1,37 @@
+{
+  "id": "aa-modbus-interpreter",
+  "manufacturer": "AA",
+  "model": "MODBUS Interpreter",
+  "category": "protocol",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": true,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\xFF\\\\x00\\\\xFF\\\\x00",
+      "signal": "DaMODBUS"
+    },
+    {
+      "pattern": "M",
+      "signal": "DaISC"
+    },
+    {
+      "pattern": "\\.",
+      "signal": "nome"
+    }
+  ],
+  "sourceModule": "AA_MODBUS Interpreter v3.1.usp"
+}

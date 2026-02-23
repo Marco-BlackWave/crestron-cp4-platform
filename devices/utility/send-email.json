@@ -1,0 +1,22 @@
+{
+  "id": "send-email",
+  "manufacturer": "Send",
+  "model": "Email",
+  "category": "utility",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "send": "Sending e-mail. Please wait....."
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Send Email.usp"
+}

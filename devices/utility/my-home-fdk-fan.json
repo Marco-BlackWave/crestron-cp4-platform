@@ -1,0 +1,28 @@
+{
+  "id": "my-home-fdk-fan",
+  "manufacturer": "My",
+  "model": "Home fdk Fan",
+  "category": "utility",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "fdkIn1": "heating",
+        "fdkIn2": "cooling",
+        "fdkIn3": "off"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "My_Home_fdk_Fan_V1.0_ALE.usp"
+}

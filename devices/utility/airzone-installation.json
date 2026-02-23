@@ -1,0 +1,19 @@
+{
+  "id": "airzone-installation",
+  "manufacturer": "AirZone",
+  "model": "Installation",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "AirZone Installation V1.0.usp",
+  "externalLibrary": "AirZone"
+}

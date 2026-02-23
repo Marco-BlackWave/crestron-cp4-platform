@@ -1,0 +1,34 @@
+{
+  "id": "tutondo-v1-0-ale",
+  "manufacturer": "Tutondo",
+  "model": "V1.0 ALE",
+  "category": "audio",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "cmdOn": "W004,%s,001\r",
+        "cmdOff": "W004,%s,000\r",
+        "muteToggle": "W022,%s,002\r",
+        "volumeUp": "W005,%s,000\r",
+        "volumeDown": "W006,%s,000\r",
+        "cmd6": "W019,%s,00%s\r",
+        "cmd7": "W019,%s,0%s\r"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": true,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "!S,006,001",
+      "signal": "tutondo_rx$"
+    }
+  ],
+  "sourceModule": "Tutondo_V1.0_ALE.usp"
+}

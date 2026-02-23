@@ -1,0 +1,149 @@
+{
+  "id": "yamaha-rx-z11-feedback",
+  "manufacturer": "Yamaha",
+  "model": "RX-Z11 Feedback",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "cmd1": "%d.%d%s",
+        "cmd2": "%d%s"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "Main_Zone\\(Vol\\(Lvl\\(Val=-",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Val=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Main_Zone\\(Vol\\(Lvl\\(Val=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Val=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Zone_2\\(Vol\\(Lvl\\(Val=-",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Val=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Zone_2\\(Vol\\(Lvl\\(Val=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Val=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Zone_3\\(Vol\\(Lvl\\(Val=-",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Val=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Zone_3\\(Vol\\(Lvl\\(Val=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Val=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Zone_4\\(Vol\\(Lvl\\(Val=-",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Val=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Zone_4\\(Vol\\(Lvl\\(Val=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Val=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Tuner\\(Play_Control\\(Tuning\\(Freq\\(Val=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Val=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Exp=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Unit=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Unit=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "HD_Radio\\(Play_Control\\(Tuning\\(Freq\\(Val=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Val=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Exp=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Unit=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Unit=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "XM\\(Play_Control\\(Ch_Number=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Number=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\\)",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Number=",
+      "signal": "sTemp"
+    }
+  ],
+  "sourceModule": "Yamaha RX-Z11 Feedback.usp"
+}

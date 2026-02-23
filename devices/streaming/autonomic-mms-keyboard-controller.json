@@ -1,0 +1,23 @@
+{
+  "id": "autonomic-mms-keyboard-controller",
+  "manufacturer": "Autonomic",
+  "model": "MMS Keyboard Controller",
+  "category": "media",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "reset": "KBCANCEL",
+        "enter": "KB "
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Autonomic MMS Keyboard Controller v3.0.usp"
+}

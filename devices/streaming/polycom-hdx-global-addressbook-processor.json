@@ -1,0 +1,68 @@
+{
+  "id": "polycom-hdx-global-addressbook-processor",
+  "manufacturer": "Polycom",
+  "model": "HDX Global Addressbook Processor",
+  "category": "media",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "select": "gaddrbook range %d %d\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x0D\\\\x0A",
+      "signal": "Polycom_Rx$"
+    },
+    {
+      "pattern": "\\\\x0A\\\\x0D",
+      "signal": "Polycom_Rx$"
+    },
+    {
+      "pattern": "\\\\x0D\\\\x0A",
+      "signal": "Polycom_Rx$"
+    },
+    {
+      "pattern": "\\\\x0A\\\\x0D",
+      "signal": "Polycom_Rx$"
+    },
+    {
+      "pattern": "gaddrbook\\ range\\ ",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "phone_num",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "state\\[",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "speed\\[",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "Valid\\ gaddrbook\\ range:",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "\\ through\\ ",
+      "signal": "Tempstring$"
+    }
+  ],
+  "sourceModule": "Polycom HDX Global Addressbook Processor v3.2.usp"
+}

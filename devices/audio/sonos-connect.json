@@ -1,0 +1,25 @@
+{
+  "id": "sonos-connect",
+  "manufacturer": "Sonos",
+  "model": "Connect / Port",
+  "category": "audio",
+  "protocols": {
+    "ip": {
+      "port": 1400,
+      "type": "tcp",
+      "commands": {
+        "play": "POST /MediaRenderer/AVTransport/Control HTTP/1.1\r\n",
+        "pause": "POST /MediaRenderer/AVTransport/Control HTTP/1.1\r\n",
+        "volumeSet": "POST /MediaRenderer/RenderingControl/Control HTTP/1.1\r\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": true,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  }
+}

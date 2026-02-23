@@ -1,0 +1,32 @@
+{
+  "id": "language-manager-v1-1",
+  "manufacturer": "Language",
+  "model": "Manager v1 1",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": true,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": ";",
+      "signal": "toSplit"
+    },
+    {
+      "pattern": "\\\\n",
+      "signal": "cBuff"
+    },
+    {
+      "pattern": "NVRAM",
+      "signal": "thePath"
+    }
+  ],
+  "sourceModule": "Language_Manager_v1_1.usp"
+}

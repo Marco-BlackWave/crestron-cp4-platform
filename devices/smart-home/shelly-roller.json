@@ -1,0 +1,49 @@
+{
+  "id": "shelly-roller",
+  "manufacturer": "Shelly",
+  "model": "2.5 / Plus 2PM Roller",
+  "category": "gateway",
+  "protocols": {
+    "ip": {
+      "port": 80,
+      "type": "tcp",
+      "commands": {
+        "open": "GET /roller/{channel}?go=open HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "close": "GET /roller/{channel}?go=close HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "stop": "GET /roller/{channel}?go=stop HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "goToPosition": "GET /roller/{channel}?go=to_pos&roller_pos={position} HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "openDuration": "GET /roller/{channel}?go=open&duration={ms} HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "status": "GET /status HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "gen2Open": "GET /rpc/Cover.Open?id={channel} HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "gen2Close": "GET /rpc/Cover.Close?id={channel} HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "gen2Stop": "GET /rpc/Cover.Stop?id={channel} HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "gen2GoToPosition": "GET /rpc/Cover.GoToPosition?id={channel}&pos={position} HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "gen2Calibrate": "GET /rpc/Cover.Calibrate?id={channel} HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "gen2CoverStatus": "GET /rpc/Cover.GetStatus?id={channel} HTTP/1.1\r\nHost: {host}\r\n\r\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "gateway": {
+    "objects": [
+      { "id": "0", "name": "Roller 0", "type": "roller", "dataType": "position" }
+    ]
+  },
+  "feedbackRules": [
+    { "pattern": "\"state\":\"open\"", "signal": "rollerState", "value": "open" },
+    { "pattern": "\"state\":\"close\"", "signal": "rollerState", "value": "closed" },
+    { "pattern": "\"state\":\"stop\"", "signal": "rollerState", "value": "stopped" },
+    { "pattern": "\"current_pos\":(\\d+)", "signal": "rollerPosition", "transform": "parseInt" },
+    { "pattern": "\"power\":([\\d.]+)", "signal": "power", "transform": "parseFloat" },
+    { "pattern": "\"last_direction\":\"(.+?)\"", "signal": "lastDirection" }
+  ],
+  "sourceModule": "Shelly Roller v3.1.usp",
+  "externalLibrary": "Shelly"
+}

@@ -1,0 +1,37 @@
+{
+  "id": "vimar-by-metapparelle-20527-16967-16967-b-14527",
+  "manufacturer": "VIMAR",
+  "model": "By-MeTapparelle 20527 16967 16967.B 14527",
+  "category": "lighting",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\xCA\\\\x10\\\\x0b",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\\\\x81\\\\x00\\\\x80",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "\\\\x81\\\\x00\\\\x81",
+      "signal": "TempString$"
+    }
+  ],
+  "sourceModule": "VIMAR By-MeTapparelle 20527_16967_16967.B_14527  1.22.usp"
+}

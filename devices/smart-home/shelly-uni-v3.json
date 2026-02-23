@@ -1,0 +1,23 @@
+{
+  "id": "shelly-uni-v3",
+  "manufacturer": "Shelly",
+  "model": "Uni v3",
+  "category": "gateway",
+  "protocols": {
+    "ip": {
+      "port": 80,
+      "type": "tcp",
+      "commands": {}
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": true,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Shelly Uni v3.usp",
+  "externalLibrary": "Shelly"
+}

@@ -1,0 +1,26 @@
+{
+  "id": "cneibio-generic",
+  "manufacturer": "CNEIBIO",
+  "model": "Generic",
+  "category": "gateway",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "trigger": "\\x0C"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "CNEIBIO.usp"
+}

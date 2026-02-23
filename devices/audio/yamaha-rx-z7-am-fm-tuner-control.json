@@ -1,0 +1,94 @@
+{
+  "id": "yamaha-rx-z7-am-fm-tuner-control",
+  "manufacturer": "Yamaha",
+  "model": "RX-Z7 AM-FM Tuner Control",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "key": "0,1,*,GET,HD_Radio(Play_Info),*\r\n",
+        "cmd2": "%s(Play_Control(Tuning(Freq(Val=%s0,Exp=2,Unit=MHz)))),*\r\n",
+        "cmd3": "%s(Play_Control(Tuning(Freq(Val=%s,Exp=0,Unit=kHz)))),*\r\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "8",
+      "signal": "sFreqRequest"
+    },
+    {
+      "pattern": "9",
+      "signal": "sFreqRequest"
+    },
+    {
+      "pattern": "1",
+      "signal": "sFreqRequest"
+    },
+    {
+      "pattern": "8",
+      "signal": "sFreqRequest"
+    },
+    {
+      "pattern": "9",
+      "signal": "sFreqRequest"
+    },
+    {
+      "pattern": "1",
+      "signal": "sFreqRequest"
+    },
+    {
+      "pattern": "1",
+      "signal": "sFreqRequest"
+    },
+    {
+      "pattern": "5",
+      "signal": "sFreqRequest"
+    },
+    {
+      "pattern": "6",
+      "signal": "sFreqRequest"
+    },
+    {
+      "pattern": "7",
+      "signal": "sFreqRequest"
+    },
+    {
+      "pattern": "8",
+      "signal": "sFreqRequest"
+    },
+    {
+      "pattern": "9",
+      "signal": "sFreqRequest"
+    },
+    {
+      "pattern": "1",
+      "signal": "sFreqRequest"
+    },
+    {
+      "pattern": "1",
+      "signal": "sFreqRequest"
+    },
+    {
+      "pattern": "7",
+      "signal": "sFreqRequest"
+    },
+    {
+      "pattern": "1",
+      "signal": "sFreqRequest"
+    }
+  ],
+  "sourceModule": "Yamaha RX-Z7 AM-FM Tuner Control v2.0.usp"
+}

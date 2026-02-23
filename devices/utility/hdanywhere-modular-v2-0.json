@@ -1,0 +1,18 @@
+{
+  "id": "hdanywhere-modular-v2-0",
+  "manufacturer": "HDAnywhere",
+  "model": "Modular V2 0",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "HDAnywhere Modular V2_0.usp"
+}

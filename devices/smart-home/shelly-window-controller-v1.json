@@ -1,0 +1,23 @@
+{
+  "id": "shelly-window-controller-v1",
+  "manufacturer": "Shelly",
+  "model": "Window Controller v1",
+  "category": "gateway",
+  "protocols": {
+    "ip": {
+      "port": 80,
+      "type": "tcp",
+      "commands": {}
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Shelly Window Controller v1.usp",
+  "externalLibrary": "Shelly"
+}

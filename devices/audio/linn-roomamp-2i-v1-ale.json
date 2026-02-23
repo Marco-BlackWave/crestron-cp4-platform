@@ -1,0 +1,38 @@
+{
+  "id": "linn-roomamp-2i-v1-ale",
+  "manufacturer": "Linn",
+  "model": "roomamp 2i V1 ALE",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "powerOn": "$ORIGIN ZONETYPE_ROOM$\r\n",
+        "powerOff": "$ORIGIN ZONETYPE_ROOM$\r\n",
+        "mute": "$ORIGIN ZONETYPE_ROOM$\r\n",
+        "volUp": "$ORIGIN ZONETYPE_ROOM$\r\n",
+        "volDown": "$ORIGIN ZONETYPE_ROOM$\r\n",
+        "in1": "$ORIGIN ZONETYPE_ROOM$\r\n",
+        "in2": "$ORIGIN ZONETYPE_ROOM$\r\n",
+        "in3": "$ORIGIN ZONETYPE_ROOM$\r\n",
+        "inMain": "$ORIGIN ZONETYPE_ROOM$\r\n",
+        "z2On": "$ORIGIN ZONETYPE_SUBZONE$\r\n",
+        "z2Off": "$ORIGIN ZONETYPE_SUBZONE$\r\n",
+        "z2VolUp": "$ORIGIN ZONETYPE_SUBZONE$\r\n",
+        "z2VolDown": "$ORIGIN ZONETYPE_SUBZONE$\r\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Linn_roomamp_2i_V1_ALE.usp"
+}

@@ -1,0 +1,49 @@
+{
+  "id": "bticino-myhome-l4686sdk-alarm",
+  "manufacturer": "BTicino",
+  "model": "Myhome L4686SDK Alarm",
+  "category": "security",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\*",
+      "signal": "Temp_$"
+    },
+    {
+      "pattern": "\\#\\#",
+      "signal": "Temp_$"
+    },
+    {
+      "pattern": "\\*",
+      "signal": "Temp_$"
+    },
+    {
+      "pattern": "\\*",
+      "signal": "Temp_$"
+    },
+    {
+      "pattern": "\\#\\#",
+      "signal": "Temp_$"
+    },
+    {
+      "pattern": "\\*",
+      "signal": "Temp_$"
+    }
+  ],
+  "sourceModule": "BTicino_Myhome_L4686SDK_Alarm_v1.01.usp"
+}

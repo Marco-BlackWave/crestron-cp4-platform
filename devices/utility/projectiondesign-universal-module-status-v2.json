@@ -1,0 +1,105 @@
+{
+  "id": "projectiondesign-universal-module-status-v2",
+  "manufacturer": "ProjectionDesign",
+  "model": "Universal Module Status v2",
+  "category": "utility",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "LST1",
+      "signal": "sTemp$"
+    },
+    {
+      "pattern": "LST1",
+      "signal": "sTemp$"
+    },
+    {
+      "pattern": "LST2",
+      "signal": "sTemp$"
+    },
+    {
+      "pattern": "LST2",
+      "signal": "sTemp$"
+    },
+    {
+      "pattern": "LTR1",
+      "signal": "sTemp$"
+    },
+    {
+      "pattern": "LTR1",
+      "signal": "sTemp$"
+    },
+    {
+      "pattern": "LTR2",
+      "signal": "sTemp$"
+    },
+    {
+      "pattern": "LTR2",
+      "signal": "sTemp$"
+    },
+    {
+      "pattern": "UTOT",
+      "signal": "sTemp$"
+    },
+    {
+      "pattern": "UTOT",
+      "signal": "sTemp$"
+    },
+    {
+      "pattern": "SHUT",
+      "signal": "sTemp$"
+    },
+    {
+      "pattern": "SHUT",
+      "signal": "sTemp$"
+    },
+    {
+      "pattern": "FRZE",
+      "signal": "sTemp$"
+    },
+    {
+      "pattern": "FRZE",
+      "signal": "sTemp$"
+    },
+    {
+      "pattern": "IR01",
+      "signal": "sTemp$"
+    },
+    {
+      "pattern": "IR01",
+      "signal": "sTemp$"
+    },
+    {
+      "pattern": "SNGL",
+      "signal": "sTemp$"
+    },
+    {
+      "pattern": "SNGL",
+      "signal": "sTemp$"
+    },
+    {
+      "pattern": "DUAL",
+      "signal": "sTemp$"
+    },
+    {
+      "pattern": "DUAL",
+      "signal": "sTemp$"
+    }
+  ],
+  "sourceModule": "ProjectionDesign Universal Module Status v2.usp"
+}

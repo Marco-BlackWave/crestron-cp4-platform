@@ -1,0 +1,18 @@
+{
+  "id": "rga-eib-2byte-con-stato",
+  "manufacturer": "RGA",
+  "model": "EIB 2Byte con stato",
+  "category": "gateway",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "RGA_EIB_2Byte_con_stato_V1.1.usp"
+}

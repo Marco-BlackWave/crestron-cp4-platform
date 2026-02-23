@@ -1,0 +1,22 @@
+{
+  "id": "biamp-tesira-basic-levelmute-control",
+  "manufacturer": "Biamp",
+  "model": "Tesira Basic LevelMute Control",
+  "category": "dsp",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "dsp": {
+    "maxChannels": 8
+  },
+  "sourceModule": "Biamp Tesira Basic LevelMute Control v3.3.usp",
+  "externalLibrary": "BiampTesiraLib3"
+}

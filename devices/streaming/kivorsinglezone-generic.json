@@ -1,0 +1,58 @@
+{
+  "id": "kivorsinglezone-generic",
+  "manufacturer": "KivorSingleZone",
+  "model": "Generic",
+  "category": "media",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "trackp": "#CN%02dF0#@Z%02d@$SELECT$\u003CTRACK\u003E\u003CSKIP\u003E1~\r\n",
+        "trackm": "#CN%02dF0#@Z%02d@$SELECT$\u003CTRACK\u003E\u003CSKIP\u003E-1~\r\n",
+        "discp": "#CN%02dF0#@Z%02d@$SELECT$\u003CMEDIA\u003E\u003CSKIP\u003E1~\r\n",
+        "discm": "#CN%02dF0#@Z%02d@$SELECT$\u003CMEDIA\u003E\u003CSKIP\u003E-1~\r\n",
+        "play": "#CN%02dF0#@Z%02d@$PLAY$~\r\n",
+        "pause": "#CN%02dF0#@Z%02d@$PAUSE$~\r\n",
+        "stop": "#CN%02dF0#@Z%02d@$STOP$~\r\n",
+        "first": "#CN%02dF%c1#@server@$SEARCH$\u003C%s\u003E\u003CID\u003E%s\u003CTRACK\u003E\u003CFROM\u003E1\u003CFOR\u003E%d\u003CNONE\u003E~\r\n",
+        "next": "#CN%02dF%c2#@server@$SEARCH$\u003C%s\u003E\u003CID\u003E%s\u003CTRACK\u003E\u003CFROM\u003E%d\u003CFOR\u003E%d\u003CNONE\u003E~\r\n",
+        "prev": "#CN%02dF%c3#@server@$SEARCH$\u003C%s\u003E\u003CID\u003E%s\u003CTRACK\u003E\u003CFROM\u003E%d\u003CFOR\u003E%d\u003CNONE\u003E~\r\n",
+        "last": "#CN%02dF%c4#@server@$SEARCH$\u003C%s\u003E\u003CID\u003E%s\u003CTRACK\u003E\u003CFROM\u003E%d\u003CFOR\u003E%d\u003CNONE\u003E~\r\n",
+        "browsedisc": "#CN01F%c#@server@$SEARCH$\u003CCACHE\u003E\u003COPEN\u003EMEDIA~\n",
+        "browseartist": "#CN01F%c#@server@$SEARCH$\u003CCACHE\u003E\u003COPEN\u003EARTISTMEDIA~\n",
+        "browsegenre": "#CN01F%c#@server@$SEARCH$\u003CCACHE\u003E\u003COPEN\u003EGENREMEDIA~\n",
+        "browseplaylist": "#CN01F%c#@server@$SEARCH$\u003CCACHE\u003E\u003COPEN\u003EPLAYLIST~\n",
+        "browsetracks": "#CN%02dF%c#@server@$SEARCH$\u003CCOUNT\u003E\u003CTRACKDB\u003E\u003CCAT\u003ETRACKNUM\u003CMATCHING\u003E1\u003CSAVE\u003E~\n",
+        "browsefwd": "#CN%02dF%s#@Z%02d@$SEARCH$\u003CCACHE\u003E\u003CLIST\u003E\u003CMARKER\u003E%s\u003CFROM\u003E%u\u003CFOR\u003E1~\n",
+        "browseback": "#CN%02dF%s#@Z%02d@$SEARCH$\u003CCACHE\u003E\u003CLIST\u003E\u003CMARKER\u003E%s\u003CFROM\u003E%u\u003CFOR\u003E1~\n",
+        "browsefirst": "#CN%02dF%s#@Z%02d@$SEARCH$\u003CCACHE\u003E\u003CLIST\u003E\u003CMARKER\u003E%s\u003CFROM\u003E%u\u003CFOR\u003E1~\n",
+        "browselast": "#CN%02dF%s#@Z%02d@$SEARCH$\u003CCACHE\u003E\u003CLIST\u003E\u003CMARKER\u003E%s\u003CFROM\u003E%u\u003CFOR\u003E1~\n",
+        "browseselect": "#CN%02dF0#@Z%02d@$SELECT$\u003CID\u003E%s~\n",
+        "cmd22": "#CN%02dF%c#@server@$SEARCH$\u003CDELETE\u003E\u003CTAG\u003E%s~\n",
+        "cmd23": "#CN%02dF%c#@server@$SEARCH$\u003CCOUNT\u003E\u003CTRACKDB\u003E\u003CCAT\u003ENAME\u003CMATCHING\u003E%s\u003CSAVE\u003E~\n",
+        "cmd24": "#CN%02dF%s#@Z%02d@$SEARCH$\u003CCACHE\u003E\u003CFIND\u003E\u003CMARKER\u003E%s\u003CSTART\u003E%s\u003CNEXT\u003E~\n",
+        "cmd25": "#CN%02dF%c#@Z%02d@$STATUS$\u003CTRACK\u003E~\r\n",
+        "cmd26": "#CN%02dF%c#@Z%02d@$STATUS$\u003CPLAY\u003E~\r\n",
+        "cmd27": "#CN%02dF0#@Z%02d@$SELECT$\u003CTRACK\u003E\u003CNUM\u003E%s~\n",
+        "cmd28": "#CN%02dF%c#@Z%02d@$SEARCH$\u003CLIST\u003E\u003CTAG\u003E%s\u003CORDERED\u003E\u003CCAT\u003ENAME\u003CCAT\u003EARTIST\u003CCAT\u003EMEDIAID\u003CCAT\u003EMEDIANAME\u003CCAT\u003ETRACKNUM\u003CFROM\u003E%u\u003CFOR\u003E1~\n",
+        "cmd29": "#CN%02dF%c#@Z%02d@$SEARCH$\u003CLIST\u003E\u003CTAG\u003E%s\u003CORDERED\u003E\u003CCAT\u003ENAME\u003CCAT\u003EARTIST\u003CCAT\u003EMEDIAID\u003CCAT\u003EMEDIANAME\u003CCAT\u003ETRACKNUM\u003CFROM\u003E%u\u003CFOR\u003E1~\r\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "media": {
+    "transportCommands": {
+      "play": "#CN%02dF0#@Z%02d@$PLAY$~\r\n",
+      "pause": "#CN%02dF0#@Z%02d@$PAUSE$~\r\n",
+      "stop": "#CN%02dF0#@Z%02d@$STOP$~\r\n",
+      "next": "#CN%02dF%c2#@server@$SEARCH$\u003C%s\u003E\u003CID\u003E%s\u003CTRACK\u003E\u003CFROM\u003E%d\u003CFOR\u003E%d\u003CNONE\u003E~\r\n"
+    }
+  },
+  "sourceModule": "KivorSingleZone.usp"
+}

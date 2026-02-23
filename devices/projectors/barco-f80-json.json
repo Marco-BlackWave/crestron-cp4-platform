@@ -1,0 +1,103 @@
+{
+  "id": "barco-f80-json",
+  "manufacturer": "Barco",
+  "model": "F80 JSON",
+  "category": "projector",
+  "protocols": {
+    "ip": {
+      "port": 23,
+      "type": "tcp"
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x22id\\\\x22",
+      "signal": "data"
+    },
+    {
+      "pattern": "result",
+      "signal": "data"
+    },
+    {
+      "pattern": "boot",
+      "signal": "data"
+    },
+    {
+      "pattern": "on",
+      "signal": "data"
+    },
+    {
+      "pattern": "eco",
+      "signal": "data"
+    },
+    {
+      "pattern": "standby",
+      "signal": "data"
+    },
+    {
+      "pattern": "ready",
+      "signal": "data"
+    },
+    {
+      "pattern": "conditioning",
+      "signal": "data"
+    },
+    {
+      "pattern": "deconditioning",
+      "signal": "data"
+    },
+    {
+      "pattern": "result",
+      "signal": "data"
+    },
+    {
+      "pattern": "DVI\\ 1",
+      "signal": "data"
+    },
+    {
+      "pattern": "DVI\\ 2",
+      "signal": "data"
+    },
+    {
+      "pattern": "DisplayPort\\ 1",
+      "signal": "data"
+    },
+    {
+      "pattern": "DisplayPort\\ 2",
+      "signal": "data"
+    },
+    {
+      "pattern": "HDBaseT",
+      "signal": "data"
+    },
+    {
+      "pattern": "HDMI",
+      "signal": "data"
+    },
+    {
+      "pattern": "SDI",
+      "signal": "data"
+    },
+    {
+      "pattern": "result",
+      "signal": "data"
+    },
+    {
+      "pattern": "Open",
+      "signal": "data"
+    },
+    {
+      "pattern": "Closed",
+      "signal": "data"
+    }
+  ],
+  "sourceModule": "Barco F80 JSON.usp"
+}

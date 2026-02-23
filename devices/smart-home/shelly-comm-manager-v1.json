@@ -1,0 +1,23 @@
+{
+  "id": "shelly-comm-manager-v1",
+  "manufacturer": "Shelly",
+  "model": "Comm Manager v1",
+  "category": "gateway",
+  "protocols": {
+    "ip": {
+      "port": 80,
+      "type": "tcp",
+      "commands": {}
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Shelly Comm Manager v1.usp",
+  "externalLibrary": "Shelly"
+}

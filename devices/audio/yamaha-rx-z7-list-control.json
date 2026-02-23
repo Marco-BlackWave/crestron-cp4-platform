@@ -1,0 +1,131 @@
+{
+  "id": "yamaha-rx-z7-list-control",
+  "manufacturer": "Yamaha",
+  "model": "RX-Z7 List Control",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "menu": "0,1,*,GET,%s(List_Info),*\r\n",
+        "cursorUp": "0,1,*,PUT,%s(List_Control(Cursor=Up)),*\r\n",
+        "cursorDown": "0,1,*,PUT,%s(List_Control(Cursor=Down)),*\r\n",
+        "cursorRight": "0,1,*,PUT,%s(List_Control(Cursor=Right)),*\r\n",
+        "cursorLeft": "0,1,*,PUT,%s(List_Control(Cursor=Left)),*\r\n",
+        "enter": "0,1,*,PUT,%s(List_Control(Cursor=Sel)),*\r\n",
+        "pageUp": "0,1,*,PUT,%s(List_Control(Page=Up)),*\r\n",
+        "pageDown": "0,1,*,PUT,%s(List_Control(Page=Down)),*\r\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "iPod\\(Play_Info",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Play_Info\\(Status",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Play_Mode\\(Control",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Repeat",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Shuffle",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Title\\(Artist",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "iPod\\(Config",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Config\\(Device",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "NET_USB\\(Play_Info",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Play_Info\\(SubInput",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Status",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Play_Mode\\(Repeat",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Shuffle",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Title\\(Artist",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "List_Info\\(",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "GET,",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": ",",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "0,0,0,,64",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": ",",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": ",",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "0,0,0,,64",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": ",",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "List_Info\\(Menu_Layer",
+      "signal": "sTemp2"
+    },
+    {
+      "pattern": "Menu_Name",
+      "signal": "sTemp2"
+    }
+  ],
+  "sourceModule": "Yamaha RX-Z7 List Control v2.0.usp"
+}

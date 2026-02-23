@@ -1,0 +1,59 @@
+{
+  "id": "crestron-cgeib-ip-group-address-io",
+  "manufacturer": "Crestron",
+  "model": "CGEIB(-IP) Group Address IO",
+  "category": "gateway",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "pollAllGroupAddresses": "0C",
+        "pollGroupAddress": "0C"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "gateway": {
+    "objects": [
+      {
+        "id": "500",
+        "name": "MAXGROUPS",
+        "type": "generic"
+      },
+      {
+        "id": "2000",
+        "name": "MAXGROUPSx4",
+        "type": "generic"
+      }
+    ]
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x0D",
+      "signal": "Command$"
+    },
+    {
+      "pattern": "\\\\x02FE",
+      "signal": "tempstring"
+    },
+    {
+      "pattern": "\\\\x0D",
+      "signal": "commandString"
+    },
+    {
+      "pattern": "\\\\x0D",
+      "signal": "commandString"
+    }
+  ],
+  "sourceModule": "Crestron CGEIB(-IP) Group Address IO v2.3.usp"
+}

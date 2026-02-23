@@ -1,0 +1,28 @@
+{
+  "id": "kaleidescape-details-utility-ipad",
+  "manufacturer": "Kaleidescape",
+  "model": "Details Utility Ipad",
+  "category": "media",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x0d\\ \\\\x0d",
+      "signal": "in$"
+    },
+    {
+      "pattern": "\\\\x0d",
+      "signal": "temp3"
+    }
+  ],
+  "sourceModule": "Kaleidescape Details Utility Ipad.usp"
+}

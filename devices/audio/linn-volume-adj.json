@@ -1,0 +1,18 @@
+{
+  "id": "linn-volume-adj",
+  "manufacturer": "linn",
+  "model": "volume adj",
+  "category": "audio",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "linn volume adj.usp"
+}

@@ -1,0 +1,23 @@
+{
+  "id": "generic-dialer",
+  "manufacturer": "Generic",
+  "model": "Dialer",
+  "category": "utility",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "dial": "%s%s%s%s%s",
+        "cmd2": "%s%s%s"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Generic Dialer.usp"
+}

@@ -1,0 +1,23 @@
+{
+  "id": "write-file",
+  "manufacturer": "Write",
+  "model": "File",
+  "category": "utility",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "write": "Error writing structure.  Error code = %d\n",
+        "cmd2": "Structure written to file correctly.  Total bytes written = %d\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Write_File_V1.0_AZ.usp"
+}

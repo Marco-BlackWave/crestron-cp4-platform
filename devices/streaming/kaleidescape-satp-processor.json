@@ -1,0 +1,41 @@
+{
+  "id": "kaleidescape-satp-processor",
+  "manufacturer": "Kaleidescape",
+  "model": "SATP Processor",
+  "category": "media",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "/!/PLAYER_RESTART:/",
+      "signal": "message"
+    },
+    {
+      "pattern": "/!/000:PLAYER_RESTART:/",
+      "signal": "message"
+    },
+    {
+      "pattern": "01/2/000:DEVICE_INFO",
+      "signal": "message"
+    },
+    {
+      "pattern": "\\\\n",
+      "signal": "Rx$"
+    }
+  ],
+  "sourceModule": "Kaleidescape SATP Processor.usp"
+}

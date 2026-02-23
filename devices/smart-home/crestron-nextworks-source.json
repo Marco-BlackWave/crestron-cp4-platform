@@ -1,0 +1,53 @@
+{
+  "id": "crestron-nextworks-source",
+  "manufacturer": "Crestron",
+  "model": "Nextworks SOURCE",
+  "category": "gateway",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "cmd1": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:100%serrcode:%s!###",
+        "cmd2": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:90|subcmd_type:410%scommand:%s|value:!###",
+        "cmd3": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:90|subcmd_type:400%soutput:%s!###",
+        "cmd4": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:90|subcmd_type:400|avo:%s!###",
+        "cmd5": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:90|subcmd_type:406|avo:%s!###",
+        "cmd6": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:%s|cmd_type:90|subcmd_type:411%scommand:%s|name:%s!###"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "command:",
+      "signal": "s$"
+    },
+    {
+      "pattern": "!\\#\\#\\#",
+      "signal": "Rx_From_IO$"
+    },
+    {
+      "pattern": "!\\#\\#\\#",
+      "signal": "Rx_From_IO$"
+    },
+    {
+      "pattern": "!\\#\\#\\#",
+      "signal": "Rx_From_IO$"
+    },
+    {
+      "pattern": "subcmd_type:",
+      "signal": "app_out$"
+    },
+    {
+      "pattern": "numseq:",
+      "signal": "app_out$"
+    }
+  ],
+  "sourceModule": "Crestron_Nextworks_SOURCE_v1.9.usp"
+}

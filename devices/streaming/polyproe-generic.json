@@ -1,0 +1,66 @@
+{
+  "id": "polyproe-generic",
+  "manufacturer": "PolyproE",
+  "model": "Generic",
+  "category": "media",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "doneReceiving": "CALL ACTIVE AT %sK",
+        "select": "abk range %d %d\n",
+        "dial": "dial addressbook \\x22%s\\x22\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x0D\\\\x0A",
+      "signal": "Polycom_Rx$"
+    },
+    {
+      "pattern": "\\\\x0A\\\\x0D",
+      "signal": "Polycom_Rx$"
+    },
+    {
+      "pattern": "\\\\x0D\\\\x0A",
+      "signal": "Polycom_Rx$"
+    },
+    {
+      "pattern": "\\\\x0A\\\\x0D",
+      "signal": "Polycom_Rx$"
+    },
+    {
+      "pattern": "abk\\ range\\ ",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "state\\[",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "speed\\[",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "Valid\\ abk\\ range:",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "\\ through\\ ",
+      "signal": "Tempstring$"
+    }
+  ],
+  "sourceModule": "PolyproE.usp"
+}

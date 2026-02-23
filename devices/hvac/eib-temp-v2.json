@@ -1,0 +1,18 @@
+{
+  "id": "eib-temp-v2",
+  "manufacturer": "EIB",
+  "model": "Temp v2",
+  "category": "hvac",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": true,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "EIB_Temp v2.usp"
+}

@@ -1,0 +1,23 @@
+{
+  "id": "memory-mode",
+  "manufacturer": "memory",
+  "model": "mode",
+  "category": "utility",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "memory_mode_v1.0_ALE.usp"
+}

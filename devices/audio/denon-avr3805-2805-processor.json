@@ -1,0 +1,29 @@
+{
+  "id": "denon-avr3805-2805-processor",
+  "manufacturer": "Denon",
+  "model": "AVR3805-2805 Processor",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x0D",
+      "signal": "FromDevice$"
+    }
+  ],
+  "sourceModule": "Denon AVR3805-2805 Processor.usp"
+}

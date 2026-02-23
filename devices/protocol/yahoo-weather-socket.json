@@ -1,0 +1,45 @@
+{
+  "id": "yahoo-weather-socket",
+  "manufacturer": "Yahoo",
+  "model": "Weather - Socket",
+  "category": "protocol",
+  "protocols": {
+    "ip": {
+      "port": 23,
+      "type": "tcp",
+      "commands": {
+        "cmd1": "Connecting...",
+        "cmd2": "Error connecting socket...",
+        "cmd3": "Recieving...",
+        "cmd4": "Recieving...Done...",
+        "cmd5": "Error disconnecting socket...",
+        "cmd6": "Processing...Done...",
+        "cmd7": "The SocketGetStatus returns: %d\n",
+        "cmd8": "Error getting remote ip address. %d\n",
+        "cmd9": "OnConnect: Connect call to %s successful\n",
+        "cmd10": "Error getting client port number. %ld\n",
+        "cmd11": "OnConnect: Connected to port %ld on address %s\n",
+        "cmd12": "Send Status: %d = %u"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\u003C/rss\u003E",
+      "signal": "RX$"
+    },
+    {
+      "pattern": "\u003C/rss\u003E",
+      "signal": "RX$"
+    }
+  ],
+  "sourceModule": "Yahoo Weather - Socket.usp"
+}

@@ -1,0 +1,25 @@
+{
+  "id": "audiocontrol-md-series-comms",
+  "manufacturer": "AudioControl",
+  "model": "MD series Comms",
+  "category": "audio",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": true,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "xx",
+      "signal": "ZoneCommsRx"
+    }
+  ],
+  "sourceModule": "AudioControl_MD_series_Comms_3.1.0.usp",
+  "externalLibrary": "CrestronSharp"
+}

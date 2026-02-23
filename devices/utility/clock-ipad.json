@@ -1,0 +1,22 @@
+{
+  "id": "clock-ipad",
+  "manufacturer": "clock",
+  "model": "ipad",
+  "category": "utility",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "ceck": "%02d:%02d"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "clock_ipad_v1.0_ALE.usp"
+}

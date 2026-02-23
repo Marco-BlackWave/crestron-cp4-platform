@@ -1,0 +1,40 @@
+{
+  "id": "vismes-viamp70",
+  "manufacturer": "Vismes",
+  "model": "Viamp70",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "cmdpoweron": "\\x01\\x01\\x09\\x01",
+        "cmdpoweroff": "\\x01\\x01\\x09\\x00",
+        "cmdmuteon": "\\x01\\x01\\x02\\x00",
+        "cmdmuteoff": "\\x01\\x01\\x02\\x01",
+        "cmdindigilink": "\\x01\\x01\\x05\\x00",
+        "cmdinbt": "\\x02\\x01\\x05\\x01",
+        "cmdinopt": "\\x02\\x01\\x05\\x03",
+        "cmdinaux": "\\x02\\x01\\x05\\x02",
+        "btnplaypause": "\\x02\\x01\\x7A\\x01",
+        "btnprev": "\\x02\\x01\\x7A\\x02",
+        "btnnext": "\\x02\\x01\\x7A\\x03",
+        "btnstartpairing": "\\x02\\x01\\x74\\x01",
+        "btnstoppairing": "\\x02\\x01\\x74\\x00",
+        "cmd14": "\\x01\\x01\\x01\\xC3",
+        "cmd15": "\\x01\\x01\\x01%s"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Vismes_Viamp70_V1.1_AZ.usp"
+}

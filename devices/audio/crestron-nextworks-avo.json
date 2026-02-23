@@ -1,0 +1,89 @@
+{
+  "id": "crestron-nextworks-avo",
+  "manufacturer": "Crestron",
+  "model": "Nextworks AVO",
+  "category": "audio",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "cmd1": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:100%serrcode:%s!###",
+        "cmd2": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:90|subcmd_type:0%smode:%s!###",
+        "cmd3": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:90|subcmd_type:10%svol_abs:%s|muted:%s!###",
+        "cmd4": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:0!###",
+        "cmd5": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:90|subcmd_type:100%s|vol_abs:%s|muted:true!###",
+        "cmd6": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:90|subcmd_type:100%s|vol_abs:%s|muted:false!###",
+        "cmd7": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:90|subcmd_type:3%s",
+        "cmd8": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:90|subcmd_type:4%s",
+        "cmd9": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:90|subcmd_type:15%s",
+        "cmd10": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:90|subcmd_type:16%s"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "vol_abs:",
+      "signal": "s$"
+    },
+    {
+      "pattern": "vol_rel:",
+      "signal": "s$"
+    },
+    {
+      "pattern": "incr:True",
+      "signal": "s$"
+    },
+    {
+      "pattern": "incr:False",
+      "signal": "s$"
+    },
+    {
+      "pattern": "mute:True",
+      "signal": "s$"
+    },
+    {
+      "pattern": "mute:False",
+      "signal": "s$"
+    },
+    {
+      "pattern": "mode:0",
+      "signal": "s$"
+    },
+    {
+      "pattern": "mode:1",
+      "signal": "s$"
+    },
+    {
+      "pattern": "mode:2",
+      "signal": "s$"
+    },
+    {
+      "pattern": "!\\#\\#\\#",
+      "signal": "Rx_From_IO$"
+    },
+    {
+      "pattern": "!\\#\\#\\#",
+      "signal": "Rx_From_IO$"
+    },
+    {
+      "pattern": "!\\#\\#\\#",
+      "signal": "Rx_From_IO$"
+    },
+    {
+      "pattern": "subcmd_type:",
+      "signal": "app_amp$"
+    },
+    {
+      "pattern": "numseq:",
+      "signal": "app_amp$"
+    }
+  ],
+  "sourceModule": "Crestron_Nextworks_AVO_v1.9.usp"
+}

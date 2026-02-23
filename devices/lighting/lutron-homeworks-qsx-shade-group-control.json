@@ -1,0 +1,19 @@
+{
+  "id": "lutron-homeworks-qsx-shade-group-control",
+  "manufacturer": "Lutron",
+  "model": "Homeworks QSX Shade Group Control",
+  "category": "lighting",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Lutron Homeworks QSX Shade Group Control.usp",
+  "externalLibrary": "Lutron.Leap.CommLib"
+}

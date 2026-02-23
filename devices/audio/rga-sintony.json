@@ -1,0 +1,18 @@
+{
+  "id": "rga-sintony",
+  "manufacturer": "RGA",
+  "model": "SINTONY",
+  "category": "audio",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "RGA SINTONY_V1.2.usp"
+}

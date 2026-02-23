@@ -1,0 +1,23 @@
+{
+  "id": "bss-blu-router-control-module",
+  "manufacturer": "BSS",
+  "model": "BLU Router Control Module",
+  "category": "matrix",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "matrix": {
+    "inputs": 8,
+    "outputs": 8
+  },
+  "sourceModule": "BSS BLU Router Control Module v1.0.usp",
+  "externalLibrary": "BSSCommLIB"
+}

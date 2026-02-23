@@ -1,0 +1,18 @@
+{
+  "id": "knx-send-receive-on-off-1-bit",
+  "manufacturer": "KNX",
+  "model": "Send-Receive ON-OFF 1 bit",
+  "category": "gateway",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "KNX Send-Receive ON-OFF 1 bit.usp"
+}

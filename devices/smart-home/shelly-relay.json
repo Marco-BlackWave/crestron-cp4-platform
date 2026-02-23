@@ -1,0 +1,48 @@
+{
+  "id": "shelly-relay",
+  "manufacturer": "Shelly",
+  "model": "1 / 1PM / Plus 1 / Plus 1PM Relay",
+  "category": "gateway",
+  "protocols": {
+    "ip": {
+      "port": 80,
+      "type": "tcp",
+      "commands": {
+        "relayOn": "GET /relay/{channel}?turn=on HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "relayOff": "GET /relay/{channel}?turn=off HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "relayToggle": "GET /relay/{channel}?turn=toggle HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "relayTimerOn": "GET /relay/{channel}?turn=on&timer={seconds} HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "status": "GET /status HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "shellyInfo": "GET /shelly HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "gen2SwitchOn": "GET /rpc/Switch.Set?id={channel}&on=true HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "gen2SwitchOff": "GET /rpc/Switch.Set?id={channel}&on=false HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "gen2SwitchToggle": "GET /rpc/Switch.Toggle?id={channel} HTTP/1.1\r\nHost: {host}\r\n\r\n",
+        "gen2SwitchStatus": "GET /rpc/Switch.GetStatus?id={channel} HTTP/1.1\r\nHost: {host}\r\n\r\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": true,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "gateway": {
+    "objects": [
+      { "id": "0", "name": "Relay 0", "type": "switch", "dataType": "1bit" }
+    ]
+  },
+  "feedbackRules": [
+    { "pattern": "\"ison\":true", "signal": "relayState", "value": true },
+    { "pattern": "\"ison\":false", "signal": "relayState", "value": false },
+    { "pattern": "\"power\":([\\d.]+)", "signal": "power", "transform": "parseFloat" },
+    { "pattern": "\"output\":true", "signal": "relayState", "value": true },
+    { "pattern": "\"output\":false", "signal": "relayState", "value": false },
+    { "pattern": "\"apower\":([\\d.]+)", "signal": "activePower", "transform": "parseFloat" },
+    { "pattern": "\"voltage\":([\\d.]+)", "signal": "voltage", "transform": "parseFloat" }
+  ],
+  "sourceModule": "Shelly Relay v6.1.usp",
+  "externalLibrary": "Shelly"
+}

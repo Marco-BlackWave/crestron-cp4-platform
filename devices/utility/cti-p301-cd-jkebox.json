@@ -1,0 +1,35 @@
+{
+  "id": "cti-p301-cd-jkebox",
+  "manufacturer": "CTI",
+  "model": "P301-Cd Jkebox",
+  "category": "utility",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "cdPrev": "CD -\r",
+        "cdNext": "CD \u002B\r",
+        "trackPrev": "TR -\r",
+        "trackNext": "TR \u002B\r"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\|",
+      "signal": "From_Devices$"
+    },
+    {
+      "pattern": ";",
+      "signal": "From_Devices$"
+    }
+  ],
+  "sourceModule": "CTI-P301-Cd Jkebox.usp"
+}

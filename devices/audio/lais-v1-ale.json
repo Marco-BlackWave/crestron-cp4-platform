@@ -1,0 +1,37 @@
+{
+  "id": "lais-v1-ale",
+  "manufacturer": "Lais",
+  "model": "V1 ALE",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "pollSens": "\\x01\\x00\\x00\\x00\\x00\\x06\\x01\\x02\\x81\\x00\\x00\\xE8",
+        "pollZone": "\\x01\\x00\\x00\\x00\\x00\\x06\\x01\\x03\\x00\\x0C\\x00\\x04",
+        "pollAllarmi": "\\x01\\x00\\x00\\x00\\x00\\x06\\x01\\x04\\x08\r\\x00\\x04",
+        "ins221": "\\x01\\x00\\x00\\x00\\x00\\x06\\x01\\x06\\x00\\xDD\\x00\\x01",
+        "ins222": "\\x01\\x00\\x00\\x00\\x00\\x06\\x01\\x06\\x00\\xDE\\x00\\x01",
+        "ins223": "\\x01\\x00\\x00\\x00\\x00\\x06\\x01\\x06\\x00\\xDF\\x00\\x01",
+        "ins224": "\\x01\\x00\\x00\\x00\\x00\\x06\\x01\\x06\\x00\\xE0\\x00\\x01",
+        "ins225": "\\x01\\x00\\x00\\x00\\x00\\x06\\x01\\x06\\x00\\xE1\\x00\\x01",
+        "ins226": "\\x01\\x00\\x00\\x00\\x00\\x06\\x01\\x06\\x00\\xE2\\x00\\x01",
+        "ins227": "\\x01\\x00\\x00\\x00\\x00\\x06\\x01\\x06\\x00\\xE3\\x00\\x01",
+        "ins231": "\\x01\\x00\\x00\\x00\\x00\\x06\\x01\\x06\\x00\\xE7\\x00\\x01",
+        "ins232": "\\x01\\x00\\x00\\x00\\x00\\x06\\x01\\x06\\x00\\xE8\\x00\\x01"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Lais_V1_ALE.usp"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "ge-ats",
+  "manufacturer": "GE",
+  "model": "ATS",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "pollall": "\\x23\\x00",
+        "historyPageP": "\\x23\\x00"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": true,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "GE_ATS_V1.1_Verbier.usp"
+}

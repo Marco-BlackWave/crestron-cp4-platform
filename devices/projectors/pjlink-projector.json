@@ -1,0 +1,71 @@
+{
+  "id": "pjlink-projector",
+  "manufacturer": "PJLink",
+  "model": "PJLink Class 1/2 Compatible",
+  "category": "projector",
+  "protocols": {
+    "ip": {
+      "port": 4352,
+      "type": "tcp",
+      "commands": {
+        "powerOn": "%1POWR 1\r",
+        "powerOff": "%1POWR 0\r",
+        "powerQuery": "%1POWR ?\r",
+        "input_hdmi1": "%1INPT 31\r",
+        "input_hdmi2": "%1INPT 32\r",
+        "input_hdmi3": "%1INPT 33\r",
+        "input_vga1": "%1INPT 11\r",
+        "input_vga2": "%1INPT 12\r",
+        "input_video": "%1INPT 21\r",
+        "input_svideo": "%1INPT 22\r",
+        "input_network": "%1INPT 51\r",
+        "input_usb": "%1INPT 41\r",
+        "inputQuery": "%1INPT ?\r",
+        "avMuteVideoOn": "%1AVMT 11\r",
+        "avMuteVideoOff": "%1AVMT 10\r",
+        "avMuteAudioOn": "%1AVMT 21\r",
+        "avMuteAudioOff": "%1AVMT 20\r",
+        "avMuteAllOn": "%1AVMT 31\r",
+        "avMuteAllOff": "%1AVMT 30\r",
+        "avMuteQuery": "%1AVMT ?\r",
+        "lampQuery": "%1LAMP ?\r",
+        "errorQuery": "%1ERST ?\r",
+        "nameQuery": "%1NAME ?\r",
+        "manufacturerQuery": "%1INF1 ?\r",
+        "modelQuery": "%1INF2 ?\r",
+        "classQuery": "%1CLSS ?\r",
+        "freezeOn": "%2FREZ 1\r",
+        "freezeOff": "%2FREZ 0\r",
+        "freezeQuery": "%2FREZ ?\r",
+        "inputListQuery": "%2INST ?\r",
+        "serialQuery": "%2SNUM ?\r",
+        "resolutionQuery": "%2IRES ?\r"
+      },
+      "feedback": {
+        "powerState": { "poll": "%1POWR ?\r", "on": "%1POWR=1", "off": "%1POWR=0", "warmup": "%1POWR=3", "cooldown": "%1POWR=2" },
+        "lampHours": { "poll": "%1LAMP ?\r" },
+        "inputSource": { "poll": "%1INPT ?\r" },
+        "errorStatus": { "poll": "%1ERST ?\r" }
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": true,
+    "volumeControl": false,
+    "inputSelect": true,
+    "feedback": true,
+    "warmupMs": 30000,
+    "cooldownMs": 15000
+  },
+  "feedbackRules": [
+    { "pattern": "^%1POWR=1$", "signal": "power", "value": true },
+    { "pattern": "^%1POWR=0$", "signal": "power", "value": false },
+    { "pattern": "^%1POWR=3$", "signal": "warmingUp", "value": true },
+    { "pattern": "^%1POWR=2$", "signal": "coolingDown", "value": true },
+    { "pattern": "^%1LAMP=(\\d+)", "signal": "lampHours", "transform": "parseInt" },
+    { "pattern": "^%1INPT=(\\d+)$", "signal": "inputSource" },
+    { "pattern": "^%1AVMT=(\\d+)$", "signal": "avMuteStatus" },
+    { "pattern": "^%1ERST=(.+)$", "signal": "errorStatus" },
+    { "pattern": "^%1NAME=(.+)$", "signal": "projectorName" }
+  ]
+}

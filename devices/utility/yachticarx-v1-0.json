@@ -1,0 +1,26 @@
+{
+  "id": "yachticarx-v1-0",
+  "manufacturer": "YachticaRx",
+  "model": "v1.0",
+  "category": "utility",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "diRead": "\\xFB\\x38\\x00\\x00"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "YachticaRx_v1.0.usp"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "lutron-radiora3",
+  "manufacturer": "Lutron",
+  "model": "RadioRA 3 / Caseta Pro / HomeWorks QS",
+  "category": "lighting",
+  "protocols": {
+    "ip": {
+      "port": 23,
+      "type": "tcp",
+      "commands": {
+        "setLevel": "#OUTPUT,{zoneId},1,{level}\r\n",
+        "setLevelFade": "#OUTPUT,{zoneId},1,{level},{fadeTime}\r\n",
+        "setLevelFadeDelay": "#OUTPUT,{zoneId},1,{level},{fadeTime},{delay}\r\n",
+        "startRaise": "#OUTPUT,{zoneId},2\r\n",
+        "startLower": "#OUTPUT,{zoneId},3\r\n",
+        "stop": "#OUTPUT,{zoneId},4\r\n",
+        "flash": "#OUTPUT,{zoneId},6\r\n",
+        "queryLevel": "?OUTPUT,{zoneId},1\r\n",
+        "buttonPress": "#DEVICE,{deviceId},{componentId},3\r\n",
+        "buttonRelease": "#DEVICE,{deviceId},{componentId},4\r\n",
+        "buttonHold": "#DEVICE,{deviceId},{componentId},5\r\n",
+        "buttonDoubleTap": "#DEVICE,{deviceId},{componentId},6\r\n",
+        "setLedOn": "#DEVICE,{deviceId},{componentId},9,1\r\n",
+        "setLedOff": "#DEVICE,{deviceId},{componentId},9,0\r\n",
+        "queryDevice": "?DEVICE,{deviceId},{componentId},9\r\n",
+        "enableMonitoring": "#MONITORING,255,1\r\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    { "pattern": "^~OUTPUT,(\\d+),1,([\\d.]+)$", "signal": "outputLevel" },
+    { "pattern": "^~OUTPUT,(\\d+),2$", "signal": "outputRaising" },
+    { "pattern": "^~OUTPUT,(\\d+),3$", "signal": "outputLowering" },
+    { "pattern": "^~OUTPUT,(\\d+),4$", "signal": "outputStopped" },
+    { "pattern": "^~DEVICE,(\\d+),(\\d+),3$", "signal": "buttonPressed" },
+    { "pattern": "^~DEVICE,(\\d+),(\\d+),4$", "signal": "buttonReleased" },
+    { "pattern": "^~DEVICE,(\\d+),(\\d+),9,(\\d)$", "signal": "ledState" }
+  ]
+}

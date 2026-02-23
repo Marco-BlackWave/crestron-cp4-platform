@@ -1,0 +1,25 @@
+{
+  "id": "yachtica-output-set",
+  "manufacturer": "YACHTICA",
+  "model": "OUTPUT SET",
+  "category": "utility",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "inputnum": "%s\\x30%s\\x64",
+        "cmd2": "%s\\x30%s\\x00",
+        "cmd3": "%s\\x30%s%s",
+        "cmd4": "%s\\x87\\x00"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": true,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "YACHTICA OUTPUT SET_V1.0_ALE.usp"
+}

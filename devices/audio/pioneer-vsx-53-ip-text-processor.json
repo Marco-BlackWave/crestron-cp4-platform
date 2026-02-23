@@ -1,0 +1,53 @@
+{
+  "id": "pioneer-vsx-53-ip-text-processor",
+  "manufacturer": "Pioneer",
+  "model": "VSX-53 IP Text Processor",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x0D\\\\x0A",
+      "signal": "From_Device"
+    },
+    {
+      "pattern": "\\\\x22",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\\\\x22",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\\\\x22",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\\\\x22",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\\\\x22",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\\\\x22",
+      "signal": "sTemp"
+    }
+  ],
+  "sourceModule": "Pioneer VSX-53 IP Text Processor v1.0.usp"
+}

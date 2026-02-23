@@ -1,0 +1,18 @@
+{
+  "id": "modbus-v1-ale",
+  "manufacturer": "modbus",
+  "model": "V1 ALE",
+  "category": "protocol",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "modbus_V1_ALE.usp"
+}

@@ -1,0 +1,53 @@
+{
+  "id": "bss-soundweb-london-mixer",
+  "manufacturer": "BSS",
+  "model": "Soundweb London Mixer",
+  "category": "dsp",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "mute": "\\x88\\x00\\x00\\x03%s%s%s\\x00\\x00\\x00\\x01\\x03\\x03\\x03\\x03\\x03",
+        "unmute": "\\x88\\x00\\x00\\x03%s%s%s\\x00\\x00\\x00\\x00\\x03\\x03\\x03\\x03\\x03",
+        "polarityon": "\\x88\\x00\\x00\\x03%s%s%s\\x00\\x00\\x00\\x01\\x03\\x03\\x03\\x03\\x03",
+        "polarityoff": "\\x88\\x00\\x00\\x03%s%s%s\\x00\\x00\\x00\\x00\\x03\\x03\\x03\\x03\\x03",
+        "soloon": "\\x88\\x00\\x00\\x03%s%s%s\\x00\\x00\\x00\\x01\\x03\\x03\\x03\\x03\\x03",
+        "solooff": "\\x88\\x00\\x00\\x03%s%s%s\\x00\\x00\\x00\\x00\\x03\\x03\\x03\\x03\\x03",
+        "routetogroup1on": "\\x88\\x00\\x00\\x03%s%s%s\\x00\\x00\\x00\\x01\\x03\\x03\\x03\\x03\\x03",
+        "routetogroup2on": "\\x88\\x00\\x00\\x03%s%s%s\\x00\\x00\\x00\\x01\\x03\\x03\\x03\\x03\\x03",
+        "routetogroup3on": "\\x88\\x00\\x00\\x03%s%s%s\\x00\\x00\\x00\\x01\\x03\\x03\\x03\\x03\\x03",
+        "routetogroup4on": "\\x88\\x00\\x00\\x03%s%s%s\\x00\\x00\\x00\\x01\\x03\\x03\\x03\\x03\\x03",
+        "routetogroup1off": "\\x88\\x00\\x00\\x03%s%s%s\\x00\\x00\\x00\\x00\\x03\\x03\\x03\\x03\\x03",
+        "routetogroup2off": "\\x88\\x00\\x00\\x03%s%s%s\\x00\\x00\\x00\\x00\\x03\\x03\\x03\\x03\\x03",
+        "routetogroup3off": "\\x88\\x00\\x00\\x03%s%s%s\\x00\\x00\\x00\\x00\\x03\\x03\\x03\\x03\\x03",
+        "routetogroup4off": "\\x88\\x00\\x00\\x03%s%s%s\\x00\\x00\\x00\\x00\\x03\\x03\\x03\\x03\\x03",
+        "subscribe": "\\x8E\\x00\\x00\\x03%s%s%s\\x00\\x00\\x00\\x00\\x03\\x03\\x03\\x03\\x03",
+        "unsubscribe": "\\x8F\\x00\\x00\\x03%s%s%s\\x00\\x00\\x00\\x00\\x03\\x03\\x03\\x03\\x03",
+        "cmd17": "\\x89\\x00\\x00\\x03%s%s%s\\x00\\x00\\x00\\x00\\x03\\x03\\x03\\x03\\x03",
+        "cmd18": "\\x8D\\x00\\x00\\x03%s%s%s%s\\x03\\x03\\x03\\x03\\x03",
+        "cmd19": "\\x8A\\x00\\x00\\x03%s%s%s\\x00\\x00\\x00\\x00\\x03\\x03\\x03\\x03\\x03"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "dsp": {
+    "maxChannels": 8
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x03\\\\x03\\\\x03\\\\x03\\\\x03",
+      "signal": "rx$"
+    }
+  ],
+  "sourceModule": "BSS Soundweb London Mixer.usp"
+}

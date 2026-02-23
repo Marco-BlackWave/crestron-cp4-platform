@@ -1,0 +1,72 @@
+{
+  "id": "sony-bravia",
+  "manufacturer": "Sony",
+  "model": "Bravia Series",
+  "category": "display",
+  "protocols": {
+    "ir": {
+      "driverFile": "Sony_TV.ir",
+      "commands": {
+        "powerOn": "POWER_ON",
+        "powerOff": "POWER_OFF",
+        "powerToggle": "POWER",
+        "input_hdmi1": "HDMI_1",
+        "input_hdmi2": "HDMI_2",
+        "input_hdmi3": "HDMI_3",
+        "input_hdmi4": "HDMI_4",
+        "volumeUp": "VOL+",
+        "volumeDown": "VOL-",
+        "mute": "MUTE",
+        "channelUp": "CH+",
+        "channelDown": "CH-"
+      }
+    },
+    "ip": {
+      "port": 20060,
+      "type": "tcp",
+      "commands": {
+        "powerOn": "*SCPOWR0000000000000001\n",
+        "powerOff": "*SCPOWR0000000000000000\n",
+        "powerToggle": "*SCTPOW################\n",
+        "powerQuery": "*SEPOWR################\n",
+        "input_hdmi1": "*SCINPT0000000100000001\n",
+        "input_hdmi2": "*SCINPT0000000100000002\n",
+        "input_hdmi3": "*SCINPT0000000100000003\n",
+        "input_hdmi4": "*SCINPT0000000100000004\n",
+        "input_composite": "*SCINPT0000000300000001\n",
+        "input_component": "*SCINPT0000000400000001\n",
+        "input_screen_mirror": "*SCINPT0000000500000001\n",
+        "inputQuery": "*SEINPT################\n",
+        "muteOn": "*SCAMUT0000000000000001\n",
+        "muteOff": "*SCAMUT0000000000000000\n",
+        "muteQuery": "*SEAMUT################\n",
+        "volumeQuery": "*SEVOLU################\n",
+        "pictureMuteOn": "*SCPMUT0000000000000001\n",
+        "pictureMuteOff": "*SCPMUT0000000000000000\n",
+        "pictureMuteQuery": "*SEPMUT################\n"
+      },
+      "feedback": {
+        "powerState": { "poll": "*SEPOWR################\n", "on": "*SAPOWR0000000000000001", "off": "*SAPOWR0000000000000000" },
+        "volume": { "poll": "*SEVOLU################\n" },
+        "muteState": { "poll": "*SEAMUT################\n" },
+        "inputSource": { "poll": "*SEINPT################\n" }
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": true,
+    "volumeControl": true,
+    "inputSelect": true,
+    "feedback": true,
+    "warmupMs": 5000,
+    "cooldownMs": 2000
+  },
+  "feedbackRules": [
+    { "pattern": "^\\*SAPOWR0000000000000001$", "signal": "power", "value": true },
+    { "pattern": "^\\*SAPOWR0000000000000000$", "signal": "power", "value": false },
+    { "pattern": "^\\*SAVOLU(\\d{16})$", "signal": "volume", "transform": "parseInt" },
+    { "pattern": "^\\*SAAMUT0000000000000001$", "signal": "mute", "value": true },
+    { "pattern": "^\\*SAAMUT0000000000000000$", "signal": "mute", "value": false },
+    { "pattern": "^\\*SAINPT(\\d{16})$", "signal": "inputSource" }
+  ]
+}

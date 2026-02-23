@@ -1,0 +1,22 @@
+{
+  "id": "decode-license-v3",
+  "manufacturer": "Decode",
+  "model": "License v3",
+  "category": "utility",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "cmd1": "Code Valid! Expiring Year: %u"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Decode_License_v3.usp"
+}

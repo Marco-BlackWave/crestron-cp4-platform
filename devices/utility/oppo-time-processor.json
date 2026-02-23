@@ -1,0 +1,95 @@
+{
+  "id": "oppo-time-processor",
+  "manufacturer": "Oppo",
+  "model": "Time Processor",
+  "category": "utility",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "sendTitleNumber": "#SRH T%s\r",
+        "sendTitleTime": "#SRH T %s\r",
+        "sendChapterNumber": "#SRH C%s\r",
+        "sendChapterTime": "#SRH C %s\r"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "@UTC",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\\\\x0D",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "@UDT",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "@UAT",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "@UST",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "@QTK",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "@QCH",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "@QTE",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "@QTR",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "@QCE",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "@QCR",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "@QEL",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "@QRE",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "@QDT",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": ":",
+      "signal": "sNewTime"
+    },
+    {
+      "pattern": ":",
+      "signal": "sEntered"
+    }
+  ],
+  "sourceModule": "Oppo Time Processor v1.0.usp"
+}

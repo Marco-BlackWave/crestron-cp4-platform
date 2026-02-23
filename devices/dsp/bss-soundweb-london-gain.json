@@ -1,0 +1,29 @@
+{
+  "id": "bss-soundweb-london-gain",
+  "manufacturer": "BSS",
+  "model": "Soundweb London Gain",
+  "category": "dsp",
+  "protocols": {
+    "ip": {
+      "port": 1023,
+      "type": "tcp",
+      "commands": {}
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": true,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "dsp": {
+    "maxChannels": 32,
+    "objectIdFormat": "hex"
+  },
+  "feedbackRules": [
+    { "pattern": "HiQnet frame received", "signal": "dataReceived" }
+  ],
+  "sourceModule": "BSS Soundweb London Gain.usp"
+}

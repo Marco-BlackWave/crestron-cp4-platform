@@ -1,0 +1,56 @@
+{
+  "id": "qsc-qsys",
+  "manufacturer": "QSC",
+  "model": "Q-SYS Core (ECP Protocol)",
+  "category": "dsp",
+  "protocols": {
+    "ip": {
+      "port": 1702,
+      "type": "tcp",
+      "commands": {
+        "login": "login {username} {pin}\n",
+        "setValueByName": "csv {controlName} {value}\n",
+        "setValueRamp": "csvr {controlName} {value} {rampSeconds}\n",
+        "setString": "css {controlName} {string}\n",
+        "setPosition": "csp {controlName} {position}\n",
+        "setPositionRamp": "cspr {controlName} {position} {rampSeconds}\n",
+        "trigger": "ct {controlName}\n",
+        "getControl": "cg {controlName}\n",
+        "getMetadata": "cgm {controlName}\n",
+        "statusGet": "sg\n",
+        "createChangeGroup": "cgc {groupId}\n",
+        "addToGroup": "cga {groupId} {controlName}\n",
+        "removeFromGroup": "cgr {groupId} {controlName}\n",
+        "pollGroup": "cgp {groupId}\n",
+        "autoPollGroup": "cgs {groupId} {intervalMs}\n",
+        "invalidateGroup": "cgi {groupId}\n",
+        "clearGroup": "cgclr {groupId}\n",
+        "destroyGroup": "cgd {groupId}\n",
+        "loadSnapshot": "ssl {bankName} {snapshotNum} {rampSeconds}\n",
+        "saveSnapshot": "sss {bankName} {snapshotNum}\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": true,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "dsp": {
+    "maxChannels": 64,
+    "levelCommandTemplate": "csv {controlName} {level}\n",
+    "muteCommandTemplate": "csv {controlName} {muted}\n",
+    "subscribeCommandTemplate": "cga 1 {controlName}\n"
+  },
+  "feedbackRules": [
+    { "pattern": "^cv \"(.+?)\" \"(.+?)\" ([\\-\\d.]+) ([\\d.]+)$", "signal": "controlValue" },
+    { "pattern": "^sr \"(.+?)\" \"(.+?)\"", "signal": "statusResponse" },
+    { "pattern": "^login_success$", "signal": "loginSuccess", "value": true },
+    { "pattern": "^login_failed$", "signal": "loginFailed", "value": true },
+    { "pattern": "^bad_id (.+)$", "signal": "badControlId" },
+    { "pattern": "^core_not_active$", "signal": "coreStandby", "value": true }
+  ]
+}

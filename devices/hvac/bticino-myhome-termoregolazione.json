@@ -1,0 +1,33 @@
+{
+  "id": "bticino-myhome-termoregolazione",
+  "manufacturer": "BTicino",
+  "model": "Myhome Termoregolazione",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\*\\#1004\\*\\#",
+      "signal": "OpenRx_$"
+    },
+    {
+      "pattern": "\\*\\#1004\\*\\#",
+      "signal": "OpenRx_$"
+    }
+  ],
+  "sourceModule": "BTicino_Myhome_Termoregolazione_v1.01.usp"
+}

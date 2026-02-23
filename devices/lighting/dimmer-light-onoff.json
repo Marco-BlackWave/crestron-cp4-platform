@@ -1,0 +1,18 @@
+{
+  "id": "dimmer-light-onoff",
+  "manufacturer": "Dimmer",
+  "model": "Light OnOff",
+  "category": "lighting",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": true,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Dimmer_Light_OnOff_V1.0_AZ.usp"
+}

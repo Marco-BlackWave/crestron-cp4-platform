@@ -1,0 +1,18 @@
+{
+  "id": "eib-send-0-v2",
+  "manufacturer": "EIB",
+  "model": "Send 0 v2",
+  "category": "gateway",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "EIB Send 0 v2.usp"
+}

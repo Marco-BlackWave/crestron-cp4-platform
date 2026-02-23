@@ -1,0 +1,47 @@
+{
+  "id": "yachticargb-v1-3",
+  "manufacturer": "YachticaRGB",
+  "model": "v1.3",
+  "category": "utility",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "diRead": "%s\\x18\\x00\\x02",
+        "diWin": "%s\\x00\\x19%s",
+        "diWmem": "%s\\x00\\x58%s",
+        "cmd4": "%s\\x18\\x00\\x03",
+        "cmd5": "%s\\x18\\x00\\x04",
+        "cmd6": "%s\\x37\\x00\\x64%s\\x64%s\\x64%s\\x64%s",
+        "cmd7": "%s\\x31%s%s%s",
+        "cmd8": "%s\\x30%s%s",
+        "cmd9": "%s\\x10\\x19%s",
+        "cmd10": "%s\\x00\\x59%s",
+        "cmd11": "%s\\x00\\x5A%s",
+        "cmd12": "%s\\x00\\x5B%s",
+        "cmd13": "%s\\x00\\x5C%s",
+        "cmd14": "%s\\x00\\x5D%s",
+        "cmd15": "%s\\x00\\x5E%s",
+        "cmd16": "%s\\x10\\x58%s",
+        "cmd17": "%s\\x10\\x59%s",
+        "cmd18": "%s\\x10\\x5A%s",
+        "cmd19": "%s\\x10\\x5B%s",
+        "cmd20": "%s\\x10\\x5C%s",
+        "cmd21": "%s\\x10\\x5D%s",
+        "cmd22": "%s\\x10\\x5E%s"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "YachticaRGB_v1.3.usp"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "source-type-selection",
+  "manufacturer": "Source",
+  "model": "Type Selection",
+  "category": "gateway",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "video:",
+      "signal": "MatrixSourceoff"
+    },
+    {
+      "pattern": "audio:",
+      "signal": "MatrixSourceoff"
+    }
+  ],
+  "sourceModule": "Source_Type_Selection_V1.2_AZ.usp"
+}

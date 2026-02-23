@@ -1,0 +1,54 @@
+{
+  "id": "extron-mav88",
+  "manufacturer": "Extron",
+  "model": "MAV 88 Audio Matrix",
+  "category": "matrix",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "routeVideoAudio": "{input}*{output}!",
+        "routeAudioOnly": "{input}*{output}$",
+        "muteAudioOn": "{output}*1Z",
+        "muteAudioOff": "{output}*0Z",
+        "globalMuteOn": "1*Z",
+        "globalMuteOff": "0*Z",
+        "queryRoute": "{output}$",
+        "lockFrontPanel": "X",
+        "unlockFrontPanel": "x",
+        "queryInfo": "I",
+        "queryFirmware": "Q"
+      },
+      "feedback": {
+        "routeConfirm": { "pattern": "^Out(\\d+) In(\\d+)" },
+        "audioMuteConfirm": { "pattern": "^Amt(\\d+)\\*(\\d)" }
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "matrix": {
+    "inputs": 8,
+    "outputs": 8,
+    "routeCommandTemplate": "{input}*{output}!",
+    "muteCommandTemplate": "0*{output}!",
+    "feedbackPattern": "^Out(\\d+) In(\\d+)"
+  },
+  "feedbackRules": [
+    { "pattern": "^Out(\\d+) In(\\d+) All$", "signal": "routeConfirm" },
+    { "pattern": "^Out(\\d+) In(\\d+) Aud$", "signal": "audioRouteConfirm" },
+    { "pattern": "^Amt(\\d+)\\*1$", "signal": "audioMuteOn" },
+    { "pattern": "^Amt(\\d+)\\*0$", "signal": "audioMuteOff" },
+    { "pattern": "^E(\\d+)$", "signal": "error" }
+  ],
+  "sourceModule": "Extron_MAV88_V1.1_AZ.usp"
+}

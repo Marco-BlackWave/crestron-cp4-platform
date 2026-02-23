@@ -1,0 +1,81 @@
+{
+  "id": "extron-crosspoint",
+  "manufacturer": "Extron",
+  "model": "CrossPoint / MAV / DTP Series",
+  "category": "matrix",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "routeVideoAudio": "{input}*{output}!",
+        "routeVideoOnly": "{input}*{output}%",
+        "routeAudioOnly": "{input}*{output}$",
+        "routeAll": "{input}!",
+        "muteVideoOn": "{output}*1B",
+        "muteVideoOff": "{output}*0B",
+        "muteAudioOn": "{output}*1Z",
+        "muteAudioOff": "{output}*0Z",
+        "globalMuteVideoOn": "1*B",
+        "globalMuteVideoOff": "0*B",
+        "globalMuteAudioOn": "1*Z",
+        "globalMuteAudioOff": "0*Z",
+        "queryVideoRoute": "{output}%",
+        "queryAudioRoute": "{output}$",
+        "queryAllMutes": "VM",
+        "queryInfo": "I",
+        "queryFirmware": "Q",
+        "queryPartNumber": "N",
+        "lockFrontPanel": "X",
+        "unlockFrontPanel": "x",
+        "savePreset": "{preset},",
+        "recallPreset": "{preset}."
+      },
+      "feedback": {
+        "routeConfirm": { "pattern": "^Out(\\d+) In(\\d+) All$" },
+        "videoMuteConfirm": { "pattern": "^Vmt(\\d+)\\*(\\d)$" },
+        "audioMuteConfirm": { "pattern": "^Amt(\\d+)\\*(\\d)$" }
+      }
+    },
+    "ip": {
+      "port": 23,
+      "type": "tcp",
+      "commands": {
+        "routeVideoAudio": "{input}*{output}!",
+        "routeVideoOnly": "{input}*{output}%",
+        "routeAudioOnly": "{input}*{output}$",
+        "muteVideoOn": "{output}*1B",
+        "muteVideoOff": "{output}*0B",
+        "muteAudioOn": "{output}*1Z",
+        "muteAudioOff": "{output}*0Z"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "matrix": {
+    "inputs": 8,
+    "outputs": 8,
+    "routeCommandTemplate": "{input}*{output}!",
+    "muteCommandTemplate": "0*{output}!",
+    "feedbackPattern": "^Out(\\d+) In(\\d+)"
+  },
+  "feedbackRules": [
+    { "pattern": "^Out(\\d+) In(\\d+) All$", "signal": "routeConfirm" },
+    { "pattern": "^Out(\\d+) In(\\d+) RGB$", "signal": "videoRouteConfirm" },
+    { "pattern": "^Out(\\d+) In(\\d+) Aud$", "signal": "audioRouteConfirm" },
+    { "pattern": "^Vmt(\\d+)\\*1$", "signal": "videoMuteOn" },
+    { "pattern": "^Vmt(\\d+)\\*0$", "signal": "videoMuteOff" },
+    { "pattern": "^Amt(\\d+)\\*1$", "signal": "audioMuteOn" },
+    { "pattern": "^Amt(\\d+)\\*0$", "signal": "audioMuteOff" },
+    { "pattern": "^E(\\d+)$", "signal": "error" }
+  ]
+}

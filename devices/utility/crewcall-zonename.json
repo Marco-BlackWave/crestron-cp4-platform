@@ -1,0 +1,18 @@
+{
+  "id": "crewcall-zonename",
+  "manufacturer": "CrewCall",
+  "model": "ZoneName",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "CrewCall_ZoneName_V1.0_AZ.usp"
+}

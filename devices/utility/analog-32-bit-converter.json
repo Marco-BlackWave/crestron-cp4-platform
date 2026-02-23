@@ -1,0 +1,24 @@
+{
+  "id": "analog-32-bit-converter",
+  "manufacturer": "Analog",
+  "model": "32 bit Converter",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\.",
+      "signal": "in$"
+    }
+  ],
+  "sourceModule": "Analog_32_bit_Converter_v1.0_AZ.usp"
+}

@@ -1,0 +1,22 @@
+{
+  "id": "netvio-matrix-driver-intrinsic-dev-v221202",
+  "manufacturer": "Netvio",
+  "model": "Matrix Driver (Intrinsic Dev) v221202",
+  "category": "matrix",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "matrix": {
+    "inputs": 8,
+    "outputs": 8
+  },
+  "sourceModule": "Netvio Matrix Driver (Intrinsic Dev) v221202.usp"
+}

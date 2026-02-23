@@ -1,0 +1,95 @@
+{
+  "id": "biamp-audia-flex",
+  "manufacturer": "Biamp",
+  "model": "Audia Flex DSP",
+  "category": "dsp",
+  "protocols": {
+    "serial": {
+      "baudRate": 38400,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "setInputLevel": "SETL INPLVL {instanceTag} {channel} {level}\n",
+        "getInputLevel": "GETL INPLVL {instanceTag} {channel}\n",
+        "setOutputLevel": "SETL OUTLVL {instanceTag} {channel} {level}\n",
+        "getOutputLevel": "GETL OUTLVL {instanceTag} {channel}\n",
+        "setFaderLevel": "SETL FDRLVL {instanceTag} {channel} {level}\n",
+        "getFaderLevel": "GETL FDRLVL {instanceTag} {channel}\n",
+        "setInputMute": "SET INPMUTE {instanceTag} {channel} {state}\n",
+        "getInputMute": "GET INPMUTE {instanceTag} {channel}\n",
+        "setOutputMute": "SET OUTMUTE {instanceTag} {channel} {state}\n",
+        "getOutputMute": "GET OUTMUTE {instanceTag} {channel}\n",
+        "setFaderMute": "SET FDRMUTE {instanceTag} {channel} {state}\n",
+        "getFaderMute": "GET FDRMUTE {instanceTag} {channel}\n",
+        "setAutoMixerInputLevel": "SETL AMLVLIN {instanceTag} {channel} {level}\n",
+        "setAutoMixerOutputLevel": "SETL AMLVLOUT {instanceTag} {channel} {level}\n",
+        "setAutoMixerInputMute": "SET AMMUTEIN {instanceTag} {channel} {state}\n",
+        "setAutoMixerOutputMute": "SET AMMUTEOUT {instanceTag} {channel} {state}\n",
+        "setMatrixMixerInputLevel": "SETL MMLVLIN {instanceTag} {channel} {level}\n",
+        "setMatrixMixerOutputLevel": "SETL MMLVLOUT {instanceTag} {channel} {level}\n",
+        "setMatrixMixerCrosspointLevel": "SETL MMLVLXP {instanceTag} {inCh} {outCh} {level}\n",
+        "setMatrixMixerInputMute": "SET MMMUTEIN {instanceTag} {channel} {state}\n",
+        "setMatrixMixerOutputMute": "SET MMMUTEOUT {instanceTag} {channel} {state}\n",
+        "setMatrixMixerCrosspointMute": "SET MMMUTEXP {instanceTag} {inCh} {outCh} {state}\n",
+        "setRoomCombinerLevel": "SETL RMCMBLVL {instanceTag} {channel} {level}\n",
+        "setRoomCombinerMute": "SET RMCMBMUTE {instanceTag} {channel} {state}\n",
+        "setRoomCombinerWall": "SET RMCMBWALL {instanceTag} {wall} {state}\n",
+        "setRoomCombinerGroup": "SET RMCMBGROUP {instanceTag} {channel} {group}\n",
+        "recallPreset": "PRESET {preset}\n",
+        "dial": "DIAL TIATN {instanceTag} {channel} {number}\n",
+        "hangup": "SET TIHOOKSTATE {instanceTag} {channel} OFF_HOOK\n",
+        "hookFlash": "SET TIHOOKSTATE {instanceTag} {channel} ON_HOOK\n",
+        "subscribe": "SUBSCRIBE FDRLVL {instanceTag} {channel}\n",
+        "unsubscribe": "UNSUBSCRIBE FDRLVL {instanceTag} {channel}\n"
+      },
+      "feedback": {
+        "level": { "pattern": "^\\+OK \"value\":([-]?[\\d.]+)$" },
+        "mute": { "pattern": "^\\+OK \"value\":(\\d)$" }
+      }
+    },
+    "ip": {
+      "port": 23,
+      "type": "tcp",
+      "commands": {
+        "setInputLevel": "SETL INPLVL {instanceTag} {channel} {level}\n",
+        "getInputLevel": "GETL INPLVL {instanceTag} {channel}\n",
+        "setOutputLevel": "SETL OUTLVL {instanceTag} {channel} {level}\n",
+        "getOutputLevel": "GETL OUTLVL {instanceTag} {channel}\n",
+        "setFaderLevel": "SETL FDRLVL {instanceTag} {channel} {level}\n",
+        "getFaderLevel": "GETL FDRLVL {instanceTag} {channel}\n",
+        "setInputMute": "SET INPMUTE {instanceTag} {channel} {state}\n",
+        "setOutputMute": "SET OUTMUTE {instanceTag} {channel} {state}\n",
+        "setFaderMute": "SET FDRMUTE {instanceTag} {channel} {state}\n",
+        "recallPreset": "PRESET {preset}\n",
+        "subscribe": "SUBSCRIBE FDRLVL {instanceTag} {channel}\n",
+        "unsubscribe": "UNSUBSCRIBE FDRLVL {instanceTag} {channel}\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": true,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "dsp": {
+    "maxChannels": 64,
+    "objectIdFormat": "decimal",
+    "levelCommandTemplate": "SETL FDRLVL {instanceTag} {channel} {level}\n",
+    "muteCommandTemplate": "SET FDRMUTE {instanceTag} {channel} {muted}\n",
+    "subscribeCommandTemplate": "SUBSCRIBE FDRLVL {instanceTag} {channel}\n"
+  },
+  "feedbackRules": [
+    { "pattern": "^\\+OK \"value\":([-]?[\\d.]+)$", "signal": "levelValue", "transform": "parseFloat" },
+    { "pattern": "^\\+OK \"value\":(0|1)$", "signal": "muteState" },
+    { "pattern": "^-ERR (.+)$", "signal": "error" },
+    { "pattern": "^\\*INFO: (.+)$", "signal": "info" },
+    { "pattern": "^PRESET (\\d+)$", "signal": "presetRecalled", "transform": "parseInt" },
+    { "pattern": "^! FDRLVL (.+) (\\d+) ([-]?[\\d.]+)$", "signal": "levelChange" },
+    { "pattern": "^! FDRMUTE (.+) (\\d+) (\\d)$", "signal": "muteChange" }
+  ],
+  "sourceModule": "Biamp Audia Flex DSP Processor v4.usp"
+}

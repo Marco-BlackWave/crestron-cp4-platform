@@ -1,0 +1,22 @@
+{
+  "id": "wyrestorm-mx-poh-v2-08",
+  "manufacturer": "Wyrestorm",
+  "model": "MX POH V2 08",
+  "category": "matrix",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "matrix": {
+    "inputs": 8,
+    "outputs": 8
+  },
+  "sourceModule": "WyreStorm_MX_POH_V2_08.usp"
+}

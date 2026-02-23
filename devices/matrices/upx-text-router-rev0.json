@@ -1,0 +1,22 @@
+{
+  "id": "upx-text-router-rev0",
+  "manufacturer": "UPX",
+  "model": "Text Router rev0",
+  "category": "matrix",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "matrix": {
+    "inputs": 8,
+    "outputs": 8
+  },
+  "sourceModule": "UPX Text Router rev0.usp"
+}

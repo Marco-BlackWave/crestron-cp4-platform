@@ -1,0 +1,31 @@
+{
+  "id": "lutron-v3-2",
+  "manufacturer": "Lutron",
+  "model": "v3.2",
+  "category": "lighting",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "btn": "KBP,[%02d:%02d:%02d],%02d\n",
+        "btnUp": "KBP,[%02d:%02d:%02d],24\n",
+        "btnDown": "KBP,[%02d:%02d:%02d],23\n",
+        "cmd4": "KBR,[%02d:%02d:%02d],%02d\n",
+        "cmd5": "KBR,[%02d:%02d:%02d],24\n",
+        "cmd6": "KBR,[%02d:%02d:%02d],23\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "lutron_v3.2.usp"
+}

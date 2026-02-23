@@ -1,0 +1,18 @@
+{
+  "id": "rampa-generic",
+  "manufacturer": "Rampa",
+  "model": "Generic",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Rampa.usp"
+}

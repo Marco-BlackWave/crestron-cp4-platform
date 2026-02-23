@@ -1,0 +1,18 @@
+{
+  "id": "blinds-cantalupi",
+  "manufacturer": "Blinds",
+  "model": "Cantalupi",
+  "category": "shades",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Blinds_Cantalupi_V1.0_ALe.usp"
+}

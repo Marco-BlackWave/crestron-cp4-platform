@@ -1,0 +1,36 @@
+{
+  "id": "yamaha-rx-z7-check-sum",
+  "manufacturer": "Yamaha",
+  "model": "RX-Z7 Check Sum",
+  "category": "audio",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "Power=On",
+      "signal": "sCommand"
+    },
+    {
+      "pattern": "0,0,0,,64",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "0,",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": ",",
+      "signal": "sTemp"
+    }
+  ],
+  "sourceModule": "Yamaha RX-Z7 Check Sum v2.0.usp"
+}

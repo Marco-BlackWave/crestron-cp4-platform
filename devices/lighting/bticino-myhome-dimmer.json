@@ -1,0 +1,33 @@
+{
+  "id": "bticino-myhome-dimmer",
+  "manufacturer": "BTicino",
+  "model": "Myhome Dimmer",
+  "category": "lighting",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\*1\\*",
+      "signal": "OpenRx_$"
+    },
+    {
+      "pattern": "\\*\\#1001\\*",
+      "signal": "OpenRx_$"
+    }
+  ],
+  "sourceModule": "BTicino_Myhome_Dimmer_v1.02.usp"
+}

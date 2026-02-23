@@ -1,0 +1,57 @@
+{
+  "id": "steinwaylyngdorf-p1-feedback",
+  "manufacturer": "SteinwayLyngdorf(P1)",
+  "model": "Feedback",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x0D",
+      "signal": "In$"
+    },
+    {
+      "pattern": "\\)",
+      "signal": "Temp$"
+    },
+    {
+      "pattern": "!VOL",
+      "signal": "Temp$"
+    },
+    {
+      "pattern": "!MUTEON",
+      "signal": "Temp$"
+    },
+    {
+      "pattern": "!MUTEOFF",
+      "signal": "Temp$"
+    },
+    {
+      "pattern": "!SRC",
+      "signal": "Temp$"
+    },
+    {
+      "pattern": "!RPVOI",
+      "signal": "Temp$"
+    },
+    {
+      "pattern": "!POWER",
+      "signal": "Temp$"
+    }
+  ],
+  "sourceModule": "SteinwayLyngdorf(P1)_Feedback.usp"
+}

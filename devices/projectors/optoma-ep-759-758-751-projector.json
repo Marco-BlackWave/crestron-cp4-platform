@@ -1,0 +1,55 @@
+{
+  "id": "optoma-ep-759-758-751-projector",
+  "manufacturer": "Optoma",
+  "model": "EP-759/758/751",
+  "category": "projector",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "powerOn": "~0000 1\r",
+        "powerOff": "~0000 0\r",
+        "input_hdmi1": "~0012 1\r",
+        "input_hdmi2": "~0012 15\r",
+        "input_vga1": "~0012 5\r",
+        "input_vga2": "~0012 6\r",
+        "input_video": "~0012 10\r",
+        "input_svideo": "~0012 14\r",
+        "input_component": "~0012 7\r",
+        "input_hdbaset": "~0012 9\r",
+        "avMuteOn": "~0006 1\r",
+        "avMuteOff": "~0006 0\r",
+        "freezeOn": "~0007 1\r",
+        "freezeOff": "~0007 0\r",
+        "audioMuteOn": "~0032 1\r",
+        "audioMuteOff": "~0032 0\r",
+        "aspect4x3": "~0060 1\r",
+        "aspect16x9": "~0060 2\r",
+        "aspectNative": "~0060 5\r",
+        "aspectAuto": "~0060 6\r"
+      },
+      "feedback": {
+        "powerState": { "poll": "~00150 1\r" },
+        "lampHours": { "poll": "~00108 1\r" },
+        "inputSource": { "poll": "~00150 3\r" }
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": true,
+    "volumeControl": false,
+    "inputSelect": true,
+    "feedback": true,
+    "warmupMs": 30000,
+    "cooldownMs": 15000
+  },
+  "feedbackRules": [
+    { "pattern": "^OK1$", "signal": "power", "value": true },
+    { "pattern": "^OK0$", "signal": "power", "value": false },
+    { "pattern": "^OK(\\d+)$", "signal": "lampHours", "transform": "parseInt" }
+  ],
+  "sourceModule": "Optoma EP-759-758-751 Projector.usp"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "bss-soundweb-london-parameter-presets",
+  "manufacturer": "BSS",
+  "model": "Soundweb London Parameter Presets",
+  "category": "dsp",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "cmd1": "%s\\x1B%s",
+        "cmd2": "%s%s",
+        "cmd3": "\\x02%s\\x1B%s\\x03",
+        "cmd4": "\\x02%s%s\\x03"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "dsp": {
+    "maxChannels": 8
+  },
+  "sourceModule": "BSS Soundweb London Parameter Presets.usp"
+}

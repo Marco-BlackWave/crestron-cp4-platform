@@ -1,0 +1,18 @@
+{
+  "id": "panasonic-plasmadisplays-2011",
+  "manufacturer": "Panasonic",
+  "model": "PlasmaDisplays 2011",
+  "category": "display",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": true,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Panasonic PlasmaDisplays 2011 v1.0.usp"
+}

@@ -1,0 +1,75 @@
+{
+  "id": "paradox-v1-5",
+  "manufacturer": "Paradox",
+  "model": "EVO / SP / MG Series",
+  "category": "security",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "armArea1Away": "AA001F{code}\r",
+        "armArea1Stay": "AA001S{code}\r",
+        "armArea1Force": "AA001A{code}\r",
+        "disarmArea1": "AD001{code}\r",
+        "armArea2Away": "AA002F{code}\r",
+        "armArea2Stay": "AA002S{code}\r",
+        "armArea2Force": "AA002A{code}\r",
+        "disarmArea2": "AD002{code}\r",
+        "armArea3Away": "AA003F{code}\r",
+        "armArea3Stay": "AA003S{code}\r",
+        "armArea3Force": "AA003A{code}\r",
+        "disarmArea3": "AD003{code}\r",
+        "armArea4Away": "AA004F{code}\r",
+        "armArea4Stay": "AA004S{code}\r",
+        "armArea4Force": "AA004A{code}\r",
+        "disarmArea4": "AD004{code}\r",
+        "armArea5Away": "AA005A{code}\r",
+        "disarmArea5": "AD005{code}\r",
+        "armArea6Away": "AA006A{code}\r",
+        "disarmArea6": "AD006{code}\r",
+        "armArea7Away": "AA007A{code}\r",
+        "disarmArea7": "AD007{code}\r",
+        "armArea8Away": "AA008A{code}\r",
+        "disarmArea8": "AD008{code}\r",
+        "pollZone": "RZ{zone}\r",
+        "pollArea": "RA{area}\r",
+        "utilityKey": "UK{key}\r",
+        "pgmOn": "PGM{pgm}ON\r",
+        "pgmOff": "PGM{pgm}OFF\r"
+      },
+      "feedback": {
+        "zoneStatus": { "poll": "RZ{zone}\r" },
+        "areaStatus": { "poll": "RA{area}\r" }
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0,
+    "maxZones": 192,
+    "maxAreas": 8
+  },
+  "feedbackRules": [
+    { "pattern": "^&ok$", "signal": "commandOk" },
+    { "pattern": "^&fail$", "signal": "commandFail" },
+    { "pattern": "^G(\\d{3})(\\d)$", "signal": "zoneStatus" },
+    { "pattern": "^ZO(\\d{3})$", "signal": "zoneOpen" },
+    { "pattern": "^ZC(\\d{3})$", "signal": "zoneClosed" },
+    { "pattern": "^ZT(\\d{3})$", "signal": "zoneTamper" },
+    { "pattern": "^ZF(\\d{3})$", "signal": "zoneFire" },
+    { "pattern": "^AR(\\d{3})$", "signal": "areaArmed" },
+    { "pattern": "^AD(\\d{3})$", "signal": "areaDisarmed" },
+    { "pattern": "^AA(\\d{3})$", "signal": "areaAlarm" },
+    { "pattern": "^AS(\\d{3})(.)$", "signal": "areaStatus" },
+    { "pattern": "^TR(\\d{3})$", "signal": "trouble" },
+    { "pattern": "^SR(.+)$", "signal": "systemReply" }
+  ],
+  "sourceModule": "Paradox_V1.5_AA.usp"
+}

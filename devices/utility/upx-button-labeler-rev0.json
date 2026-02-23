@@ -1,0 +1,18 @@
+{
+  "id": "upx-button-labeler-rev0",
+  "manufacturer": "UPX",
+  "model": "Button Labeler rev0",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "UPX Button Labeler rev0.usp"
+}

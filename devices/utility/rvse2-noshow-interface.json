@@ -1,0 +1,56 @@
+{
+  "id": "rvse2-noshow-interface",
+  "manufacturer": "RVSE2",
+  "model": "NoShow Interface",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\u003C/Status\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "NoShow",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003C/MeetingID\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003C/RVMeetingID\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003C/Subject\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003C/Recurring\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "True",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003C/NoShowData\u003E",
+      "signal": "sRemoved"
+    },
+    {
+      "pattern": "\u003C/NoShowData\u003E",
+      "signal": "sRemoved"
+    }
+  ],
+  "sourceModule": "RVSE2_NoShow_Interface_v2.1\u002B.usp"
+}

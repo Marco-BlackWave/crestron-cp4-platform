@@ -1,0 +1,91 @@
+{
+  "id": "kistodriver-6",
+  "manufacturer": "Kistodriver",
+  "model": "6",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "volP": "$VOLUME ?$\r\n",
+        "volM": "$VOLUME ?$\r\n",
+        "mutetoggle": "MUTED",
+        "idealVol": "$VOLUME = %3d$\r\n",
+        "mutey": "MUTED",
+        "muten": "$MUTE N$\r\n",
+        "pwron": "$STANDBY OFF$\r\n",
+        "pwroff": "$STANDBY ON$\r\n",
+        "inprof0": "$STANDBY OFF$\r\n",
+        "inprof1": "$STANDBY OFF$\r\n",
+        "inprof2": "$STANDBY OFF$\r\n",
+        "inprof3": "$STANDBY OFF$\r\n",
+        "inprof4": "$STANDBY OFF$\r\n",
+        "inprof5": "$STANDBY OFF$\r\n",
+        "inprof6": "$STANDBY OFF$\r\n",
+        "inprof7": "$STANDBY OFF$\r\n",
+        "inprof8": "$STANDBY OFF$\r\n",
+        "inprof9": "$STANDBY OFF$\r\n",
+        "inprof10": "$STANDBY OFF$\r\n",
+        "inprof11": "$STANDBY OFF$\r\n",
+        "inprof12": "$STANDBY OFF$\r\n",
+        "inprof13": "$STANDBY OFF$\r\n",
+        "inprof14": "$STANDBY OFF$\r\n",
+        "inprof15": "$STANDBY OFF$\r\n",
+        "inprof16": "$STANDBY OFF$\r\n",
+        "inprof17": "$STANDBY OFF$\r\n",
+        "inprof18": "$STANDBY OFF$\r\n",
+        "inprof19": "$STANDBY OFF$\r\n",
+        "inprof20": "$STANDBY OFF$\r\n",
+        "cmd30": "$MUTE Y$\r\n",
+        "cmd31": "$INPUT PROFILE 0$\r\n",
+        "cmd32": "$INPUT PROFILE 1$\r\n",
+        "cmd33": "$INPUT PROFILE 2$\r\n",
+        "cmd34": "$INPUT PROFILE 3$\r\n",
+        "cmd35": "$INPUT PROFILE 4$\r\n",
+        "cmd36": "$INPUT PROFILE 5$\r\n",
+        "cmd37": "$INPUT PROFILE 6$\r\n",
+        "cmd38": "$INPUT PROFILE 7$\r\n",
+        "cmd39": "$INPUT PROFILE 8$\r\n",
+        "cmd40": "$INPUT PROFILE 9$\r\n",
+        "cmd41": "$INPUT PROFILE 10$\r\n",
+        "cmd42": "$INPUT PROFILE 11$\r\n",
+        "cmd43": "$INPUT PROFILE 12$\r\n",
+        "cmd44": "$INPUT PROFILE 13$\r\n",
+        "cmd45": "$INPUT PROFILE 14$\r\n",
+        "cmd46": "$INPUT PROFILE 15$\r\n",
+        "cmd47": "$INPUT PROFILE 16$\r\n",
+        "cmd48": "$INPUT PROFILE 17$\r\n",
+        "cmd49": "$INPUT PROFILE 18$\r\n",
+        "cmd50": "$INPUT PROFILE 19$\r\n",
+        "cmd51": "$INPUT PROFILE 20$\r\n",
+        "cmd52": "VALUE=%3d"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": true,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x0A",
+      "signal": "Kisto_Rx$"
+    },
+    {
+      "pattern": "ERROR\\ IN\\ STANDBY\\ MODE",
+      "signal": "TempString$"
+    },
+    {
+      "pattern": "!\\$VOLUME\\ ",
+      "signal": "TempString$"
+    }
+  ],
+  "sourceModule": "Kistodriver 6.usp"
+}

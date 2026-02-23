@@ -1,0 +1,23 @@
+{
+  "id": "bticino-myhome-initialize",
+  "manufacturer": "Bticino",
+  "model": "Myhome Initialize",
+  "category": "shades",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Bticino_Myhome_Initialize_v1.01.usp"
+}

@@ -1,0 +1,78 @@
+{
+  "id": "samsung-qn-series",
+  "manufacturer": "Samsung",
+  "model": "QN Series (2020+)",
+  "category": "display",
+  "protocols": {
+    "ir": {
+      "driverFile": "Samsung_TV.ir",
+      "commands": {
+        "powerOn": "POWER_ON",
+        "powerOff": "POWER_OFF",
+        "powerToggle": "POWER_TOGGLE",
+        "input_hdmi1": "HDMI_1",
+        "input_hdmi2": "HDMI_2",
+        "input_hdmi3": "HDMI_3",
+        "input_hdmi4": "HDMI_4",
+        "volumeUp": "VOL+",
+        "volumeDown": "VOL-",
+        "mute": "MUTE",
+        "channelUp": "CH+",
+        "channelDown": "CH-",
+        "menu": "MENU",
+        "up": "UP",
+        "down": "DOWN",
+        "left": "LEFT",
+        "right": "RIGHT",
+        "enter": "ENTER",
+        "return": "RETURN",
+        "exit": "EXIT",
+        "smartHub": "SMART_HUB"
+      }
+    },
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "powerOn": "\u0008\u0022\u0000\u0000\u0000\u0002\u00D4",
+        "powerOff": "\u0008\u0022\u0000\u0000\u0000\u0001\u00D5",
+        "powerToggle": "\u0008\u0022\u0000\u0000\u0000\u0000\u00D6",
+        "volumeUp": "\u0008\u0022\u0001\u0000\u0001\u0000\u00D4",
+        "volumeDown": "\u0008\u0022\u0001\u0000\u0002\u0000\u00D3",
+        "muteToggle": "\u0008\u0022\u0002\u0000\u0000\u0000\u00D4",
+        "input_hdmi1": "\u0008\u0022\u000A\u0000\u0005\u0000\u00C7",
+        "input_hdmi2": "\u0008\u0022\u000A\u0000\u0005\u0001\u00C6",
+        "input_hdmi3": "\u0008\u0022\u000A\u0000\u0005\u0002\u00C5",
+        "input_hdmi4": "\u0008\u0022\u000A\u0000\u0005\u0003\u00C4",
+        "input_tv": "\u0008\u0022\u000A\u0000\u0000\u0000\u00CC",
+        "channelUp": "\u0008\u0022\u0003\u0000\u0001\u0000\u00D2",
+        "channelDown": "\u0008\u0022\u0003\u0000\u0002\u0000\u00D1",
+        "menu": "\u0008\u0022\u000D\u0000\u0000\u001A\u00AF",
+        "up": "\u0008\u0022\u000D\u0000\u0000\u0060\u0069",
+        "down": "\u0008\u0022\u000D\u0000\u0000\u0061\u0068",
+        "left": "\u0008\u0022\u000D\u0000\u0000\u0065\u0064",
+        "right": "\u0008\u0022\u000D\u0000\u0000\u0062\u0067",
+        "enter": "\u0008\u0022\u000D\u0000\u0000\u0068\u0061",
+        "return": "\u0008\u0022\u000D\u0000\u0000\u0058\u0071",
+        "exit": "\u0008\u0022\u000D\u0000\u0000\u002D\u009C",
+        "powerQuery": "\u0008\u0022\u00F0\u0000\u0000\u0000\u00E6",
+        "volumeQuery": "\u0008\u0022\u00F0\u0001\u0000\u0000\u00E5",
+        "muteQuery": "\u0008\u0022\u00F0\u0002\u0000\u0000\u00E4",
+        "sourceQuery": "\u0008\u0022\u00F0\u0004\u0000\u0000\u00E2"
+      },
+      "feedback": {
+        "powerState": { "poll": "\u0008\u0022\u00F0\u0000\u0000\u0000\u00E6", "on": "\u0003\u000C\u0001", "off": "\u0003\u000C\u0000" }
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": true,
+    "volumeControl": true,
+    "inputSelect": true,
+    "feedback": true,
+    "warmupMs": 5000,
+    "cooldownMs": 2000
+  }
+}

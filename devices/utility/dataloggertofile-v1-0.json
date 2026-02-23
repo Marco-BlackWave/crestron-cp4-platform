@@ -1,0 +1,18 @@
+{
+  "id": "dataloggertofile-v1-0",
+  "manufacturer": "DataLoggerToFile",
+  "model": "v1 0",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "DataLoggerToFile_v1_0.usp"
+}

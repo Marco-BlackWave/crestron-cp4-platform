@@ -1,0 +1,45 @@
+{
+  "id": "avocent-feedback-ab",
+  "manufacturer": "Avocent",
+  "model": "Feedback ab",
+  "category": "utility",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "outlet1On": "on 1\r\nyes\r\nshow\r\n",
+        "outlet1Off": "off 1\r\nyes\r\n",
+        "outlet2On": "on 2\r\nyes\r\nshow\r\n",
+        "outlet2Off": "off 2\r\nyes\r\n",
+        "outlet3On": "on 3\r\nyes\r\nshow\r\n",
+        "outlet3Off": "off 3\r\nyes\r\n",
+        "outlet4On": "on 4\r\nyes\r\nshow\r\n",
+        "outlet4Off": "off 4\r\nyes\r\n",
+        "outlet5On": "on 5\r\nyes\r\nshow\r\n",
+        "outlet5Off": "off 5\r\nyes\r\n",
+        "outlet6On": "on 6\r\nyes\r\nshow\r\n",
+        "outlet6Off": "off 6\r\nyes\r\n",
+        "outlet7On": "on 7\r\nyes\r\nshow\r\n",
+        "outlet7Off": "off 7\r\nyes\r\n",
+        "outlet8On": "on 8\r\nyes\r\nshow\r\n",
+        "outlet8Off": "off 8\r\nyes\r\n",
+        "outlet9On": "on 9\r\nyes\r\nshow\r\n",
+        "outlet9Off": "off 9\r\nyes\r\n",
+        "outlet10On": "on 10\r\nyes\r\nshow\r\n",
+        "outlet10Off": "off 10\r\nyes\r\n",
+        "cmd21": "show\r\\0Acd /\r\n",
+        "cmd22": "show\r",
+        "cmd23": "\n\\X0D",
+        "cmd24": "cd power_management/pdus/%s/outlets\r"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Avocent Feedback_ab_v1.3.usp"
+}

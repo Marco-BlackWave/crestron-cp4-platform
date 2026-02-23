@@ -1,0 +1,18 @@
+{
+  "id": "preset-dvphd-v1-ale",
+  "manufacturer": "preset",
+  "model": "DVPHD V1 ALE",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "preset_DVPHD_V1_ALE.usp"
+}

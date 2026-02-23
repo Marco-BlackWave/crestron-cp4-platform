@@ -1,0 +1,23 @@
+{
+  "id": "analog-to-digital",
+  "manufacturer": "Analog",
+  "model": "to digital",
+  "category": "utility",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": true,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Analog_to_digital_V1.0_ALE.usp"
+}

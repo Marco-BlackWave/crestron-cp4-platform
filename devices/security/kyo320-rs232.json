@@ -1,0 +1,30 @@
+{
+  "id": "kyo320-rs232",
+  "manufacturer": "KYO320",
+  "model": "RS232",
+  "category": "security",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "poll01": "\\x3D\\x00\\x00\\x00\\x00\\x3D",
+        "poll02": "\\xF5\\x13\\xE1\\x00\\x32\\x1B",
+        "poll03": "\\x40\\x00\\x00\\x00\\x00\\x40",
+        "cmd4": "\\xA8\\x1F\\xE4\\xE3\\xAB\\x39%s",
+        "cmd5": "\\xA8\\x03\\xE1\\x00\\x6E\\xFA%s"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "KYO320_RS232_V2.2_AZ.usp"
+}

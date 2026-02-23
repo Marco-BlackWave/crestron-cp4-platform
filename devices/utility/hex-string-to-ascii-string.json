@@ -1,0 +1,18 @@
+{
+  "id": "hex-string-to-ascii-string",
+  "manufacturer": "HEX",
+  "model": "String to ASCII String",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "HEX String to ASCII String.usp"
+}

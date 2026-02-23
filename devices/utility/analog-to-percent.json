@@ -1,0 +1,18 @@
+{
+  "id": "analog-to-percent",
+  "manufacturer": "analog",
+  "model": "to percent",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": true,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "analog_to_percent_v1.0_AZ.usp"
+}

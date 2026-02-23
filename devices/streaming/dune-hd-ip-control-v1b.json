@@ -1,0 +1,21 @@
+{
+  "id": "dune-hd-ip-control-v1b",
+  "manufacturer": "Dune",
+  "model": "HD IP Control V1b",
+  "category": "media",
+  "protocols": {
+    "ip": {
+      "port": 23,
+      "type": "tcp"
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Dune HD IP Control V1b.usp"
+}

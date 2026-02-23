@@ -1,0 +1,23 @@
+{
+  "id": "lutron-knx-v1-ale",
+  "manufacturer": "Lutron",
+  "model": "knx V1 ALE",
+  "category": "lighting",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "lutron_knx_V1_ALE.usp"
+}

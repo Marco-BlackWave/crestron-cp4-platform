@@ -1,0 +1,23 @@
+{
+  "id": "ave-domina-serial-gateway",
+  "manufacturer": "AVE",
+  "model": "Domina Serial-Gateway",
+  "category": "gateway",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "AVE-Domina_Serial-Gateway_v2.02_AZ.usp"
+}

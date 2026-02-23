@@ -1,0 +1,76 @@
+{
+  "id": "integra-dtr-80-3-feedback",
+  "manufacturer": "Integra",
+  "model": "DTR-80.3 Feedback",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "uniLineSelect": "!1CPTUP\r"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x1A",
+      "signal": "From_Device$"
+    },
+    {
+      "pattern": "\\\\x1A",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\\\\x1A",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\\\\x1A",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\\\\x1A",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\\\\x1A",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\\\\x1A",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\\\\x1A",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\\\\x1A",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "STD",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "EXT",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "VDC",
+      "signal": "sTemp"
+    }
+  ],
+  "sourceModule": "Integra DTR-80.3 Feedback v1.2.usp"
+}

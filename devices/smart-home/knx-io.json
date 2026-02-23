@@ -1,0 +1,33 @@
+{
+  "id": "knx-io",
+  "manufacturer": "KNX",
+  "model": "IO",
+  "category": "gateway",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "gateway": {
+    "objects": [
+      {
+        "id": "500",
+        "name": "MAXGROUPS",
+        "type": "generic"
+      },
+      {
+        "id": "2000",
+        "name": "MAXGROUPSx4",
+        "type": "generic"
+      }
+    ]
+  },
+  "sourceModule": "Crestron KNX IO v3.3.usp",
+  "externalLibrary": "CrestronKNXLibrary"
+}

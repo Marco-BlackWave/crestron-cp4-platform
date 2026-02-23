@@ -1,0 +1,19 @@
+{
+  "id": "lutron-homeworks-qsx-passthru",
+  "manufacturer": "Lutron",
+  "model": "HomeWorks QSX Passthru",
+  "category": "lighting",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Lutron HomeWorks QSX Passthru.usp",
+  "externalLibrary": "Lutron.Leap.CommLib"
+}

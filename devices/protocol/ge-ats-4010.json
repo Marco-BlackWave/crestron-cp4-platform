@@ -1,0 +1,23 @@
+{
+  "id": "ge-ats-4010",
+  "manufacturer": "GE",
+  "model": "ATS 4010",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "GE_ATS_4010_V1.1_AZ.usp"
+}

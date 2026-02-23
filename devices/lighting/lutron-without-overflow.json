@@ -1,0 +1,32 @@
+{
+  "id": "lutron-without-overflow",
+  "manufacturer": "Lutron",
+  "model": "without Overflow",
+  "category": "lighting",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "REGISTER",
+      "signal": "in"
+    },
+    {
+      "pattern": "RKLS",
+      "signal": "in"
+    },
+    {
+      "pattern": "RDL",
+      "signal": "in"
+    }
+  ],
+  "sourceModule": "Lutron without Overflow v1.0.usp"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "ioduri-generic",
+  "manufacturer": "Ioduri",
+  "model": "Generic",
+  "category": "utility",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "iodurion": "FADEDIM, 100, 0, 0, [1:1:3:1:3]\r",
+        "iodurioff": "FADEDIM, 0, 0, 0, [1:1:3:1:3]\r",
+        "cmd3": "FADEDIM, 100, 0, 0, [1:1:3:2:4]\r",
+        "cmd4": "FADEDIM, 100, 0, 0, [1:1:3:2:1]\r",
+        "cmd5": "FADEDIM, 100, 0, 0, [1:1:3:3:2]\r",
+        "cmd6": "FADEDIM, 100, 0, 0, [1:1:3:4:3]\r",
+        "cmd7": "FADEDIM, 100, 0, 0, [1:1:3:5:4]\r",
+        "cmd8": "FADEDIM, 0, 0, 0, [1:1:3:2:4]\r",
+        "cmd9": "FADEDIM, 0, 0, 0, [1:1:3:2:1]\r",
+        "cmd10": "FADEDIM, 0, 0, 0, [1:1:3:3:2]\r",
+        "cmd11": "FADEDIM, 0, 0, 0, [1:1:3:4:3]\r",
+        "cmd12": "FADEDIM, 0, 0, 0, [1:1:3:5:4]\r"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Ioduri.usp"
+}

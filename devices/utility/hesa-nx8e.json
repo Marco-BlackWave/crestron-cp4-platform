@@ -1,0 +1,29 @@
+{
+  "id": "hesa-nx8e",
+  "manufacturer": "HESA",
+  "model": "NX8E",
+  "category": "utility",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "cmd1": "%03d_%s",
+        "cmd2": " \u0027%s\u0027,%d ",
+        "cmd3": "%c%s%c",
+        "cmd4": "CL1I%sO%sT"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "HESA NX8E.usp"
+}

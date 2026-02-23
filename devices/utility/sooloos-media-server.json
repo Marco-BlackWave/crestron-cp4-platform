@@ -1,0 +1,18 @@
+{
+  "id": "sooloos-media-server",
+  "manufacturer": "Sooloos",
+  "model": "Media Server",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Sooloos Media Server.usp"
+}

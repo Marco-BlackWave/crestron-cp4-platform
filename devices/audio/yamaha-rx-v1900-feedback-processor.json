@@ -1,0 +1,117 @@
+{
+  "id": "yamaha-rx-v1900-feedback-processor",
+  "manufacturer": "Yamaha",
+  "model": "RX-V1900 Feedback Processor",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x11",
+      "signal": "From_Device$"
+    },
+    {
+      "pattern": "\\\\x03",
+      "signal": "From_Device$"
+    },
+    {
+      "pattern": "\\\\x11",
+      "signal": "From_Device$"
+    },
+    {
+      "pattern": "\\\\x11",
+      "signal": "From_Device$"
+    },
+    {
+      "pattern": "\\\\x11",
+      "signal": "From_Device$"
+    },
+    {
+      "pattern": "\\\\x03",
+      "signal": "From_Device$"
+    },
+    {
+      "pattern": "\\\\x03",
+      "signal": "Temp$"
+    },
+    {
+      "pattern": "\\\\x11",
+      "signal": "Temp$"
+    },
+    {
+      "pattern": "\\\\x11",
+      "signal": "Temp$"
+    },
+    {
+      "pattern": "\\\\x12",
+      "signal": "Temp$"
+    },
+    {
+      "pattern": "\\\\x12",
+      "signal": "Temp$"
+    },
+    {
+      "pattern": "\\\\x02",
+      "signal": "Temp$"
+    },
+    {
+      "pattern": "\\\\x02",
+      "signal": "Temp$"
+    },
+    {
+      "pattern": "\\\\x14",
+      "signal": "Temp$"
+    },
+    {
+      "pattern": "\\\\x14",
+      "signal": "Temp$"
+    },
+    {
+      "pattern": "\\\\x20",
+      "signal": "Temp2$"
+    },
+    {
+      "pattern": "\\\\x20",
+      "signal": "Temp2$"
+    },
+    {
+      "pattern": "\\\\x03",
+      "signal": "Temp2$"
+    },
+    {
+      "pattern": "\\\\x20",
+      "signal": "Temp2$"
+    },
+    {
+      "pattern": "\\\\x03",
+      "signal": "Temp2$"
+    },
+    {
+      "pattern": "\\\\x20",
+      "signal": "Temp2$"
+    },
+    {
+      "pattern": "\\\\x03",
+      "signal": "Temp2$"
+    },
+    {
+      "pattern": "\\\\x12",
+      "signal": "Temp3$"
+    }
+  ],
+  "sourceModule": "Yamaha RX-V1900 Feedback Processor v1.2.usp"
+}

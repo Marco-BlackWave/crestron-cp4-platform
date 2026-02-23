@@ -1,0 +1,23 @@
+{
+  "id": "shelly-em-v5",
+  "manufacturer": "Shelly",
+  "model": "EM v5",
+  "category": "gateway",
+  "protocols": {
+    "ip": {
+      "port": 80,
+      "type": "tcp",
+      "commands": {}
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": true,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Shelly EM v5.usp",
+  "externalLibrary": "Shelly"
+}

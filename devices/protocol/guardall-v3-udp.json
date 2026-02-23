@@ -1,0 +1,23 @@
+{
+  "id": "guardall-v3-udp",
+  "manufacturer": "Guardall",
+  "model": "v3 udp",
+  "category": "protocol",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Guardall_v3 udp.usp"
+}

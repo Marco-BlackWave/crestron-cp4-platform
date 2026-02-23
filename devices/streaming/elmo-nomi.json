@@ -1,0 +1,21 @@
+{
+  "id": "elmo-nomi",
+  "manufacturer": "ELMO",
+  "model": "Nomi",
+  "category": "dsp",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "dsp": {
+    "maxChannels": 8
+  },
+  "sourceModule": "ELMO_Nomi_v4.3.usp"
+}

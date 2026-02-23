@@ -1,0 +1,33 @@
+{
+  "id": "linereceivervolumecontrol2-generic",
+  "manufacturer": "LineReceiverVolumeControl2",
+  "model": "Generic",
+  "category": "audio",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "volup": "[%1dMLIS=%1d]\r\n",
+        "voldown": "[%1dMLIS=%1d]\r\n",
+        "mutetoggle": "MUTED",
+        "muteY": "MUTED",
+        "muteN": "[%1dMLIS=%1d]\r\n",
+        "cmd6": "VALUE = %2d",
+        "cmd7": "[%1dMUTE=N]\r\n",
+        "cmd8": "[%1dMUTE=Y]\r\n",
+        "cmd9": "[%1dVOL=%02d]\r\n",
+        "cmd10": "[%1dMLIS=D]\r\n",
+        "cmd11": "[%1dLIS=1]\r\n",
+        "cmd12": "[%1dLIS=%1d]\r\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": true,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "LineReceiverVolumeControl2.usp"
+}

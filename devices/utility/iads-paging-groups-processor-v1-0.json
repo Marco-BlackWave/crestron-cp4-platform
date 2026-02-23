@@ -1,0 +1,23 @@
+{
+  "id": "iads-paging-groups-processor-v1-0",
+  "manufacturer": "IADS",
+  "model": "Paging Groups Processor v1 0",
+  "category": "utility",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "IADS Paging Groups Processor v1_0.usp"
+}

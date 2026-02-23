@@ -1,0 +1,18 @@
+{
+  "id": "yamaha-dvd-s1700-dvd-s2700-feedback",
+  "manufacturer": "Yamaha",
+  "model": "DVD-S1700 \u002B DVD-S2700 Feedback",
+  "category": "audio",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Yamaha DVD-S1700 \u002B DVD-S2700 Feedback.usp"
+}

@@ -1,0 +1,23 @@
+{
+  "id": "scramblenumbers-v1-2usp",
+  "manufacturer": "ScrambleNumbers",
+  "model": "v1 2usp",
+  "category": "utility",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "ScrambleNumbers_v1_2usp.usp"
+}

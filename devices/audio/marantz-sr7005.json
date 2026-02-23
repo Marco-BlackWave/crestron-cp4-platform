@@ -1,0 +1,27 @@
+{
+  "id": "marantz-sr7005",
+  "manufacturer": "Marantz",
+  "model": "SR7005",
+  "category": "audio",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "siriusKeypad": "TFST%03d\r",
+        "siriusLockKeypad": "TFSTPL%04d\r",
+        "hdRadioKeypadEnter": "TFHD%05d0\r",
+        "cmd4": "TFHD%04d00\r",
+        "cmd5": "\u002B%d.%ddB",
+        "cmd6": "-%d.%ddB"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Marantz SR7005 v1.0 Processor.usp"
+}

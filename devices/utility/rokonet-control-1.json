@@ -1,0 +1,18 @@
+{
+  "id": "rokonet-control-1",
+  "manufacturer": "Rokonet",
+  "model": "control 1",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Rokonet control 1.usp"
+}

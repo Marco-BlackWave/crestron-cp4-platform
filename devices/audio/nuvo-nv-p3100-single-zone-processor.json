@@ -1,0 +1,192 @@
+{
+  "id": "nuvo-nv-p3100-single-zone-processor",
+  "manufacturer": "Nuvo",
+  "model": "NV-P3100 Single Zone Processor",
+  "category": "audio",
+  "protocols": {
+    "ip": {
+      "port": 23,
+      "type": "tcp",
+      "commands": {
+        "listSelect": "{\\x22url\\x22 : \\x22",
+        "pageUp": "{\\x22id\\x22 : \\x22req",
+        "pageDown": "{\\x22id\\x22 : \\x22req",
+        "homeMenu": "{\\x22method\\x22 : \\x22close\\x22 , \\x22params\\x22 : { \\x22channel\\x22 : \\x22",
+        "listTop": "{\\x22id\\x22 : \\x22req",
+        "listBottom": "{\\x22id\\x22 : \\x22req",
+        "back": "{\\x22method\\x22 : \\x22close\\x22 , \\x22params\\x22 : { \\x22channel\\x22 : \\x22"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x22,",
+      "signal": "working"
+    },
+    {
+      "pattern": "\\\\x22}",
+      "signal": "working"
+    },
+    {
+      "pattern": "\\\\x22,",
+      "signal": "working"
+    },
+    {
+      "pattern": "\\\\x22}",
+      "signal": "working"
+    },
+    {
+      "pattern": "\\\\x22,",
+      "signal": "working"
+    },
+    {
+      "pattern": "\\\\x22}",
+      "signal": "working"
+    },
+    {
+      "pattern": "\\\\x22,",
+      "signal": "working"
+    },
+    {
+      "pattern": "\\\\x22}",
+      "signal": "working"
+    },
+    {
+      "pattern": "true",
+      "signal": "working"
+    },
+    {
+      "pattern": "\\\\x22,",
+      "signal": "working"
+    },
+    {
+      "pattern": "\\\\x22}",
+      "signal": "working"
+    },
+    {
+      "pattern": "\\\\xC2",
+      "signal": "working"
+    },
+    {
+      "pattern": "\\\\xC2",
+      "signal": "working"
+    },
+    {
+      "pattern": "\\\\xC3",
+      "signal": "working"
+    },
+    {
+      "pattern": "\\\\xC3",
+      "signal": "working"
+    },
+    {
+      "pattern": "\\\\x5C\\\\x22",
+      "signal": "working"
+    },
+    {
+      "pattern": "\\\\x5C\\\\x22",
+      "signal": "working"
+    },
+    {
+      "pattern": "\\\\x3C",
+      "signal": "working"
+    },
+    {
+      "pattern": "\\\\x3C",
+      "signal": "working"
+    },
+    {
+      "pattern": "\\\\x3E",
+      "signal": "working"
+    },
+    {
+      "pattern": "\\\\x3E",
+      "signal": "working"
+    },
+    {
+      "pattern": "\\\\x5C\\\\x6E",
+      "signal": "working"
+    },
+    {
+      "pattern": "\\\\x5C\\\\x6E",
+      "signal": "working"
+    },
+    {
+      "pattern": "\\\\xE2\\\\x80\\\\x99",
+      "signal": "working"
+    },
+    {
+      "pattern": "\\\\xE2\\\\x80\\\\x99",
+      "signal": "working"
+    },
+    {
+      "pattern": "\\\\xE2\\\\x80\\\\x9C",
+      "signal": "working"
+    },
+    {
+      "pattern": "\\\\xE2\\\\x80\\\\x9C",
+      "signal": "working"
+    },
+    {
+      "pattern": "\\\\xE2\\\\x80\\\\x9D",
+      "signal": "working"
+    },
+    {
+      "pattern": "\\\\xE2\\\\x80\\\\x9D",
+      "signal": "working"
+    },
+    {
+      "pattern": "\\[",
+      "signal": "source"
+    },
+    {
+      "pattern": "\\[",
+      "signal": "source"
+    },
+    {
+      "pattern": "\\\\xFF",
+      "signal": "backbuffer"
+    },
+    {
+      "pattern": "\\\\xFF",
+      "signal": "backbuffer"
+    },
+    {
+      "pattern": "\\\\xFF",
+      "signal": "backbuffer"
+    },
+    {
+      "pattern": "\\[",
+      "signal": "msgfulltemp"
+    },
+    {
+      "pattern": "\\{",
+      "signal": "msgfulltemp"
+    },
+    {
+      "pattern": "\\\\x22type\\\\x22",
+      "signal": "childfulltemp"
+    },
+    {
+      "pattern": "\\\\x22type\\\\x22",
+      "signal": "childfulltemp"
+    },
+    {
+      "pattern": "\\\\x22title\\\\x22:\\\\x22",
+      "signal": "childfulltemp"
+    },
+    {
+      "pattern": "\\\\x22type\\\\x22",
+      "signal": "childfulltemp"
+    }
+  ],
+  "sourceModule": "Nuvo NV-P3100 Single Zone Processor v1.0.usp"
+}

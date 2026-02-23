@@ -1,0 +1,18 @@
+{
+  "id": "aa-fmb-lista-scorrimento-stati",
+  "manufacturer": "AA",
+  "model": "FMB Lista Scorrimento Stati",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "AA_FMB_Lista Scorrimento_Stati_V1.1.usp"
+}

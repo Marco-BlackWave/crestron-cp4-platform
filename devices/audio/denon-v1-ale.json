@@ -1,0 +1,41 @@
+{
+  "id": "denon-v1-ale",
+  "manufacturer": "Denon",
+  "model": "v1 ALE",
+  "category": "audio",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "btnUp": "IP90\r",
+        "btnDown": "IP91\r",
+        "btnLeft": "IP92\r",
+        "btnRight": "IP93\r",
+        "btnOk": "IP94\r",
+        "btnNext": "IP9D\r",
+        "btnPrev": "IP9E\r",
+        "btnPlay": "IP9A\r",
+        "btnStop": "IP9C\r",
+        "btnPause": "IP9A\r",
+        "shuffleSongs": "IP9K\r",
+        "shuffleAlbums": "IP9L\r",
+        "shuffleOff": "IP9M\r",
+        "btnMenu": "IP9N\r"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x00",
+      "signal": "rx$"
+    }
+  ],
+  "sourceModule": "ipod_denon_v1_ALE.usp"
+}

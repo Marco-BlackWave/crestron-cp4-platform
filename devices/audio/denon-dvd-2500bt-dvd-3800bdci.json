@@ -1,0 +1,33 @@
+{
+  "id": "denon-dvd-2500bt-dvd-3800bdci",
+  "manufacturer": "Denon",
+  "model": "DVD-2500BT \u002B DVD-3800BDCi",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x03",
+      "signal": "FromDevice$"
+    },
+    {
+      "pattern": "\\\\x02",
+      "signal": "TempString$"
+    }
+  ],
+  "sourceModule": "Denon DVD-2500BT \u002B DVD-3800BDCi v1.1 Processor.usp"
+}

@@ -1,0 +1,132 @@
+{
+  "id": "marantz-sr-7007-ip",
+  "manufacturer": "Marantz",
+  "model": "SR-7007 IP",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "cmd1": "*",
+        "cmd2": "%s*",
+        "cmd3": "%s.%s*",
+        "cmd4": "---.-dB",
+        "cmd5": "%\u002Bd.%ddB",
+        "cmd6": "-%d.%ddB",
+        "cmd7": "---dB",
+        "cmd8": "\u002B%ddB",
+        "cmd9": "-%ddB",
+        "cmd10": "TFHD0%s00\r",
+        "cmd11": "TFHD%s00\r",
+        "cmd12": "TFHD00%s0\r",
+        "cmd13": "TFHD0%s0\r"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x0D",
+      "signal": "From_Device"
+    },
+    {
+      "pattern": "MVMAX",
+      "signal": "sResponse"
+    },
+    {
+      "pattern": "MV",
+      "signal": "sResponse"
+    },
+    {
+      "pattern": "Z2",
+      "signal": "sResponse"
+    },
+    {
+      "pattern": "Z3",
+      "signal": "sResponse"
+    },
+    {
+      "pattern": "CVFL",
+      "signal": "sResponse"
+    },
+    {
+      "pattern": "CVFR",
+      "signal": "sResponse"
+    },
+    {
+      "pattern": "CVC",
+      "signal": "sResponse"
+    },
+    {
+      "pattern": "CVSW",
+      "signal": "sResponse"
+    },
+    {
+      "pattern": "CVSL",
+      "signal": "sResponse"
+    },
+    {
+      "pattern": "CVSR",
+      "signal": "sResponse"
+    },
+    {
+      "pattern": "CVSBL",
+      "signal": "sResponse"
+    },
+    {
+      "pattern": "CVSBR",
+      "signal": "sResponse"
+    },
+    {
+      "pattern": "CVSB",
+      "signal": "sResponse"
+    },
+    {
+      "pattern": "CVFHL",
+      "signal": "sResponse"
+    },
+    {
+      "pattern": "CVFHR",
+      "signal": "sResponse"
+    },
+    {
+      "pattern": "CVFWL",
+      "signal": "sResponse"
+    },
+    {
+      "pattern": "CVFWR",
+      "signal": "sResponse"
+    },
+    {
+      "pattern": "NSE",
+      "signal": "sResponse"
+    },
+    {
+      "pattern": "\\\\x0D",
+      "signal": "sResponse"
+    },
+    {
+      "pattern": "\\\\x0D",
+      "signal": "sResponse"
+    },
+    {
+      "pattern": "\\\\x00",
+      "signal": "sDump"
+    },
+    {
+      "pattern": "\\\\x00",
+      "signal": "sDump"
+    }
+  ],
+  "sourceModule": "Marantz SR-7007 IP v1.1_AZ Processor.usp"
+}

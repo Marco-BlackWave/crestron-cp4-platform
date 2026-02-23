@@ -1,0 +1,29 @@
+{
+  "id": "kyo320-tcp-v3-ale",
+  "manufacturer": "KYO320",
+  "model": "TCP V3 ALE",
+  "category": "security",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "poll01": "\\x7E\\x00\n\\x00\\x07\\x3D\\x00\\x00\\x00\\x00\\x3D\\x00\\x8B\\x7F",
+        "poll02": "\\x7E\\x00\n\\x00\\x07\\xF5\\x13\\xE1\\x00\\x32\\x1B\\x02\\x47\\x7F",
+        "poll03": "\\x7E\\x00\n\\x00\\x07\\x40\\x00\\x00\\x00\\x00\\x40\\x00\\x91\\x7F",
+        "cmd4": "\\x7E\\x00\\x2C\\x00\\x07\\xA8\\x1F\\xE4\\xE3\\xAB\\x39%s%s%s\\x7F"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "KYO320_TCP_V3_ALE.usp"
+}

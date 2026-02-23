@@ -1,0 +1,19 @@
+{
+  "id": "lg-eneratortype-enum-value",
+  "manufacturer": "LG",
+  "model": "eneratorType Enum Value",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "LEA SignalGeneratorType Enum Value 3.0.usp",
+  "externalLibrary": "LeaProfessional.Simpl 3.0"
+}

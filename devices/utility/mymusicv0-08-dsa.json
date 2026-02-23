@@ -1,0 +1,247 @@
+{
+  "id": "mymusicv0-08-dsa",
+  "manufacturer": "MyMusicV0",
+  "model": "08(DSA)",
+  "category": "utility",
+  "protocols": {
+    "ip": {
+      "port": 23,
+      "type": "tcp",
+      "commands": {
+        "option1": "PlayTitle %s False\r",
+        "option2": "PlayAlbum %s False\r",
+        "option3": "PlayAlbum %s True\r",
+        "option4": "PlayArtist %s True\r",
+        "cmd5": "PlayPlaylist %s False\r",
+        "cmd6": "JumpToNowPlayingItem %s\r",
+        "cmd7": "PlayTitle %s True\r",
+        "cmd8": "RemoveNowPlayingItem %s\r",
+        "cmd9": "PlayArtist %s False\r",
+        "cmd10": "PlayGenre %s False\r"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "BrowseNowPlayingAvailable",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "=False",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "=True",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "BeginMusicFilters\\ Total=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Begin",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Total=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "BeginAlbums",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "BeginArtists",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "BeginGenres",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "BeginTitles",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "BeginPlaylists",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "BeginNowPlaying",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\\ \\{",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\\\\x5C\\\\x22",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Album\\ \\{",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Artist\\ \\{",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Genre\\ \\{",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Title\\ \\{",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Playlist\\ \\{",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\\{",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "EndAlbums\\ ",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "EndArtists\\ ",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "EndGenres\\ ",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "EndTitles\\ ",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "EndPlaylists\\ ",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "EndNowPlaying\\ ",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "StateChanged\\ ",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "ReportState\\ ",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "TrackTime=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "NowPlayingGuid=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "}",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "ArtistName=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\\\\r",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "TrackName=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "MediaName=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "TrackNumber=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "TrackDuration=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "MediaControl=",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "=Play",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "=Stop",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "=Pause",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "=PrevFrame",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "=NextFrame",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "=Rewind",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "=FF",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "=SkipPrev",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "=SkipNext",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "=SlowMotion",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Shuffle=True",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Shuffle=False",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Repeat=True",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "Repeat=False",
+      "signal": "sTemp"
+    }
+  ],
+  "sourceModule": "MyMusicV0-08(DSA).usp"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "sooloos-master-processor",
+  "manufacturer": "Sooloos",
+  "model": "Master Processor",
+  "category": "utility",
+  "protocols": {
+    "ip": {
+      "port": 23,
+      "type": "tcp"
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x0A",
+      "signal": "data"
+    }
+  ],
+  "sourceModule": "Sooloos Master Processor v2.1.usp"
+}

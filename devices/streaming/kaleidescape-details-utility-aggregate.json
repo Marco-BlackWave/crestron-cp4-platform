@@ -1,0 +1,28 @@
+{
+  "id": "kaleidescape-details-utility-aggregate",
+  "manufacturer": "Kaleidescape",
+  "model": "Details Utility Aggregate",
+  "category": "media",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x0d",
+      "signal": "buffer"
+    },
+    {
+      "pattern": "\\\\x0d",
+      "signal": "temp3"
+    }
+  ],
+  "sourceModule": "Kaleidescape Details Utility Aggregate.usp"
+}

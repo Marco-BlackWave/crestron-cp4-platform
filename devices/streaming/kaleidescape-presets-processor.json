@@ -1,0 +1,40 @@
+{
+  "id": "kaleidescape-presets-processor",
+  "manufacturer": "Kaleidescape",
+  "model": "Presets Processor",
+  "category": "media",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "cmd1": "%s - %s"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "/!/PLAYER_RESTART:/",
+      "signal": "message"
+    },
+    {
+      "pattern": "/!/000:PLAYER_RESTART:/",
+      "signal": "message"
+    },
+    {
+      "pattern": "\\\\n",
+      "signal": "Rx$"
+    }
+  ],
+  "sourceModule": "Kaleidescape Presets Processor.usp"
+}

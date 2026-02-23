@@ -1,0 +1,24 @@
+{
+  "id": "lutron-homeworks-qsx-dual-setpoint-hvac-control",
+  "manufacturer": "Lutron",
+  "model": "HomeWorks QSX Dual SetPoint HVAC Control",
+  "category": "lighting",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Lutron HomeWorks QSX Dual SetPoint HVAC Control v1.2.usp",
+  "externalLibrary": "Lutron.Leap.CommLib"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "messenger-v1-0",
+  "manufacturer": "Messenger",
+  "model": "v1.0",
+  "category": "audio",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\xFF\\\\xFF",
+      "signal": "tempIn"
+    },
+    {
+      "pattern": "\\ -\u003E\\ ",
+      "signal": "tempIn"
+    }
+  ],
+  "sourceModule": "Messenger v1.0.usp"
+}

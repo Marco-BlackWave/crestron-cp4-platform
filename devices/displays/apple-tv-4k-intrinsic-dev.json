@@ -1,0 +1,48 @@
+{
+  "id": "apple-tv-4k-intrinsic-dev",
+  "manufacturer": "Apple",
+  "model": "TV 4K (Intrinsic Dev)",
+  "category": "display",
+  "protocols": {
+    "ip": {
+      "port": 23,
+      "type": "tcp"
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "mlid",
+      "signal": "data$"
+    },
+    {
+      "pattern": "cann",
+      "signal": "data$"
+    },
+    {
+      "pattern": "cana",
+      "signal": "data$"
+    },
+    {
+      "pattern": "caks",
+      "signal": "data$"
+    },
+    {
+      "pattern": "cant",
+      "signal": "data$"
+    },
+    {
+      "pattern": "cast",
+      "signal": "data$"
+    }
+  ],
+  "sourceModule": "Apple TV 4K (Intrinsic Dev) v2.05.usp",
+  "externalLibrary": "ATVKit"
+}

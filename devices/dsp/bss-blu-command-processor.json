@@ -1,0 +1,41 @@
+{
+  "id": "bss-blu-command-processor",
+  "manufacturer": "BSS",
+  "model": "BLU-100 / BLU-160 / BLU-320 Command Processor",
+  "category": "dsp",
+  "protocols": {
+    "ip": {
+      "port": 1023,
+      "type": "tcp",
+      "commands": {
+        "setGain": "SS {nodeAddr} {virtualDevice} {objectId} {stateVariable} 0 {value}",
+        "getGain": "SG {nodeAddr} {virtualDevice} {objectId} {stateVariable} 0",
+        "subscribe": "SU {nodeAddr} {virtualDevice} {objectId} {stateVariable} 0 {rate}",
+        "unsubscribe": "US {nodeAddr} {virtualDevice} {objectId} {stateVariable} 0",
+        "recallPreset": "SS {nodeAddr} {virtualDevice} 0 0 0 {preset}",
+        "recallVenuePreset": "LR {presetId}",
+        "storeVenuePreset": "LS {presetId}"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": true,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "dsp": {
+    "maxChannels": 256,
+    "objectIdFormat": "hex"
+  },
+  "feedbackRules": [
+    { "pattern": "^SS (.+) (.+) (.+) (.+) 0 (.+)$", "signal": "stateSet" },
+    { "pattern": "^SG (.+) (.+) (.+) (.+) 0 (.+)$", "signal": "stateGet" },
+    { "pattern": "^ACK$", "signal": "commandAck" },
+    { "pattern": "^NAK (.+)$", "signal": "commandError" }
+  ],
+  "sourceModule": "BSS BLU Command Processor v1.0.usp",
+  "externalLibrary": "BSSCommLIB"
+}

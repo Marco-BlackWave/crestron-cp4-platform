@@ -1,0 +1,22 @@
+{
+  "id": "eds-bus-crono",
+  "manufacturer": "EDS",
+  "model": "Bus Crono",
+  "category": "utility",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "poll": "%s%s\\x03"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "EDS_Bus_Crono_V1.0_AZ.usp"
+}

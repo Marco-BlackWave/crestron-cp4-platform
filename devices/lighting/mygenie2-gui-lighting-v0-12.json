@@ -1,0 +1,109 @@
+{
+  "id": "mygenie2-gui-lighting-v0-12",
+  "manufacturer": "MyGenie2",
+  "model": "GUI Lighting(V0-12)",
+  "category": "lighting",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "scrolldn": "{%s\u003CDraw\u003E%u\u003C/Draw\u003E}",
+        "scrollup": "{%s\u003CDraw\u003E%u\u003C/Draw\u003E}"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\uFFFD",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\uFFFD",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\uFFFD",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003CC\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003C/C\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003CU\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003C/U\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003CF\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003CB\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003CM\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003CC\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003CDraw\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003CC\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003C/C\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003CZ\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003CG\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "\u003C/G\u003E",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "}",
+      "signal": "GuiSyncRx$"
+    },
+    {
+      "pattern": "\u003CGuiData\u003E",
+      "signal": "sFileData"
+    },
+    {
+      "pattern": "\u003CLighting\u003E",
+      "signal": "sFileData"
+    }
+  ],
+  "sourceModule": "MyGenie2_GUI_Lighting(V0-12).usp"
+}

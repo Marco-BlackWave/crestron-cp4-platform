@@ -1,0 +1,63 @@
+{
+  "id": "biamp-audiaflex-command-processor-ip",
+  "manufacturer": "Biamp",
+  "model": "AudiaFlex Command Processor IP",
+  "category": "dsp",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "connectedF": "\\xFF\\xFE\\x01"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "dsp": {
+    "maxChannels": 8
+  },
+  "feedbackRules": [
+    {
+      "pattern": "=",
+      "signal": "paramData"
+    },
+    {
+      "pattern": "=",
+      "signal": "paramData"
+    },
+    {
+      "pattern": "GET",
+      "signal": "paramData"
+    },
+    {
+      "pattern": "\\\\xFF\\\\xFC\\\\x01",
+      "signal": "paramData"
+    },
+    {
+      "pattern": "hello",
+      "signal": "sTempModules"
+    },
+    {
+      "pattern": "Send\\ Name",
+      "signal": "sTempModules"
+    },
+    {
+      "pattern": "hello",
+      "signal": "sTempModules"
+    },
+    {
+      "pattern": "Send\\ Name",
+      "signal": "sTempModules"
+    }
+  ],
+  "sourceModule": "BiAmp AudiaFlex Command Processor IP v7.5.1.usp"
+}

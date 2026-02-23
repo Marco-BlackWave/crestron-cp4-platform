@@ -1,0 +1,32 @@
+{
+  "id": "lutron-homeworks-qs-hvac-schedule-parsing-module-s-r04",
+  "manufacturer": "Lutron",
+  "model": "Homeworks QS HVAC Schedule Parsing Module S\u002B r04",
+  "category": "lighting",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "cmd1": "%02d:%02d %s"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "~HVAC,",
+      "signal": "IN$"
+    },
+    {
+      "pattern": "\\\\r",
+      "signal": "IN$"
+    }
+  ],
+  "sourceModule": "Lutron Homeworks QS HVAC Schedule Parsing Module S\u002B r04.usp"
+}

@@ -1,0 +1,39 @@
+{
+  "id": "biamp-zone4",
+  "manufacturer": "Biamp",
+  "model": "Zone4",
+  "category": "dsp",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "btnmutetoggle": "$%sM01",
+        "cmdmuteon": "$%sM01",
+        "cmdmuteoff": "$%sM02",
+        "cmdpresetvolmin": "$%sV40",
+        "cmdpresetvolmax": "$%sV70",
+        "btnvolup": "$%svup",
+        "btnvoldw": "$%svdn",
+        "cmdsource1": "$%sS04",
+        "cmdsource2": "$%sS03",
+        "cmdsource3": "$%sS02",
+        "cmdsource4": "$%sS01"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "dsp": {
+    "maxChannels": 8
+  },
+  "sourceModule": "BiampZone4_V1.0_AZ.usp"
+}

@@ -1,0 +1,51 @@
+{
+  "id": "mymovies-v0-02",
+  "manufacturer": "MyMovies(V0",
+  "model": "02)",
+  "category": "utility",
+  "protocols": {
+    "ip": {
+      "port": 23,
+      "type": "tcp"
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "StateChanged\\ ",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "ReportState\\ ",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "MediaControl=Play",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "MediaControl=Stop",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "MediaControl=Pause",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "MediaControl=FF",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "MediaControl=Rewind",
+      "signal": "sTemp"
+    }
+  ],
+  "sourceModule": "MyMovies(V0-02).usp"
+}

@@ -1,0 +1,37 @@
+{
+  "id": "bss-soundweb-london-generic",
+  "manufacturer": "BSS",
+  "model": "Soundweb London Generic",
+  "category": "dsp",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "subscribe": "\\x89\\x00\\x00\\x03%s%s\\x00\\x00\\x00\\x00\\x03\\x03\\x03\\x03\\x03",
+        "unsubscribe": "\\x8A\\x00\\x00\\x03%s%s\\x00\\x00\\x00\\x00\\x03\\x03\\x03\\x03\\x03",
+        "cmd3": "\\x88\\x00\\x00\\x03%s%s\\x00\\x00%s%s\\x03\\x03\\x03\\x03\\x03"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "dsp": {
+    "maxChannels": 8
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x03\\\\x03\\\\x03\\\\x03\\\\x03",
+      "signal": "rx$"
+    }
+  ],
+  "sourceModule": "BSS Soundweb London Generic.usp"
+}

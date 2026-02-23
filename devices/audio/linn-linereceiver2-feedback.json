@@ -1,0 +1,53 @@
+{
+  "id": "linn-linereceiver2-feedback",
+  "manufacturer": "Linn",
+  "model": "LineReceiver2 Feedback",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "ROOM",
+      "signal": "In$"
+    },
+    {
+      "pattern": "SUBZONE",
+      "signal": "In$"
+    },
+    {
+      "pattern": "VOL",
+      "signal": "In$"
+    },
+    {
+      "pattern": "STANDBY\\ ON",
+      "signal": "In$"
+    },
+    {
+      "pattern": "STANDBY\\ OFF",
+      "signal": "In$"
+    },
+    {
+      "pattern": "MUTE\\ ON",
+      "signal": "In$"
+    },
+    {
+      "pattern": "MUTE\\ OFF",
+      "signal": "In$"
+    }
+  ],
+  "sourceModule": "Linn_LineReceiver2_Feedback.usp"
+}

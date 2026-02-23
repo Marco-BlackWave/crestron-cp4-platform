@@ -1,0 +1,42 @@
+{
+  "id": "fc3000-h-h",
+  "manufacturer": "FC3000",
+  "model": "H\u0026H",
+  "category": "utility",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "poll": "%s\\x30\\x33\\x30\\x30\\x30\\x30\\x30\\x30\\x30\\x33\\x46\\x39\r\n",
+        "cmdOn": "%s\\x30\\x36\\x30\\x30\\x30\\x32\\x30\\x30\\x30\\x31\\x46\\x36\r\n",
+        "cmdOff": "%s\\x30\\x36\\x30\\x30\\x30\\x32\\x30\\x30\\x30\\x30\\x46\\x37\r\n",
+        "toggle": "%s\\x30\\x36\\x30\\x30\\x30\\x32\\x30\\x30\\x30\\x31\\x46\\x36\r\n",
+        "cmdFanUp": "%s\\x30\\x36\\x30\\x30\\x30\\x31\\x30\\x30\\x30%s",
+        "cmdFanDown": "%s\\x30\\x36\\x30\\x30\\x30\\x31\\x30\\x30\\x30%s",
+        "cmdFanDownKnx": "%s\\x30\\x36\\x30\\x30\\x30\\x31\\x30\\x30\\x30%s",
+        "cmdFanUpKnx": "%s\\x30\\x36\\x30\\x30\\x30\\x31\\x30\\x30\\x30%s",
+        "cmdSetpointUp": "%s\\x30\\x36\\x30\\x30\\x30\\x30%s",
+        "cmdSetpointDown": "%s\\x30\\x36\\x30\\x30\\x30\\x30%s",
+        "cmd11": "%s\\x30\\x34\\x30\\x30\\x30\\x30\\x30\\x30\\x30\\x31\\x46\\x41\r\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x0D\\\\x0A",
+      "signal": "rx$"
+    },
+    {
+      "pattern": "\\\\x0D\\\\x0A",
+      "signal": "rx$"
+    }
+  ],
+  "sourceModule": "FC3000_H\u0026H_V2.0_AA.usp"
+}

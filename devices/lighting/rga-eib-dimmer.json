@@ -1,0 +1,18 @@
+{
+  "id": "rga-eib-dimmer",
+  "manufacturer": "RGA",
+  "model": "EIB dimmer",
+  "category": "lighting",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "RGA_EIB_dimmer_V1.1.usp"
+}

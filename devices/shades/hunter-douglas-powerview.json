@@ -1,0 +1,25 @@
+{
+  "id": "hunter-douglas-powerview",
+  "manufacturer": "Hunter Douglas",
+  "model": "PowerView Gen 3",
+  "category": "shade",
+  "protocols": {
+    "ip": {
+      "port": 80,
+      "type": "tcp",
+      "commands": {
+        "open": "PUT /api/shades/{shadeId} {\"shade\":{\"positions\":{\"posKind1\":1,\"position1\":65535}}}",
+        "close": "PUT /api/shades/{shadeId} {\"shade\":{\"positions\":{\"posKind1\":1,\"position1\":0}}}",
+        "setPosition": "PUT /api/shades/{shadeId} {\"shade\":{\"positions\":{\"posKind1\":1,\"position1\":{percent}}}}"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  }
+}

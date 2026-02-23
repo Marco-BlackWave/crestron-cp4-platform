@@ -1,0 +1,18 @@
+{
+  "id": "convert-2byte-to-1byte",
+  "manufacturer": "Convert",
+  "model": "2Byte TO 1Byte",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Convert 2Byte TO 1Byte.usp"
+}

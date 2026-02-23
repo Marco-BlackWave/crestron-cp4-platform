@@ -1,0 +1,41 @@
+{
+  "id": "symetrix-voip-dialer-processor",
+  "manufacturer": "Symetrix",
+  "model": "VOIP Dialer Processor",
+  "category": "dsp",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "cmd1": "SSYSS %u.1004.0.%u.%u=%s\r",
+        "cmd2": "CS %s 65535\r",
+        "cmd3": "%u Send Info 1 %u %u %u %u %u\r"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "dsp": {
+    "maxChannels": 8
+  },
+  "feedbackRules": [
+    {
+      "pattern": "Send\\ Info\\\\r",
+      "signal": "sTempDevice"
+    },
+    {
+      "pattern": "SSYS",
+      "signal": "sTempDevice"
+    }
+  ],
+  "sourceModule": "Symetrix VOIP Dialer Processor v3.0.usp"
+}

@@ -1,0 +1,84 @@
+{
+  "id": "symetrix-command-processor-simpl-ip",
+  "manufacturer": "Symetrix",
+  "model": "Command Processor SIMPL\u002B IP",
+  "category": "dsp",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "dsp": {
+    "maxChannels": 8
+  },
+  "feedbackRules": [
+    {
+      "pattern": "Send\\ Info",
+      "signal": "sTempModules"
+    },
+    {
+      "pattern": "\\\\x20",
+      "signal": "sTempModules"
+    },
+    {
+      "pattern": "\\\\x23",
+      "signal": "sTempDevice"
+    },
+    {
+      "pattern": "=",
+      "signal": "sTempDevice"
+    },
+    {
+      "pattern": "ACK\\\\r",
+      "signal": "sTempDevice"
+    },
+    {
+      "pattern": "\\{SSYSS",
+      "signal": "sTempDevice"
+    },
+    {
+      "pattern": "}",
+      "signal": "sTempDevice"
+    },
+    {
+      "pattern": "\\{GSYSS",
+      "signal": "sTempDevice"
+    },
+    {
+      "pattern": "\\.100",
+      "signal": "sTempDevice"
+    },
+    {
+      "pattern": "=",
+      "signal": "sTempDevice"
+    },
+    {
+      "pattern": "\\{GSYSS",
+      "signal": "sTempDevice"
+    },
+    {
+      "pattern": "}\\ ",
+      "signal": "sTempDevice"
+    },
+    {
+      "pattern": "=",
+      "signal": "sTempDevice"
+    },
+    {
+      "pattern": "NAK\\\\r",
+      "signal": "sTempDevice"
+    }
+  ],
+  "sourceModule": "Symetrix Command Processor SIMPL\u002B IP v3.0.usp"
+}

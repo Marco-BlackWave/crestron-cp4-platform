@@ -1,0 +1,32 @@
+{
+  "id": "barix-annuncicom100-interface-v1-1-0",
+  "manufacturer": "Barix",
+  "model": "Annuncicom100 Interface v1 1 0",
+  "category": "utility",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "fromBarixTcpConnected": "G1",
+        "lineInLevelUp": "G1",
+        "lineInLevelDn": "G1",
+        "micInLevelUp": "G0",
+        "micInLevelDn": "G0",
+        "outputVolLevelUp": "V",
+        "outputVolLevelDn": "V"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Barix_Annuncicom100_Interface_v1_1_0.usp"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "xbmcmain-generic",
+  "manufacturer": "XBMCMain",
+  "model": "Generic",
+  "category": "utility",
+  "protocols": {
+    "ip": {
+      "port": 23,
+      "type": "tcp"
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\.",
+      "signal": "Number"
+    },
+    {
+      "pattern": "\\.",
+      "signal": "method$"
+    }
+  ],
+  "sourceModule": "XBMCMain.usp"
+}

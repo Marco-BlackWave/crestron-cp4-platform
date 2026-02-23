@@ -1,0 +1,19 @@
+{
+  "id": "lutron-homeworks-qsx-openclosestop-fan-control",
+  "manufacturer": "Lutron",
+  "model": "Homeworks QSX OpenCloseStop Fan Control",
+  "category": "lighting",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Lutron Homeworks QSX OpenCloseStop Fan Control.usp",
+  "externalLibrary": "Lutron.Leap.CommLib"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "generic-cec-source-control-processor",
+  "manufacturer": "Generic",
+  "model": "CEC Source Control Processor",
+  "category": "gateway",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Generic CEC Source Control Processor v1.0.usp"
+}

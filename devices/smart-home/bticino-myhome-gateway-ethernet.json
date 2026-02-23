@@ -1,0 +1,21 @@
+{
+  "id": "bticino-myhome-gateway-ethernet",
+  "manufacturer": "Bticino",
+  "model": "Myhome Gateway Ethernet",
+  "category": "gateway",
+  "protocols": {
+    "ip": {
+      "port": 23,
+      "type": "tcp"
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Bticino-Myhome_Gateway_Ethernet_v2.2_AZ.usp"
+}

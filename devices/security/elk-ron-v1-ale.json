@@ -1,0 +1,33 @@
+{
+  "id": "elk-ron-v1-ale",
+  "manufacturer": "Elk",
+  "model": "ron V1 ALE",
+  "category": "security",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "ins1": "\\x01%s\\x00\\x00\\x02\\x00\\x81\\x11\\x01\\x11\\x01%c%c\\x03",
+        "dis1": "\\x01%s\\x00\\x00\\x02\\x00\\x81\\x11\\x01\\x00%c%c\\x03",
+        "ins2": "\\x01\\x98\\x12\\x00\\x00\\x02\\x00\\x81\\x02\\x02\\xFE\\xCF\\x03",
+        "dis2": "\\x01\\x98\\x12\\x00\\x00\\x02\\x00\\x81\\x02\\x00\\xFE\\xD1\\x03",
+        "ins3": "\\x01\\x98\\x12\\x00\\x00\\x02\\x00\\x81\\x04\\x04\\xFE\\xCB\\x03",
+        "dis3": "\\x01\\x98\\x12\\x00\\x00\\x02\\x00\\x81\\x04\\x00\\xFE\\xCF\\x03",
+        "ins4": "\\x01\\x98\\x12\\x00\\x00\\x02\\x00\\x81\\x08\\x08\\xFE\\xC3\\x03",
+        "dis4": "\\x01\\x98\\x12\\x00\\x00\\x02\\x00\\x81\\x08\\x00\\xFE\\xCB\\x03"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Elkron_V1_ALE.usp"
+}

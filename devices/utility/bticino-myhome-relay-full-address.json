@@ -1,0 +1,23 @@
+{
+  "id": "bticino-myhome-relay-full-address",
+  "manufacturer": "Bticino",
+  "model": "Myhome Relay Full-Address",
+  "category": "utility",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Bticino-Myhome_Relay_Full-Address_v2.02_AZ.usp"
+}

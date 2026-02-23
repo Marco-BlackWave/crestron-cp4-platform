@@ -1,0 +1,32 @@
+{
+  "id": "bryant-eyepower",
+  "manufacturer": "Bryant",
+  "model": "EyePower",
+  "category": "utility",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "init": "\\x10\\x02\\x00\\x31\\x31\\x10\\x03",
+        "poolOsc": "\\x10\\x02\\x00\\x31\\x31\\x10\\x03",
+        "allOnPb": "\\x10\\x02\\x00\\x32\\x3F\\xFF\\x01\\x71\\x10\\x03",
+        "allOffPb": "\\x10\\x02\\x00\\x33\\x33\\x10\\x03",
+        "relaisOnPb": "\\x34",
+        "relaisOffPb": "\\x35",
+        "resetMaxValuesPb": "\\x81\\x03"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Bryant_EyePower_V3.00.usp"
+}

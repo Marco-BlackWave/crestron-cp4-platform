@@ -1,0 +1,18 @@
+{
+  "id": "mygenie2-dm16x16-v0-02",
+  "manufacturer": "MYGenie2",
+  "model": "DM16x16(V0-02)",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "MYGenie2_DM16x16(V0-02).usp"
+}

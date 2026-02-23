@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "1.0",
+  "projectId": "example-project",
+  "processor": "CP4",
+  "debugMode": false,
+  "joins": {
+    "digital": [
+      { "join": 1, "name": "PowerOn", "direction": "input" },
+      { "join": 2, "name": "PowerOff", "direction": "input" },
+      { "join": 3, "name": "PowerState", "direction": "output" }
+    ],
+    "analog": [
+      { "join": 1, "name": "Volume", "direction": "input" },
+      { "join": 2, "name": "VolumeLevel", "direction": "output" }
+    ],
+    "serial": [
+      { "join": 1, "name": "SourceName", "direction": "output" }
+    ]
+  }
+}

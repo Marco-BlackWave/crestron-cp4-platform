@@ -1,0 +1,21 @@
+{
+  "id": "skaarhoj-blackmagic-atem-gw",
+  "manufacturer": "SKAARHOJ",
+  "model": "BlackMagic ATEM GW",
+  "category": "media",
+  "protocols": {
+    "ip": {
+      "port": 23,
+      "type": "tcp"
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "SKAARHOJ_BlackMagic_ATEM_GW_V1.2_AZ.usp"
+}

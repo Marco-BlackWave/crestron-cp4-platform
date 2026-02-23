@@ -1,0 +1,23 @@
+{
+  "id": "lift-v1-2-ale",
+  "manufacturer": "Lift",
+  "model": "V1.2 ALE",
+  "category": "shades",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Lift_V1.2_ALE.usp"
+}

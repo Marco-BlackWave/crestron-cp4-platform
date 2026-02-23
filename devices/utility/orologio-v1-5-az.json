@@ -1,0 +1,26 @@
+{
+  "id": "orologio-v1-5-az",
+  "manufacturer": "Orologio",
+  "model": "v1.5 AZ",
+  "category": "utility",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "save": "WAIT ...",
+        "cmd2": "SAVED OK",
+        "cmd3": "READ OK",
+        "cmd4": "Error writing structure.  Error code = %d\n",
+        "cmd5": "Error reading structure.  Error code = %d\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Orologio_v1.5_AZ.usp"
+}

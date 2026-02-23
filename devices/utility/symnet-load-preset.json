@@ -1,0 +1,22 @@
+{
+  "id": "symnet-load-preset",
+  "manufacturer": "SymNet",
+  "model": "Load Preset",
+  "category": "utility",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "load": "LP %s\r\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "SymNet Load Preset v2.0.usp"
+}

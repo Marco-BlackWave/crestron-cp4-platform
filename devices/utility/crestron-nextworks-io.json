@@ -1,0 +1,32 @@
+{
+  "id": "crestron-nextworks-io",
+  "manufacturer": "Crestron",
+  "model": "Nextworks IO",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "subcmd_type:",
+      "signal": "s$"
+    },
+    {
+      "pattern": "numseq:",
+      "signal": "R$"
+    },
+    {
+      "pattern": "!\\#\\#\\#",
+      "signal": "FromModule$"
+    }
+  ],
+  "sourceModule": "Crestron_Nextworks_IO_v2.0.usp"
+}

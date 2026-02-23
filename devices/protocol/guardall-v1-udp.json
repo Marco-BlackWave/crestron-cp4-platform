@@ -1,0 +1,18 @@
+{
+  "id": "guardall-v1-udp",
+  "manufacturer": "Guardall",
+  "model": "v1 udp",
+  "category": "protocol",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Guardall_v1 udp.usp"
+}

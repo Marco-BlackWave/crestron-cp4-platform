@@ -1,0 +1,47 @@
+{
+  "id": "marantz-avr",
+  "manufacturer": "Marantz",
+  "model": "AVR Series",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "powerOn": "PWON\r",
+        "powerOff": "PWSTANDBY\r",
+        "volumeUp": "MVUP\r",
+        "volumeDown": "MVDOWN\r",
+        "mute": "MUON\r",
+        "muteOff": "MUOFF\r",
+        "volumeSet": "MV{level}\r"
+      },
+      "feedback": {
+        "powerState": { "poll": "PW?\r", "on": "PWON", "off": "PWSTANDBY" }
+      }
+    },
+    "ip": {
+      "port": 23,
+      "type": "tcp",
+      "commands": {
+        "powerOn": "PWON\r",
+        "powerOff": "PWSTANDBY\r",
+        "volumeUp": "MVUP\r",
+        "volumeDown": "MVDOWN\r",
+        "mute": "MUON\r",
+        "muteOff": "MUOFF\r",
+        "volumeSet": "MV{level}\r"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": true,
+    "volumeControl": true,
+    "inputSelect": true,
+    "feedback": true,
+    "warmupMs": 3000,
+    "cooldownMs": 1000
+  }
+}

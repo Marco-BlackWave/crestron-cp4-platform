@@ -1,0 +1,18 @@
+{
+  "id": "rvse2-generic-ui-data-control",
+  "manufacturer": "RVSE2",
+  "model": "Generic UI Data Control",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "RVSE2_Generic_UI_Data_Control_v2.1b\u002B.usp"
+}

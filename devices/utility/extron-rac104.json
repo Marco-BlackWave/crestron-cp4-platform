@@ -1,0 +1,41 @@
+{
+  "id": "extron-rac104",
+  "manufacturer": "Extron",
+  "model": "Rac104",
+  "category": "utility",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "vol1Up": "1\u002BV",
+        "vol1Dw": "1-V",
+        "vol1MuteOn": "1*1Z",
+        "vol1MuteOff": "1*0Z",
+        "vol2Up": "3\u002BV",
+        "vol2Dw": "3-V",
+        "vol2MuteOn": "3*1Z",
+        "vol2MuteOff": "3*0Z",
+        "setVol1": "1*70V",
+        "setVol2": "3*70V"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "Vol1",
+      "signal": "rx$"
+    },
+    {
+      "pattern": "Vol3",
+      "signal": "rx$"
+    }
+  ],
+  "sourceModule": "Extron_Rac104_V1.1_AZ.usp"
+}

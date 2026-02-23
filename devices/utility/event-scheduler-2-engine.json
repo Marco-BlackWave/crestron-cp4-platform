@@ -1,0 +1,36 @@
+{
+  "id": "event-scheduler-2-engine",
+  "manufacturer": "Event",
+  "model": "Scheduler 2 engine",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "H",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "R",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "H",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "R",
+      "signal": "sTemp"
+    }
+  ],
+  "sourceModule": "Event Scheduler 2 engine v1.2.2_ALE.usp"
+}

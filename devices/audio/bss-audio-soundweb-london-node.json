@@ -1,0 +1,39 @@
+{
+  "id": "bss-audio-soundweb-london-node",
+  "manufacturer": "BSS",
+  "model": "Audio Soundweb London Node",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "cmd1": "%s\\x1B%s",
+        "cmd2": "%s%s",
+        "cmd3": "\\x02%s\\x1B%s\\x03",
+        "cmd4": "\\x02%s%s\\x03"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x03\\\\x03\\\\x03\\\\x03\\\\x03",
+      "signal": "modulesTx$"
+    },
+    {
+      "pattern": "\\\\x03",
+      "signal": "comRx$"
+    }
+  ],
+  "sourceModule": "BSS Audio Soundweb London Node.usp"
+}

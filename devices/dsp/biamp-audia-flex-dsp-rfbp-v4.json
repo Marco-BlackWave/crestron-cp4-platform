@@ -1,0 +1,72 @@
+{
+  "id": "biamp-audia-flex-dsp-rfbp-v4",
+  "manufacturer": "Biamp",
+  "model": "Audia Flex DSP RFBP v4",
+  "category": "dsp",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "pollXp": "GET %s %s %s %s\n",
+        "xpOn": "SET %s %s %s %s 1\n",
+        "xpOff": "SET %s %s %s %s 0\n",
+        "cmd4": "GET %s %s %s %s %s\n",
+        "cmd5": "SET %s %s %s %s %s 1\n",
+        "cmd6": "SET %s %s %s %s %s 0\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "dsp": {
+    "maxChannels": 8
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\xF7",
+      "signal": "FROM_SMPL$"
+    },
+    {
+      "pattern": "\\\\xF0",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "\\\\xF7",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "\\\\x80",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "\\\\x81",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "\\\\x82",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "\\\\x83",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "\\\\x84",
+      "signal": "Tempstring$"
+    },
+    {
+      "pattern": "\\\\x85",
+      "signal": "Tempstring$"
+    }
+  ],
+  "sourceModule": "Biamp Audia Flex DSP RFBP v4.usp"
+}

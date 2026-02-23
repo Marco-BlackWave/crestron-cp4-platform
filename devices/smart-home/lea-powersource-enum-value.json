@@ -1,0 +1,19 @@
+{
+  "id": "lea-powersource-enum-value",
+  "manufacturer": "LEA",
+  "model": "PowerSource Enum Value",
+  "category": "gateway",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "LEA PowerSource Enum Value 3.0.usp",
+  "externalLibrary": "LeaProfessional.Simpl 3.0"
+}

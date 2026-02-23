@@ -1,0 +1,31 @@
+{
+  "id": "apart-audiocontrol",
+  "manufacturer": "Apart",
+  "model": "Audiocontrol",
+  "category": "audio",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "mute": "SET VOLUME ZONE %s MUTE\r\n",
+        "muteOn": "SET VOLUME ZONE %s MUTE\r\n",
+        "muteOff": "SET VOLUME ZONE %s UNMUTE\r\n",
+        "mixOff": "SET MIXMAS ZONE %s MUTE\r\n",
+        "mixOn": "SET MIXMAS ZONE %s UNMUTE\r\n",
+        "musicOff": "SET MSCLVL ZONE %s MUTE\r\n",
+        "musicOn": "SET MSCLVL ZONE %s UNMUTE\r\n",
+        "cmd8": "SET VOLUME ZONE %s %01d\r\n",
+        "cmd9": "SET VOLUME ZONE %s -%01d\r\n",
+        "cmd10": "SET SELECT ZONE %s %01d\r\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Apart_Audiocontrol_v1.1_ALE.usp"
+}

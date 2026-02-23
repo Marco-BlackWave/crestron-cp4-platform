@@ -1,0 +1,59 @@
+{
+  "id": "panasonic-plasma-ramping-driver",
+  "manufacturer": "Panasonic",
+  "model": "Plasma Ramping Driver",
+  "category": "utility",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "volumeUp": "\\x02%s%02u\\x03",
+        "volumeDown": "\\x02%s%02u\\x03",
+        "brightnessUp": "\\x02%s%03d\\x03",
+        "brightnessDown": "\\x02%s%03d\\x03",
+        "sharpnessUp": "\\x02%s%03d\\x03",
+        "sharpnessDown": "\\x02%s%03d\\x03",
+        "pictureUp": "\\x02%s%03d\\x03",
+        "pictureDown": "\\x02%s%03d\\x03",
+        "tintUp": "\\x02%s%03d\\x03",
+        "tintDown": "\\x02%s%03d\\x03",
+        "colorUp": "\\x02%s%03d\\x03",
+        "colorDown": "\\x02%s%03d\\x03"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "-",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "-",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "-",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "-",
+      "signal": "sTemp"
+    },
+    {
+      "pattern": "-",
+      "signal": "sTemp"
+    }
+  ],
+  "sourceModule": "Panasonic Plasma Ramping Driver.usp"
+}

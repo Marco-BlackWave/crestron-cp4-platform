@@ -1,0 +1,23 @@
+{
+  "id": "barix-audio-controls-routing-v1-0",
+  "manufacturer": "Barix",
+  "model": "Audio Controls Routing v1 0",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": true,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Barix Audio Controls Routing v1_0.usp"
+}

@@ -1,0 +1,64 @@
+{
+  "id": "ab-test-substring",
+  "manufacturer": "AB",
+  "model": "TEST SUBSTRING",
+  "category": "utility",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "cmdOffOut1": "set outlet-power -o 1 -v 0 \r",
+        "cmdToggleOut1": "set outlet-power -o 1 -v 0 \r",
+        "cmdOffOut2": "set outlet-power -o 2 -v 0 \r",
+        "cmdToggleOut2": "set outlet-power -o 2 -v 0 \r",
+        "cmdOffOut3": "set outlet-power -o 3 -v 0 \r",
+        "cmdToggleOut3": "set outlet-power -o 3 -v 0 \r",
+        "cmdOffOut4": "set outlet-power -o 4 -v 0 \r",
+        "cmdToggleOut4": "set outlet-power -o 4 -v 0 \r",
+        "cmdOffOut5": "set outlet-power -o 5 -v 0 \r",
+        "cmdToggleOut5": "set outlet-power -o 5 -v 0 \r",
+        "cmdOffOut6": "set outlet-power -o 6 -v 0 \r",
+        "cmdToggleOut6": "set outlet-power -o 6 -v 0 \r",
+        "cmdOffOut7": "set outlet-power -o 7 -v 0 \r",
+        "cmdToggleOut7": "set outlet-power -o 7 -v 0 \r",
+        "cmdOffOut8": "set outlet-power -o 8 -v 0 \r",
+        "cmdToggleOut8": "set outlet-power -o 8 -v 0 \r",
+        "cmd17": "set outlet-power -o 1 -v 1 \r",
+        "cmd18": "set outlet-power -o 2 -v 1 \r",
+        "cmd19": "set outlet-power -o 3 -v 1 \r",
+        "cmd20": "set outlet-power -o 4 -v 1 \r",
+        "cmd21": "set outlet-power -o 5 -v 1 \r",
+        "cmd22": "set outlet-power -o 6 -v 1 \r",
+        "cmd23": "set outlet-power -o 7 -v 1 \r",
+        "cmd24": "set outlet-power -o 8 -v 1 \r",
+        "cmd25": "%d"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "status",
+      "signal": "in$"
+    },
+    {
+      "pattern": "power",
+      "signal": "in$"
+    },
+    {
+      "pattern": "current",
+      "signal": "in$"
+    },
+    {
+      "pattern": "current",
+      "signal": "in$"
+    }
+  ],
+  "sourceModule": "AB_TEST_SUBSTRING.usp"
+}

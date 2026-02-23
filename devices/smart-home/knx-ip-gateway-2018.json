@@ -1,0 +1,47 @@
+{
+  "id": "knx-ip-gateway-2018",
+  "manufacturer": "KNX",
+  "model": "IP Gateway (KNXnet/IP Tunnelling)",
+  "category": "gateway",
+  "protocols": {
+    "ip": {
+      "port": 3671,
+      "type": "udp",
+      "commands": {
+        "groupWriteSwitch": "KNX_WRITE {groupAddress} {value}",
+        "groupWriteDimmer": "KNX_WRITE {groupAddress} {value}",
+        "groupWriteBlind": "KNX_WRITE {groupAddress} {value}",
+        "groupWriteTemp": "KNX_WRITE_2BYTE {groupAddress} {value}",
+        "groupRead": "KNX_READ {groupAddress}",
+        "connect": "KNX_CONNECT",
+        "disconnect": "KNX_DISCONNECT",
+        "heartbeat": "KNX_CONNECTIONSTATE"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "gateway": {
+    "objects": [
+      { "id": "1/1/1", "name": "Light Switch", "type": "switch", "dataType": "DPT1.001" },
+      { "id": "1/1/2", "name": "Dimmer Value", "type": "dimmer", "dataType": "DPT5.001" },
+      { "id": "1/2/1", "name": "Blind Position", "type": "blind", "dataType": "DPT5.001" },
+      { "id": "2/1/1", "name": "Room Temperature", "type": "temperature", "dataType": "DPT9.001" },
+      { "id": "2/1/2", "name": "Setpoint", "type": "temperature", "dataType": "DPT9.001" },
+      { "id": "3/1/1", "name": "Scene Control", "type": "scene", "dataType": "DPT17.001" }
+    ]
+  },
+  "feedbackRules": [
+    { "pattern": "^KNX_IND (\\S+) (\\d+)$", "signal": "groupValueIndication" },
+    { "pattern": "^KNX_RESP (\\S+) (.+)$", "signal": "groupValueResponse" },
+    { "pattern": "^KNX_CONNECTED$", "signal": "connectionState", "value": true },
+    { "pattern": "^KNX_DISCONNECTED$", "signal": "connectionState", "value": false }
+  ],
+  "sourceModule": "KNX-IP Gateway 2018.usp"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "rga-sintony-paul",
+  "manufacturer": "RGA",
+  "model": "SINTONY PAUL",
+  "category": "audio",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "RGA SINTONY_PAUL.usp"
+}

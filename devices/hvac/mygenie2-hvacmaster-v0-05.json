@@ -1,0 +1,49 @@
+{
+  "id": "mygenie2-hvacmaster-v0-05",
+  "manufacturer": "MyGenie2",
+  "model": "HVACMaster(V0-05)",
+  "category": "hvac",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "raisefanspeedRagui": "%s\\xFE%s\\x55\\x0B\\xFF\\xFE%s\\x84\\xFF",
+        "lowerfanspeedRagui": "%s\\xFE%s\\x55\\x0B\\xFF\\xFE%s\\x84\\xFF",
+        "cmd3": "%s\\xFE%s\\x55\\x01\\xFF\\xFE%s\\x84\\xFF",
+        "cmd4": "%s\\xFE%s\\x55\\x02\\xFF\\xFE%s\\x84\\xFF",
+        "cmd5": "%s\\xFE%s\\x55\\x07\\xFF\\xFE%s\\x84\\xFF",
+        "cmd6": "%s\\xFE%s\\x55\\x04\\xFF\\xFE%s\\x84\\xFF",
+        "cmd7": "%s\\xFE%s\\x55\\x03\\xFF\\xFE%s\\x84\\xFF",
+        "cmd8": "%s\\xFE%s\\x04%s\\xFF\\xFE%s\\x84\\xFF",
+        "cmd9": "%s\\xFE%s\\x06%s\\xFF\\xFE%s\\x86\\xFF",
+        "cmd10": "%s\\xFE%s\\x07%s\\xFF\\xFE%s\\x89\\xFF"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\xFE",
+      "signal": "sTxQ"
+    },
+    {
+      "pattern": "\\\\xFF",
+      "signal": "sTxQ"
+    },
+    {
+      "pattern": "\\\\xFE",
+      "signal": "sPollTxQ"
+    },
+    {
+      "pattern": "\\\\xFF",
+      "signal": "sPollTxQ"
+    }
+  ],
+  "sourceModule": "MyGenie2_HVACMaster(V0-05).usp"
+}

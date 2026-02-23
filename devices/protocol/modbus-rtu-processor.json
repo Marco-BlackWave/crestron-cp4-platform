@@ -1,0 +1,27 @@
+{
+  "id": "modbus-rtu-processor",
+  "manufacturer": "Modbus",
+  "model": "RTU Processor",
+  "category": "protocol",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "cmd1": "IO Timeout %d",
+        "cmd2": "Error in Start Sign %d %d"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Modbus-RTU Processor v1.2_ALE.usp"
+}

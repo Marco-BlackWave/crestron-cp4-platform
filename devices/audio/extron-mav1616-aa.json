@@ -1,0 +1,25 @@
+{
+  "id": "extron-mav1616-aa",
+  "manufacturer": "Extron",
+  "model": "mav1616 AA",
+  "category": "audio",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "clearAll": "0*!",
+        "cmd2": "%u*%u$",
+        "cmd3": "%u*!",
+        "cmd4": "%u*%uV\r"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "extron_mav1616_AA_v1.0.usp"
+}

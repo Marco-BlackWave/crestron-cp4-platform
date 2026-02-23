@@ -1,0 +1,77 @@
+{
+  "id": "biamp-audiaflex-voip-dialer-processor",
+  "manufacturer": "Biamp",
+  "model": "AudiaFlex VOIP Dialer Processor",
+  "category": "dsp",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "onHook": "SET %s VOIPHOOKSTATE %s %u 1\n",
+        "offHook": "SET %s VOIPHOOKSTATE %s %u 0\n",
+        "dial": "%s%s#\n",
+        "redial": "%s%s#\n",
+        "keyboardgo": "%s%s\n",
+        "presets": "%s%s#\n",
+        "getNames": "GETD %s VOIPSDLABEL %s %u %u\n",
+        "answerIncomingCall": "ANS %s VOIPCALL %s %u\n",
+        "rejectIncomingCall": "END %s VOIPCALL %s %u\n",
+        "hold": "HOLD %s VOIPCALL %s %u\n",
+        "resume": "RESUME %s VOIPCALL %s %u\n",
+        "poll": "GETD %s VOIPHOOKSTATE %s %u\n",
+        "dialEntry": "DIAL %s VOIPSPEEDDIAL %s %u %u\n",
+        "cmd14": "%s=%s %u\r\n",
+        "cmd15": "GETD %s VOIPCIDUSER %s %u\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "dsp": {
+    "maxChannels": 8
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x20",
+      "signal": "Instance$"
+    },
+    {
+      "pattern": "hello",
+      "signal": "paramData"
+    },
+    {
+      "pattern": "-ERR",
+      "signal": "paramData"
+    },
+    {
+      "pattern": "\\\\x0D",
+      "signal": "paramData"
+    },
+    {
+      "pattern": "\\\\x22",
+      "signal": "paramData"
+    },
+    {
+      "pattern": "RING",
+      "signal": "paramData"
+    },
+    {
+      "pattern": "\\\\x22",
+      "signal": "sTempNumber"
+    },
+    {
+      "pattern": "\\\\x22",
+      "signal": "sTempName"
+    }
+  ],
+  "sourceModule": "BiAmp AudiaFlex VOIP Dialer Processor v7.5.1.usp"
+}

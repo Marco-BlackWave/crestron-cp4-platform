@@ -1,0 +1,26 @@
+{
+  "id": "nexia-router-v1-ale",
+  "manufacturer": "nexia",
+  "model": "router V1 ALE",
+  "category": "matrix",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "cmd1": "SET %01d RTRMUTEXP %01d %01d %01d 1\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "matrix": {
+    "inputs": 8,
+    "outputs": 8
+  },
+  "sourceModule": "nexia_router_V1_ALE.usp"
+}

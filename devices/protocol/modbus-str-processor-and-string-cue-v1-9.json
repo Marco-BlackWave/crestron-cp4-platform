@@ -1,0 +1,26 @@
+{
+  "id": "modbus-str-processor-and-string-cue-v1-9",
+  "manufacturer": "Modbus",
+  "model": "Str Processor and String Cue V1 9",
+  "category": "protocol",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "cmd1": "\\xFF\\x00\\xFF\\x00%s%s%s\\xFE\\x00\\xFE\\x00"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Modbus Str Processor and String Cue V1_9.usp"
+}

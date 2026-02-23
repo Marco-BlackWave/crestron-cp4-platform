@@ -1,0 +1,21 @@
+{
+  "id": "art-net-protocol",
+  "manufacturer": "art",
+  "model": "net protocol",
+  "category": "protocol",
+  "protocols": {
+    "ip": {
+      "port": 23,
+      "type": "udp"
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "art-net protocol.usp"
+}

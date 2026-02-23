@@ -1,0 +1,62 @@
+{
+  "id": "bacnet-thermostat",
+  "manufacturer": "Generic",
+  "model": "BACnet/IP Thermostat",
+  "category": "hvac",
+  "protocols": {
+    "ip": {
+      "port": 47808,
+      "type": "udp",
+      "commands": {
+        "readPresentValue": "ReadProperty:{deviceId}:{objectType}:{objectInstance}:PresentValue",
+        "writePresentValue": "WriteProperty:{deviceId}:{objectType}:{objectInstance}:PresentValue:{value}",
+        "readRoomTemperature": "ReadProperty:{deviceId}:AnalogInput:0:PresentValue",
+        "readSetpoint": "ReadProperty:{deviceId}:AnalogValue:0:PresentValue",
+        "writeSetpoint": "WriteProperty:{deviceId}:AnalogValue:0:PresentValue:{value}",
+        "readCoolingSetpoint": "ReadProperty:{deviceId}:AnalogValue:1:PresentValue",
+        "writeCoolingSetpoint": "WriteProperty:{deviceId}:AnalogValue:1:PresentValue:{value}",
+        "readHeatingSetpoint": "ReadProperty:{deviceId}:AnalogValue:2:PresentValue",
+        "writeHeatingSetpoint": "WriteProperty:{deviceId}:AnalogValue:2:PresentValue:{value}",
+        "readFanMode": "ReadProperty:{deviceId}:MultiStateValue:0:PresentValue",
+        "writeFanMode": "WriteProperty:{deviceId}:MultiStateValue:0:PresentValue:{value}",
+        "readSystemMode": "ReadProperty:{deviceId}:MultiStateValue:1:PresentValue",
+        "writeSystemMode": "WriteProperty:{deviceId}:MultiStateValue:1:PresentValue:{value}",
+        "readOccupancy": "ReadProperty:{deviceId}:BinaryInput:0:PresentValue",
+        "writeOccupancy": "WriteProperty:{deviceId}:BinaryValue:0:PresentValue:{value}",
+        "whoIs": "WhoIs",
+        "subscribeCov": "SubscribeCOV:{deviceId}:{objectType}:{objectInstance}",
+        "readObjectList": "ReadProperty:{deviceId}:Device:{deviceId}:ObjectList"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "gateway": {
+    "objects": [
+      { "id": "AI:0", "name": "Room Temperature", "type": "temperature", "dataType": "float" },
+      { "id": "AV:0", "name": "Setpoint", "type": "setpoint", "dataType": "float" },
+      { "id": "AV:1", "name": "Cooling Setpoint", "type": "setpoint", "dataType": "float" },
+      { "id": "AV:2", "name": "Heating Setpoint", "type": "setpoint", "dataType": "float" },
+      { "id": "MSV:0", "name": "Fan Mode", "type": "fan", "dataType": "enum" },
+      { "id": "MSV:1", "name": "System Mode", "type": "mode", "dataType": "enum" },
+      { "id": "BI:0", "name": "Occupancy", "type": "binary", "dataType": "1bit" }
+    ]
+  },
+  "feedbackRules": [
+    { "pattern": "^PresentValue:AnalogInput:0:([\\d.]+)$", "signal": "roomTemperature", "transform": "parseFloat" },
+    { "pattern": "^PresentValue:AnalogValue:0:([\\d.]+)$", "signal": "setpoint", "transform": "parseFloat" },
+    { "pattern": "^PresentValue:AnalogValue:1:([\\d.]+)$", "signal": "coolingSetpoint", "transform": "parseFloat" },
+    { "pattern": "^PresentValue:AnalogValue:2:([\\d.]+)$", "signal": "heatingSetpoint", "transform": "parseFloat" },
+    { "pattern": "^PresentValue:MultiStateValue:0:(\\d+)$", "signal": "fanMode", "transform": "parseInt" },
+    { "pattern": "^PresentValue:MultiStateValue:1:(\\d+)$", "signal": "systemMode", "transform": "parseInt" },
+    { "pattern": "^PresentValue:BinaryInput:0:(\\d)$", "signal": "occupancy" },
+    { "pattern": "^IAm:(\\d+):(.+)$", "signal": "deviceDiscovered" },
+    { "pattern": "^COVNotification:(.+):(.+):(.+)$", "signal": "covUpdate" }
+  ]
+}

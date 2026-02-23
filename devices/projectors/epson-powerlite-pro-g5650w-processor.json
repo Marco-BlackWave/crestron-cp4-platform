@@ -1,0 +1,61 @@
+{
+  "id": "epson-powerlite-pro-g5650w-processor",
+  "manufacturer": "Epson",
+  "model": "PowerLite Pro G5650W Processor",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x0D",
+      "signal": "FROM_DEVICE$"
+    },
+    {
+      "pattern": "=",
+      "signal": "FROM_DEVICE$"
+    },
+    {
+      "pattern": "CONTRAST",
+      "signal": "Temp$"
+    },
+    {
+      "pattern": "BRIGHT",
+      "signal": "Temp$"
+    },
+    {
+      "pattern": "DENSITY",
+      "signal": "Temp$"
+    },
+    {
+      "pattern": "TINT",
+      "signal": "Temp$"
+    },
+    {
+      "pattern": "SHARP",
+      "signal": "Temp$"
+    },
+    {
+      "pattern": "VOL",
+      "signal": "Temp$"
+    },
+    {
+      "pattern": "LAMP",
+      "signal": "Temp$"
+    }
+  ],
+  "sourceModule": "Epson PowerLite Pro G5650W Processor v1.0.usp"
+}

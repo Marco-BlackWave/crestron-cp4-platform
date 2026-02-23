@@ -1,0 +1,36 @@
+{
+  "id": "skaarhoj-blackmagic-atem-gw",
+  "manufacturer": "SKAARHOJ",
+  "model": "BlackMagic ATEM GW",
+  "category": "utility",
+  "protocols": {
+    "ip": {
+      "port": 23,
+      "type": "tcp",
+      "commands": {
+        "take": "Take\n\r",
+        "cmd2": "ProgramInputVideoSource:0=%s\n\r",
+        "cmd3": "PreviewInputVideoSource:0=%s\n\r"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "Prog",
+      "signal": "receive"
+    },
+    {
+      "pattern": "Prev",
+      "signal": "receive"
+    }
+  ],
+  "sourceModule": "SKAARHOJ_BlackMagic_ATEM_GW_V1.0_AZ.usp"
+}

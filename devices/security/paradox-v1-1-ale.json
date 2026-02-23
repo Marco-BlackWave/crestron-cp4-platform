@@ -1,0 +1,55 @@
+{
+  "id": "paradox-v1-1-ale",
+  "manufacturer": "Paradox",
+  "model": "V1.1 ALE",
+  "category": "security",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "ins01": "AA001A%s\r",
+        "dis01": "AD001%s\r",
+        "ins02": "AA002A%s\r",
+        "dis02": "AD002%s\r",
+        "ins03": "AA003A%s\r",
+        "dis03": "AD003%s\r",
+        "ins04": "AA004A%s\r",
+        "dis04": "AD004%s\r",
+        "ins05": "AA005A%s\r",
+        "dis05": "AD005%s\r",
+        "ins06": "AA006A%s\r",
+        "dis06": "AD006%s\r",
+        "ins07": "AA007A%s\r",
+        "dis07": "AD007%s\r",
+        "ins08": "AA008A%s\r",
+        "dis08": "AD008%s\r",
+        "insP01": "AA001S%s\r",
+        "insP02": "AA002S%s\r",
+        "insP03": "AA003S%s\r",
+        "insP04": "AA004S%s\r"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\u0026ok",
+      "signal": "rx$"
+    },
+    {
+      "pattern": "\u0026fail",
+      "signal": "rx$"
+    }
+  ],
+  "sourceModule": "Paradox_V1.1_ALE.usp"
+}

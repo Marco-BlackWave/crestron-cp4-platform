@@ -1,0 +1,18 @@
+{
+  "id": "serial-mark-no-auto",
+  "manufacturer": "Serial",
+  "model": "Mark-NO AUTO",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Serial-Mark-NO_AUTO.usp"
+}

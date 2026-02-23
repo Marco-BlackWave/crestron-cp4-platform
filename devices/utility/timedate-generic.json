@@ -1,0 +1,28 @@
+{
+  "id": "timedate-generic",
+  "manufacturer": "TimeDate",
+  "model": "Generic",
+  "category": "utility",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "cmd1": "%u-%02u-%02u",
+        "cmd2": "%u %s %u",
+        "cmd3": "%s %u, %u",
+        "cmd4": "%02u-%02u-%02u",
+        "cmd5": "%02u/%02u/%02u",
+        "cmd6": "%u %s",
+        "cmd7": "%02u%02u%04u%02u%02u000000"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "TimeDate.usp"
+}

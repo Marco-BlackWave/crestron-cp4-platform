@@ -1,0 +1,23 @@
+{
+  "id": "ciscoroomdeviceswrapper-v4-0",
+  "manufacturer": "CiscoRoomDevicesWrapper",
+  "model": "v4.0",
+  "category": "media",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": true,
+    "inputSelect": true,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "CiscoRoomDevicesWrapper v4.0.usp"
+}

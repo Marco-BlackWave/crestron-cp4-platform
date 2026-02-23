@@ -1,0 +1,18 @@
+{
+  "id": "analog-to-binary",
+  "manufacturer": "Analog",
+  "model": "To Binary",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": true,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Analog To Binary.usp"
+}

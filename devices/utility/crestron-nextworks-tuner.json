@@ -1,0 +1,90 @@
+{
+  "id": "crestron-nextworks-tuner",
+  "manufacturer": "Crestron",
+  "model": "Nextworks TUNER",
+  "category": "utility",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "cmd1": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:100%serrcode:%s!###",
+        "cmd2": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:90|subcmd_type:300%sfreq:%s|band:%s|textinfo:%s!###",
+        "cmd3": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:90|subcmd_type:310%schannel:%s!###",
+        "cmd4": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:90|subcmd_type:307%smode:%s!###",
+        "cmd5": "@@@ver:9.5|type:1|handshake:1|numseq:%s|count:0!###",
+        "cmd6": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:90|subcmd_type:300%sfreq:%s|band:%s!###",
+        "cmd7": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:0!###",
+        "cmd8": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:90|subcmd_type:316%schannel:%s!###",
+        "cmd9": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:1|cmd_type:90|subcmd_type:317%schannel:%s!###",
+        "cmd10": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:0|cmd_type:90|subcmd_type:305%s",
+        "cmd11": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:0|cmd_type:90|subcmd_type:306%s",
+        "cmd12": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:0|cmd_type:90|subcmd_type:318%s",
+        "cmd13": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:0|cmd_type:90|subcmd_type:319%s",
+        "cmd14": "@@@ver:9.5|numseq:%s|type:1|handshake:1|count:%s|cmd_type:90|subcmd_type:314%sid:1|name:Preset%s|band:1|freq:%s",
+        "cmd15": "!cmd_type:90|subcmd_type:314%sid:%s|name:Preset%s|band:1|freq:%s"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "freq:",
+      "signal": "s$"
+    },
+    {
+      "pattern": "band:1",
+      "signal": "s$"
+    },
+    {
+      "pattern": "band:0",
+      "signal": "s$"
+    },
+    {
+      "pattern": "channel:",
+      "signal": "s$"
+    },
+    {
+      "pattern": "mode:1",
+      "signal": "s$"
+    },
+    {
+      "pattern": "mode:0",
+      "signal": "s$"
+    },
+    {
+      "pattern": "channel:",
+      "signal": "s$"
+    },
+    {
+      "pattern": "channel:",
+      "signal": "s$"
+    },
+    {
+      "pattern": "!\\#\\#\\#",
+      "signal": "Rx_From_IO$"
+    },
+    {
+      "pattern": "!\\#\\#\\#",
+      "signal": "Rx_From_IO$"
+    },
+    {
+      "pattern": "!\\#\\#\\#",
+      "signal": "Rx_From_IO$"
+    },
+    {
+      "pattern": "subcmd_type:",
+      "signal": "app_tuner$"
+    },
+    {
+      "pattern": "numseq:",
+      "signal": "app_tuner$"
+    }
+  ],
+  "sourceModule": "Crestron_Nextworks_TUNER_v1.7.usp"
+}

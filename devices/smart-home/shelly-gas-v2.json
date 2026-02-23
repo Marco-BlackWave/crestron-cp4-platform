@@ -1,0 +1,23 @@
+{
+  "id": "shelly-gas-v2",
+  "manufacturer": "Shelly",
+  "model": "Gas v2",
+  "category": "gateway",
+  "protocols": {
+    "ip": {
+      "port": 80,
+      "type": "tcp",
+      "commands": {}
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Shelly Gas v2.usp",
+  "externalLibrary": "Shelly"
+}

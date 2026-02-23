@@ -1,0 +1,23 @@
+{
+  "id": "bticino-myhome-dimmer-full-address",
+  "manufacturer": "Bticino",
+  "model": "Myhome Dimmer Full-Address",
+  "category": "lighting",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Bticino-Myhome_Dimmer_Full-Address_v2.01.usp"
+}

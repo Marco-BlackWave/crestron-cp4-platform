@@ -1,0 +1,107 @@
+{
+  "id": "autonomic-mms-ip-processor",
+  "manufacturer": "Autonomic",
+  "model": "MMS IP Processor",
+  "category": "audio",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "contextbutton2": "Save Playlist",
+        "contextbutton3": "Search",
+        "saveplaylist": "Save Playlist",
+        "search": "Search"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "@",
+      "signal": "sName"
+    },
+    {
+      "pattern": "@",
+      "signal": "sName"
+    },
+    {
+      "pattern": "Total=",
+      "signal": "In$"
+    },
+    {
+      "pattern": "Start=",
+      "signal": "In$"
+    },
+    {
+      "pattern": "Alpha=",
+      "signal": "In$"
+    },
+    {
+      "pattern": "Caption=",
+      "signal": "In$"
+    },
+    {
+      "pattern": "The\\ ",
+      "signal": "In$"
+    },
+    {
+      "pattern": "A\\ ",
+      "signal": "In$"
+    },
+    {
+      "pattern": "\\\\n",
+      "signal": "In$"
+    },
+    {
+      "pattern": "\\\\n",
+      "signal": "In$"
+    },
+    {
+      "pattern": "\\ More",
+      "signal": "In$"
+    },
+    {
+      "pattern": "Filter",
+      "signal": "In$"
+    },
+    {
+      "pattern": "StateChanged\\ ",
+      "signal": "In$"
+    },
+    {
+      "pattern": "ReportState\\ ",
+      "signal": "In$"
+    },
+    {
+      "pattern": "Total",
+      "signal": "sToken"
+    },
+    {
+      "pattern": "=",
+      "signal": "value"
+    },
+    {
+      "pattern": "\\.",
+      "signal": "value"
+    },
+    {
+      "pattern": "Ok",
+      "signal": "datum"
+    },
+    {
+      "pattern": "\\\\n",
+      "signal": "IP_RX$"
+    }
+  ],
+  "sourceModule": "Autonomic MMS IP Processor v3.2.6.usp"
+}

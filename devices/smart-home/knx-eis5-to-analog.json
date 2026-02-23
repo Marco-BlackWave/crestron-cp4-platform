@@ -1,0 +1,23 @@
+{
+  "id": "knx-eis5-to-analog",
+  "manufacturer": "KNX",
+  "model": "EIS5 To Analog",
+  "category": "gateway",
+  "protocols": {
+    "ir": {
+      "commands": {
+        "cmd1": "-%s,%s",
+        "cmd2": "%s,%s"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": true,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Crestron CI-KNX EIS5_To_Analog v1.6.usp"
+}

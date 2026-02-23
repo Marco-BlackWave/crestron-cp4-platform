@@ -1,0 +1,42 @@
+{
+  "id": "bss-soundweb-london-matrix-mixer",
+  "manufacturer": "BSS",
+  "model": "Soundweb London Matrix Mixer",
+  "category": "matrix",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "outputMute": "\\x88\\x00\\x00\\x03%s%s%s\\x00\\x00\\x00\\x01\\x03\\x03\\x03\\x03\\x03",
+        "subscribe": "\\x89\\x00\\x00\\x03%s%s%s\\x00\\x00\\x00\\x00\\x03\\x03\\x03\\x03\\x03",
+        "unsubscribe": "\\x8A\\x00\\x00\\x03%s%s%s\\x00\\x00\\x00\\x00\\x03\\x03\\x03\\x03\\x03",
+        "cmd4": "\\x88\\x00\\x00\\x03%s%s%s\\x00\\x00\\x00\\x00\\x03\\x03\\x03\\x03\\x03",
+        "cmd5": "\\x8D\\x00\\x00\\x03%s%s%s%s\\x03\\x03\\x03\\x03\\x03",
+        "cmd6": "\\x8E\\x00\\x00\\x03%s%s%s\\x00\\x00\\x00\\x00\\x03\\x03\\x03\\x03\\x03",
+        "cmd7": "\\x8F\\x00\\x00\\x03%s%s%s\\x00\\x00\\x00\\x00\\x03\\x03\\x03\\x03\\x03"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "matrix": {
+    "inputs": 8,
+    "outputs": 8
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\\\x03\\\\x03\\\\x03\\\\x03\\\\x03",
+      "signal": "rx$"
+    }
+  ],
+  "sourceModule": "BSS Soundweb London Matrix Mixer.usp"
+}

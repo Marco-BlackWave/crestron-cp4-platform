@@ -1,0 +1,18 @@
+{
+  "id": "text-update",
+  "manufacturer": "Text",
+  "model": "Update",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Text Update v6.1\u002B.usp"
+}

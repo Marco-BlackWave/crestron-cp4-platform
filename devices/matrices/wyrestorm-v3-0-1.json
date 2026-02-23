@@ -1,0 +1,63 @@
+{
+  "id": "wyrestorm-v3",
+  "manufacturer": "WyreStorm",
+  "model": "HDMI Matrix Switcher",
+  "category": "matrix",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "route": "{input}B{output}.\r\n",
+        "routeAll": "{input}B0.\r\n",
+        "statusQuery": "STA\r\n",
+        "powerOn": "PON.\r\n",
+        "powerOff": "POF.\r\n",
+        "edidAuto": "EDA.\r\n",
+        "edidCopy": "EDC{output}.\r\n",
+        "lockFrontPanel": "FPL.\r\n",
+        "unlockFrontPanel": "FPU.\r\n",
+        "firmwareQuery": "VER.\r\n"
+      },
+      "feedback": {
+        "routeConfirm": { "pattern": "^(\\d+)B(\\d+)$" }
+      }
+    },
+    "ip": {
+      "port": 23,
+      "type": "tcp",
+      "commands": {
+        "route": "{input}B{output}.\r\n",
+        "routeAll": "{input}B0.\r\n",
+        "statusQuery": "STA\r\n",
+        "powerOn": "PON.\r\n",
+        "powerOff": "POF.\r\n"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": true,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "matrix": {
+    "inputs": 8,
+    "outputs": 8,
+    "routeCommandTemplate": "{input}B{output}.\r\n",
+    "feedbackPattern": "^(\\d+)B(\\d+)$"
+  },
+  "feedbackRules": [
+    { "pattern": "^(\\d+)B(\\d+)$", "signal": "routeConfirm" },
+    { "pattern": "^STA (.+)$", "signal": "statusReport" },
+    { "pattern": "^PON$", "signal": "power", "value": true },
+    { "pattern": "^POF$", "signal": "power", "value": false },
+    { "pattern": "^VER (.+)$", "signal": "firmwareVersion" }
+  ],
+  "sourceModule": "Wyrestorm_v3.0.1.usp",
+  "externalLibrary": "Wyrestorm_v3.0.1.H2X"
+}

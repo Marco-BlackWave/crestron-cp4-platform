@@ -1,0 +1,18 @@
+{
+  "id": "serial-buffer-az",
+  "manufacturer": "serial",
+  "model": "buffer AZ",
+  "category": "protocol",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "serial_buffer_AZ_V1.1.usp"
+}

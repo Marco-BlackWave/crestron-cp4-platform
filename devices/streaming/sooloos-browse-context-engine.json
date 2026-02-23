@@ -1,0 +1,70 @@
+{
+  "id": "sooloos-browse-context-engine",
+  "manufacturer": "Sooloos",
+  "model": "Browse Context Engine",
+  "category": "media",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "pagehome": "$LUX %s\n",
+        "pageback": "@LUB %s\n",
+        "selectline": "@LUR %s %u %u\n",
+        "cmd4": "@LUA %s %u %u %u %u\n",
+        "cmd5": "@LUN %s %u %u %u\n",
+        "cmd6": "$DPT %s\n",
+        "cmd7": "$TSK \\x22%s\\x22 %u 0\n",
+        "cmd8": "#QZONE%u\n",
+        "cmd9": "#ZONE%u\n",
+        "cmd10": "@LUI %s %u 1\n",
+        "cmd11": "%s\n",
+        "cmd12": "%s\\x22%s\\x22%s\n",
+        "cmd13": "%s \\x22~~~~\\x22\n",
+        "cmd14": "%s \\x22%s\\x22\n",
+        "cmd15": "%u:%02u of %u:%02u"
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\*DAS\\\\x0A",
+      "signal": "s"
+    },
+    {
+      "pattern": "\\*DAS\\\\x0A",
+      "signal": "s"
+    },
+    {
+      "pattern": "\\$\\$",
+      "signal": "s"
+    },
+    {
+      "pattern": "\\$\\$",
+      "signal": "s"
+    },
+    {
+      "pattern": "\\\\x0A",
+      "signal": "from_processor"
+    },
+    {
+      "pattern": "UNMUTED",
+      "signal": "tir"
+    },
+    {
+      "pattern": "\u003CZ\u003E",
+      "signal": "command"
+    }
+  ],
+  "sourceModule": "Sooloos Browse Context Engine v2.5.usp"
+}

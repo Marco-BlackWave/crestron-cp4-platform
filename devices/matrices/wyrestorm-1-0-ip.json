@@ -1,0 +1,22 @@
+{
+  "id": "wyrestorm-1-0-ip",
+  "manufacturer": "Wyrestorm",
+  "model": "1.0 IP",
+  "category": "matrix",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": false,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "matrix": {
+    "inputs": 8,
+    "outputs": 8
+  },
+  "sourceModule": "Wyrestorm 1.0 IP.usp"
+}

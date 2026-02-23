@@ -1,0 +1,28 @@
+{
+  "id": "2mg-output2",
+  "manufacturer": "2MG",
+  "model": "Output2",
+  "category": "shades",
+  "protocols": {
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": 1,
+      "commands": {
+        "presetSave": "SAVED %d",
+        "cmd2": "%d",
+        "cmd3": "%d     "
+      }
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "2MG_Output2.usp"
+}

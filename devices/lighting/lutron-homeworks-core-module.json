@@ -1,0 +1,243 @@
+{
+  "id": "lutron-homeworks-core-module",
+  "manufacturer": "Lutron",
+  "model": "Homeworks Core Module",
+  "category": "lighting",
+  "protocols": {
+    "ip": {
+      "port": 23,
+      "type": "tcp"
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": ",",
+      "signal": "Data$"
+    },
+    {
+      "pattern": ",",
+      "signal": "Data$"
+    },
+    {
+      "pattern": "VACATIONMODERECORDING",
+      "signal": "Data$"
+    },
+    {
+      "pattern": "VACATIONMODEPLAYING",
+      "signal": "Data$"
+    },
+    {
+      "pattern": "VACATIONMODEDISABLED",
+      "signal": "Data$"
+    },
+    {
+      "pattern": "SECURITYMODEBEGIN",
+      "signal": "Data$"
+    },
+    {
+      "pattern": "SECURITYMODEACTIVE",
+      "signal": "Data$"
+    },
+    {
+      "pattern": "SECURITYMODETERMINATED",
+      "signal": "Data$"
+    },
+    {
+      "pattern": "SCENESAVERMODEBEGIN",
+      "signal": "Data$"
+    },
+    {
+      "pattern": "SCENESAVERMODEISRUNNING",
+      "signal": "Data$"
+    },
+    {
+      "pattern": "SCENESAVERMODETERMINATED",
+      "signal": "Data$"
+    },
+    {
+      "pattern": "SCENESAVERMODEISSTOPPED",
+      "signal": "Data$"
+    },
+    {
+      "pattern": "NOTPARTOFDATABASE",
+      "signal": "Data$"
+    },
+    {
+      "pattern": "\\[",
+      "signal": "Data$"
+    },
+    {
+      "pattern": "]",
+      "signal": "Data$"
+    },
+    {
+      "pattern": "\\[",
+      "signal": "Data$"
+    },
+    {
+      "pattern": "SCENESAVERISDISABLED",
+      "signal": "Data$"
+    },
+    {
+      "pattern": "PROJECTNEEDSTOBELOCKEDTOBEGINSCENESAVER",
+      "signal": "Data$"
+    },
+    {
+      "pattern": "BUTTONDOESN\u0027THAVESCENESAVER",
+      "signal": "Data$"
+    },
+    {
+      "pattern": "PROCESSORNOWREBOOTING",
+      "signal": "Data$"
+    },
+    {
+      "pattern": "CLOSINGCONNECTIONDUETOLOGINFROM",
+      "signal": "Data$"
+    },
+    {
+      "pattern": "INOSMODE",
+      "signal": "Data$"
+    },
+    {
+      "pattern": "DIMMERLEVELMONITORINGENABLED",
+      "signal": "Data$"
+    },
+    {
+      "pattern": "DIMMERLEVELMONITORINGDISABLED",
+      "signal": "Data$"
+    },
+    {
+      "pattern": "KEYPADBUTTONMONITORINGENABLED",
+      "signal": "Data$"
+    },
+    {
+      "pattern": "KEYPADBUTTONMONITORINGDISABLED",
+      "signal": "Data$"
+    },
+    {
+      "pattern": "KEYPADLEDMONITORINGENABLED",
+      "signal": "Data$"
+    },
+    {
+      "pattern": "KEYPADLEDMONITORINGDISABLED",
+      "signal": "Data$"
+    },
+    {
+      "pattern": "GRAFIKEYEMONITORINGENABLED",
+      "signal": "Data$"
+    },
+    {
+      "pattern": "GRAFIKEYEMONITORINGDISABLED",
+      "signal": "Data$"
+    },
+    {
+      "pattern": "TIMEDEVENTMONITORINGENABLED",
+      "signal": "Data$"
+    },
+    {
+      "pattern": "TIMEDEVENTMONITORINGDISABLED",
+      "signal": "Data$"
+    },
+    {
+      "pattern": "KBSS",
+      "signal": "sLastCmd$"
+    },
+    {
+      "pattern": "KBSR",
+      "signal": "sLastCmd$"
+    },
+    {
+      "pattern": "\\\\r",
+      "signal": "FromModules$"
+    },
+    {
+      "pattern": "REGISTER",
+      "signal": "Cmd$"
+    },
+    {
+      "pattern": "LOG",
+      "signal": "Cmd$"
+    },
+    {
+      "pattern": ",",
+      "signal": "Cmd$"
+    },
+    {
+      "pattern": "LUTRON\\ SHOW\\ REGISTERED",
+      "signal": "Cmd$"
+    },
+    {
+      "pattern": "LUTRON\\ SET\\ DEBUG",
+      "signal": "Cmd$"
+    },
+    {
+      "pattern": "LUTRON\\ CLEAR\\ DEBUG",
+      "signal": "Cmd$"
+    },
+    {
+      "pattern": "LUTRON\\ SHOW\\ LOG",
+      "signal": "Cmd$"
+    },
+    {
+      "pattern": "LUTRON\\ CLEAR\\ LOG",
+      "signal": "Cmd$"
+    },
+    {
+      "pattern": "LUTRON\\ SEND\\ ",
+      "signal": "Cmd$"
+    },
+    {
+      "pattern": "LUTRON\\ ENABLE",
+      "signal": "Cmd$"
+    },
+    {
+      "pattern": "LUTRON\\ DISABLE",
+      "signal": "Cmd$"
+    },
+    {
+      "pattern": "LUTRON\\ SET\\ COMM\\ RS232",
+      "signal": "Cmd$"
+    },
+    {
+      "pattern": "LUTRON\\ SET\\ COMM\\ IP",
+      "signal": "Cmd$"
+    },
+    {
+      "pattern": "LUTRON\\ SET\\ COMM\\ MODULE",
+      "signal": "Cmd$"
+    },
+    {
+      "pattern": "LUTRON\\ SET\\ BAUD\\ ",
+      "signal": "Cmd$"
+    },
+    {
+      "pattern": "LUTRON\\ SET\\ HANDSHAKE\\ ",
+      "signal": "Cmd$"
+    },
+    {
+      "pattern": "LUTRON\\ SET\\ COMPORT\\ ",
+      "signal": "Cmd$"
+    },
+    {
+      "pattern": "LUTRON\\ HELP",
+      "signal": "Cmd$"
+    },
+    {
+      "pattern": "REGISTER",
+      "signal": "lsCmd$"
+    },
+    {
+      "pattern": "LOG",
+      "signal": "lsCmd$"
+    }
+  ],
+  "sourceModule": "Lutron Homeworks Core Module v2.0.usp"
+}

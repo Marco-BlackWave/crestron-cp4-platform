@@ -1,0 +1,21 @@
+{
+  "id": "nec-t",
+  "manufacturer": "NEC",
+  "model": "t",
+  "category": "protocol",
+  "protocols": {
+    "ip": {
+      "port": 23,
+      "type": "tcp"
+    }
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "sourceModule": "Socket_connect_V1.1_ALE.usp"
+}

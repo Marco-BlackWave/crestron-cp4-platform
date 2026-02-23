@@ -1,0 +1,44 @@
+{
+  "id": "write-and-read-variables-from-file",
+  "manufacturer": "Write",
+  "model": "and Read Variables From File",
+  "category": "utility",
+  "protocols": {
+    "ir": {}
+  },
+  "capabilities": {
+    "discretePower": false,
+    "volumeControl": false,
+    "inputSelect": false,
+    "feedback": true,
+    "warmupMs": 0,
+    "cooldownMs": 0
+  },
+  "feedbackRules": [
+    {
+      "pattern": "\\[0]\\ 12345",
+      "signal": "sData"
+    },
+    {
+      "pattern": "\\[100]\\ ",
+      "signal": "sData"
+    },
+    {
+      "pattern": "\\[0]\\ 12345",
+      "signal": "sData"
+    },
+    {
+      "pattern": "\\[100]\\ ",
+      "signal": "sData"
+    },
+    {
+      "pattern": "\\[0]\\ 12345",
+      "signal": "sData"
+    },
+    {
+      "pattern": "\\[100]\\ ",
+      "signal": "sData"
+    }
+  ],
+  "sourceModule": "Write and Read Variables From File v2.3_ALE.usp"
+}
