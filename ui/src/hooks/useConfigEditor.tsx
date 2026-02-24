@@ -1,8 +1,7 @@
 import { createContext, useContext, useState, useCallback, useEffect, useRef, type ReactNode } from "react";
-import type { SystemConfig, RoomConfig, SourceConfig, SceneConfig, DeviceRef, Subsystem, SourceType } from "../schema/systemConfigSchema";
+import type { SystemConfig, RoomConfig, SourceConfig, SceneConfig, DeviceRef, ProcessorConfig, Subsystem, SourceType, RoomType, ProcessorType } from "../schema/systemConfigSchema";
 import { systemConfigWriteSchema } from "../schema/systemConfigSchema";
 import { saveSystemConfig } from "../api/saveSystemConfig";
-import { useApiKey } from "./useApiKey";
 import { loadSystemConfig } from "../api/loadSystemConfig";
 
 function slugify(name: string): string {
@@ -14,8 +13,44 @@ function slugify(name: string): string {
     .replace(/^-|-$/g, "");
 }
 
-function recalcOffsets(rooms: RoomConfig[]): RoomConfig[] {
+function recalcOffsets(rooms: RoomConfig[], processorId?: string): RoomConfig[] {
+  if (processorId !== undefined) {
+    // Recalc only rooms for this processor
+    let offset = 0;
+    return rooms.map((room) => {
+      if (room.processorId === processorId) {
+        const updated = { ...room, joinOffset: offset };
+        offset += 100;
+        return updated;
+      }
+      return room;
+    });
+  }
   return rooms.map((room, i) => ({ ...room, joinOffset: i * 100 }));
+}
+
+/** Normalize legacy single-EISC configs to the multi-processor format */
+function normalizeConfig(config: SystemConfig): SystemConfig {
+  const system = { ...config.system };
+  let rooms = [...config.rooms];
+
+  // If no processors array, auto-create one from legacy fields
+  if (!system.processors || system.processors.length === 0) {
+    system.processors = [{
+      id: "main",
+      processor: (config.processor ?? "CP4") as ProcessorType,
+      eiscIpId: system.eiscIpId ?? "0x03",
+      eiscIpAddress: system.eiscIpAddress ?? "127.0.0.2",
+    }];
+  }
+
+  // Set processorId on rooms that don't have one
+  const defaultProcId = system.processors[0]?.id ?? "main";
+  rooms = rooms.map((room) =>
+    room.processorId ? room : { ...room, processorId: defaultProcId }
+  );
+
+  return { ...config, system, rooms };
 }
 
 function validateDraft(config: SystemConfig): string[] {
@@ -37,6 +72,12 @@ interface ConfigEditorState {
   loadStatus: "idle" | "loading" | "error" | "ready";
   loadError: string | null;
 
+  // Undo / Redo
+  undo: () => void;
+  redo: () => void;
+  canUndo: boolean;
+  canRedo: boolean;
+
   // Load / persist
   loadFromServer: () => Promise<void>;
   setDraft: (config: SystemConfig) => void;
@@ -47,8 +88,13 @@ interface ConfigEditorState {
   setProjectInfo: (projectId: string, systemName: string) => void;
   setEisc: (eiscIpId: string, eiscIpAddress: string) => void;
 
+  // Processors
+  addProcessor: (id: string, processor: ProcessorType, eiscIpId: string, eiscIpAddress: string) => void;
+  updateProcessor: (id: string, fields: Partial<Omit<ProcessorConfig, "id">>) => void;
+  removeProcessor: (id: string) => void;
+
   // Rooms
-  addRoom: (name: string, subsystems?: Subsystem[]) => void;
+  addRoom: (name: string, subsystems?: Subsystem[], roomType?: RoomType, processorId?: string) => void;
   updateRoom: (id: string, updates: Partial<Omit<RoomConfig, "id" | "joinOffset">>) => void;
   removeRoom: (id: string) => void;
   reorderRoom: (id: string, direction: "up" | "down") => void;
@@ -57,6 +103,8 @@ interface ConfigEditorState {
   // Devices
   assignDevice: (roomId: string, role: string, device: DeviceRef) => void;
   removeDevice: (roomId: string, role: string) => void;
+  getDevicesForRole: (roomId: string, baseRole: string) => { role: string; device: DeviceRef }[];
+  getNextRoleKey: (roomId: string, baseRole: string) => string;
 
   // Sources
   addSource: (name: string, type: SourceType) => void;
@@ -78,8 +126,9 @@ export function useConfigEditor(): ConfigEditorState {
   return ctx;
 }
 
+const MAX_HISTORY = 50;
+
 export function ConfigEditorProvider({ children }: { children: ReactNode }) {
-  const { apiKey } = useApiKey();
   const [draft, setDraftRaw] = useState<SystemConfig | null>(null);
   const [serverSnapshot, setServerSnapshot] = useState<string>("");
   const [isDirty, setIsDirty] = useState(false);
@@ -88,6 +137,12 @@ export function ConfigEditorProvider({ children }: { children: ReactNode }) {
   const [saveError, setSaveError] = useState<string | null>(null);
   const [loadStatus, setLoadStatus] = useState<"idle" | "loading" | "error" | "ready">("idle");
   const [loadError, setLoadError] = useState<string | null>(null);
+
+  // Undo / Redo — past/future stacks
+  const pastRef = useRef<SystemConfig[]>([]);
+  const futureRef = useRef<SystemConfig[]>([]);
+  const [canUndo, setCanUndo] = useState(false);
+  const [canRedo, setCanRedo] = useState(false);
 
   // Auto-save draft to localStorage
   const draftRef = useRef(draft);
@@ -103,22 +158,70 @@ export function ConfigEditorProvider({ children }: { children: ReactNode }) {
     return () => clearInterval(timer);
   }, [draft]);
 
+  const syncHistoryFlags = useCallback(() => {
+    setCanUndo(pastRef.current.length > 0);
+    setCanRedo(futureRef.current.length > 0);
+  }, []);
+
+  const clearHistory = useCallback(() => {
+    pastRef.current = [];
+    futureRef.current = [];
+    setCanUndo(false);
+    setCanRedo(false);
+  }, []);
+
   const updateDraft = useCallback((updater: (prev: SystemConfig) => SystemConfig) => {
     setDraftRaw((prev) => {
       if (!prev) return prev;
+      // Push current state onto past stack, clear future (new branch)
+      pastRef.current = [...pastRef.current, prev].slice(-MAX_HISTORY);
+      futureRef.current = [];
+
       const next = updater(prev);
       setIsDirty(JSON.stringify(next) !== serverSnapshot);
       setValidationErrors(validateDraft(next));
       setSaveStatus("idle");
       return next;
     });
-  }, [serverSnapshot]);
+    syncHistoryFlags();
+  }, [serverSnapshot, syncHistoryFlags]);
+
+  const undo = useCallback(() => {
+    if (pastRef.current.length === 0) return;
+    setDraftRaw((current) => {
+      if (!current) return current;
+      const prev = pastRef.current[pastRef.current.length - 1];
+      pastRef.current = pastRef.current.slice(0, -1);
+      futureRef.current = [current, ...futureRef.current];
+      setIsDirty(JSON.stringify(prev) !== serverSnapshot);
+      setValidationErrors(validateDraft(prev));
+      setSaveStatus("idle");
+      return prev;
+    });
+    syncHistoryFlags();
+  }, [serverSnapshot, syncHistoryFlags]);
+
+  const redo = useCallback(() => {
+    if (futureRef.current.length === 0) return;
+    setDraftRaw((current) => {
+      if (!current) return current;
+      const next = futureRef.current[0];
+      futureRef.current = futureRef.current.slice(1);
+      pastRef.current = [...pastRef.current, current].slice(-MAX_HISTORY);
+      setIsDirty(JSON.stringify(next) !== serverSnapshot);
+      setValidationErrors(validateDraft(next));
+      setSaveStatus("idle");
+      return next;
+    });
+    syncHistoryFlags();
+  }, [serverSnapshot, syncHistoryFlags]);
 
   const loadFromServer = useCallback(async () => {
     setLoadStatus("loading");
     setLoadError(null);
     try {
-      const data = await loadSystemConfig(apiKey);
+      const raw = await loadSystemConfig();
+      const data = normalizeConfig(raw);
       const json = JSON.stringify(data);
       setServerSnapshot(json);
       setDraftRaw(data);
@@ -126,25 +229,28 @@ export function ConfigEditorProvider({ children }: { children: ReactNode }) {
       setValidationErrors(validateDraft(data));
       setLoadStatus("ready");
       localStorage.removeItem("configEditor-draft");
+      clearHistory();
     } catch (e: unknown) {
       setLoadError(e instanceof Error ? e.message : "Failed to load config");
       setLoadStatus("error");
     }
-  }, [apiKey]);
+  }, [clearHistory]);
 
   const setDraft = useCallback((config: SystemConfig) => {
-    setDraftRaw(config);
+    const normalized = normalizeConfig(config);
+    setDraftRaw(normalized);
     setIsDirty(true);
-    setValidationErrors(validateDraft(config));
+    setValidationErrors(validateDraft(normalized));
     setSaveStatus("idle");
-  }, []);
+    clearHistory();
+  }, [clearHistory]);
 
   const save = useCallback(async () => {
     if (!draft) return;
     setSaveStatus("saving");
     setSaveError(null);
     try {
-      await saveSystemConfig(apiKey, draft);
+      await saveSystemConfig(draft);
       const json = JSON.stringify(draft);
       setServerSnapshot(json);
       setIsDirty(false);
@@ -154,13 +260,14 @@ export function ConfigEditorProvider({ children }: { children: ReactNode }) {
       setSaveError(e instanceof Error ? e.message : "Failed to save");
       setSaveStatus("error");
     }
-  }, [apiKey, draft]);
+  }, [draft]);
 
   const discard = useCallback(async () => {
     await loadFromServer();
     setSaveStatus("idle");
     setSaveError(null);
-  }, [loadFromServer]);
+    clearHistory();
+  }, [loadFromServer, clearHistory]);
 
   // Project info
   const setProjectInfo = useCallback((projectId: string, systemName: string) => {
@@ -178,18 +285,55 @@ export function ConfigEditorProvider({ children }: { children: ReactNode }) {
     }));
   }, [updateDraft]);
 
+  // Processors
+  const addProcessor = useCallback((id: string, processor: ProcessorType, eiscIpId: string, eiscIpAddress: string) => {
+    updateDraft((prev) => ({
+      ...prev,
+      system: {
+        ...prev.system,
+        processors: [...(prev.system.processors ?? []), { id, processor, eiscIpId, eiscIpAddress }],
+      },
+    }));
+  }, [updateDraft]);
+
+  const updateProcessor = useCallback((id: string, fields: Partial<Omit<ProcessorConfig, "id">>) => {
+    updateDraft((prev) => ({
+      ...prev,
+      system: {
+        ...prev.system,
+        processors: (prev.system.processors ?? []).map((p) =>
+          p.id === id ? { ...p, ...fields } : p
+        ),
+      },
+    }));
+  }, [updateDraft]);
+
+  const removeProcessor = useCallback((id: string) => {
+    updateDraft((prev) => ({
+      ...prev,
+      system: {
+        ...prev.system,
+        processors: (prev.system.processors ?? []).filter((p) => p.id !== id),
+      },
+    }));
+  }, [updateDraft]);
+
   // Rooms
-  const addRoom = useCallback((name: string, subsystems: Subsystem[] = ["av", "lighting"]) => {
+  const addRoom = useCallback((name: string, subsystems: Subsystem[] = ["av", "lighting"], roomType?: RoomType, processorId?: string) => {
     updateDraft((prev) => {
       const id = slugify(name);
+      const effectiveSubsystems = roomType === "technical" ? [] as Subsystem[] : subsystems;
+      const procId = processorId ?? prev.system.processors?.[0]?.id ?? "main";
       const rooms = recalcOffsets([...prev.rooms, {
         id,
         name,
         joinOffset: 0,
-        subsystems,
+        processorId: procId,
+        roomType: roomType ?? "standard",
+        subsystems: effectiveSubsystems,
         devices: {} as RoomConfig["devices"],
         sources: [] as string[],
-      }]);
+      }], procId);
       return { ...prev, rooms };
     });
   }, [updateDraft]);
@@ -269,6 +413,29 @@ export function ConfigEditorProvider({ children }: { children: ReactNode }) {
     }));
   }, [updateDraft]);
 
+  /** Get all devices matching a base role (e.g. "display" matches "display", "display-2") */
+  const getDevicesForRole = useCallback((roomId: string, baseRole: string) => {
+    if (!draft) return [];
+    const room = draft.rooms.find((r) => r.id === roomId);
+    if (!room) return [];
+    return Object.entries(room.devices)
+      .filter(([role]) => {
+        if (role === baseRole) return true;
+        const match = role.match(/^(.+)-(\d+)$/);
+        return match ? match[1] === baseRole : false;
+      })
+      .map(([role, device]) => ({ role, device }));
+  }, [draft]);
+
+  /** Get the next available numbered role key (e.g. "display-2", "display-3") */
+  const getNextRoleKey = useCallback((roomId: string, baseRole: string) => {
+    const existing = getDevicesForRole(roomId, baseRole);
+    if (existing.length === 0) return baseRole;
+    let n = 2;
+    while (existing.some(({ role }) => role === `${baseRole}-${n}`)) n++;
+    return `${baseRole}-${n}`;
+  }, [getDevicesForRole]);
+
   // Sources
   const addSource = useCallback((name: string, type: SourceType) => {
     updateDraft((prev) => ({
@@ -335,10 +502,12 @@ export function ConfigEditorProvider({ children }: { children: ReactNode }) {
 
   const state: ConfigEditorState = {
     draft, isDirty, validationErrors, saveStatus, saveError, loadStatus, loadError,
+    undo, redo, canUndo, canRedo,
     loadFromServer, setDraft, save, discard,
     setProjectInfo, setEisc,
+    addProcessor, updateProcessor, removeProcessor,
     addRoom, updateRoom, removeRoom, reorderRoom, toggleSubsystem,
-    assignDevice, removeDevice,
+    assignDevice, removeDevice, getDevicesForRole, getNextRoleKey,
     addSource, updateSource, removeSource, toggleRoomSource,
     addScene, updateScene, removeScene,
   };

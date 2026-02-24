@@ -2,7 +2,6 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { loadJoinList } from "../api/loadJoinList";
 import { saveJoinList } from "../api/saveJoinList";
 import { JoinListConfig } from "../schema/joinListSchema";
-import { useApiKey } from "../hooks/useApiKey";
 
 type LoadState =
   | { status: "idle" }
@@ -13,7 +12,6 @@ type LoadState =
 const typeOrder = ["digital", "analog", "serial"] as const;
 
 export default function JoinListEditorPage() {
-  const { apiKey } = useApiKey();
   const [state, setState] = useState<LoadState>({ status: "idle" });
   const [rawJson, setRawJson] = useState("");
   const [saveStatus, setSaveStatus] = useState<"idle" | "saving" | "saved" | "error">("idle");
@@ -24,12 +22,8 @@ export default function JoinListEditorPage() {
   }, []);
 
   const fetchJoinList = useCallback(() => {
-    if (!apiKey.trim()) {
-      setState({ status: "idle" });
-      return;
-    }
     setState({ status: "loading" });
-    loadJoinList("/api", apiKey)
+    loadJoinList("/api")
       .then((data) => {
         setState({ status: "ready", data });
         setRawJson(JSON.stringify(data, null, 2));
@@ -37,7 +31,7 @@ export default function JoinListEditorPage() {
       .catch((error) => {
         setState({ status: "error", message: error.message });
       });
-  }, [apiKey]);
+  }, []);
 
   useEffect(() => {
     fetchJoinList();
@@ -152,7 +146,7 @@ export default function JoinListEditorPage() {
                   setSaveMessage("");
                   try {
                     const parsed = JSON.parse(rawJson);
-                    await saveJoinList("/api", apiKey, parsed);
+                    await saveJoinList("/api", parsed);
                     setSaveStatus("saved");
                     setSaveMessage("Saved successfully.");
                     fetchJoinList();

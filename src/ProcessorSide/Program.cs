@@ -33,9 +33,15 @@ namespace CrestronCP4.ProcessorSide
         // Platform mode
         private SystemEngine _systemEngine;
 
-        // Shared
+        // Shared — single EISC for legacy mode
         private ThreeSeriesTcpIpEthernetIntersystemCommunications _eisc;
         private TriListJoinEndpoint _joinEndpoint;
+
+        // Multi-processor — dictionary of EISCs keyed by processor ID
+        private readonly Dictionary<string, ThreeSeriesTcpIpEthernetIntersystemCommunications> _eiscs
+            = new Dictionary<string, ThreeSeriesTcpIpEthernetIntersystemCommunications>(StringComparer.OrdinalIgnoreCase);
+        private readonly Dictionary<string, TriListJoinEndpoint> _joinEndpoints
+            = new Dictionary<string, TriListJoinEndpoint>(StringComparer.OrdinalIgnoreCase);
 
         public ProcessorProgram()
             : base()
@@ -87,33 +93,57 @@ namespace CrestronCP4.ProcessorSide
             {
                 var config = loadResult.Config;
 
-                // Parse EISC settings from config
-                uint eiscIpId = DefaultEiscIpId;
-                string eiscIpAddress = config.System?.EiscIpAddress ?? DefaultEiscIpAddress;
-                if (config.System?.EiscIpId != null)
+                // Resolve processor list: multi-processor array or legacy single EISC
+                var processorList = ResolveProcessorList(config);
+
+                // Register an EISC per processor
+                foreach (var proc in processorList)
                 {
-                    try
+                    uint eiscIpId = DefaultEiscIpId;
+                    string eiscIpAddress = proc.EiscIpAddress ?? DefaultEiscIpAddress;
+
+                    if (proc.EiscIpId != null)
                     {
-                        eiscIpId = Convert.ToUInt32(config.System.EiscIpId, 16);
+                        try
+                        {
+                            eiscIpId = Convert.ToUInt32(proc.EiscIpId, 16);
+                        }
+                        catch
+                        {
+                            _logger.Warn("Invalid EISC IP ID for processor " + proc.Id + ", using default.");
+                        }
                     }
-                    catch
+
+                    var eisc = new ThreeSeriesTcpIpEthernetIntersystemCommunications(
+                        eiscIpId, eiscIpAddress, this);
+
+                    var regResult = eisc.Register();
+                    if (regResult != eDeviceRegistrationUnRegistrationResponse.Success)
                     {
-                        _logger.Warn("Invalid EISC IP ID, using default.");
+                        _logger.Error("EISC registration failed for processor " + proc.Id + ": " + regResult);
+                        continue;
                     }
+
+                    var endpoint = new TriListJoinEndpoint(eisc);
+                    _eiscs[proc.Id] = eisc;
+                    _joinEndpoints[proc.Id] = endpoint;
+
+                    _logger.Info("EISC registered for processor " + proc.Id + " (IP-ID " + proc.EiscIpId + " @ " + eiscIpAddress + ")");
                 }
 
-                // Register EISC
-                _eisc = new ThreeSeriesTcpIpEthernetIntersystemCommunications(
-                    eiscIpId, eiscIpAddress, this);
-
-                var regResult = _eisc.Register();
-                if (regResult != eDeviceRegistrationUnRegistrationResponse.Success)
+                if (_eiscs.Count == 0)
                 {
-                    EnterSafeMode("EISC registration failed: " + regResult, new List<string>());
+                    EnterSafeMode("No EISCs registered successfully.", new List<string>());
                     return;
                 }
 
-                _joinEndpoint = new TriListJoinEndpoint(_eisc);
+                // Keep legacy single references for backward compat
+                foreach (var kvp in _eiscs)
+                {
+                    _eisc = kvp.Value;
+                    _joinEndpoint = _joinEndpoints[kvp.Key];
+                    break;
+                }
 
                 // Create platform components
                 var signals = new SignalRegistry();
@@ -127,25 +157,31 @@ namespace CrestronCP4.ProcessorSide
                 _systemEngine = new SystemEngine(config, deviceManager, subsystemFactory, signals, _logger);
                 _systemEngine.Initialize();
 
-                // Bind joins on EISC online
-                _eisc.OnlineStatusChange += (device, args) =>
+                // Bind joins on each EISC online event
+                foreach (var kvp in _eiscs)
                 {
-                    if (args.DeviceOnLine)
+                    var processorId = kvp.Key;
+                    var eisc = kvp.Value;
+
+                    eisc.OnlineStatusChange += (device, args) =>
                     {
-                        _logger.Info("EISC online. Binding room and system joins.");
-                        BindPlatformJoins(config);
-                    }
-                    else
-                    {
-                        _logger.Warn("EISC offline.");
-                    }
-                };
+                        if (args.DeviceOnLine)
+                        {
+                            _logger.Info("EISC online for processor " + processorId + ". Binding joins.");
+                            BindPlatformJoins(config, processorId);
+                        }
+                        else
+                        {
+                            _logger.Warn("EISC offline for processor " + processorId + ".");
+                        }
+                    };
+                }
 
                 // Export join contract for graphics project
                 ExportJoinContract(config);
 
                 _systemEngine.Start();
-                _logger.Info("Platform mode startup complete.");
+                _logger.Info("Platform mode startup complete with " + _eiscs.Count + " processor(s).");
             }
             catch (Exception ex)
             {
@@ -153,24 +189,67 @@ namespace CrestronCP4.ProcessorSide
             }
         }
 
-        private void BindPlatformJoins(SystemConfig config)
+        /// <summary>
+        /// Resolves the list of processors from config. If multi-processor array
+        /// is present, uses that. Otherwise creates a single processor from legacy fields.
+        /// </summary>
+        private static List<ProcessorConfig> ResolveProcessorList(SystemConfig config)
+        {
+            if (config.System?.Processors != null && config.System.Processors.Count > 0)
+            {
+                return config.System.Processors;
+            }
+
+            // Legacy single-EISC fallback
+            return new List<ProcessorConfig>
+            {
+                new ProcessorConfig
+                {
+                    Id = "main",
+                    Processor = config.Processor ?? "CP4",
+                    EiscIpId = config.System?.EiscIpId,
+                    EiscIpAddress = config.System?.EiscIpAddress
+                }
+            };
+        }
+
+        private void BindPlatformJoins(SystemConfig config, string processorId)
         {
             try
             {
-                var roomBinder = new RoomJoinBinder(_joinEndpoint, _systemEngine.Signals, _systemEngine, _logger);
-                foreach (var room in config.Rooms)
+                if (!_joinEndpoints.ContainsKey(processorId))
                 {
-                    roomBinder.BindRoom(room);
+                    _logger.Error("No endpoint found for processor " + processorId);
+                    return;
                 }
 
-                var systemBinder = new SystemJoinBinder(_joinEndpoint, _systemEngine.Signals, _systemEngine, _logger);
-                systemBinder.Bind();
+                var endpoint = _joinEndpoints[processorId];
 
-                _logger.Info("All joins bound.");
+                // Bind rooms assigned to this processor
+                var roomBinder = new RoomJoinBinder(endpoint, _systemEngine.Signals, _systemEngine, _logger);
+                foreach (var room in config.Rooms)
+                {
+                    var roomProcId = room.ProcessorId ?? "main";
+                    if (string.Equals(roomProcId, processorId, StringComparison.OrdinalIgnoreCase))
+                    {
+                        roomBinder.BindRoom(room);
+                    }
+                }
+
+                // Bind system-level joins on the first/primary processor
+                var processorList = ResolveProcessorList(config);
+                if (processorList.Count > 0
+                    && string.Equals(processorList[0].Id, processorId, StringComparison.OrdinalIgnoreCase))
+                {
+                    var systemBinder = new SystemJoinBinder(endpoint, _systemEngine.Signals, _systemEngine, _logger);
+                    systemBinder.Bind();
+                }
+
+                _logger.Info("Joins bound for processor " + processorId + ".");
             }
             catch (Exception ex)
             {
-                _logger.Error("Join binding error: " + ex.Message);
+                _logger.Error("Join binding error for processor " + processorId + ": " + ex.Message);
             }
         }
 
@@ -274,7 +353,27 @@ namespace CrestronCP4.ProcessorSide
                 _core?.Stop();
                 _systemEngine?.Dispose();
 
-                if (_eisc != null && _eisc.Registered)
+                // Unregister all multi-processor EISCs
+                foreach (var kvp in _eiscs)
+                {
+                    try
+                    {
+                        if (kvp.Value != null && kvp.Value.Registered)
+                        {
+                            kvp.Value.UnRegister();
+                            _logger?.Info("EISC unregistered for processor " + kvp.Key);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger?.Error("Error unregistering EISC for processor " + kvp.Key + ": " + ex.Message);
+                    }
+                }
+                _eiscs.Clear();
+                _joinEndpoints.Clear();
+
+                // Legacy single EISC fallback (for legacy mode)
+                if (_eiscs.Count == 0 && _eisc != null && _eisc.Registered)
                 {
                     _eisc.UnRegister();
                 }

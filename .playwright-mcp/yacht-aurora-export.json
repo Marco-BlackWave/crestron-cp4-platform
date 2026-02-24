@@ -1,0 +1,1270 @@
+{
+  "systemConfig": {
+    "schemaVersion": "1.0",
+    "projectId": "yacht-aurora",
+    "processor": "CP4",
+    "system": {
+      "name": "Yacht Aurora",
+      "eiscIpId": "0x03",
+      "eiscIpAddress": "127.0.0.2"
+    },
+    "rooms": [
+      {
+        "id": "main-salon",
+        "name": "Main Salon",
+        "joinOffset": 0,
+        "subsystems": [
+          "av",
+          "lighting",
+          "shades"
+        ],
+        "devices": {
+          "display": {
+            "profileId": "samsung-qn-series",
+            "protocol": "ir",
+            "port": "IR-1"
+          }
+        },
+        "sources": []
+      },
+      {
+        "id": "master-cabin",
+        "name": "Master Cabin",
+        "joinOffset": 100,
+        "subsystems": [
+          "av",
+          "lighting",
+          "hvac"
+        ],
+        "devices": {},
+        "sources": []
+      },
+      {
+        "id": "sky-lounge",
+        "name": "Sky Lounge",
+        "joinOffset": 200,
+        "subsystems": [
+          "av",
+          "lighting"
+        ],
+        "devices": {},
+        "sources": []
+      }
+    ],
+    "sources": [
+      {
+        "id": "apple-tv",
+        "name": "Apple TV",
+        "type": "streaming"
+      },
+      {
+        "id": "cable-box",
+        "name": "Cable Box",
+        "type": "settop"
+      },
+      {
+        "id": "sonos",
+        "name": "Sonos",
+        "type": "audio"
+      }
+    ],
+    "scenes": [
+      {
+        "id": "movie-night",
+        "name": "Movie Night",
+        "rooms": [
+          "all"
+        ],
+        "actions": {
+          "lighting": 20,
+          "shades": "closed",
+          "source": "apple-tv",
+          "av": "on"
+        }
+      },
+      {
+        "id": "good-night",
+        "name": "Good Night",
+        "rooms": [
+          "all"
+        ],
+        "actions": {
+          "lighting": 0,
+          "shades": "closed",
+          "av": "off"
+        }
+      }
+    ]
+  },
+  "joinContract": {
+    "version": "1.0",
+    "generatedAt": "2026-02-24T10:06:20.3011874Z",
+    "rooms": [
+      {
+        "id": "main-salon",
+        "name": "Main Salon",
+        "joins": {
+          "digital": [
+            {
+              "join": 1,
+              "name": "Power Toggle",
+              "direction": "input"
+            },
+            {
+              "join": 2,
+              "name": "Power Feedback",
+              "direction": "output"
+            },
+            {
+              "join": 3,
+              "name": "Source Select 1",
+              "direction": "input"
+            },
+            {
+              "join": 4,
+              "name": "Source Select 2",
+              "direction": "input"
+            },
+            {
+              "join": 5,
+              "name": "Source Select 3",
+              "direction": "input"
+            },
+            {
+              "join": 6,
+              "name": "Source Select 4",
+              "direction": "input"
+            },
+            {
+              "join": 7,
+              "name": "Source Select 5",
+              "direction": "input"
+            },
+            {
+              "join": 8,
+              "name": "Source Feedback 1",
+              "direction": "output"
+            },
+            {
+              "join": 9,
+              "name": "Source Feedback 2",
+              "direction": "output"
+            },
+            {
+              "join": 10,
+              "name": "Source Feedback 3",
+              "direction": "output"
+            },
+            {
+              "join": 11,
+              "name": "Source Feedback 4",
+              "direction": "output"
+            },
+            {
+              "join": 12,
+              "name": "Source Feedback 5",
+              "direction": "output"
+            },
+            {
+              "join": 13,
+              "name": "Volume Up",
+              "direction": "input"
+            },
+            {
+              "join": 14,
+              "name": "Volume Down",
+              "direction": "input"
+            },
+            {
+              "join": 15,
+              "name": "Mute Toggle",
+              "direction": "input"
+            },
+            {
+              "join": 16,
+              "name": "Mute Feedback",
+              "direction": "output"
+            },
+            {
+              "join": 21,
+              "name": "Lighting Scene 1",
+              "direction": "input"
+            },
+            {
+              "join": 22,
+              "name": "Lighting Scene 2",
+              "direction": "input"
+            },
+            {
+              "join": 23,
+              "name": "Lighting Scene 3",
+              "direction": "input"
+            },
+            {
+              "join": 24,
+              "name": "Lighting Scene 4",
+              "direction": "input"
+            },
+            {
+              "join": 25,
+              "name": "Lighting Scene FB 1",
+              "direction": "output"
+            },
+            {
+              "join": 26,
+              "name": "Lighting Scene FB 2",
+              "direction": "output"
+            },
+            {
+              "join": 27,
+              "name": "Lighting Scene FB 3",
+              "direction": "output"
+            },
+            {
+              "join": 28,
+              "name": "Lighting Scene FB 4",
+              "direction": "output"
+            },
+            {
+              "join": 31,
+              "name": "Shade Open",
+              "direction": "input"
+            },
+            {
+              "join": 32,
+              "name": "Shade Close",
+              "direction": "input"
+            },
+            {
+              "join": 33,
+              "name": "Shade Stop",
+              "direction": "input"
+            },
+            {
+              "join": 41,
+              "name": "HVAC Mode Toggle",
+              "direction": "input"
+            },
+            {
+              "join": 42,
+              "name": "HVAC On/Off",
+              "direction": "input"
+            },
+            {
+              "join": 51,
+              "name": "Security Arm Away",
+              "direction": "input"
+            },
+            {
+              "join": 52,
+              "name": "Security Arm Stay",
+              "direction": "input"
+            },
+            {
+              "join": 53,
+              "name": "Security Arm Night",
+              "direction": "input"
+            },
+            {
+              "join": 54,
+              "name": "Security Disarm",
+              "direction": "input"
+            },
+            {
+              "join": 55,
+              "name": "Security Panic",
+              "direction": "input"
+            },
+            {
+              "join": 56,
+              "name": "Security Status Request",
+              "direction": "input"
+            },
+            {
+              "join": 57,
+              "name": "Security Armed Away FB",
+              "direction": "output"
+            },
+            {
+              "join": 58,
+              "name": "Security Armed Stay FB",
+              "direction": "output"
+            },
+            {
+              "join": 59,
+              "name": "Security Armed Night FB",
+              "direction": "output"
+            },
+            {
+              "join": 60,
+              "name": "Security Disarmed FB",
+              "direction": "output"
+            },
+            {
+              "join": 61,
+              "name": "Security Alarm Active FB",
+              "direction": "output"
+            },
+            {
+              "join": 62,
+              "name": "Security Trouble FB",
+              "direction": "output"
+            },
+            {
+              "join": 63,
+              "name": "Security Ready FB",
+              "direction": "output"
+            },
+            {
+              "join": 64,
+              "name": "Security Zone 1 FB",
+              "direction": "output"
+            },
+            {
+              "join": 65,
+              "name": "Security Zone 2 FB",
+              "direction": "output"
+            },
+            {
+              "join": 66,
+              "name": "Security Zone 3 FB",
+              "direction": "output"
+            },
+            {
+              "join": 67,
+              "name": "Security Zone 4 FB",
+              "direction": "output"
+            },
+            {
+              "join": 68,
+              "name": "Security Zone 5 FB",
+              "direction": "output"
+            },
+            {
+              "join": 69,
+              "name": "Security Zone 6 FB",
+              "direction": "output"
+            },
+            {
+              "join": 70,
+              "name": "Security Zone 7 FB",
+              "direction": "output"
+            },
+            {
+              "join": 71,
+              "name": "Security Zone 8 FB",
+              "direction": "output"
+            }
+          ],
+          "analog": [
+            {
+              "join": 1,
+              "name": "Volume Level FB",
+              "direction": "output"
+            },
+            {
+              "join": 2,
+              "name": "Volume Set",
+              "direction": "input"
+            },
+            {
+              "join": 3,
+              "name": "Lighting Level FB",
+              "direction": "output"
+            },
+            {
+              "join": 4,
+              "name": "Lighting Set",
+              "direction": "input"
+            },
+            {
+              "join": 5,
+              "name": "Shade Position FB",
+              "direction": "output"
+            },
+            {
+              "join": 6,
+              "name": "Shade Set",
+              "direction": "input"
+            },
+            {
+              "join": 7,
+              "name": "Temp Current",
+              "direction": "output"
+            },
+            {
+              "join": 8,
+              "name": "Temp Setpoint Set",
+              "direction": "input"
+            },
+            {
+              "join": 9,
+              "name": "Temp Setpoint FB",
+              "direction": "output"
+            }
+          ],
+          "serial": [
+            {
+              "join": 1,
+              "name": "Source Name",
+              "direction": "output"
+            },
+            {
+              "join": 2,
+              "name": "Room Name",
+              "direction": "output"
+            },
+            {
+              "join": 3,
+              "name": "Scene Name",
+              "direction": "output"
+            },
+            {
+              "join": 4,
+              "name": "HVAC Mode",
+              "direction": "output"
+            },
+            {
+              "join": 5,
+              "name": "Status Text",
+              "direction": "output"
+            },
+            {
+              "join": 6,
+              "name": "Security Arm Mode",
+              "direction": "output"
+            },
+            {
+              "join": 7,
+              "name": "Security Status",
+              "direction": "output"
+            },
+            {
+              "join": 8,
+              "name": "Security Disarm Code",
+              "direction": "input"
+            }
+          ]
+        }
+      },
+      {
+        "id": "master-cabin",
+        "name": "Master Cabin",
+        "joins": {
+          "digital": [
+            {
+              "join": 101,
+              "name": "Power Toggle",
+              "direction": "input"
+            },
+            {
+              "join": 102,
+              "name": "Power Feedback",
+              "direction": "output"
+            },
+            {
+              "join": 103,
+              "name": "Source Select 1",
+              "direction": "input"
+            },
+            {
+              "join": 104,
+              "name": "Source Select 2",
+              "direction": "input"
+            },
+            {
+              "join": 105,
+              "name": "Source Select 3",
+              "direction": "input"
+            },
+            {
+              "join": 106,
+              "name": "Source Select 4",
+              "direction": "input"
+            },
+            {
+              "join": 107,
+              "name": "Source Select 5",
+              "direction": "input"
+            },
+            {
+              "join": 108,
+              "name": "Source Feedback 1",
+              "direction": "output"
+            },
+            {
+              "join": 109,
+              "name": "Source Feedback 2",
+              "direction": "output"
+            },
+            {
+              "join": 110,
+              "name": "Source Feedback 3",
+              "direction": "output"
+            },
+            {
+              "join": 111,
+              "name": "Source Feedback 4",
+              "direction": "output"
+            },
+            {
+              "join": 112,
+              "name": "Source Feedback 5",
+              "direction": "output"
+            },
+            {
+              "join": 113,
+              "name": "Volume Up",
+              "direction": "input"
+            },
+            {
+              "join": 114,
+              "name": "Volume Down",
+              "direction": "input"
+            },
+            {
+              "join": 115,
+              "name": "Mute Toggle",
+              "direction": "input"
+            },
+            {
+              "join": 116,
+              "name": "Mute Feedback",
+              "direction": "output"
+            },
+            {
+              "join": 121,
+              "name": "Lighting Scene 1",
+              "direction": "input"
+            },
+            {
+              "join": 122,
+              "name": "Lighting Scene 2",
+              "direction": "input"
+            },
+            {
+              "join": 123,
+              "name": "Lighting Scene 3",
+              "direction": "input"
+            },
+            {
+              "join": 124,
+              "name": "Lighting Scene 4",
+              "direction": "input"
+            },
+            {
+              "join": 125,
+              "name": "Lighting Scene FB 1",
+              "direction": "output"
+            },
+            {
+              "join": 126,
+              "name": "Lighting Scene FB 2",
+              "direction": "output"
+            },
+            {
+              "join": 127,
+              "name": "Lighting Scene FB 3",
+              "direction": "output"
+            },
+            {
+              "join": 128,
+              "name": "Lighting Scene FB 4",
+              "direction": "output"
+            },
+            {
+              "join": 131,
+              "name": "Shade Open",
+              "direction": "input"
+            },
+            {
+              "join": 132,
+              "name": "Shade Close",
+              "direction": "input"
+            },
+            {
+              "join": 133,
+              "name": "Shade Stop",
+              "direction": "input"
+            },
+            {
+              "join": 141,
+              "name": "HVAC Mode Toggle",
+              "direction": "input"
+            },
+            {
+              "join": 142,
+              "name": "HVAC On/Off",
+              "direction": "input"
+            },
+            {
+              "join": 151,
+              "name": "Security Arm Away",
+              "direction": "input"
+            },
+            {
+              "join": 152,
+              "name": "Security Arm Stay",
+              "direction": "input"
+            },
+            {
+              "join": 153,
+              "name": "Security Arm Night",
+              "direction": "input"
+            },
+            {
+              "join": 154,
+              "name": "Security Disarm",
+              "direction": "input"
+            },
+            {
+              "join": 155,
+              "name": "Security Panic",
+              "direction": "input"
+            },
+            {
+              "join": 156,
+              "name": "Security Status Request",
+              "direction": "input"
+            },
+            {
+              "join": 157,
+              "name": "Security Armed Away FB",
+              "direction": "output"
+            },
+            {
+              "join": 158,
+              "name": "Security Armed Stay FB",
+              "direction": "output"
+            },
+            {
+              "join": 159,
+              "name": "Security Armed Night FB",
+              "direction": "output"
+            },
+            {
+              "join": 160,
+              "name": "Security Disarmed FB",
+              "direction": "output"
+            },
+            {
+              "join": 161,
+              "name": "Security Alarm Active FB",
+              "direction": "output"
+            },
+            {
+              "join": 162,
+              "name": "Security Trouble FB",
+              "direction": "output"
+            },
+            {
+              "join": 163,
+              "name": "Security Ready FB",
+              "direction": "output"
+            },
+            {
+              "join": 164,
+              "name": "Security Zone 1 FB",
+              "direction": "output"
+            },
+            {
+              "join": 165,
+              "name": "Security Zone 2 FB",
+              "direction": "output"
+            },
+            {
+              "join": 166,
+              "name": "Security Zone 3 FB",
+              "direction": "output"
+            },
+            {
+              "join": 167,
+              "name": "Security Zone 4 FB",
+              "direction": "output"
+            },
+            {
+              "join": 168,
+              "name": "Security Zone 5 FB",
+              "direction": "output"
+            },
+            {
+              "join": 169,
+              "name": "Security Zone 6 FB",
+              "direction": "output"
+            },
+            {
+              "join": 170,
+              "name": "Security Zone 7 FB",
+              "direction": "output"
+            },
+            {
+              "join": 171,
+              "name": "Security Zone 8 FB",
+              "direction": "output"
+            }
+          ],
+          "analog": [
+            {
+              "join": 101,
+              "name": "Volume Level FB",
+              "direction": "output"
+            },
+            {
+              "join": 102,
+              "name": "Volume Set",
+              "direction": "input"
+            },
+            {
+              "join": 103,
+              "name": "Lighting Level FB",
+              "direction": "output"
+            },
+            {
+              "join": 104,
+              "name": "Lighting Set",
+              "direction": "input"
+            },
+            {
+              "join": 105,
+              "name": "Shade Position FB",
+              "direction": "output"
+            },
+            {
+              "join": 106,
+              "name": "Shade Set",
+              "direction": "input"
+            },
+            {
+              "join": 107,
+              "name": "Temp Current",
+              "direction": "output"
+            },
+            {
+              "join": 108,
+              "name": "Temp Setpoint Set",
+              "direction": "input"
+            },
+            {
+              "join": 109,
+              "name": "Temp Setpoint FB",
+              "direction": "output"
+            }
+          ],
+          "serial": [
+            {
+              "join": 101,
+              "name": "Source Name",
+              "direction": "output"
+            },
+            {
+              "join": 102,
+              "name": "Room Name",
+              "direction": "output"
+            },
+            {
+              "join": 103,
+              "name": "Scene Name",
+              "direction": "output"
+            },
+            {
+              "join": 104,
+              "name": "HVAC Mode",
+              "direction": "output"
+            },
+            {
+              "join": 105,
+              "name": "Status Text",
+              "direction": "output"
+            },
+            {
+              "join": 106,
+              "name": "Security Arm Mode",
+              "direction": "output"
+            },
+            {
+              "join": 107,
+              "name": "Security Status",
+              "direction": "output"
+            },
+            {
+              "join": 108,
+              "name": "Security Disarm Code",
+              "direction": "input"
+            }
+          ]
+        }
+      },
+      {
+        "id": "sky-lounge",
+        "name": "Sky Lounge",
+        "joins": {
+          "digital": [
+            {
+              "join": 201,
+              "name": "Power Toggle",
+              "direction": "input"
+            },
+            {
+              "join": 202,
+              "name": "Power Feedback",
+              "direction": "output"
+            },
+            {
+              "join": 203,
+              "name": "Source Select 1",
+              "direction": "input"
+            },
+            {
+              "join": 204,
+              "name": "Source Select 2",
+              "direction": "input"
+            },
+            {
+              "join": 205,
+              "name": "Source Select 3",
+              "direction": "input"
+            },
+            {
+              "join": 206,
+              "name": "Source Select 4",
+              "direction": "input"
+            },
+            {
+              "join": 207,
+              "name": "Source Select 5",
+              "direction": "input"
+            },
+            {
+              "join": 208,
+              "name": "Source Feedback 1",
+              "direction": "output"
+            },
+            {
+              "join": 209,
+              "name": "Source Feedback 2",
+              "direction": "output"
+            },
+            {
+              "join": 210,
+              "name": "Source Feedback 3",
+              "direction": "output"
+            },
+            {
+              "join": 211,
+              "name": "Source Feedback 4",
+              "direction": "output"
+            },
+            {
+              "join": 212,
+              "name": "Source Feedback 5",
+              "direction": "output"
+            },
+            {
+              "join": 213,
+              "name": "Volume Up",
+              "direction": "input"
+            },
+            {
+              "join": 214,
+              "name": "Volume Down",
+              "direction": "input"
+            },
+            {
+              "join": 215,
+              "name": "Mute Toggle",
+              "direction": "input"
+            },
+            {
+              "join": 216,
+              "name": "Mute Feedback",
+              "direction": "output"
+            },
+            {
+              "join": 221,
+              "name": "Lighting Scene 1",
+              "direction": "input"
+            },
+            {
+              "join": 222,
+              "name": "Lighting Scene 2",
+              "direction": "input"
+            },
+            {
+              "join": 223,
+              "name": "Lighting Scene 3",
+              "direction": "input"
+            },
+            {
+              "join": 224,
+              "name": "Lighting Scene 4",
+              "direction": "input"
+            },
+            {
+              "join": 225,
+              "name": "Lighting Scene FB 1",
+              "direction": "output"
+            },
+            {
+              "join": 226,
+              "name": "Lighting Scene FB 2",
+              "direction": "output"
+            },
+            {
+              "join": 227,
+              "name": "Lighting Scene FB 3",
+              "direction": "output"
+            },
+            {
+              "join": 228,
+              "name": "Lighting Scene FB 4",
+              "direction": "output"
+            },
+            {
+              "join": 231,
+              "name": "Shade Open",
+              "direction": "input"
+            },
+            {
+              "join": 232,
+              "name": "Shade Close",
+              "direction": "input"
+            },
+            {
+              "join": 233,
+              "name": "Shade Stop",
+              "direction": "input"
+            },
+            {
+              "join": 241,
+              "name": "HVAC Mode Toggle",
+              "direction": "input"
+            },
+            {
+              "join": 242,
+              "name": "HVAC On/Off",
+              "direction": "input"
+            },
+            {
+              "join": 251,
+              "name": "Security Arm Away",
+              "direction": "input"
+            },
+            {
+              "join": 252,
+              "name": "Security Arm Stay",
+              "direction": "input"
+            },
+            {
+              "join": 253,
+              "name": "Security Arm Night",
+              "direction": "input"
+            },
+            {
+              "join": 254,
+              "name": "Security Disarm",
+              "direction": "input"
+            },
+            {
+              "join": 255,
+              "name": "Security Panic",
+              "direction": "input"
+            },
+            {
+              "join": 256,
+              "name": "Security Status Request",
+              "direction": "input"
+            },
+            {
+              "join": 257,
+              "name": "Security Armed Away FB",
+              "direction": "output"
+            },
+            {
+              "join": 258,
+              "name": "Security Armed Stay FB",
+              "direction": "output"
+            },
+            {
+              "join": 259,
+              "name": "Security Armed Night FB",
+              "direction": "output"
+            },
+            {
+              "join": 260,
+              "name": "Security Disarmed FB",
+              "direction": "output"
+            },
+            {
+              "join": 261,
+              "name": "Security Alarm Active FB",
+              "direction": "output"
+            },
+            {
+              "join": 262,
+              "name": "Security Trouble FB",
+              "direction": "output"
+            },
+            {
+              "join": 263,
+              "name": "Security Ready FB",
+              "direction": "output"
+            },
+            {
+              "join": 264,
+              "name": "Security Zone 1 FB",
+              "direction": "output"
+            },
+            {
+              "join": 265,
+              "name": "Security Zone 2 FB",
+              "direction": "output"
+            },
+            {
+              "join": 266,
+              "name": "Security Zone 3 FB",
+              "direction": "output"
+            },
+            {
+              "join": 267,
+              "name": "Security Zone 4 FB",
+              "direction": "output"
+            },
+            {
+              "join": 268,
+              "name": "Security Zone 5 FB",
+              "direction": "output"
+            },
+            {
+              "join": 269,
+              "name": "Security Zone 6 FB",
+              "direction": "output"
+            },
+            {
+              "join": 270,
+              "name": "Security Zone 7 FB",
+              "direction": "output"
+            },
+            {
+              "join": 271,
+              "name": "Security Zone 8 FB",
+              "direction": "output"
+            }
+          ],
+          "analog": [
+            {
+              "join": 201,
+              "name": "Volume Level FB",
+              "direction": "output"
+            },
+            {
+              "join": 202,
+              "name": "Volume Set",
+              "direction": "input"
+            },
+            {
+              "join": 203,
+              "name": "Lighting Level FB",
+              "direction": "output"
+            },
+            {
+              "join": 204,
+              "name": "Lighting Set",
+              "direction": "input"
+            },
+            {
+              "join": 205,
+              "name": "Shade Position FB",
+              "direction": "output"
+            },
+            {
+              "join": 206,
+              "name": "Shade Set",
+              "direction": "input"
+            },
+            {
+              "join": 207,
+              "name": "Temp Current",
+              "direction": "output"
+            },
+            {
+              "join": 208,
+              "name": "Temp Setpoint Set",
+              "direction": "input"
+            },
+            {
+              "join": 209,
+              "name": "Temp Setpoint FB",
+              "direction": "output"
+            }
+          ],
+          "serial": [
+            {
+              "join": 201,
+              "name": "Source Name",
+              "direction": "output"
+            },
+            {
+              "join": 202,
+              "name": "Room Name",
+              "direction": "output"
+            },
+            {
+              "join": 203,
+              "name": "Scene Name",
+              "direction": "output"
+            },
+            {
+              "join": 204,
+              "name": "HVAC Mode",
+              "direction": "output"
+            },
+            {
+              "join": 205,
+              "name": "Status Text",
+              "direction": "output"
+            },
+            {
+              "join": 206,
+              "name": "Security Arm Mode",
+              "direction": "output"
+            },
+            {
+              "join": 207,
+              "name": "Security Status",
+              "direction": "output"
+            },
+            {
+              "join": 208,
+              "name": "Security Disarm Code",
+              "direction": "input"
+            }
+          ]
+        }
+      }
+    ],
+    "system": {
+      "digital": [
+        {
+          "join": 900,
+          "name": "All Off",
+          "direction": "input"
+        },
+        {
+          "join": 901,
+          "name": "Scene Trigger 1",
+          "direction": "input"
+        },
+        {
+          "join": 911,
+          "name": "Scene Feedback 1",
+          "direction": "output"
+        },
+        {
+          "join": 902,
+          "name": "Scene Trigger 2",
+          "direction": "input"
+        },
+        {
+          "join": 912,
+          "name": "Scene Feedback 2",
+          "direction": "output"
+        },
+        {
+          "join": 903,
+          "name": "Scene Trigger 3",
+          "direction": "input"
+        },
+        {
+          "join": 913,
+          "name": "Scene Feedback 3",
+          "direction": "output"
+        },
+        {
+          "join": 904,
+          "name": "Scene Trigger 4",
+          "direction": "input"
+        },
+        {
+          "join": 914,
+          "name": "Scene Feedback 4",
+          "direction": "output"
+        },
+        {
+          "join": 905,
+          "name": "Scene Trigger 5",
+          "direction": "input"
+        },
+        {
+          "join": 915,
+          "name": "Scene Feedback 5",
+          "direction": "output"
+        },
+        {
+          "join": 906,
+          "name": "Scene Trigger 6",
+          "direction": "input"
+        },
+        {
+          "join": 916,
+          "name": "Scene Feedback 6",
+          "direction": "output"
+        },
+        {
+          "join": 907,
+          "name": "Scene Trigger 7",
+          "direction": "input"
+        },
+        {
+          "join": 917,
+          "name": "Scene Feedback 7",
+          "direction": "output"
+        },
+        {
+          "join": 908,
+          "name": "Scene Trigger 8",
+          "direction": "input"
+        },
+        {
+          "join": 918,
+          "name": "Scene Feedback 8",
+          "direction": "output"
+        },
+        {
+          "join": 909,
+          "name": "Scene Trigger 9",
+          "direction": "input"
+        },
+        {
+          "join": 919,
+          "name": "Scene Feedback 9",
+          "direction": "output"
+        },
+        {
+          "join": 910,
+          "name": "Scene Trigger 10",
+          "direction": "input"
+        },
+        {
+          "join": 920,
+          "name": "Scene Feedback 10",
+          "direction": "output"
+        }
+      ],
+      "serial": [
+        {
+          "join": 900,
+          "name": "System Status",
+          "direction": "output"
+        },
+        {
+          "join": 901,
+          "name": "Active Scene Name",
+          "direction": "output"
+        }
+      ]
+    }
+  },
+  "deviceProfileIds": [
+    "samsung-qn-series"
+  ]
+}

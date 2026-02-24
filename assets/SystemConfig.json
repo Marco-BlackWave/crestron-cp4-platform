@@ -1,58 +1,48 @@
 {
   "schemaVersion": "1.0",
-  "projectId": "residence-001",
+  "projectId": "test-villa",
   "processor": "CP4",
   "system": {
-    "name": "Main Residence",
+    "name": "Test Villa",
     "eiscIpId": "0x03",
-    "eiscIpAddress": "127.0.0.2"
+    "eiscIpAddress": "127.0.0.2",
+    "processors": [
+      {
+        "id": "main",
+        "processor": "CP4",
+        "eiscIpId": "0x03",
+        "eiscIpAddress": "127.0.0.2"
+      }
+    ]
   },
   "rooms": [
     {
-      "id": "master",
-      "name": "Master Suite",
-      "joinOffset": 0,
-      "subsystems": ["av", "lighting", "shades", "hvac"],
-      "devices": {
-        "display": { "profileId": "samsung-qn-series", "protocol": "ir", "port": "IR-1" },
-        "audio": { "profileId": "denon-avr", "protocol": "serial", "port": "COM-1" },
-        "lighting": { "profileId": "lutron-radiora3", "protocol": "ip", "address": "192.168.1.50" },
-        "shades": { "profileId": "lutron-sivoia", "protocol": "ip", "address": "192.168.1.50" },
-        "hvac": { "profileId": "bacnet-thermostat", "protocol": "bacnet", "objectId": 1 }
-      },
-      "sources": ["appletv", "cable"]
-    },
-    {
-      "id": "living",
+      "id": "living-room",
       "name": "Living Room",
-      "joinOffset": 100,
-      "subsystems": ["av", "lighting", "shades"],
-      "devices": {
-        "display": { "profileId": "lg-webos", "protocol": "ip", "address": "192.168.1.60" },
-        "audio": { "profileId": "sonos-connect", "protocol": "ip", "address": "192.168.1.70" },
-        "lighting": { "profileId": "lutron-radiora3", "protocol": "ip", "address": "192.168.1.50" },
-        "shades": { "profileId": "somfy-rts", "protocol": "ir", "port": "IR-2" }
-      },
-      "sources": ["appletv", "cable", "sonos"]
-    }
-  ],
-  "sources": [
-    { "id": "appletv", "name": "Apple TV", "type": "streaming" },
-    { "id": "cable", "name": "Cable Box", "type": "settop" },
-    { "id": "sonos", "name": "Sonos", "type": "audio" }
-  ],
-  "scenes": [
-    {
-      "id": "movie",
-      "name": "Movie Night",
-      "rooms": ["living"],
-      "actions": { "lighting": 20, "shades": "closed", "source": "appletv" }
+      "joinOffset": 0,
+      "processorId": "main",
+      "roomType": "standard",
+      "subsystems": [
+        "av",
+        "lighting"
+      ],
+      "devices": {},
+      "sources": []
     },
     {
-      "id": "goodnight",
-      "name": "Good Night",
-      "rooms": ["all"],
-      "actions": { "lighting": 0, "shades": "closed", "av": "off" }
+      "id": "master-bedroom",
+      "name": "Master Bedroom",
+      "joinOffset": 100,
+      "processorId": "main",
+      "roomType": "standard",
+      "subsystems": [
+        "av",
+        "lighting"
+      ],
+      "devices": {},
+      "sources": []
     }
-  ]
+  ],
+  "sources": [],
+  "scenes": []
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using CrestronCP4.ProcessorSide.Configuration;
 using CrestronCP4.ProcessorSide.Core.Diagnostics;
 using CrestronCP4.ProcessorSide.Core.Signals;
@@ -12,7 +13,7 @@ namespace CrestronCP4.ProcessorSide.Subsystems
     /// </summary>
     public sealed class HvacSubsystem : ISubsystem
     {
-        private readonly IHvacDriver _hvac;
+        private readonly List<IHvacDriver> _drivers;
         private readonly ILogger _logger;
         private SignalRegistry _signals;
         private string _roomId;
@@ -21,13 +22,19 @@ namespace CrestronCP4.ProcessorSide.Subsystems
         private int _modeIndex;
         private bool _disposed;
 
+        private IHvacDriver _hvac => _drivers.Count > 0 ? _drivers[0] : null;
+
         public string Id => "hvac";
 
-        public HvacSubsystem(IHvacDriver hvac, ILogger logger)
+        public HvacSubsystem(List<IHvacDriver> drivers, ILogger logger)
         {
-            _hvac = hvac;
+            _drivers = drivers ?? new List<IHvacDriver>();
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
+
+        public HvacSubsystem(IHvacDriver hvac, ILogger logger)
+            : this(hvac != null ? new List<IHvacDriver> { hvac } : new List<IHvacDriver>(), logger)
+        { }
 
         public void Initialize(SignalRegistry signals, string roomId, int joinOffset)
         {
@@ -35,11 +42,14 @@ namespace CrestronCP4.ProcessorSide.Subsystems
             _roomId = roomId;
             _joinOffset = joinOffset;
 
+            foreach (var drv in _drivers)
+            {
+                drv.FeedbackReceived += OnHvacFeedback;
+            }
+
             if (_hvac != null)
             {
-                _hvac.FeedbackReceived += OnHvacFeedback;
-
-                // Push initial values
+                // Push initial values from primary
                 UpdateTempFeedback(_hvac.CurrentTemp);
                 UpdateSetpointFeedback(_hvac.Setpoint);
                 UpdateModeFeedback(_hvac.Mode);
@@ -74,7 +84,7 @@ namespace CrestronCP4.ProcessorSide.Subsystems
                     // Convert 0-65535 to temperature in tenths of degree
                     // Scale: 0 = 60.0°F (600), 65535 = 90.0°F (900)
                     int temp = 600 + (rawSetpoint * 300 / 65535);
-                    _hvac?.SetSetpoint(temp);
+                    foreach (var d in _drivers) { try { d.SetSetpoint(temp); } catch { } }
                     UpdateSetpointFeedback(temp);
                 }
             }
@@ -84,7 +94,7 @@ namespace CrestronCP4.ProcessorSide.Subsystems
         {
             _modeIndex = (_modeIndex + 1) % Modes.Length;
             var newMode = Modes[_modeIndex];
-            _hvac?.SetMode(newMode);
+            foreach (var d in _drivers) { try { d.SetMode(newMode); } catch { } }
             UpdateModeFeedback(newMode);
         }
 
@@ -92,18 +102,19 @@ namespace CrestronCP4.ProcessorSide.Subsystems
         {
             if (_hvac == null) return;
 
+            string newMode;
             if (string.Equals(_hvac.Mode, "off", StringComparison.OrdinalIgnoreCase))
             {
-                _hvac.SetMode("auto");
+                newMode = "auto";
                 _modeIndex = 3;
-                UpdateModeFeedback("auto");
             }
             else
             {
-                _hvac.SetMode("off");
+                newMode = "off";
                 _modeIndex = 0;
-                UpdateModeFeedback("off");
             }
+            foreach (var d in _drivers) { try { d.SetMode(newMode); } catch { } }
+            UpdateModeFeedback(newMode);
         }
 
         private void UpdateTempFeedback(int temp)
@@ -180,7 +191,7 @@ namespace CrestronCP4.ProcessorSide.Subsystems
         {
             if (_disposed) return;
             _disposed = true;
-            if (_hvac != null) _hvac.FeedbackReceived -= OnHvacFeedback;
+            foreach (var drv in _drivers) drv.FeedbackReceived -= OnHvacFeedback;
         }
     }
 }

@@ -11,10 +11,10 @@ namespace CrestronCP4.ProcessorSide.Subsystems
 
         public ISubsystem Create(RoomConfig room, DeviceManager deviceManager, ILogger logger)
         {
-            var display = deviceManager.GetDriver<IDisplayDriver>(room.Id, "display");
-            var audio = deviceManager.GetDriver<IAudioDriver>(room.Id, "audio");
+            var displays = deviceManager.GetDrivers<IDisplayDriver>(room.Id, "display");
+            var audios = deviceManager.GetDrivers<IAudioDriver>(room.Id, "audio");
             var sourceNames = room.Sources != null ? new List<string>(room.Sources) : new List<string>();
-            return new AvSubsystem(display, audio, sourceNames, logger);
+            return new AvSubsystem(displays, audios, sourceNames, logger);
         }
     }
 
@@ -24,8 +24,8 @@ namespace CrestronCP4.ProcessorSide.Subsystems
 
         public ISubsystem Create(RoomConfig room, DeviceManager deviceManager, ILogger logger)
         {
-            var lighting = deviceManager.GetDriver<ILightingDriver>(room.Id, "lighting");
-            return new LightingSubsystem(lighting, logger);
+            var drivers = deviceManager.GetDrivers<ILightingDriver>(room.Id, "lighting");
+            return new LightingSubsystem(drivers, logger);
         }
     }
 
@@ -35,8 +35,8 @@ namespace CrestronCP4.ProcessorSide.Subsystems
 
         public ISubsystem Create(RoomConfig room, DeviceManager deviceManager, ILogger logger)
         {
-            var shade = deviceManager.GetDriver<IShadeDriver>(room.Id, "shades");
-            return new ShadeSubsystem(shade, logger);
+            var drivers = deviceManager.GetDrivers<IShadeDriver>(room.Id, "shades");
+            return new ShadeSubsystem(drivers, logger);
         }
     }
 
@@ -46,8 +46,8 @@ namespace CrestronCP4.ProcessorSide.Subsystems
 
         public ISubsystem Create(RoomConfig room, DeviceManager deviceManager, ILogger logger)
         {
-            var hvac = deviceManager.GetDriver<IHvacDriver>(room.Id, "hvac");
-            return new HvacSubsystem(hvac, logger);
+            var drivers = deviceManager.GetDrivers<IHvacDriver>(room.Id, "hvac");
+            return new HvacSubsystem(drivers, logger);
         }
     }
 
@@ -57,8 +57,8 @@ namespace CrestronCP4.ProcessorSide.Subsystems
 
         public ISubsystem Create(RoomConfig room, DeviceManager deviceManager, ILogger logger)
         {
-            var security = deviceManager.GetDriver<ISecurityDriver>(room.Id, "security");
-            return new SecuritySubsystem(security, logger);
+            var drivers = deviceManager.GetDrivers<ISecurityDriver>(room.Id, "security");
+            return new SecuritySubsystem(drivers, logger);
         }
     }
 }

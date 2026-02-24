@@ -1,11 +1,9 @@
 import { useEffect, useState, useMemo } from "react";
 import { Link } from "react-router";
 import { useConfigEditor } from "../hooks/useConfigEditor";
-import { useApiKey } from "../hooks/useApiKey";
 
 export default function ExportPage() {
   const { draft, loadStatus, loadFromServer, validationErrors, isDirty, save, saveStatus } = useConfigEditor();
-  const { apiKey } = useApiKey();
   const [jsonExpanded, setJsonExpanded] = useState(false);
   const [exportStatus, setExportStatus] = useState<"idle" | "loading" | "error">("idle");
   const [exportError, setExportError] = useState<string | null>(null);
@@ -22,7 +20,6 @@ export default function ExportPage() {
     if (!draft || isDirty) return;
     setExportStatus("loading");
     fetch("/api/joincontract", {
-      headers: { "X-API-Key": apiKey },
       cache: "no-store",
     })
       .then((r) => {
@@ -37,7 +34,7 @@ export default function ExportPage() {
         setExportError(e.message);
         setExportStatus("error");
       });
-  }, [draft, isDirty, apiKey]);
+  }, [draft, isDirty]);
 
   const configJson = useMemo(() => {
     if (!draft) return "";
@@ -47,7 +44,6 @@ export default function ExportPage() {
   const handleDownload = async () => {
     try {
       const response = await fetch("/api/systemconfig/export", {
-        headers: { "X-API-Key": apiKey },
         cache: "no-store",
       });
       if (!response.ok) throw new Error("Export failed");
@@ -92,6 +88,12 @@ export default function ExportPage() {
         </div>
       </div>
 
+      <div className="help-text">
+        <strong>SystemConfig</strong> is the full project configuration (rooms, devices, sources, scenes).
+        The <strong>Join Contract</strong> is a computed map of all join numbers, generated from your config and used by
+        the VTPro-e/CH5 graphics project. Save your config, then download or copy the contract for deployment.
+      </div>
+
       {/* Validation Summary */}
       <div className={`card ${validationErrors.length > 0 ? "error" : ""}`} style={{ marginBottom: 20 }}>
         <h2 style={{ margin: "0 0 8px", fontSize: 16 }}>Validation</h2>
@@ -134,6 +136,12 @@ export default function ExportPage() {
         >
           Copy Join Contract
         </button>
+        <Link to="/joins" className="button" style={{ textDecoration: "none", display: "inline-flex", alignItems: "center" }}>
+          Browse Full Join Map
+        </Link>
+        <Link to="/joinlist" className="button" style={{ textDecoration: "none", display: "inline-flex", alignItems: "center" }}>
+          JoinList Editor (Legacy)
+        </Link>
       </div>
 
       {exportError && (
@@ -164,6 +172,22 @@ export default function ExportPage() {
             {configJson}
           </pre>
         )}
+      </div>
+
+      {/* Deploy to Processor */}
+      <div className="card" style={{ marginBottom: 20 }}>
+        <h2 style={{ margin: "0 0 12px", fontSize: 16 }}>Deploy to Processor</h2>
+        <p style={{ fontSize: 13, color: "#94a3b8", marginBottom: 16 }}>
+          Transfer configuration files directly to your CP4 processor via SFTP — with real-time progress,
+          file verification, and program restart.
+        </p>
+        <Link
+          to="/configure/deploy"
+          className="button primary"
+          style={{ textDecoration: "none", display: "inline-flex", alignItems: "center" }}
+        >
+          Open Deploy Wizard
+        </Link>
       </div>
 
       {/* Join Contract Preview */}

@@ -185,7 +185,7 @@ namespace CoreTests
         [Fact]
         public void NullDriver_DoesNotThrow()
         {
-            var sub = new SecuritySubsystem(null, _logger);
+            var sub = new SecuritySubsystem((ISecurityDriver)null, _logger);
             sub.Initialize(_signals, RoomId, JoinOffset);
             sub.ProcessSignalChange("digital:" + RoomId + ":" + JoinMap.Digital.SecurityArmAway, true);
             // Should not throw

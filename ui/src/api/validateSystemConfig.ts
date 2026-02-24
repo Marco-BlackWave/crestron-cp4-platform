@@ -4,14 +4,12 @@ export interface ValidationResult {
 }
 
 export async function validateSystemConfig(
-  apiKey: string,
   config: unknown
 ): Promise<ValidationResult> {
   const response = await fetch("/api/systemconfig/validate", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "X-API-Key": apiKey,
     },
     body: JSON.stringify(config, null, 2),
   });

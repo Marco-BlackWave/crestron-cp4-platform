@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from "react";
-import { useApiKey } from "./useApiKey";
 
 export interface CatalogData {
   version: string;
@@ -23,18 +22,13 @@ interface CatalogState {
 }
 
 export function useCatalog(): CatalogState {
-  const { apiKey } = useApiKey();
   const [status, setStatus] = useState<CatalogState["status"]>("idle");
   const [data, setData] = useState<CatalogData | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   const load = useCallback(() => {
-    if (!apiKey) {
-      setStatus("idle");
-      return;
-    }
     setStatus("loading");
-    fetch("/api/catalog", { headers: { "X-API-Key": apiKey } })
+    fetch("/api/catalog")
       .then((res) => {
         if (!res.ok) throw new Error("Failed to load catalog");
         return res.json();
@@ -48,7 +42,7 @@ export function useCatalog(): CatalogState {
         setError(err.message);
         setStatus("error");
       });
-  }, [apiKey]);
+  }, []);
 
   useEffect(() => {
     load();

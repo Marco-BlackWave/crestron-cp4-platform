@@ -1,8 +1,8 @@
 import { apiFetch } from "./client";
 import { systemConfigSchema, SystemConfig } from "../schema/systemConfigSchema";
 
-export async function loadSystemConfig(apiKey: string): Promise<SystemConfig> {
-  const json = await apiFetch("/systemconfig", apiKey);
+export async function loadSystemConfig(): Promise<SystemConfig> {
+  const json = await apiFetch("/systemconfig");
   const parsed = systemConfigSchema.safeParse(json);
   if (!parsed.success) {
     const message = parsed.error.issues

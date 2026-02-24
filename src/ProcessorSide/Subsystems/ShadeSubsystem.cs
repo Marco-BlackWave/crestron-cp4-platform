@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using CrestronCP4.ProcessorSide.Configuration;
 using CrestronCP4.ProcessorSide.Core.Diagnostics;
 using CrestronCP4.ProcessorSide.Core.Signals;
@@ -12,20 +13,26 @@ namespace CrestronCP4.ProcessorSide.Subsystems
     /// </summary>
     public sealed class ShadeSubsystem : ISubsystem
     {
-        private readonly IShadeDriver _shade;
+        private readonly List<IShadeDriver> _drivers;
         private readonly ILogger _logger;
         private SignalRegistry _signals;
         private string _roomId;
         private int _joinOffset;
         private bool _disposed;
 
+        private IShadeDriver _shade => _drivers.Count > 0 ? _drivers[0] : null;
+
         public string Id => "shades";
 
-        public ShadeSubsystem(IShadeDriver shade, ILogger logger)
+        public ShadeSubsystem(List<IShadeDriver> drivers, ILogger logger)
         {
-            _shade = shade;
+            _drivers = drivers ?? new List<IShadeDriver>();
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
+
+        public ShadeSubsystem(IShadeDriver shade, ILogger logger)
+            : this(shade != null ? new List<IShadeDriver> { shade } : new List<IShadeDriver>(), logger)
+        { }
 
         public void Initialize(SignalRegistry signals, string roomId, int joinOffset)
         {
@@ -33,9 +40,9 @@ namespace CrestronCP4.ProcessorSide.Subsystems
             _roomId = roomId;
             _joinOffset = joinOffset;
 
-            if (_shade != null)
+            foreach (var drv in _drivers)
             {
-                _shade.FeedbackReceived += OnShadeFeedback;
+                drv.FeedbackReceived += OnShadeFeedback;
             }
 
             _logger.Info("Shade subsystem initialized for room " + roomId);
@@ -52,17 +59,17 @@ namespace CrestronCP4.ProcessorSide.Subsystems
                 switch (offset)
                 {
                     case JoinMap.Digital.ShadeOpen:
-                        _shade?.Open(_roomId);
+                        foreach (var d in _drivers) { try { d.Open(_roomId); } catch { } }
                         UpdatePositionFeedback(100);
                         break;
 
                     case JoinMap.Digital.ShadeClose:
-                        _shade?.Close(_roomId);
+                        foreach (var d in _drivers) { try { d.Close(_roomId); } catch { } }
                         UpdatePositionFeedback(0);
                         break;
 
                     case JoinMap.Digital.ShadeStop:
-                        _shade?.Stop(_roomId);
+                        foreach (var d in _drivers) { try { d.Stop(_roomId); } catch { } }
                         break;
                 }
             }
@@ -71,7 +78,7 @@ namespace CrestronCP4.ProcessorSide.Subsystems
                 if (offset == JoinMap.Analog.ShadeSet && value is ushort level)
                 {
                     int percent = level * 100 / 65535;
-                    _shade?.SetPosition(_roomId, percent);
+                    foreach (var d in _drivers) { try { d.SetPosition(_roomId, percent); } catch { } }
                     UpdatePositionFeedback(percent);
                 }
             }
@@ -118,7 +125,7 @@ namespace CrestronCP4.ProcessorSide.Subsystems
         {
             if (_disposed) return;
             _disposed = true;
-            if (_shade != null) _shade.FeedbackReceived -= OnShadeFeedback;
+            foreach (var drv in _drivers) drv.FeedbackReceived -= OnShadeFeedback;
         }
     }
 }

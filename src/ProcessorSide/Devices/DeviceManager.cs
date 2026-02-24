@@ -107,11 +107,57 @@ namespace CrestronCP4.ProcessorSide.Devices
             return driver;
         }
 
+        /// <summary>
+        /// Returns all drivers matching a base role for a room.
+        /// E.g. GetDrivers&lt;IDisplayDriver&gt;("living-room", "display")
+        /// matches "display", "display-2", "display-3", etc.
+        /// </summary>
+        public List<T> GetDrivers<T>(string roomId, string baseRole) where T : class, IDeviceDriver
+        {
+            var result = new List<T>();
+            foreach (var kvp in _drivers)
+            {
+                if (!kvp.Key.StartsWith(roomId + ":", StringComparison.OrdinalIgnoreCase))
+                    continue;
+                var driverRole = kvp.Key.Substring(roomId.Length + 1);
+                if (GetBaseRole(driverRole).Equals(baseRole, StringComparison.OrdinalIgnoreCase))
+                {
+                    if (kvp.Value is T typed)
+                        result.Add(typed);
+                }
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Strips numeric suffix from a role name.
+        /// "display-2" → "display", "audio" → "audio"
+        /// </summary>
+        public static string GetBaseRole(string role)
+        {
+            if (string.IsNullOrEmpty(role)) return role;
+            var lastDash = role.LastIndexOf('-');
+            if (lastDash > 0 && lastDash < role.Length - 1)
+            {
+                var suffix = role.Substring(lastDash + 1);
+                if (int.TryParse(suffix, out _))
+                    return role.Substring(0, lastDash);
+            }
+            return role;
+        }
+
         private IDeviceDriver CreateDriver(string driverKey, string role, DeviceAssignment assignment)
         {
             var profile = _profileLoader.GetProfile(assignment.ProfileId) ?? CreateFallbackProfile(assignment);
 
+            // Try exact role first, then base role for numbered devices (e.g. "display-2" → "display")
             if (_factories.TryGetValue(role, out var factory))
+            {
+                return factory.Create(driverKey, profile, assignment, _logger);
+            }
+
+            var baseRole = GetBaseRole(role);
+            if (!baseRole.Equals(role, StringComparison.OrdinalIgnoreCase) && _factories.TryGetValue(baseRole, out factory))
             {
                 return factory.Create(driverKey, profile, assignment, _logger);
             }

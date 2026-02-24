@@ -1,14 +1,18 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { useConfigEditor } from "../hooks/useConfigEditor";
+import { ContextMenu } from "../components/ContextMenu";
+import { useContextMenu } from "../hooks/useContextMenu";
 import type { SourceType } from "../schema/systemConfigSchema";
 
 const SOURCE_TYPES: SourceType[] = ["streaming", "settop", "audio", "gaming", "disc", "other"];
 
 export default function SourceManagerPage() {
-  const { draft, loadStatus, loadFromServer, addSource, updateSource, removeSource } = useConfigEditor();
+  const { draft, loadStatus, loadFromServer, addSource, updateSource, removeSource, toggleRoomSource } = useConfigEditor();
   const [newName, setNewName] = useState("");
   const [newType, setNewType] = useState<SourceType>("streaming");
+  const { menuPos, openMenu, closeMenu } = useContextMenu();
+  const [contextSourceId, setContextSourceId] = useState<string | null>(null);
 
   useEffect(() => { document.title = "Sources — Configure — CP4"; }, []);
 
@@ -82,7 +86,7 @@ export default function SourceManagerPage() {
           {draft.sources.map((src) => {
             const rooms = sourceRoomMap.get(src.id) ?? [];
             return (
-              <div key={src.id} className="card">
+              <div key={src.id} className="card" onContextMenu={(e) => { setContextSourceId(src.id); openMenu(e); }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "start", marginBottom: 8 }}>
                   <span className="pill" style={{ fontSize: 11 }}>{src.type}</span>
                   <button
@@ -126,6 +130,16 @@ export default function SourceManagerPage() {
           })}
         </div>
       )}
+
+      <ContextMenu
+        position={menuPos}
+        onClose={closeMenu}
+        items={[
+          { label: "Edit Name", onClick: () => { if (contextSourceId) { const name = prompt("New name:", draft?.sources.find(s => s.id === contextSourceId)?.name); if (name) updateSource(contextSourceId, { name }); } } },
+          { label: "", divider: true, onClick: () => {} },
+          { label: "Delete", danger: true, onClick: () => { if (contextSourceId && confirm(`Delete source "${contextSourceId}"?`)) removeSource(contextSourceId); } },
+        ]}
+      />
     </div>
   );
 }

@@ -5,6 +5,11 @@ namespace CrestronCP4.ProcessorSide.Configuration
 {
     public sealed class SystemConfigValidator
     {
+        private static readonly HashSet<string> ValidProcessorTypes = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+        {
+            "CP4", "CP3", "RMC4", "VC-4"
+        };
+
         private static readonly HashSet<string> ValidSubsystems = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         {
             "av", "lighting", "shades", "hvac", "security"
@@ -38,9 +43,9 @@ namespace CrestronCP4.ProcessorSide.Configuration
             {
                 result.Errors.Add("processor is missing.");
             }
-            else if (!string.Equals(config.Processor, "CP4", StringComparison.OrdinalIgnoreCase))
+            else if (!ValidProcessorTypes.Contains(config.Processor))
             {
-                result.Errors.Add("processor must be CP4.");
+                result.Errors.Add("processor must be one of: " + string.Join(", ", ValidProcessorTypes) + ".");
             }
 
             if (string.IsNullOrWhiteSpace(config.ProjectId))
@@ -49,7 +54,7 @@ namespace CrestronCP4.ProcessorSide.Configuration
             }
 
             ValidateSystem(config.System, result);
-            ValidateRooms(config.Rooms, result);
+            ValidateRooms(config.Rooms, config.System, result);
             ValidateSources(config.Rooms, config.Sources, result);
             ValidateScenes(config.Scenes, config.Rooms, result);
 
@@ -69,18 +74,69 @@ namespace CrestronCP4.ProcessorSide.Configuration
                 result.Errors.Add("system.name is required.");
             }
 
-            if (string.IsNullOrWhiteSpace(system.EiscIpId))
+            if (system.Processors != null && system.Processors.Count > 0)
             {
-                result.Errors.Add("system.eiscIpId is required.");
+                ValidateProcessors(system.Processors, result);
             }
-
-            if (string.IsNullOrWhiteSpace(system.EiscIpAddress))
+            else
             {
-                result.Errors.Add("system.eiscIpAddress is required.");
+                // Legacy single-EISC mode
+                if (string.IsNullOrWhiteSpace(system.EiscIpId))
+                {
+                    result.Errors.Add("system.eiscIpId is required (or define system.processors array).");
+                }
+
+                if (string.IsNullOrWhiteSpace(system.EiscIpAddress))
+                {
+                    result.Errors.Add("system.eiscIpAddress is required (or define system.processors array).");
+                }
             }
         }
 
-        private static void ValidateRooms(List<RoomConfig> rooms, ValidationResult result)
+        private static void ValidateProcessors(List<ProcessorConfig> processors, ValidationResult result)
+        {
+            var processorIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            var eiscIpIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+            foreach (var proc in processors)
+            {
+                if (proc == null)
+                {
+                    result.Errors.Add("Processor entry is null.");
+                    continue;
+                }
+
+                if (string.IsNullOrWhiteSpace(proc.Id))
+                {
+                    result.Errors.Add("Processor id is required.");
+                }
+                else if (!processorIds.Add(proc.Id))
+                {
+                    result.Errors.Add("Duplicate processor id: " + proc.Id);
+                }
+
+                if (string.IsNullOrWhiteSpace(proc.Processor))
+                {
+                    result.Errors.Add("Processor type is required for processor " + (proc.Id ?? "unknown") + ".");
+                }
+
+                if (string.IsNullOrWhiteSpace(proc.EiscIpId))
+                {
+                    result.Errors.Add("eiscIpId is required for processor " + (proc.Id ?? "unknown") + ".");
+                }
+                else if (!eiscIpIds.Add(proc.EiscIpId))
+                {
+                    result.Errors.Add("Duplicate EISC IP-ID " + proc.EiscIpId + " on processor " + (proc.Id ?? "unknown") + ".");
+                }
+
+                if (string.IsNullOrWhiteSpace(proc.EiscIpAddress))
+                {
+                    result.Errors.Add("eiscIpAddress is required for processor " + (proc.Id ?? "unknown") + ".");
+                }
+            }
+        }
+
+        private static void ValidateRooms(List<RoomConfig> rooms, SystemInfo system, ValidationResult result)
         {
             if (rooms == null || rooms.Count == 0)
             {
@@ -88,8 +144,24 @@ namespace CrestronCP4.ProcessorSide.Configuration
                 return;
             }
 
+            // Build set of valid processor IDs for cross-ref validation
+            var validProcessorIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            bool hasProcessors = system?.Processors != null && system.Processors.Count > 0;
+            if (hasProcessors)
+            {
+                foreach (var proc in system.Processors)
+                {
+                    if (!string.IsNullOrWhiteSpace(proc?.Id))
+                        validProcessorIds.Add(proc.Id);
+                }
+            }
+
             var roomIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-            var offsets = new HashSet<int>();
+
+            // For multi-processor: track offsets per processor to allow reuse across processors
+            // For legacy: track offsets globally
+            var globalOffsets = new HashSet<int>();
+            var perProcessorOffsets = new Dictionary<string, HashSet<int>>(StringComparer.OrdinalIgnoreCase);
 
             foreach (var room in rooms)
             {
@@ -121,16 +193,55 @@ namespace CrestronCP4.ProcessorSide.Configuration
                 {
                     result.Errors.Add("Room joinOffset must be < 900 (900+ reserved for system) for room " + (room.Id ?? "unknown") + ".");
                 }
-                else if (!offsets.Add(room.JoinOffset))
+                else if (hasProcessors)
                 {
-                    result.Errors.Add("Duplicate joinOffset: " + room.JoinOffset);
+                    // Multi-processor: offsets must be unique per processor
+                    var procId = room.ProcessorId ?? "";
+                    if (!perProcessorOffsets.ContainsKey(procId))
+                        perProcessorOffsets[procId] = new HashSet<int>();
+                    if (!perProcessorOffsets[procId].Add(room.JoinOffset))
+                    {
+                        result.Errors.Add("Duplicate joinOffset " + room.JoinOffset + " on processor " + (procId == "" ? "(unassigned)" : procId) + ".");
+                    }
+                }
+                else
+                {
+                    // Legacy: offsets must be globally unique
+                    if (!globalOffsets.Add(room.JoinOffset))
+                    {
+                        result.Errors.Add("Duplicate joinOffset: " + room.JoinOffset);
+                    }
+                }
+
+                // Validate processorId reference
+                if (hasProcessors && !string.IsNullOrWhiteSpace(room.ProcessorId)
+                    && !validProcessorIds.Contains(room.ProcessorId))
+                {
+                    result.Errors.Add("Room " + (room.Id ?? "unknown") + " references undefined processor: " + room.ProcessorId);
                 }
 
                 ValidateRoomSubsystems(room, result);
                 ValidateRoomDevices(room, result);
             }
 
-            ValidateJoinOffsetSpacing(rooms, result);
+            if (hasProcessors)
+            {
+                // Validate join offset spacing per processor
+                foreach (var kvp in perProcessorOffsets)
+                {
+                    var procRooms = new List<RoomConfig>();
+                    foreach (var room in rooms)
+                    {
+                        if (room != null && (room.ProcessorId ?? "") == kvp.Key)
+                            procRooms.Add(room);
+                    }
+                    ValidateJoinOffsetSpacing(procRooms, result);
+                }
+            }
+            else
+            {
+                ValidateJoinOffsetSpacing(rooms, result);
+            }
         }
 
         private static void ValidateJoinOffsetSpacing(List<RoomConfig> rooms, ValidationResult result)

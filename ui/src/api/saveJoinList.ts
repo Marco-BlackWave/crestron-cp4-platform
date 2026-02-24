@@ -1,4 +1,4 @@
-import { joinListSchema, JoinListConfig } from "../schema/joinListSchema";
+import { joinListSchema } from "../schema/joinListSchema";
 
 async function extractErrorMessage(response: Response, fallback: string): Promise<string> {
   try {
@@ -15,7 +15,6 @@ async function extractErrorMessage(response: Response, fallback: string): Promis
 
 export async function saveJoinList(
   baseUrl: string,
-  apiKey: string,
   config: unknown
 ): Promise<void> {
   const parsed = joinListSchema.safeParse(config);
@@ -30,7 +29,6 @@ export async function saveJoinList(
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
-      "X-API-Key": apiKey
     },
     body: JSON.stringify(parsed.data, null, 2)
   });

@@ -7,14 +7,12 @@ interface NewProjectInput {
 }
 
 export async function createSystemConfig(
-  apiKey: string,
   input: NewProjectInput
 ): Promise<SystemConfig> {
   const response = await fetch("/api/systemconfig/new", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "X-API-Key": apiKey,
     },
     body: JSON.stringify(input),
   });

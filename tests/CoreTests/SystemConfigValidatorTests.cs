@@ -89,10 +89,10 @@ namespace CoreTests
         public void WrongProcessor_Fails()
         {
             var config = CreateValidConfig();
-            config.Processor = "CP3";
+            config.Processor = "INVALID";
             var result = _validator.Validate(config);
             Assert.False(result.IsValid);
-            Assert.Contains(result.Errors, e => e.Contains("CP4"));
+            Assert.Contains(result.Errors, e => e.Contains("processor must be"));
         }
 
         [Fact]

@@ -14,14 +14,10 @@ async function extractErrorMessage(response: Response, fallback: string): Promis
 }
 
 export async function loadJoinList(
-  baseUrl: string,
-  apiKey: string
+  baseUrl: string
 ): Promise<JoinListConfig> {
   const response = await fetch(`${baseUrl}/joinlist`, {
     cache: "no-store",
-    headers: {
-      "X-API-Key": apiKey
-    }
   });
   if (!response.ok) {
     const message = await extractErrorMessage(response, "Join List request failed.");

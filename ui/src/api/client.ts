@@ -11,10 +11,9 @@ async function extractErrorMessage(response: Response, fallback: string): Promis
   }
 }
 
-export async function apiFetch(path: string, apiKey: string): Promise<unknown> {
+export async function apiFetch(path: string): Promise<unknown> {
   const response = await fetch(`/api${path}`, {
     cache: "no-store",
-    headers: { "X-API-Key": apiKey },
   });
   if (!response.ok) {
     const message = await extractErrorMessage(response, `Request to ${path} failed.`);

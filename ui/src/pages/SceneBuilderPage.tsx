@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { useConfigEditor } from "../hooks/useConfigEditor";
+import { ContextMenu } from "../components/ContextMenu";
+import { useContextMenu } from "../hooks/useContextMenu";
 
 export default function SceneBuilderPage() {
   const { draft, loadStatus, loadFromServer, addScene, updateScene, removeScene } = useConfigEditor();
   const [newName, setNewName] = useState("");
+  const { menuPos, openMenu, closeMenu } = useContextMenu();
+  const [contextSceneId, setContextSceneId] = useState<string | null>(null);
 
   useEffect(() => { document.title = "Scenes — Configure — CP4"; }, []);
 
@@ -88,7 +92,7 @@ export default function SceneBuilderPage() {
       ) : (
         <div className="card-grid">
           {draft.scenes.map((scene) => (
-            <div key={scene.id} className="card">
+            <div key={scene.id} className="card" onContextMenu={(e) => { setContextSceneId(scene.id); openMenu(e); }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "start", marginBottom: 8 }}>
                 <input
                   className="input"
@@ -200,6 +204,22 @@ export default function SceneBuilderPage() {
           ))}
         </div>
       )}
+
+      <ContextMenu
+        position={menuPos}
+        onClose={closeMenu}
+        items={[
+          { label: "Edit Name", onClick: () => { if (contextSceneId) { const name = prompt("New name:", draft?.scenes.find(s => s.id === contextSceneId)?.name); if (name) updateScene(contextSceneId, { name }); } } },
+          { label: "Duplicate", onClick: () => {
+            if (contextSceneId) {
+              const scene = draft?.scenes.find(s => s.id === contextSceneId);
+              if (scene) { addScene(`${scene.name} Copy`); }
+            }
+          }},
+          { label: "", divider: true, onClick: () => {} },
+          { label: "Delete", danger: true, onClick: () => { if (contextSceneId && confirm(`Delete scene "${contextSceneId}"?`)) removeScene(contextSceneId); } },
+        ]}
+      />
     </div>
   );
 }

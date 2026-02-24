@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { useSystemConfig } from "../hooks/useSystemConfig";
 import { useJoinContract } from "../hooks/useJoinContract";
 import { useCatalog } from "../hooks/useCatalog";
+import ArchitectureOverview from "../components/ArchitectureOverview";
 
 const subsystemColors: Record<string, string> = {
   av: "av", lighting: "lighting", shades: "shades", hvac: "hvac", security: "security",
@@ -78,7 +79,7 @@ export default function DashboardPage() {
         <h1 style={{ margin: "0 0 4px" }}>{data.system.name}</h1>
         <p className="subhead">
           Project: {data.projectId} &middot; Processor: {data.processor} &middot;
-          EISC: {data.system.eiscIpId} @ {data.system.eiscIpAddress}
+          EISC: <span title="Ethernet Intersystem Communications — bridge between processor and touch panel">{data.system.eiscIpId} @ {data.system.eiscIpAddress}</span>
         </p>
       </div>
 
@@ -142,6 +143,14 @@ export default function DashboardPage() {
         </>
       )}
 
+      {/* System Architecture */}
+      <details open style={{ marginBottom: 24 }}>
+        <summary style={{ cursor: "pointer", fontSize: 20, fontWeight: 700, marginBottom: 12 }}>
+          System Architecture
+        </summary>
+        <ArchitectureOverview />
+      </details>
+
       {/* Room cards */}
       <h2 style={{ marginBottom: 12 }}>Rooms</h2>
       <section className="card-grid">
@@ -202,16 +211,22 @@ export default function DashboardPage() {
       {/* Quick links */}
       <h2 style={{ margin: "28px 0 12px" }}>Quick Links</h2>
       <section className="grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))" }}>
+        <Link to="/getting-started" className="card-link">
+          <div className="card clickable">
+            <h3 style={{ margin: 0 }}>Getting Started</h3>
+            <p className="subhead">Learn key concepts and workflow</p>
+          </div>
+        </Link>
+        <Link to="/architecture" className="card-link">
+          <div className="card clickable">
+            <h3 style={{ margin: 0 }}>System Architecture</h3>
+            <p className="subhead">Full system tree view</p>
+          </div>
+        </Link>
         <Link to="/joins" className="card-link">
           <div className="card clickable">
             <h3 style={{ margin: 0 }}>Join Map Browser</h3>
             <p className="subhead">Search and filter all joins</p>
-          </div>
-        </Link>
-        <Link to="/devices" className="card-link">
-          <div className="card clickable">
-            <h3 style={{ margin: 0 }}>Device Library</h3>
-            <p className="subhead">Browse device profiles</p>
           </div>
         </Link>
         <Link to="/joinlist" className="card-link">

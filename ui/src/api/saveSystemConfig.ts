@@ -14,7 +14,6 @@ async function extractErrorMessage(response: Response, fallback: string): Promis
 }
 
 export async function saveSystemConfig(
-  apiKey: string,
   config: unknown
 ): Promise<void> {
   const parsed = systemConfigWriteSchema.safeParse(config);
@@ -29,7 +28,6 @@ export async function saveSystemConfig(
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
-      "X-API-Key": apiKey,
     },
     body: JSON.stringify(parsed.data, null, 2),
   });

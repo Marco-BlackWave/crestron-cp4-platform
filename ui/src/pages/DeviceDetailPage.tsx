@@ -63,7 +63,10 @@ export default function DeviceDetailPage() {
             ))}
           </div>
         </div>
-        <Link to="/devices" className="button">Back</Link>
+        <div style={{ display: "flex", gap: 8 }}>
+          <Link to={`/devices/${id}/edit`} className="button primary">Edit</Link>
+          <Link to="/devices" className="button">Back</Link>
+        </div>
       </div>
 
       {/* Capabilities */}

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using CrestronCP4.ProcessorSide.Configuration;
 using CrestronCP4.ProcessorSide.Core.Diagnostics;
 using CrestronCP4.ProcessorSide.Core.Signals;
@@ -12,20 +13,26 @@ namespace CrestronCP4.ProcessorSide.Subsystems
     /// </summary>
     public sealed class SecuritySubsystem : ISubsystem
     {
-        private readonly ISecurityDriver _security;
+        private readonly List<ISecurityDriver> _drivers;
         private readonly ILogger _logger;
         private SignalRegistry _signals;
         private string _roomId;
         private int _joinOffset;
         private bool _disposed;
 
+        private ISecurityDriver _security => _drivers.Count > 0 ? _drivers[0] : null;
+
         public string Id => "security";
 
-        public SecuritySubsystem(ISecurityDriver security, ILogger logger)
+        public SecuritySubsystem(List<ISecurityDriver> drivers, ILogger logger)
         {
-            _security = security;
+            _drivers = drivers ?? new List<ISecurityDriver>();
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
+
+        public SecuritySubsystem(ISecurityDriver security, ILogger logger)
+            : this(security != null ? new List<ISecurityDriver> { security } : new List<ISecurityDriver>(), logger)
+        { }
 
         public void Initialize(SignalRegistry signals, string roomId, int joinOffset)
         {
@@ -33,11 +40,14 @@ namespace CrestronCP4.ProcessorSide.Subsystems
             _roomId = roomId;
             _joinOffset = joinOffset;
 
+            foreach (var drv in _drivers)
+            {
+                drv.FeedbackReceived += OnSecurityFeedback;
+            }
+
             if (_security != null)
             {
-                _security.FeedbackReceived += OnSecurityFeedback;
-
-                // Push initial state
+                // Push initial state from primary
                 UpdateArmModeFeedback(_security.ArmMode);
                 UpdateAlarmFeedback(_security.IsAlarmActive);
                 UpdateReadyFeedback(_security.IsReady);
@@ -59,15 +69,15 @@ namespace CrestronCP4.ProcessorSide.Subsystems
                 switch (offset)
                 {
                     case JoinMap.Digital.SecurityArmAway:
-                        _security?.ArmAway();
+                        foreach (var d in _drivers) { try { d.ArmAway(); } catch { } }
                         break;
 
                     case JoinMap.Digital.SecurityArmStay:
-                        _security?.ArmStay();
+                        foreach (var d in _drivers) { try { d.ArmStay(); } catch { } }
                         break;
 
                     case JoinMap.Digital.SecurityArmNight:
-                        _security?.ArmNight();
+                        foreach (var d in _drivers) { try { d.ArmNight(); } catch { } }
                         break;
 
                     case JoinMap.Digital.SecurityDisarm:
@@ -75,11 +85,11 @@ namespace CrestronCP4.ProcessorSide.Subsystems
                         break;
 
                     case JoinMap.Digital.SecurityPanic:
-                        _security?.Panic();
+                        foreach (var d in _drivers) { try { d.Panic(); } catch { } }
                         break;
 
                     case JoinMap.Digital.SecurityStatusRequest:
-                        _security?.StatusRequest();
+                        foreach (var d in _drivers) { try { d.StatusRequest(); } catch { } }
                         break;
                 }
             }
@@ -99,18 +109,18 @@ namespace CrestronCP4.ProcessorSide.Subsystems
         /// </summary>
         public void SetArmMode(string mode)
         {
-            if (_security == null) return;
+            if (_drivers.Count == 0) return;
 
             switch ((mode ?? "").ToLowerInvariant())
             {
                 case "away":
-                    _security.ArmAway();
+                    foreach (var d in _drivers) { try { d.ArmAway(); } catch { } }
                     break;
                 case "stay":
-                    _security.ArmStay();
+                    foreach (var d in _drivers) { try { d.ArmStay(); } catch { } }
                     break;
                 case "night":
-                    _security.ArmNight();
+                    foreach (var d in _drivers) { try { d.ArmNight(); } catch { } }
                     break;
                 case "disarm":
                 case "off":
@@ -127,7 +137,7 @@ namespace CrestronCP4.ProcessorSide.Subsystems
             var code = codeSignal?.Get() as string;
             if (!string.IsNullOrEmpty(code))
             {
-                _security?.Disarm(code);
+                foreach (var d in _drivers) { try { d.Disarm(code); } catch { } }
             }
             else
             {
@@ -258,7 +268,7 @@ namespace CrestronCP4.ProcessorSide.Subsystems
         {
             if (_disposed) return;
             _disposed = true;
-            if (_security != null) _security.FeedbackReceived -= OnSecurityFeedback;
+            foreach (var drv in _drivers) drv.FeedbackReceived -= OnSecurityFeedback;
         }
     }
 }

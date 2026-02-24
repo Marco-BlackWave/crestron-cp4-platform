@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { NavLink, Outlet } from "react-router";
 import { ConfigEditorProvider, useConfigEditor } from "../hooks/useConfigEditor";
+import JsonSidebarPanel from "./JsonSidebarPanel";
 
 const tabs = [
   { to: "/configure", label: "Project", end: true },
@@ -8,10 +9,11 @@ const tabs = [
   { to: "/configure/sources", label: "Sources" },
   { to: "/configure/scenes", label: "Scenes" },
   { to: "/configure/export", label: "Export" },
+  { to: "/configure/deploy", label: "Deploy" },
 ];
 
 function SaveBanner() {
-  const { isDirty, saveStatus, saveError, save, discard, validationErrors } = useConfigEditor();
+  const { isDirty, saveStatus, saveError, save, discard, validationErrors, undo, redo, canUndo, canRedo } = useConfigEditor();
 
   if (!isDirty && saveStatus !== "saved" && saveStatus !== "error") return null;
 
@@ -27,6 +29,8 @@ function SaveBanner() {
               )}
             </span>
             <div className="save-banner-actions">
+              <button className="button" onClick={undo} disabled={!canUndo || saveStatus === "saving"} title="Undo (Ctrl+Z)">Undo</button>
+              <button className="button" onClick={redo} disabled={!canRedo || saveStatus === "saving"} title="Redo (Ctrl+Shift+Z)">Redo</button>
               <button className="button" onClick={discard} disabled={saveStatus === "saving"}>Discard</button>
               <button
                 className="button primary"
@@ -81,11 +85,39 @@ function DraftRecovery() {
   return null;
 }
 
+function UndoRedoKeyboard() {
+  const { undo, redo, canUndo, canRedo } = useConfigEditor();
+
+  const handleKeyDown = useCallback((e: KeyboardEvent) => {
+    const ctrl = e.ctrlKey || e.metaKey;
+    if (!ctrl) return;
+    if (e.key === "z" && !e.shiftKey && canUndo) {
+      e.preventDefault();
+      undo();
+    } else if ((e.key === "z" && e.shiftKey) || e.key === "y") {
+      if (canRedo) {
+        e.preventDefault();
+        redo();
+      }
+    }
+  }, [undo, redo, canUndo, canRedo]);
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [handleKeyDown]);
+
+  return null;
+}
+
 function ConfigureLayoutInner() {
+  const [jsonOpen, setJsonOpen] = useState(false);
+
   return (
     <div className="page-content">
       <UnsavedChangesGuard />
       <DraftRecovery />
+      <UndoRedoKeyboard />
       <nav className="config-tabs">
         {tabs.map((tab) => (
           <NavLink
@@ -99,8 +131,18 @@ function ConfigureLayoutInner() {
             {tab.label}
           </NavLink>
         ))}
+        <button
+          className={`config-tab json-sidebar-toggle ${jsonOpen ? "config-tab--active" : ""}`}
+          onClick={() => setJsonOpen((v) => !v)}
+          style={{ marginLeft: "auto", border: "none", background: "none", cursor: "pointer" }}
+        >
+          &lt;&gt; JSON
+        </button>
       </nav>
-      <Outlet />
+      <div style={jsonOpen ? { marginRight: 400 } : undefined}>
+        <Outlet />
+      </div>
+      <JsonSidebarPanel open={jsonOpen} onClose={() => setJsonOpen(false)} />
       <SaveBanner />
     </div>
   );

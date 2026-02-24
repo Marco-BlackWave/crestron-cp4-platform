@@ -194,6 +194,12 @@ export default function JoinMapPage() {
         </div>
       </div>
 
+      <div className="help-text">
+        <strong>Joins</strong> are numbered signal connections between the processor and the touch panel.
+        There are three types: <strong>digital</strong> (on/off boolean), <strong>analog</strong> (0&ndash;65535 integer),
+        and <strong>serial</strong> (text string). Use the filters below to narrow by type, direction, room, or subsystem.
+      </div>
+
       {/* Filter bar */}
       <div className="filter-bar">
         <input

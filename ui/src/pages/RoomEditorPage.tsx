@@ -17,6 +17,10 @@ function rolesForSubsystems(subsystems: string[]): { role: string; label: string
   if (subsystems.includes("av")) {
     roles.push({ role: "display", label: "Display", category: "display" });
     roles.push({ role: "audio", label: "Audio Receiver", category: "receiver" });
+    roles.push({ role: "projector", label: "Projector", category: "display" });
+    roles.push({ role: "dsp", label: "DSP / Audio Processor", category: "dsp" });
+    roles.push({ role: "matrix", label: "Video Matrix Switcher", category: "matrix" });
+    roles.push({ role: "media", label: "Media Player", category: "media" });
   }
   if (subsystems.includes("lighting")) {
     roles.push({ role: "lighting", label: "Lighting Controller", category: "lighting" });
@@ -30,6 +34,8 @@ function rolesForSubsystems(subsystems: string[]): { role: string; label: string
   if (subsystems.includes("security")) {
     roles.push({ role: "security", label: "Security Panel", category: "security" });
   }
+  // Infrastructure roles (always available)
+  roles.push({ role: "gateway", label: "Gateway / Bridge", category: "gateway" });
   return roles;
 }
 
@@ -187,6 +193,7 @@ export default function RoomEditorPage() {
   const [pendingDevice, setPendingDevice] = useState<{ profileId: string; protocol: string; role: string } | null>(null);
   const [editingName, setEditingName] = useState(false);
   const [nameValue, setNameValue] = useState("");
+  const [customRole, setCustomRole] = useState("");
 
   useEffect(() => { document.title = `Room Editor — CP4`; }, []);
 
@@ -209,7 +216,10 @@ export default function RoomEditorPage() {
     );
   }
 
-  const roles = rolesForSubsystems(room.subsystems);
+  const isTechnical = room.roomType === "technical";
+  const roles = isTechnical ? [] : rolesForSubsystems(room.subsystems);
+  // For technical rooms, show existing devices by their role key
+  const technicalDeviceKeys = isTechnical ? Object.keys(room.devices) : [];
 
   const handleDeviceSelect = (profile: DeviceProfile, protocol: string) => {
     if (!pickerRole) return;
@@ -240,6 +250,11 @@ export default function RoomEditorPage() {
         &larr; Back to Rooms
       </Link>
 
+      <div className="help-text">
+        Each room is allocated <strong>100 joins</strong> (digital, analog, and serial) starting at the room's offset.
+        Toggle <strong>subsystems</strong> to define room capabilities. Each subsystem adds device roles and join signals.
+      </div>
+
       <div className="page-header">
         <div style={{ flex: 1 }}>
           {editingName ? (
@@ -265,55 +280,147 @@ export default function RoomEditorPage() {
         </div>
       </div>
 
+      {/* Processor Assignment */}
+      {(draft.system.processors?.length ?? 0) > 1 && (
+        <section style={{ marginBottom: 24 }}>
+          <h2 style={{ fontSize: 16, marginBottom: 8 }}>Processor</h2>
+          <select
+            className="input"
+            style={{ maxWidth: 300 }}
+            value={room.processorId ?? ""}
+            onChange={(e) => updateRoom(room.id, { processorId: e.target.value } as never)}
+          >
+            {(draft.system.processors ?? []).map((proc) => (
+              <option key={proc.id} value={proc.id}>
+                {proc.id} ({proc.processor}) — EISC {proc.eiscIpId}
+              </option>
+            ))}
+          </select>
+        </section>
+      )}
+
       {/* Subsystems */}
-      <section style={{ marginBottom: 24 }}>
-        <h2 style={{ fontSize: 16, marginBottom: 8 }}>Subsystems</h2>
-        <div className="badge-row">
-          {ALL_SUBSYSTEMS.map((sub) => (
-            <button
-              key={sub}
-              className={`pill pill--${sub} ${room.subsystems.includes(sub) ? "pill--checked" : "pill--unchecked"}`}
-              onClick={() => toggleSubsystem(room.id, sub)}
-            >
-              {sub}
-            </button>
-          ))}
-        </div>
-      </section>
+      {isTechnical ? (
+        <section style={{ marginBottom: 24 }}>
+          <h2 style={{ fontSize: 16, marginBottom: 8 }}>
+            Room Type <span className="pill pill--technical" style={{ marginLeft: 8 }}>Equipment</span>
+          </h2>
+          <p className="subhead">Equipment room — no subsystems. Devices are assigned by custom role.</p>
+        </section>
+      ) : (
+        <section style={{ marginBottom: 24 }}>
+          <h2 style={{ fontSize: 16, marginBottom: 8 }}>Subsystems</h2>
+          <div className="badge-row">
+            {ALL_SUBSYSTEMS.map((sub) => (
+              <button
+                key={sub}
+                className={`pill pill--${sub} ${room.subsystems.includes(sub) ? "pill--checked" : "pill--unchecked"}`}
+                onClick={() => toggleSubsystem(room.id, sub)}
+              >
+                {sub}
+              </button>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Devices */}
       <section style={{ marginBottom: 24 }}>
         <h2 style={{ fontSize: 16, marginBottom: 8 }}>Devices</h2>
-        {roles.length === 0 ? (
-          <p className="subhead">Enable subsystems above to see device roles.</p>
-        ) : (
-          <div className="card-grid">
-            {roles.map(({ role, label, category }) => {
-              const device = room.devices[role];
-              return (
-                <div key={role} className="card">
-                  <p className="label">{label}</p>
-                  {device ? (
-                    <>
+        {isTechnical ? (
+          <>
+            {technicalDeviceKeys.length > 0 && (
+              <div className="card-grid">
+                {technicalDeviceKeys.map((roleKey) => {
+                  const device = room.devices[roleKey];
+                  return (
+                    <div key={roleKey} className="card">
+                      <p className="label">{roleKey}</p>
                       <h3 style={{ margin: "0 0 4px" }}>{device.profileId}</h3>
                       <div className="badge-row" style={{ marginBottom: 8 }}>
                         <span className={`pill pill--${protocolColors[device.protocol] ?? ""}`}>{device.protocol}</span>
                         {device.port && <span className="pill">{device.port}</span>}
                         {device.address && <span className="pill">{device.address}</span>}
                       </div>
-                      <button className="button" onClick={() => removeDevice(room.id, role)} style={{ fontSize: 13 }}>
+                      <button className="button" onClick={() => removeDevice(room.id, roleKey)} style={{ fontSize: 13 }}>
                         Remove
                       </button>
-                    </>
-                  ) : (
-                    <button
-                      className="button primary"
-                      onClick={() => { setPickerRole(role); setPickerCategory(category); }}
-                      style={{ marginTop: 8 }}
-                    >
-                      Assign Device
-                    </button>
-                  )}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+            <div className="form-row" style={{ marginTop: 12, maxWidth: 400 }}>
+              <input
+                className="input"
+                placeholder="Custom role name (e.g. network-switch)"
+                value={customRole}
+                onChange={(e) => setCustomRole(e.target.value)}
+              />
+              <button
+                className="button primary"
+                disabled={!customRole.trim()}
+                onClick={() => { setPickerRole(customRole.trim()); setPickerCategory(""); setCustomRole(""); }}
+              >
+                Assign
+              </button>
+            </div>
+          </>
+        ) : roles.length === 0 ? (
+          <p className="subhead">Enable subsystems above to see device roles.</p>
+        ) : (
+          <div>
+            {roles.map(({ role: baseRole, label, category }) => {
+              // Find all device keys matching this base role: "display", "display-2", "display-3", etc.
+              const matchingKeys = Object.keys(room.devices).filter(
+                (k) => k === baseRole || k.startsWith(`${baseRole}-`)
+              );
+              const nextKey = matchingKeys.length === 0
+                ? baseRole
+                : `${baseRole}-${matchingKeys.length + 1}`;
+
+              return (
+                <div key={baseRole} style={{ marginBottom: 16 }}>
+                  <h3 style={{ fontSize: 14, marginBottom: 8 }}>
+                    {label}
+                    {matchingKeys.length > 1 && (
+                      <span className="pill" style={{ marginLeft: 8, fontSize: 11 }}>
+                        {matchingKeys.length}
+                      </span>
+                    )}
+                  </h3>
+                  <div className="card-grid">
+                    {matchingKeys.map((roleKey) => {
+                      const device = room.devices[roleKey];
+                      return (
+                        <div key={roleKey} className="card">
+                          <p className="label">{roleKey}</p>
+                          <h3 style={{ margin: "0 0 4px" }}>{device.profileId}</h3>
+                          <div className="badge-row" style={{ marginBottom: 8 }}>
+                            <span className={`pill pill--${protocolColors[device.protocol] ?? ""}`}>{device.protocol}</span>
+                            {device.port && <span className="pill">{device.port}</span>}
+                            {device.address && <span className="pill">{device.address}</span>}
+                          </div>
+                          <button className="button" onClick={() => removeDevice(room.id, roleKey)} style={{ fontSize: 13 }}>
+                            Remove
+                          </button>
+                        </div>
+                      );
+                    })}
+                    {/* Show "Assign" button for first device if none, or "Add Another" if some exist */}
+                    <div className="card" style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: 100 }}>
+                      <button
+                        className="button primary"
+                        onClick={() => {
+                          const key = matchingKeys.length === 0 ? baseRole : nextKey;
+                          setPickerRole(key);
+                          setPickerCategory(category);
+                        }}
+                      >
+                        {matchingKeys.length === 0 ? "Assign Device" : `+ Add ${label}`}
+                      </button>
+                    </div>
+                  </div>
                 </div>
               );
             })}

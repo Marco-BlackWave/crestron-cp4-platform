@@ -13,8 +13,8 @@ namespace CrestronCP4.ProcessorSide.Subsystems
     /// </summary>
     public sealed class AvSubsystem : ISubsystem
     {
-        private readonly IDisplayDriver _display;
-        private readonly IAudioDriver _audio;
+        private readonly List<IDisplayDriver> _displays;
+        private readonly List<IAudioDriver> _audios;
         private readonly List<string> _sourceNames;
         private readonly ILogger _logger;
         private SignalRegistry _signals;
@@ -23,15 +23,27 @@ namespace CrestronCP4.ProcessorSide.Subsystems
         private int _activeSource = -1;
         private bool _disposed;
 
+        // Primary drivers for feedback (first in list)
+        private IDisplayDriver _display => _displays.Count > 0 ? _displays[0] : null;
+        private IAudioDriver _audio => _audios.Count > 0 ? _audios[0] : null;
+
         public string Id => "av";
 
-        public AvSubsystem(IDisplayDriver display, IAudioDriver audio, List<string> sourceNames, ILogger logger)
+        public AvSubsystem(List<IDisplayDriver> displays, List<IAudioDriver> audios, List<string> sourceNames, ILogger logger)
         {
-            _display = display;
-            _audio = audio;
+            _displays = displays ?? new List<IDisplayDriver>();
+            _audios = audios ?? new List<IAudioDriver>();
             _sourceNames = sourceNames ?? new List<string>();
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
+
+        /// <summary>Backward-compatible single-driver constructor.</summary>
+        public AvSubsystem(IDisplayDriver display, IAudioDriver audio, List<string> sourceNames, ILogger logger)
+            : this(
+                display != null ? new List<IDisplayDriver> { display } : new List<IDisplayDriver>(),
+                audio != null ? new List<IAudioDriver> { audio } : new List<IAudioDriver>(),
+                sourceNames, logger)
+        { }
 
         public void Initialize(SignalRegistry signals, string roomId, int joinOffset)
         {
@@ -44,14 +56,14 @@ namespace CrestronCP4.ProcessorSide.Subsystems
             // Power feedback
             UpdatePowerFeedback();
 
-            // Wire display feedback
-            if (_display != null)
+            // Wire display feedback for all displays
+            foreach (var display in _displays)
             {
-                _display.FeedbackReceived += OnDisplayFeedback;
+                display.FeedbackReceived += OnDisplayFeedback;
             }
-            if (_audio != null)
+            foreach (var audio in _audios)
             {
-                _audio.FeedbackReceived += OnAudioFeedback;
+                audio.FeedbackReceived += OnAudioFeedback;
             }
 
             _logger.Info("AV subsystem initialized for room " + roomId);
@@ -69,15 +81,18 @@ namespace CrestronCP4.ProcessorSide.Subsystems
                     break;
 
                 case JoinMap.Digital.VolumeUp:
-                    if (value is bool vu && vu) _audio?.VolumeUp();
+                    if (value is bool vu && vu)
+                        foreach (var a in _audios) { try { a.VolumeUp(); } catch { } }
                     break;
 
                 case JoinMap.Digital.VolumeDown:
-                    if (value is bool vd && vd) _audio?.VolumeDown();
+                    if (value is bool vd && vd)
+                        foreach (var a in _audios) { try { a.VolumeDown(); } catch { } }
                     break;
 
                 case JoinMap.Digital.MuteToggle:
-                    if (value is bool mt && mt) _audio?.MuteToggle();
+                    if (value is bool mt && mt)
+                        foreach (var a in _audios) { try { a.MuteToggle(); } catch { } }
                     break;
 
                 default:
@@ -98,13 +113,14 @@ namespace CrestronCP4.ProcessorSide.Subsystems
         {
             if (_display == null) return;
 
-            if (_display.IsPoweredOn)
+            var turnOn = !_display.IsPoweredOn;
+            foreach (var d in _displays)
             {
-                _display.PowerOff();
-            }
-            else
-            {
-                _display.PowerOn();
+                try
+                {
+                    if (turnOn) d.PowerOn(); else d.PowerOff();
+                }
+                catch (Exception ex) { _logger.Error("Display power error: " + ex.Message); }
             }
             UpdatePowerFeedback();
         }
@@ -115,8 +131,12 @@ namespace CrestronCP4.ProcessorSide.Subsystems
 
             _activeSource = index;
 
-            // Select input on display
-            _display?.SelectInput("hdmi" + (index + 1));
+            // Select input on all displays
+            foreach (var d in _displays)
+            {
+                try { d.SelectInput("hdmi" + (index + 1)); }
+                catch (Exception ex) { _logger.Error("Display input select error: " + ex.Message); }
+            }
 
             // Update source feedback
             for (int i = 0; i < 5; i++)
@@ -189,8 +209,8 @@ namespace CrestronCP4.ProcessorSide.Subsystems
         {
             if (_disposed) return;
             _disposed = true;
-            if (_display != null) _display.FeedbackReceived -= OnDisplayFeedback;
-            if (_audio != null) _audio.FeedbackReceived -= OnAudioFeedback;
+            foreach (var d in _displays) d.FeedbackReceived -= OnDisplayFeedback;
+            foreach (var a in _audios) a.FeedbackReceived -= OnAudioFeedback;
         }
     }
 }

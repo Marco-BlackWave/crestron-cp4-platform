@@ -21,6 +21,16 @@ namespace CrestronCP4.ProcessorSide.Configuration
         [DataMember(Name = "name")] public string Name { get; set; }
         [DataMember(Name = "eiscIpId")] public string EiscIpId { get; set; }
         [DataMember(Name = "eiscIpAddress")] public string EiscIpAddress { get; set; }
+        [DataMember(Name = "processors")] public List<ProcessorConfig> Processors { get; set; }
+    }
+
+    [DataContract]
+    public sealed class ProcessorConfig
+    {
+        [DataMember(Name = "id")] public string Id { get; set; }
+        [DataMember(Name = "processor")] public string Processor { get; set; }
+        [DataMember(Name = "eiscIpId")] public string EiscIpId { get; set; }
+        [DataMember(Name = "eiscIpAddress")] public string EiscIpAddress { get; set; }
     }
 
     [DataContract]
@@ -29,6 +39,7 @@ namespace CrestronCP4.ProcessorSide.Configuration
         [DataMember(Name = "id")] public string Id { get; set; }
         [DataMember(Name = "name")] public string Name { get; set; }
         [DataMember(Name = "joinOffset")] public int JoinOffset { get; set; }
+        [DataMember(Name = "processorId")] public string ProcessorId { get; set; }
         [DataMember(Name = "subsystems")] public List<string> Subsystems { get; set; }
         [DataMember(Name = "devices")] public Dictionary<string, DeviceAssignment> Devices { get; set; }
         [DataMember(Name = "sources")] public List<string> Sources { get; set; }

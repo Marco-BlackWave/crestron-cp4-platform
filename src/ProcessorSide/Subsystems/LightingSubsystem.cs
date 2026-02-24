@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using CrestronCP4.ProcessorSide.Configuration;
 using CrestronCP4.ProcessorSide.Core.Diagnostics;
 using CrestronCP4.ProcessorSide.Core.Signals;
@@ -12,7 +13,7 @@ namespace CrestronCP4.ProcessorSide.Subsystems
     /// </summary>
     public sealed class LightingSubsystem : ISubsystem
     {
-        private readonly ILightingDriver _lighting;
+        private readonly List<ILightingDriver> _drivers;
         private readonly ILogger _logger;
         private SignalRegistry _signals;
         private string _roomId;
@@ -20,13 +21,20 @@ namespace CrestronCP4.ProcessorSide.Subsystems
         private int _activeScene = -1;
         private bool _disposed;
 
+        // Primary driver for feedback
+        private ILightingDriver _lighting => _drivers.Count > 0 ? _drivers[0] : null;
+
         public string Id => "lighting";
 
-        public LightingSubsystem(ILightingDriver lighting, ILogger logger)
+        public LightingSubsystem(List<ILightingDriver> drivers, ILogger logger)
         {
-            _lighting = lighting;
+            _drivers = drivers ?? new List<ILightingDriver>();
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
+
+        public LightingSubsystem(ILightingDriver lighting, ILogger logger)
+            : this(lighting != null ? new List<ILightingDriver> { lighting } : new List<ILightingDriver>(), logger)
+        { }
 
         public void Initialize(SignalRegistry signals, string roomId, int joinOffset)
         {
@@ -34,9 +42,9 @@ namespace CrestronCP4.ProcessorSide.Subsystems
             _roomId = roomId;
             _joinOffset = joinOffset;
 
-            if (_lighting != null)
+            foreach (var drv in _drivers)
             {
-                _lighting.FeedbackReceived += OnLightingFeedback;
+                drv.FeedbackReceived += OnLightingFeedback;
             }
 
             _logger.Info("Lighting subsystem initialized for room " + roomId);
@@ -75,7 +83,10 @@ namespace CrestronCP4.ProcessorSide.Subsystems
         public void SetLevel(int percent)
         {
             percent = Math.Max(0, Math.Min(100, percent));
-            _lighting?.SetLevel(_roomId, percent);
+            foreach (var drv in _drivers)
+            {
+                try { drv.SetLevel(_roomId, percent); } catch { }
+            }
 
             var fbSignal = _signals.GetOrCreate(MakeKey("analog", JoinMap.Analog.LightingLevelFeedback));
             fbSignal?.Set((ushort)(percent * 655));
@@ -85,7 +96,10 @@ namespace CrestronCP4.ProcessorSide.Subsystems
         {
             _activeScene = sceneIndex;
             var sceneId = _roomId + ":scene" + (sceneIndex + 1);
-            _lighting?.RecallScene(sceneId);
+            foreach (var drv in _drivers)
+            {
+                try { drv.RecallScene(sceneId); } catch { }
+            }
 
             // Update scene feedback
             for (int i = 0; i < 4; i++)
@@ -137,7 +151,7 @@ namespace CrestronCP4.ProcessorSide.Subsystems
         {
             if (_disposed) return;
             _disposed = true;
-            if (_lighting != null) _lighting.FeedbackReceived -= OnLightingFeedback;
+            foreach (var drv in _drivers) drv.FeedbackReceived -= OnLightingFeedback;
         }
     }
 }

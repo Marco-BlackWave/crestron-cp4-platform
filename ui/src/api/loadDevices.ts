@@ -1,8 +1,8 @@
 import { apiFetch } from "./client";
 import { deviceProfileSchema, DeviceProfile } from "../schema/deviceProfileSchema";
 
-export async function loadDevices(apiKey: string): Promise<DeviceProfile[]> {
-  const json = await apiFetch("/devices", apiKey);
+export async function loadDevices(): Promise<DeviceProfile[]> {
+  const json = await apiFetch("/devices");
   if (!Array.isArray(json)) {
     throw new Error("Expected an array of device profiles.");
   }
@@ -17,8 +17,8 @@ export async function loadDevices(apiKey: string): Promise<DeviceProfile[]> {
   return results;
 }
 
-export async function loadDevice(apiKey: string, id: string): Promise<DeviceProfile> {
-  const json = await apiFetch(`/devices/${encodeURIComponent(id)}`, apiKey);
+export async function loadDevice(id: string): Promise<DeviceProfile> {
+  const json = await apiFetch(`/devices/${encodeURIComponent(id)}`);
   const parsed = deviceProfileSchema.safeParse(json);
   if (!parsed.success) {
     const message = parsed.error.issues
