@@ -2124,22 +2124,48 @@ static class NetworkScanner
             catch { /* no HTTP title */ }
         }
 
-        // Step 5: Classify device type
-        var deviceType = ClassifyDevice(openPorts, httpTitle);
+        // Step 5: MAC address + vendor lookup (from ARP table after successful ping)
+        var mac = LookupMac(ip.ToString());
+        var vendor = LookupVendor(mac);
+
+        // Step 6: Classify device type (use vendor hint)
+        var deviceType = ClassifyDevice(openPorts, httpTitle, vendor);
+        var isCrestron = deviceType == "Crestron"
+            || vendor.Equals("Crestron", StringComparison.OrdinalIgnoreCase)
+            || (hostname.IndexOf("crestron", StringComparison.OrdinalIgnoreCase) >= 0);
 
         return new ScanResult
         {
             ip = ip.ToString(),
             hostname = hostname,
             ports = openPorts.OrderBy(p => p).ToList(),
-            type = deviceType,
+            type = isCrestron ? "Crestron" : deviceType,
             responseTime = pingMs,
             httpTitle = httpTitle,
+            mac = mac,
+            vendor = string.IsNullOrEmpty(vendor) ? "" : vendor,
+            isCrestron = isCrestron,
         };
     }
 
-    static string ClassifyDevice(List<int> ports, string httpTitle = "")
+    static string ClassifyDevice(List<int> ports, string httpTitle = "", string vendor = "")
     {
+        // Vendor-based classification first
+        if (!string.IsNullOrEmpty(vendor))
+        {
+            var v = vendor.ToLowerInvariant();
+            if (v.Contains("crestron")) return "Crestron";
+            if (v.Contains("extron")) return "Extron";
+            if (v.Contains("biamp")) return "Biamp DSP";
+            if (v.Contains("qsc")) return "QSC DSP";
+            if (v.Contains("shure")) return "Shure Audio";
+            if (v.Contains("atlona")) return "Atlona";
+            if (v.Contains("lutron")) return "Lutron";
+            if (v.Contains("amx") || v.Contains("harman")) return "AMX/Harman";
+            if (v.Contains("denon") || v.Contains("marantz")) return "Denon/Marantz";
+            if (v.Contains("shelly")) return "Shelly IoT";
+        }
+
         if (ports.Contains(41794)) return "Crestron";
         if (ports.Contains(4998)) return "PJLink Projector";
         if (ports.Contains(502)) return "Modbus Device";
@@ -2229,6 +2255,74 @@ static class NetworkScanner
         public string type { get; set; } = "";
         public long responseTime { get; set; }
         public string httpTitle { get; set; } = "";
+        public string mac { get; set; } = "";
+        public string vendor { get; set; } = "";
+        public bool isCrestron { get; set; }
+    }
+
+    // OUI prefix → vendor name (first 3 bytes of MAC)
+    static readonly Dictionary<string, string> OuiVendors = new(StringComparer.OrdinalIgnoreCase)
+    {
+        ["00:10:7F"] = "Crestron",
+        ["00:10:C3"] = "Crestron",
+        ["00:1A:2B"] = "Crestron",
+        ["00:24:A8"] = "Crestron",
+        ["B8:D8:12"] = "Crestron",
+        ["00:05:CD"] = "Denon/Marantz",
+        ["00:0E:7B"] = "Extron",
+        ["00:1D:C1"] = "Extron",
+        ["00:60:B5"] = "Extron",
+        ["00:0A:E4"] = "QSC",
+        ["00:21:CC"] = "Biamp",
+        ["00:0D:6B"] = "Shure",
+        ["00:0F:F7"] = "Lutron",
+        ["00:90:0B"] = "Lutron",
+        ["00:04:A3"] = "AMX/Harman",
+        ["70:B3:D5"] = "AV Device",
+        ["C8:2C:2B"] = "Atlona",
+        ["00:14:39"] = "Atlona",
+        ["AC:CF:23"] = "Shelly",
+        ["34:94:54"] = "Shelly",
+        ["E8:DB:84"] = "Shelly",
+    };
+
+    static string LookupMac(string ip)
+    {
+        try
+        {
+            var psi = new System.Diagnostics.ProcessStartInfo("arp", $"-a {ip}")
+            {
+                RedirectStandardOutput = true,
+                UseShellExecute = false,
+                CreateNoWindow = true,
+            };
+            using var proc = System.Diagnostics.Process.Start(psi);
+            if (proc == null) return "";
+            var output = proc.StandardOutput.ReadToEnd();
+            proc.WaitForExit(2000);
+            // Parse ARP output for MAC: look for lines containing the IP
+            foreach (var line in output.Split('\n'))
+            {
+                var trimmed = line.Trim();
+                if (!trimmed.Contains(ip)) continue;
+                // Windows format: "192.168.1.10    00-10-7f-xx-xx-xx    dynamic"
+                var parts = trimmed.Split(new[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
+                if (parts.Length >= 2)
+                {
+                    var mac = parts[1].Replace('-', ':').ToUpperInvariant();
+                    if (mac.Length >= 8 && mac.Contains(':')) return mac;
+                }
+            }
+        }
+        catch { /* ARP lookup failed */ }
+        return "";
+    }
+
+    static string LookupVendor(string mac)
+    {
+        if (string.IsNullOrEmpty(mac) || mac.Length < 8) return "";
+        var prefix = mac[..8].ToUpperInvariant(); // "00:10:7F"
+        return OuiVendors.TryGetValue(prefix, out var vendor) ? vendor : "";
     }
 }
 
