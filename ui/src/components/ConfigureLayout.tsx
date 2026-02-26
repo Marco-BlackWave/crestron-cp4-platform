@@ -5,6 +5,8 @@ import JsonSidebarPanel from "./JsonSidebarPanel";
 
 const tabs = [
   { to: "/configure", label: "Project", end: true },
+  { to: "/configure/scaffold", label: "Scaffold" },
+  { to: "/configure/studio", label: "Studio" },
   { to: "/configure/rooms", label: "Rooms" },
   { to: "/configure/sources", label: "Sources" },
   { to: "/configure/scenes", label: "Scenes" },

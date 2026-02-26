@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useDataLoader } from "./useDataLoader";
 
 export interface CatalogData {
   version: string;
@@ -21,32 +21,21 @@ interface CatalogState {
   error: string | null;
 }
 
+async function loadCatalog(): Promise<CatalogData | null> {
+  const res = await fetch("/api/catalog");
+  if (!res.ok) {
+    throw new Error("Failed to load catalog");
+  }
+
+  const json = await res.json();
+  return json as CatalogData;
+}
+
 export function useCatalog(): CatalogState {
-  const [status, setStatus] = useState<CatalogState["status"]>("idle");
-  const [data, setData] = useState<CatalogData | null>(null);
-  const [error, setError] = useState<string | null>(null);
-
-  const load = useCallback(() => {
-    setStatus("loading");
-    fetch("/api/catalog")
-      .then((res) => {
-        if (!res.ok) throw new Error("Failed to load catalog");
-        return res.json();
-      })
-      .then((json: CatalogData) => {
-        setData(json);
-        setStatus("ready");
-        setError(null);
-      })
-      .catch((err) => {
-        setError(err.message);
-        setStatus("error");
-      });
-  }, []);
-
-  useEffect(() => {
-    load();
-  }, [load]);
+  const { status, data, error } = useDataLoader<CatalogData | null>({
+    load: loadCatalog,
+    initialData: null,
+  });
 
   return { status, data, error };
 }

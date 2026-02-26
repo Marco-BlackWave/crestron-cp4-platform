@@ -13,6 +13,7 @@ interface ScanResult {
   mac?: string;
   vendor?: string;
   isCrestron?: boolean;
+  crestronModel?: string;
   _added?: boolean;
 }
 
@@ -36,13 +37,15 @@ const AV_TYPES = new Set([
 ]);
 
 const PORT_INFO: Record<number, { label: string; desc: string; color: string }> = {
-  41794: { label: "CIP",     desc: "Crestron Control",          color: "#2563eb" },
-  80:    { label: "HTTP",    desc: "Web Server",                color: "#059669" },
-  443:   { label: "HTTPS",   desc: "Secure Web Server",         color: "#059669" },
-  23:    { label: "Telnet",  desc: "Telnet / Serial-over-IP",   color: "#d97706" },
-  4998:  { label: "PJLink",  desc: "Projector Control",         color: "#7c3aed" },
-  502:   { label: "Modbus",  desc: "Modbus TCP/IP",             color: "#be185d" },
-  47808: { label: "BACnet",  desc: "BACnet/IP",                 color: "#ca8a04" },
+  41794: { label: "CIP",      desc: "Crestron Control",          color: "#2563eb" },
+  80:    { label: "HTTP",     desc: "Web Server",                color: "#059669" },
+  443:   { label: "HTTPS",    desc: "Secure Web Server",         color: "#059669" },
+  8080:  { label: "HTTP-Alt", desc: "Alternate Web Server",      color: "#059669" },
+  22:    { label: "SSH",      desc: "Secure Shell",              color: "#6366f1" },
+  23:    { label: "Telnet",   desc: "Telnet / Serial-over-IP",   color: "#d97706" },
+  4998:  { label: "PJLink",   desc: "Projector Control",         color: "#7c3aed" },
+  502:   { label: "Modbus",   desc: "Modbus TCP/IP",             color: "#be185d" },
+  47808: { label: "BACnet",   desc: "BACnet/IP",                 color: "#ca8a04" },
 };
 
 function ipToNumber(ip: string): number {
@@ -61,6 +64,37 @@ function isCrestronDevice(r: ScanResult): boolean {
 
 function isAVDevice(r: ScanResult): boolean {
   return AV_TYPES.has(r.type) || isCrestronDevice(r);
+}
+
+function autoDetectRole(r: ScanResult): string {
+  if (r.ports.includes(41794)) return "processor";
+  if (r.ports.includes(4998)) return "display";
+  const t = (r.type ?? "").toLowerCase();
+  if (t.includes("dsp") || t.includes("audio")) return "dsp";
+  if (t.includes("matrix")) return "matrix";
+  if (t.includes("lutron") || t.includes("lighting")) return "lighting-gateway";
+  if (t.includes("denon") || t.includes("marantz") || t.includes("receiver")) return "receiver";
+  if (t.includes("bacnet") || t.includes("hvac")) return "hvac-controller";
+  if (t.includes("shade")) return "shade-controller";
+  if (t.includes("projector") || t.includes("display")) return "display";
+  if (t.includes("camera")) return "camera";
+  return "other";
+}
+
+function autoDetectProtocol(r: ScanResult): string {
+  if (r.ports.includes(41794)) return "ip";
+  if (r.ports.includes(4998)) return "pjlink";
+  if (r.ports.includes(502)) return "modbus";
+  if (r.ports.includes(47808)) return "bacnet";
+  return "ip";
+}
+
+function autoSearchHint(r: ScanResult): string {
+  const parts: string[] = [];
+  if (r.vendor) parts.push(r.vendor);
+  if (r.crestronModel) parts.push(r.crestronModel);
+  if (parts.length === 0 && r.httpTitle) parts.push(r.httpTitle);
+  return parts.join(" ");
 }
 
 export default function NetworkScanPage() {
@@ -340,7 +374,12 @@ export default function NetworkScanPage() {
                             {crestron && <span className="ns-crestron-dot" title="Crestron Device" />}
                           </div>
                           <div className="ns-row__ip">{r.ip}</div>
-                          <div className="ns-row__name">{r.hostname || r.httpTitle || "\u2014"}</div>
+                          <div className="ns-row__name">
+                            {r.hostname || r.httpTitle || "\u2014"}
+                            {r.crestronModel && (
+                              <span className="ns-model-tag">{r.crestronModel}</span>
+                            )}
+                          </div>
                           <div className="ns-row__mac">{r.mac || "\u2014"}</div>
                           <div className="ns-row__vendor">
                             {r.vendor ? (
@@ -361,7 +400,9 @@ export default function NetworkScanPage() {
                           </div>
                           <div className="ns-row__type">
                             {crestron ? (
-                              <span className="ns-type-badge ns-type-badge--crestron">{r.type}</span>
+                              <span className="ns-type-badge ns-type-badge--crestron">
+                                {r.crestronModel || r.type}
+                              </span>
                             ) : (
                               <span className="ns-type-badge">{r.type}</span>
                             )}
@@ -409,6 +450,12 @@ export default function NetworkScanPage() {
                                       <span className="ns-type-badge ns-type-badge--crestron">{r.type}</span>
                                     ) : r.type}
                                   </dd>
+                                  {r.crestronModel && (
+                                    <>
+                                      <dt>Crestron Model</dt>
+                                      <dd><strong>{r.crestronModel}</strong></dd>
+                                    </>
+                                  )}
                                   {r.httpTitle && (
                                     <>
                                       <dt>HTTP Title</dt>
@@ -512,11 +559,13 @@ function AddToProjectPanel({ device, onClose, onAdded }: {
   onClose: () => void;
   onAdded: () => void;
 }) {
-  const [role, setRole] = useState("display");
-  const [profileSearch, setProfileSearch] = useState("");
+  const detectedRole = autoDetectRole(device);
+  const detectedProtocol = autoDetectProtocol(device);
+  const [role, setRole] = useState(detectedRole);
+  const [profileSearch, setProfileSearch] = useState(autoSearchHint(device));
   const [profiles, setProfiles] = useState<{ id: string; manufacturer: string; model: string }[]>([]);
   const [selectedProfile, setSelectedProfile] = useState("");
-  const [protocol, setProtocol] = useState(device.ports.includes(41794) ? "ip" : device.ports.includes(502) ? "modbus" : "ip");
+  const [protocol, setProtocol] = useState(detectedProtocol);
   const [status, setStatus] = useState<"idle" | "saving" | "done" | "error">("idle");
 
   useEffect(() => {
@@ -533,7 +582,7 @@ function AddToProjectPanel({ device, onClose, onAdded }: {
     ).slice(0, 10);
   }, [profiles, profileSearch]);
 
-  const roles = ["display", "receiver", "matrix", "dsp", "camera", "lighting-gateway", "shade-controller", "hvac-controller", "other"];
+  const roles = ["processor", "display", "receiver", "matrix", "dsp", "camera", "lighting-gateway", "shade-controller", "hvac-controller", "other"];
 
   const crestron = isCrestronDevice(device);
 
@@ -547,6 +596,7 @@ function AddToProjectPanel({ device, onClose, onAdded }: {
         <span className="ns-detail__mono">{device.ip}</span>
         {" \u2014 "}
         {crestron ? <span className="ns-type-badge ns-type-badge--crestron">{device.type}</span> : device.type}
+        {device.crestronModel && <span style={{ marginLeft: 6, fontWeight: 600 }}>{device.crestronModel}</span>}
         {device.hostname ? ` (${device.hostname})` : ""}
       </div>
       {device.mac && (
@@ -556,7 +606,7 @@ function AddToProjectPanel({ device, onClose, onAdded }: {
         </div>
       )}
       <div className="form-group">
-        <label className="label">Role</label>
+        <label className="label">Role{role === detectedRole && detectedRole !== "other" ? " (auto-detected)" : ""}</label>
         <select className="input" value={role} onChange={e => setRole(e.target.value)}>
           {roles.map(r => <option key={r} value={r}>{r}</option>)}
         </select>
@@ -582,7 +632,7 @@ function AddToProjectPanel({ device, onClose, onAdded }: {
         )}
       </div>
       <div className="form-group">
-        <label className="label">Protocol</label>
+        <label className="label">Protocol{protocol === detectedProtocol && detectedProtocol !== "ip" ? " (auto-detected)" : ""}</label>
         <select className="input" value={protocol} onChange={e => setProtocol(e.target.value)}>
           <option value="ip">IP / TCP</option>
           <option value="serial">Serial (RS-232)</option>

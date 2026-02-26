@@ -1,0 +1,59 @@
+{
+  "schemaVersion": "1.0",
+  "processor": "CP4",
+  "projectId": "d",
+  "debugMode": false,
+  "joins": {
+    "digital": [
+      {
+        "join": 1,
+        "name": "marco_Power",
+        "direction": "output"
+      },
+      {
+        "join": 2,
+        "name": "marco_PowerFb",
+        "direction": "input"
+      }
+    ],
+    "analog": [
+      {
+        "join": 1,
+        "name": "marco_Volume",
+        "direction": "output"
+      },
+      {
+        "join": 2,
+        "name": "marco_VolumeFb",
+        "direction": "input"
+      },
+      {
+        "join": 3,
+        "name": "marco_Source",
+        "direction": "output"
+      },
+      {
+        "join": 4,
+        "name": "marco_SourceFb",
+        "direction": "input"
+      },
+      {
+        "join": 10,
+        "name": "marco_LightLevel",
+        "direction": "output"
+      },
+      {
+        "join": 11,
+        "name": "marco_LightLevelFb",
+        "direction": "input"
+      }
+    ],
+    "serial": [
+      {
+        "join": 1,
+        "name": "marco_SourceName",
+        "direction": "input"
+      }
+    ]
+  }
+}

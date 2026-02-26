@@ -347,7 +347,7 @@ export default function DeployPage() {
 
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
               <span className={`deploy-status-dot ${validationErrors.length === 0 ? "deploy-status-dot--done" : "deploy-status-dot--error"}`} />
-              <span style={{ fontWeight: 600, color: validationErrors.length === 0 ? "#22c55e" : "#ef4444" }}>
+              <span style={{ fontWeight: 600, color: validationErrors.length === 0 ? "var(--success)" : "var(--danger)" }}>
                 {validationErrors.length === 0 ? "Configuration valid" : `${validationErrors.length} validation error${validationErrors.length !== 1 ? "s" : ""}`}
               </span>
             </div>
@@ -355,7 +355,7 @@ export default function DeployPage() {
             {validationErrors.length > 0 && (
               <ul style={{ margin: "0 0 12px", paddingLeft: 20 }}>
                 {validationErrors.map((err, i) => (
-                  <li key={i} style={{ color: "#ef4444", fontSize: 13 }}>{err}</li>
+                  <li key={i} style={{ color: "var(--danger)", fontSize: 13 }}>{err}</li>
                 ))}
               </ul>
             )}
@@ -363,7 +363,7 @@ export default function DeployPage() {
             {isDirty && (
               <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
                 <span className="deploy-status-dot deploy-status-dot--error" />
-                <span style={{ color: "#f59e0b", fontWeight: 600 }}>Unsaved changes</span>
+                <span style={{ color: "var(--warning)", fontWeight: 600 }}>Unsaved changes</span>
                 <button
                   className="button primary"
                   style={{ marginLeft: 8 }}
@@ -378,11 +378,11 @@ export default function DeployPage() {
             {!isDirty && validationErrors.length === 0 && (
               <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
                 <span className="deploy-status-dot deploy-status-dot--done" />
-                <span style={{ color: "#22c55e", fontWeight: 600 }}>Configuration saved and ready</span>
+                <span style={{ color: "var(--success)", fontWeight: 600 }}>Configuration saved and ready</span>
               </div>
             )}
 
-            <div style={{ fontSize: 13, color: "#94a3b8", marginBottom: 12 }}>
+            <div style={{ fontSize: 13, color: "var(--text-muted)", marginBottom: 12 }}>
               Project: <strong>{draft.projectId}</strong> | Rooms: <strong>{draft.rooms.length}</strong> | Processors: <strong>{processors.length}</strong>
             </div>
 
@@ -477,13 +477,13 @@ export default function DeployPage() {
               <div className="deploy-discovery" style={{
                 margin: "0 0 20px",
                 padding: 16,
-                background: "#0f172a",
+                background: "var(--bg-muted)",
                 borderRadius: 12,
-                border: "1px solid #1e293b",
+                border: "1px solid var(--border-default)",
               }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
                   <h3 style={{ margin: 0, fontSize: 14 }}>Network Discovery</h3>
-                  <span style={{ fontSize: 12, color: "#64748b" }}>
+                  <span style={{ fontSize: 12, color: "var(--text-faint)" }}>
                     Find Crestron processors on your LAN
                   </span>
                 </div>
@@ -525,7 +525,7 @@ export default function DeployPage() {
                       Scan
                     </button>
                   ) : (
-                    <button className="button" onClick={handleCancelScan} style={{ fontSize: 12, color: "#ef4444" }}>
+                    <button className="button" onClick={handleCancelScan} style={{ fontSize: 12, color: "var(--danger)" }}>
                       Stop
                     </button>
                   )}
@@ -538,13 +538,13 @@ export default function DeployPage() {
                   </div>
                 )}
 
-                {scanError && <p style={{ color: "#ef4444", fontSize: 12, marginBottom: 8 }}>{scanError}</p>}
+                {scanError && <p style={{ color: "var(--danger)", fontSize: 12, marginBottom: 8 }}>{scanError}</p>}
 
                 {/* Filter + Results count */}
                 {scanResults.length > 0 && (
                   <>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
-                      <span style={{ fontSize: 12, color: "#64748b" }}>
+                      <span style={{ fontSize: 12, color: "var(--text-faint)" }}>
                         {filteredScanResults.length} device{filteredScanResults.length !== 1 ? "s" : ""}
                         {deviceFilter === "crestron" ? " (Crestron only)" : ""}
                       </span>
@@ -583,7 +583,7 @@ export default function DeployPage() {
                           {filteredScanResults.map((r) => (
                             <tr
                               key={r.ip}
-                              style={r.ip === ip ? { background: "rgba(37,99,235,0.1)" } : undefined}
+                              style={r.ip === ip ? { background: "var(--accent-soft-strong)" } : undefined}
                             >
                               <td style={{ fontFamily: "var(--font-mono)", fontSize: 11 }}>{r.ip}</td>
                               <td style={{ maxWidth: 120, overflow: "hidden", textOverflow: "ellipsis" }}>
@@ -600,7 +600,7 @@ export default function DeployPage() {
                               </td>
                               <td>
                                 <span style={{
-                                  color: r.type === "Crestron" ? "#22c55e" : "#94a3b8",
+                                  color: r.type === "Crestron" ? "var(--success)" : "var(--text-muted)",
                                   fontWeight: r.type === "Crestron" ? 600 : 400,
                                 }}>
                                   {r.type}
@@ -620,7 +620,7 @@ export default function DeployPage() {
                           ))}
                           {filteredScanResults.length === 0 && (
                             <tr>
-                              <td colSpan={6} style={{ textAlign: "center", color: "#64748b", padding: 16 }}>
+                              <td colSpan={6} style={{ textAlign: "center", color: "var(--text-faint)", padding: 16 }}>
                                 {deviceFilter === "crestron"
                                   ? "No Crestron devices found. Try \"All\" filter or check the subnet."
                                   : "No devices found on this subnet."}
@@ -634,7 +634,7 @@ export default function DeployPage() {
                 )}
 
                 {!scanning && scanResults.length === 0 && !scanError && (
-                  <p style={{ fontSize: 12, color: "#475569", margin: "8px 0 0", textAlign: "center" }}>
+                  <p style={{ fontSize: 12, color: "var(--text-secondary)", margin: "8px 0 0", textAlign: "center" }}>
                     Select a network interface or enter a subnet, then click Scan.
                   </p>
                 )}
@@ -654,14 +654,14 @@ export default function DeployPage() {
             {authResult && (
               <div style={{ display: "flex", alignItems: "center", gap: 10, marginTop: 12 }}>
                 <span className={`deploy-status-dot ${authResult.success ? "deploy-status-dot--done" : "deploy-status-dot--error"}`} />
-                <span style={{ fontSize: 13, fontWeight: 600, color: authResult.success ? "#22c55e" : "#ef4444" }}>
+                <span style={{ fontSize: 13, fontWeight: 600, color: authResult.success ? "var(--success)" : "var(--danger)" }}>
                   {authResult.success ? authResult.message : `Failed: ${authResult.message}`}
                 </span>
               </div>
             )}
 
             {authResult?.success && authResult.serverInfo && (
-              <div style={{ fontSize: 12, color: "#64748b", marginTop: 4 }}>
+              <div style={{ fontSize: 12, color: "var(--text-faint)", marginTop: 4 }}>
                 Server: {authResult.serverInfo}
               </div>
             )}
@@ -684,12 +684,12 @@ export default function DeployPage() {
           <div className="card">
             <h2 style={{ margin: "0 0 16px", fontSize: 16 }}>Deployment Preview</h2>
 
-            {previewLoading && <p style={{ color: "#94a3b8" }}>Loading file preview...</p>}
-            {previewError && <p style={{ color: "#ef4444" }}>{previewError}</p>}
+            {previewLoading && <p style={{ color: "var(--text-muted)" }}>Loading file preview...</p>}
+            {previewError && <p style={{ color: "var(--danger)" }}>{previewError}</p>}
 
             {previewFiles.length > 0 && (
               <>
-                <div className="deploy-file-row" style={{ fontWeight: 700, color: "#94a3b8", fontSize: 12, textTransform: "uppercase", letterSpacing: "0.5px" }}>
+                <div className="deploy-file-row" style={{ fontWeight: 700, color: "var(--text-muted)", fontSize: 12, textTransform: "uppercase", letterSpacing: "0.5px" }}>
                   <span>File</span>
                   <span>Target Path</span>
                   <span>Size</span>
@@ -698,13 +698,13 @@ export default function DeployPage() {
                 {previewFiles.map((f) => (
                   <div key={f.name} className="deploy-file-row">
                     <span style={{ fontWeight: 600 }}>{f.name}</span>
-                    <code style={{ fontSize: 12, color: "#94a3b8" }}>{f.targetPath}</code>
+                    <code style={{ fontSize: 12, color: "var(--text-muted)" }}>{f.targetPath}</code>
                     <span>{formatBytes(f.sizeBytes)}</span>
-                    <code style={{ fontSize: 11, color: "#64748b" }}>{f.contentHash.slice(0, 12)}...</code>
+                    <code style={{ fontSize: 11, color: "var(--text-faint)" }}>{f.contentHash.slice(0, 12)}...</code>
                   </div>
                 ))}
 
-                <div style={{ marginTop: 16, fontSize: 13, color: "#94a3b8" }}>
+                <div style={{ marginTop: 16, fontSize: 13, color: "var(--text-muted)" }}>
                   Total: <strong>{previewFiles.length} files</strong>, <strong>{formatBytes(previewFiles.reduce((s, f) => s + f.sizeBytes, 0))}</strong>
                 </div>
               </>
@@ -737,8 +737,8 @@ export default function DeployPage() {
                   />
                 </div>
 
-                <div style={{ fontSize: 13, color: "#94a3b8", marginBottom: 16 }}>
-                  Status: <strong style={{ color: deployStatus.status === "completed" ? "#22c55e" : deployStatus.status === "error" ? "#ef4444" : "#93c5fd" }}>
+                <div style={{ fontSize: 13, color: "var(--text-muted)", marginBottom: 16 }}>
+                  Status: <strong style={{ color: deployStatus.status === "completed" ? "var(--success)" : deployStatus.status === "error" ? "var(--danger)" : "var(--accent)" }}>
                     {deployStatus.status}
                   </strong>
                   {deployStatus.progress > 0 && ` — ${deployStatus.progress}%`}
@@ -754,7 +754,7 @@ export default function DeployPage() {
                         style={{ width: f.totalBytes > 0 ? `${Math.min(100, (f.bytesTransferred / f.totalBytes) * 100)}%` : "0%" }}
                       />
                     </div>
-                    <span style={{ fontSize: 12, color: "#94a3b8" }}>
+                    <span style={{ fontSize: 12, color: "var(--text-muted)" }}>
                       {formatBytes(f.bytesTransferred)} / {formatBytes(f.totalBytes)}
                     </span>
                   </div>
@@ -763,12 +763,12 @@ export default function DeployPage() {
             )}
 
             {transferError && (
-              <p style={{ color: "#ef4444", marginTop: 12 }}>{transferError}</p>
+              <p style={{ color: "var(--danger)", marginTop: 12 }}>{transferError}</p>
             )}
 
             <div className="deploy-actions">
               {deployStatus?.status === "transferring" || deployStatus?.status === "preparing" ? (
-                <button className="button" style={{ color: "#ef4444" }} onClick={handleCancel}>Cancel</button>
+                <button className="button" style={{ color: "var(--danger)" }} onClick={handleCancel}>Cancel</button>
               ) : deployStatus?.status === "error" || deployStatus?.status === "cancelled" ? (
                 <>
                   <button className="button" onClick={() => setStep(3)}>Back</button>
@@ -817,7 +817,7 @@ export default function DeployPage() {
                 className="button"
                 onClick={handleRestart}
                 disabled={restarting}
-                style={{ color: "#f59e0b" }}
+                style={{ color: "var(--warning)" }}
               >
                 {restarting ? "Restarting..." : "Restart SIMPL# Program"}
               </button>
@@ -826,10 +826,10 @@ export default function DeployPage() {
             {verifyResult && (
               <div style={{ marginBottom: 16 }}>
                 <h3 style={{ fontSize: 14, marginBottom: 8 }}>Verification Results</h3>
-                {verifyResult.error && <p style={{ color: "#ef4444", fontSize: 13 }}>{verifyResult.error}</p>}
+                {verifyResult.error && <p style={{ color: "var(--danger)", fontSize: 13 }}>{verifyResult.error}</p>}
                 {verifyResult.files.length > 0 && (
                   <>
-                    <div className="deploy-verify-row" style={{ fontWeight: 700, color: "#94a3b8", fontSize: 12, textTransform: "uppercase" }}>
+                    <div className="deploy-verify-row" style={{ fontWeight: 700, color: "var(--text-muted)", fontSize: 12, textTransform: "uppercase" }}>
                       <span>File</span>
                       <span>Path</span>
                       <span>Exists</span>
@@ -838,7 +838,7 @@ export default function DeployPage() {
                     {verifyResult.files.map((f) => (
                       <div key={f.name} className="deploy-verify-row">
                         <span style={{ fontWeight: 600 }}>{f.name}</span>
-                        <code style={{ fontSize: 12, color: "#94a3b8" }}>{f.remotePath}</code>
+                        <code style={{ fontSize: 12, color: "var(--text-muted)" }}>{f.remotePath}</code>
                         <span className={f.exists ? "deploy-check" : "deploy-cross"}>{f.exists ? "\u2713" : "\u2717"}</span>
                         <span className={f.sizeMatch ? "deploy-check" : "deploy-cross"}>
                           {f.sizeMatch ? "\u2713" : `\u2717 (${formatBytes(f.remoteSize)} vs ${formatBytes(f.expectedSize)})`}
@@ -847,7 +847,7 @@ export default function DeployPage() {
                     ))}
                     <div style={{ marginTop: 12 }}>
                       <span className={`deploy-status-dot ${verifyResult.success ? "deploy-status-dot--done" : "deploy-status-dot--error"}`} />
-                      <span style={{ marginLeft: 8, fontWeight: 600, color: verifyResult.success ? "#22c55e" : "#ef4444" }}>
+                      <span style={{ marginLeft: 8, fontWeight: 600, color: verifyResult.success ? "var(--success)" : "var(--danger)" }}>
                         {verifyResult.success ? "All files verified successfully" : "Verification failed — some files don't match"}
                       </span>
                     </div>
@@ -861,12 +861,12 @@ export default function DeployPage() {
                 <h3 style={{ fontSize: 14, marginBottom: 8 }}>Program Restart</h3>
                 <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                   <span className={`deploy-status-dot ${restartResult.success ? "deploy-status-dot--done" : "deploy-status-dot--error"}`} />
-                  <span style={{ fontWeight: 600, color: restartResult.success ? "#22c55e" : "#ef4444" }}>
+                  <span style={{ fontWeight: 600, color: restartResult.success ? "var(--success)" : "var(--danger)" }}>
                     {restartResult.success ? "Program restart command sent" : "Restart failed"}
                   </span>
                 </div>
                 {restartResult.output && (
-                  <pre style={{ fontSize: 12, color: "#94a3b8", marginTop: 8, padding: 12, background: "#0f172a", borderRadius: 8 }}>
+                  <pre style={{ fontSize: 12, color: "var(--text-muted)", marginTop: 8, padding: 12, background: "var(--bg-contrast)", borderRadius: 8 }}>
                     {restartResult.output}
                   </pre>
                 )}

@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "apKWKa+rIF4=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\BlackWave\\Desktop\\crestron 4 Backend\\api\\JoinListApi\\JoinListApi.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\BlackWave\\.nuget\\packages\\bouncycastle.cryptography\\2.4.0\\bouncycastle.cryptography.2.4.0.nupkg.sha512",
+    "C:\\Users\\BlackWave\\.nuget\\packages\\ssh.net\\2024.2.0\\ssh.net.2024.2.0.nupkg.sha512"
+  ],
+  "logs": []
+}

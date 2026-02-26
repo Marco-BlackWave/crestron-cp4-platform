@@ -1,9 +1,9 @@
 {
   "schemaVersion": "1.0",
-  "projectId": "test-villa",
+  "projectId": "d",
   "processor": "CP4",
   "system": {
-    "name": "Test Villa",
+    "name": "d",
     "eiscIpId": "0x03",
     "eiscIpAddress": "127.0.0.2",
     "processors": [
@@ -17,8 +17,8 @@
   },
   "rooms": [
     {
-      "id": "living-room",
-      "name": "Living Room",
+      "id": "master-bedroom",
+      "name": "Master Bedroom",
       "joinOffset": 0,
       "processorId": "main",
       "roomType": "standard",
@@ -26,23 +26,39 @@
         "av",
         "lighting"
       ],
-      "devices": {},
-      "sources": []
+      "devices": {
+        "display": {
+          "profileId": "lg-webos",
+          "protocol": "ip",
+          "address": "192.168.23.108:3000"
+        },
+        "source-apple-tv": {
+          "profileId": "apple-tv-command-processor",
+          "protocol": "ip",
+          "address": "192.168.23.105:7000"
+        }
+      },
+      "sources": [
+        "apple-tv"
+      ]
     },
     {
-      "id": "master-bedroom",
-      "name": "Master Bedroom",
+      "id": "equipment-rack",
+      "name": "Equipment Rack",
       "joinOffset": 100,
       "processorId": "main",
-      "roomType": "standard",
-      "subsystems": [
-        "av",
-        "lighting"
-      ],
+      "roomType": "technical",
+      "subsystems": [],
       "devices": {},
       "sources": []
     }
   ],
-  "sources": [],
+  "sources": [
+    {
+      "id": "apple-tv",
+      "name": "Apple TV",
+      "type": "streaming"
+    }
+  ],
   "scenes": []
 }

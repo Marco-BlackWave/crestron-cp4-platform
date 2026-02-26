@@ -11,6 +11,8 @@ import { TEMPLATES } from "../simplplus/templates";
 import type { ProgramNode, IODeclNode, ParseError } from "../simplplus/types";
 import type { VFSEntry } from "../simplplus/virtualFs";
 import type { VSocket } from "../simplplus/virtualNet";
+import { useSystemConfig } from "../hooks/useSystemConfig";
+import WorkflowContextBar from "../components/WorkflowContextBar";
 
 type RightTab = "program" | "io" | "files" | "network";
 
@@ -34,10 +36,13 @@ const IO_TYPE_LABELS: Record<string, { label: string; abbr: string; color: strin
 };
 
 export default function LogicPlaygroundPage() {
+  const { data: config } = useSystemConfig();
   const editorContainerRef = useRef<HTMLDivElement>(null);
   const editorViewRef = useRef<EditorView | null>(null);
   const consoleRef = useRef<HTMLDivElement>(null);
   const runtimeRef = useRef<SimplPlusRuntime | null>(null);
+  const demoTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const demoSocketIdsRef = useRef<number[]>([]);
 
   const [consoleLines, setConsoleLines] = useState<string[]>([]);
   const [errors, setErrors] = useState<ParseError[]>([]);
@@ -94,6 +99,9 @@ export default function LogicPlaygroundPage() {
     runtimeRef.current = rt;
     rt.getVFS().onChange = () => setVfsFiles(rt.getVFS().listFiles());
     rt.getVNet().onChange = () => setSockets(rt.getVNet().getSocketList());
+    return () => {
+      if (demoTimerRef.current) clearTimeout(demoTimerRef.current);
+    };
   }, [callbacks]);
 
   useEffect(() => {
@@ -229,6 +237,72 @@ export default function LogicPlaygroundPage() {
     if (rt) { rt.reset(); reparse(code); }
   }
 
+  function handleLoadTcpTemplate() {
+    const tcpIdx = TEMPLATES.findIndex((template) => template.name.toLowerCase() === "tcp client");
+    if (tcpIdx >= 0) {
+      handleTemplateChange(tcpIdx);
+      setRightTab("network");
+      setConsoleLines((prev) => [...prev, "[NET] TCP Client template loaded. Click Build & Run to open sockets."]);
+    }
+  }
+
+  function handleRunNetworkDemo() {
+    const rt = runtimeRef.current;
+    if (!rt) return;
+
+    handleStopNetworkDemo(false);
+
+    const vnet = rt.getVNet();
+    const projectorSocket = vnet.socketConnectTcp("192.168.1.101", 23);
+    const echoSocket = vnet.socketConnectTcp("192.168.1.100", 23);
+    demoSocketIdsRef.current = [projectorSocket, echoSocket];
+
+    demoTimerRef.current = setTimeout(() => {
+      vnet.socketSend(projectorSocket, "PWR?\r\n");
+      vnet.socketSend(echoSocket, "HELLO\r\n");
+    }, 180);
+
+    setRightTab("network");
+    setConsoleLines((prev) => [...prev, "[NET] Demo started: connected to Projector Sim and Echo Server."]);
+  }
+
+  function handleStopNetworkDemo(log = true) {
+    const rt = runtimeRef.current;
+    if (!rt) return;
+
+    if (demoTimerRef.current) {
+      clearTimeout(demoTimerRef.current);
+      demoTimerRef.current = null;
+    }
+
+    const vnet = rt.getVNet();
+    for (const socketId of demoSocketIdsRef.current) {
+      vnet.socketDisconnect(socketId);
+    }
+    demoSocketIdsRef.current = [];
+
+    if (log) {
+      setConsoleLines((prev) => [...prev, "[NET] Demo stopped."]);
+    }
+  }
+
+  function handleClearNetworkSockets() {
+    const rt = runtimeRef.current;
+    if (!rt) return;
+    handleStopNetworkDemo(false);
+    const vnet = rt.getVNet();
+    for (const socket of vnet.getSocketList()) {
+      vnet.socketDisconnect(socket.id);
+    }
+    setConsoleLines((prev) => [...prev, "[NET] All virtual sockets disconnected."]);
+  }
+
+  function handleExitNetworkTab() {
+    handleStopNetworkDemo(false);
+    setRightTab("program");
+    setConsoleLines((prev) => [...prev, "[NET] Exited network tab."]);
+  }
+
   // ── I/O interactions ──
   function handleDigitalInput(name: string) {
     const rt = runtimeRef.current;
@@ -332,6 +406,13 @@ export default function LogicPlaygroundPage() {
 
   return (
     <div className="page-content">
+      <WorkflowContextBar
+        current="code"
+        projectName={config?.system.name}
+        roomCount={config?.rooms.length}
+        deviceCount={config?.rooms.reduce((sum, room) => sum + Object.keys(room.devices).length, 0)}
+      />
+
       {/* ── Header ── */}
       <div className="page-header">
         <div>
@@ -500,6 +581,11 @@ export default function LogicPlaygroundPage() {
             {rightTab === "network" && (
               <NetworkPanel
                 sockets={sockets}
+                onRunDemo={handleRunNetworkDemo}
+                onStopDemo={() => handleStopNetworkDemo(true)}
+                onLoadTcpTemplate={handleLoadTcpTemplate}
+                onClearSockets={handleClearNetworkSockets}
+                onExitTab={handleExitNetworkTab}
                 onInjectData={(socketId, data) => {
                   const rt = runtimeRef.current;
                   if (rt) rt.getVNet().injectData(socketId, data);
@@ -952,9 +1038,14 @@ function FilesPanel({ files, selectedFile, fileContent, onSelectFile, onClearAll
 // Network Panel (Virtual Sockets)
 // ══════════════════════════════════════════════════════════════
 
-function NetworkPanel({ sockets, onInjectData }: {
+function NetworkPanel({ sockets, onInjectData, onRunDemo, onStopDemo, onLoadTcpTemplate, onClearSockets, onExitTab }: {
   sockets: VSocket[];
   onInjectData: (socketId: number, data: string) => void;
+  onRunDemo: () => void;
+  onStopDemo: () => void;
+  onLoadTcpTemplate: () => void;
+  onClearSockets: () => void;
+  onExitTab: () => void;
 }) {
   const [injectSocketId, setInjectSocketId] = useState<number | null>(null);
   const [injectText, setInjectText] = useState("");
@@ -970,7 +1061,12 @@ function NetworkPanel({ sockets, onInjectData }: {
     return (
       <div className="sp-empty">
         <div className="sp-empty__icon">NET</div>
-        <p>No sockets yet. Run a program that uses TCP/UDP.</p>
+        <p>No sockets yet. This panel shows activity only when SIMPL+ uses socket APIs.</p>
+        <div style={{ display: "flex", gap: 8, flexWrap: "wrap", justifyContent: "center", marginTop: 8 }}>
+          <button className="button primary" onClick={onLoadTcpTemplate}>Load TCP Client Template</button>
+          <button className="button" onClick={onRunDemo}>Run Network Demo</button>
+          <button className="button" onClick={onExitTab}>Exit Network Tab</button>
+        </div>
         <div style={{ marginTop: 12, fontSize: 12, color: "#64748b" }}>
           <div>Available simulators:</div>
           <div style={{ fontFamily: "var(--font-mono)", marginTop: 4 }}>
@@ -988,6 +1084,12 @@ function NetworkPanel({ sockets, onInjectData }: {
       <div className="sp-net-header">
         <span className="sp-vfs-stat">{sockets.length} socket{sockets.length !== 1 ? "s" : ""}</span>
         <span className="sp-vfs-stat">{sockets.filter(s => s.status === "connected").length} connected</span>
+        <span style={{ marginLeft: "auto", display: "flex", gap: 6 }}>
+          <button className="button" style={{ padding: "2px 8px", fontSize: 11 }} onClick={onRunDemo}>Demo</button>
+          <button className="button" style={{ padding: "2px 8px", fontSize: 11 }} onClick={onStopDemo}>Stop</button>
+          <button className="button" style={{ padding: "2px 8px", fontSize: 11 }} onClick={onClearSockets}>Clear</button>
+          <button className="button" style={{ padding: "2px 8px", fontSize: 11 }} onClick={onExitTab}>Exit</button>
+        </span>
       </div>
 
       {sockets.map(sock => (

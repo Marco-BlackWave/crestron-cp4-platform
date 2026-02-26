@@ -1,0 +1,7 @@
+C:\Users\BlackWave\Desktop\crestron 4 Backend\api\api\JoinListApi\obj_temp\Debug\net8.0\JoinListApi.csproj.AssemblyReference.cache
+C:\Users\BlackWave\Desktop\crestron 4 Backend\api\api\JoinListApi\obj_temp\Debug\net8.0\JoinListApi.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\BlackWave\Desktop\crestron 4 Backend\api\api\JoinListApi\obj_temp\Debug\net8.0\JoinListApi.AssemblyInfoInputs.cache
+C:\Users\BlackWave\Desktop\crestron 4 Backend\api\api\JoinListApi\obj_temp\Debug\net8.0\JoinListApi.AssemblyInfo.cs
+C:\Users\BlackWave\Desktop\crestron 4 Backend\api\api\JoinListApi\obj_temp\Debug\net8.0\JoinListApi.csproj.CoreCompileInputs.cache
+C:\Users\BlackWave\Desktop\crestron 4 Backend\api\api\JoinListApi\obj_temp\Debug\net8.0\JoinListApi.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\BlackWave\Desktop\crestron 4 Backend\api\api\JoinListApi\obj_temp\Debug\net8.0\JoinListApi.sourcelink.json

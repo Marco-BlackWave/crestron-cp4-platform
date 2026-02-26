@@ -12,6 +12,13 @@ namespace CrestronCP4.ProcessorSide.Devices
         void Next();
         void Previous();
         void Seek(int position);
+        void Up();
+        void Down();
+        void Left();
+        void Right();
+        void Select();
+        void Menu();
+        void Home();
 
         bool IsPlaying { get; }
         string TrackName { get; }

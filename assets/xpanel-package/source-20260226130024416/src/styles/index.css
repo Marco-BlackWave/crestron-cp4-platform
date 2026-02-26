@@ -1,0 +1,66 @@
+@import './fonts.css';
+@import './tailwind.css';
+@import './theme.css';
+
+/* Custom range slider for Crestron dashboard */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(100, 160, 255, 0.5);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 8px rgba(100, 160, 255, 0.5);
+}
+
+input[type="range"]:disabled::-webkit-slider-thumb {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+input[type="range"]:disabled::-moz-range-thumb {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Keypad shake animation */
+@keyframes headShake {
+  0% { transform: translateX(0); }
+  6.5% { transform: translateX(-6px) rotateY(-9deg); }
+  18.5% { transform: translateX(5px) rotateY(7deg); }
+  31.5% { transform: translateX(-3px) rotateY(-5deg); }
+  43.5% { transform: translateX(2px) rotateY(3deg); }
+  50% { transform: translateX(0); }
+}
+
+/* Keypad spin for processing state */
+@keyframes spin {
+  from { transform: rotate(-90deg); }
+  to { transform: rotate(270deg); }
+}
+
+/* Select dropdown dark styling */
+select option {
+  background: #1a1a2e;
+  color: white;
+}
+
+/* Thermostat gentle pulse for active heating/cooling */
+@keyframes tstatPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+.tstat-pulse {
+  animation: tstatPulse 2.4s ease-in-out infinite;
+}

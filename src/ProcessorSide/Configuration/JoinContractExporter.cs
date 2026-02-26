@@ -75,6 +75,19 @@ namespace CrestronCP4.ProcessorSide.Configuration
             AddJoin(roomContract.Joins.Digital, offset, JoinMap.Digital.VolumeDown, "Volume Down", "input");
             AddJoin(roomContract.Joins.Digital, offset, JoinMap.Digital.MuteToggle, "Mute Toggle", "input");
             AddJoin(roomContract.Joins.Digital, offset, JoinMap.Digital.MuteFeedback, "Mute Feedback", "output");
+            AddJoin(roomContract.Joins.Digital, offset, JoinMap.Digital.PowerOn, "Power On", "input");
+            AddJoin(roomContract.Joins.Digital, offset, JoinMap.Digital.PowerOff, "Power Off", "input");
+            AddJoin(roomContract.Joins.Digital, offset, JoinMap.Digital.MediaPlayPause, "Media Play/Pause", "input");
+            AddJoin(roomContract.Joins.Digital, offset, JoinMap.Digital.MediaStop, "Media Stop", "input");
+            AddJoin(roomContract.Joins.Digital, offset, JoinMap.Digital.MediaUp, "Media Up", "input");
+            AddJoin(roomContract.Joins.Digital, offset, JoinMap.Digital.MediaDown, "Media Down", "input");
+            AddJoin(roomContract.Joins.Digital, offset, JoinMap.Digital.MediaLeft, "Media Left", "input");
+            AddJoin(roomContract.Joins.Digital, offset, JoinMap.Digital.MediaRight, "Media Right", "input");
+            AddJoin(roomContract.Joins.Digital, offset, JoinMap.Digital.MediaSelect, "Media Select", "input");
+            AddJoin(roomContract.Joins.Digital, offset, JoinMap.Digital.MediaMenu, "Media Menu", "input");
+            AddJoin(roomContract.Joins.Digital, offset, JoinMap.Digital.MediaHome, "Media Home", "input");
+            AddJoin(roomContract.Joins.Digital, offset, JoinMap.Digital.MediaNext, "Media Next", "input");
+            AddJoin(roomContract.Joins.Digital, offset, JoinMap.Digital.MediaPrevious, "Media Previous", "input");
             for (int i = 0; i < 4; i++)
             {
                 AddJoin(roomContract.Joins.Digital, offset, JoinMap.Digital.LightingScene1 + i, "Lighting Scene " + (i + 1), "input");

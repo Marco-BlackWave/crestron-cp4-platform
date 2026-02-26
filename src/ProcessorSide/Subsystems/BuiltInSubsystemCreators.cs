@@ -13,8 +13,12 @@ namespace CrestronCP4.ProcessorSide.Subsystems
         {
             var displays = deviceManager.GetDrivers<IDisplayDriver>(room.Id, "display");
             var audios = deviceManager.GetDrivers<IAudioDriver>(room.Id, "audio");
+            var medias = new List<IMediaDriver>();
+            medias.AddRange(deviceManager.GetDrivers<IMediaDriver>(room.Id, "media"));
+            medias.AddRange(deviceManager.GetDrivers<IMediaDriver>(room.Id, "source"));
+            medias.AddRange(deviceManager.GetDrivers<IMediaDriver>(room.Id, "streaming"));
             var sourceNames = room.Sources != null ? new List<string>(room.Sources) : new List<string>();
-            return new AvSubsystem(displays, audios, sourceNames, logger);
+            return new AvSubsystem(displays, audios, medias, sourceNames, logger);
         }
     }
 
