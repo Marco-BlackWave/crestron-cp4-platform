@@ -91,6 +91,11 @@ See `docs/agent-ready/`:
 ## XPanel Fidelity Pipeline (New)
 Validate external XPanel source fidelity and generate join-bridge artifacts in this repo.
 
+Important scope boundary:
+- This pipeline is for XPanel/web deployment fidelity only.
+- It does not replace native Crestron iPad/iPhone app packaging, App ID binding, or Smart Graphics/CH5 mobile project workflows.
+- Native mobile deliverables must be validated and deployed through the corresponding native panel toolchain.
+
 Backend endpoints:
 - `GET /api/xpanel/analyze`
 - `POST /api/xpanel/prepare-package`

@@ -1,6 +1,6 @@
 {
-  "generatedAtUtc": "2026-02-26T13:00:32.1175796Z",
-  "processorIp": "",
+  "generatedAtUtc": "2026-02-26T22:16:33.3808029Z",
+  "processorIp": "192.168.1.50",
   "processorPort": 41794,
   "ipid": "0x03",
   "note": "Connection hints for XPanel launch. Keep values aligned with processor runtime configuration."

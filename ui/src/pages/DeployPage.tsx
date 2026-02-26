@@ -60,7 +60,7 @@ export default function DeployPage() {
 
   // Step 2: Connect state
   const [selectedProcId, setSelectedProcId] = useState("");
-  const [ip, setIp] = useState("");
+  const [ip, setIp] = useState("192.168.23.135");
   const [port, setPort] = useState(22);
   const [username, setUsername] = useState("admin");
   const [password, setPassword] = useState("");

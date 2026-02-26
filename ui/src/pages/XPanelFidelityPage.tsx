@@ -5,7 +5,7 @@ export default function XPanelFidelityPage() {
   const [analyzeLoading, setAnalyzeLoading] = useState(false);
   const [prepareLoading, setPrepareLoading] = useState(false);
   const [runBuild, setRunBuild] = useState(true);
-  const [processorIp, setProcessorIp] = useState("");
+  const [processorIp, setProcessorIp] = useState("192.168.23.135");
   const [processorPort, setProcessorPort] = useState("41794");
   const [ipid, setIpid] = useState("0x03");
   const [livePreviewUrl, setLivePreviewUrl] = useState<string | null>(null);
@@ -52,15 +52,21 @@ export default function XPanelFidelityPage() {
         <div>
           <h1>XPanel Fidelity</h1>
           <p className="subhead">Analyze external XPanel source and prepare a package with generated join bridge artifacts.</p>
+          <p className="subhead" style={{ marginTop: 6, color: "var(--warning)", fontWeight: 700 }}>
+            XPanel workflow only. This page does not produce native iPad/iPhone Crestron app packages.
+          </p>
         </div>
       </div>
 
       <div className="card" style={{ marginBottom: 16 }}>
         <p className="label">Actions</p>
+        <p className="subhead" style={{ marginBottom: 10 }}>
+          Native mobile requirements such as App ID, panel registration, and Smart Graphics/CH5 packaging are out of scope for this route.
+        </p>
         <div className="form-row" style={{ marginBottom: 10 }}>
           <div className="form-group" style={{ flex: 1, marginBottom: 0 }}>
             <label className="label">Processor IP</label>
-            <input className="input" value={processorIp} onChange={(e) => setProcessorIp(e.target.value)} placeholder="192.168.1.50" />
+            <input className="input" value={processorIp} onChange={(e) => setProcessorIp(e.target.value)} placeholder="192.168.23.135" />
           </div>
           <div className="form-group" style={{ width: 140, marginBottom: 0 }}>
             <label className="label">Port</label>

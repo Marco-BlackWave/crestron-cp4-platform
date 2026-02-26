@@ -13,5 +13,10 @@ namespace CrestronCP4.ProcessorSide.Infrastructure
         {
             return File.ReadAllText(path);
         }
+
+        public void WriteAllText(string path, string content)
+        {
+            File.WriteAllText(path, content);
+        }
     }
 }

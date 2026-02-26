@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-02-26T13:00:32.1167139Z",
+  "generatedAt": "2026-02-26T22:16:33.3797127Z",
   "system": {
     "digital": [
       {
@@ -125,8 +125,8 @@
   "processors": {
     "main": [
       {
-        "id": "marco",
-        "name": "marco",
+        "id": "master-bedroom",
+        "name": "Master Bedroom",
         "joins": {
           "digital": [
             {
@@ -824,8 +824,8 @@
   },
   "rooms": [
     {
-      "id": "marco",
-      "name": "marco",
+      "id": "master-bedroom",
+      "name": "Master Bedroom",
       "joins": {
         "digital": [
           {

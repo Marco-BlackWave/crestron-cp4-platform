@@ -7,51 +7,51 @@
     "digital": [
       {
         "join": 1,
-        "name": "marco_Power",
+        "name": "Master Bedroom_Power",
         "direction": "output"
       },
       {
         "join": 2,
-        "name": "marco_PowerFb",
+        "name": "Master Bedroom_PowerFb",
         "direction": "input"
       }
     ],
     "analog": [
       {
         "join": 1,
-        "name": "marco_Volume",
+        "name": "Master Bedroom_Volume",
         "direction": "output"
       },
       {
         "join": 2,
-        "name": "marco_VolumeFb",
+        "name": "Master Bedroom_VolumeFb",
         "direction": "input"
       },
       {
         "join": 3,
-        "name": "marco_Source",
+        "name": "Master Bedroom_Source",
         "direction": "output"
       },
       {
         "join": 4,
-        "name": "marco_SourceFb",
+        "name": "Master Bedroom_SourceFb",
         "direction": "input"
       },
       {
         "join": 10,
-        "name": "marco_LightLevel",
+        "name": "Master Bedroom_LightLevel",
         "direction": "output"
       },
       {
         "join": 11,
-        "name": "marco_LightLevelFb",
+        "name": "Master Bedroom_LightLevelFb",
         "direction": "input"
       }
     ],
     "serial": [
       {
         "join": 1,
-        "name": "marco_SourceName",
+        "name": "Master Bedroom_SourceName",
         "direction": "input"
       }
     ]

@@ -21,6 +21,7 @@ namespace CrestronCP4.ProcessorSide
         private const uint DefaultEiscIpId = 0x03;
         private const string DefaultEiscIpAddress = "127.0.0.2";
         private const string SystemConfigPath = "\\User\\SystemConfig.json";
+        private const string JoinContractPath = "\\User\\JoinContract.json";
 
         private readonly SafeModeState _safeMode = new SafeModeState();
         private ILogger _logger;
@@ -262,7 +263,8 @@ namespace CrestronCP4.ProcessorSide
 
                 // Write to User directory for graphics project to consume
                 // Using Crestron file system
-                _logger.Info("JoinContract.json exported (" + json.Length + " bytes).");
+                _fileSystem.WriteAllText(JoinContractPath, json);
+                _logger.Info("JoinContract.json exported to " + JoinContractPath + " (" + json.Length + " bytes).");
             }
             catch (Exception ex)
             {
