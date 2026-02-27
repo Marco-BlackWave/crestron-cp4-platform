@@ -17,8 +17,8 @@
   },
   "rooms": [
     {
-      "id": "master-bedroom",
-      "name": "Master Bedroom",
+      "id": "marco",
+      "name": "marco",
       "joinOffset": 0,
       "processorId": "main",
       "roomType": "standard",
@@ -30,17 +30,10 @@
         "display": {
           "profileId": "lg-webos",
           "protocol": "ip",
-          "address": "192.168.23.108:3000"
-        },
-        "source-apple-tv": {
-          "profileId": "apple-tv-command-processor",
-          "protocol": "ip",
-          "address": "192.168.23.105:7000"
+          "address": ""
         }
       },
-      "sources": [
-        "apple-tv"
-      ]
+      "sources": []
     },
     {
       "id": "equipment-rack",
@@ -53,12 +46,6 @@
       "sources": []
     }
   ],
-  "sources": [
-    {
-      "id": "apple-tv",
-      "name": "Apple TV",
-      "type": "streaming"
-    }
-  ],
+  "sources": [],
   "scenes": []
 }

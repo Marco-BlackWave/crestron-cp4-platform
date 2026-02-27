@@ -100,7 +100,7 @@ export default function SourceManagerPage() {
                 <h3 style={{ margin: "0 0 4px" }}>{src.name}</h3>
                 <p className="subhead" style={{ fontSize: 13 }}>ID: {src.id}</p>
                 {rooms.length > 0 && (
-                  <p style={{ fontSize: 13, color: "#64748b", margin: "8px 0 0" }}>
+                  <p style={{ fontSize: 13, color: "var(--text-muted)", margin: "8px 0 0" }}>
                     Used in: {rooms.join(", ")}
                   </p>
                 )}

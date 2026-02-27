@@ -1,0 +1,26 @@
+
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+      <meta http-equiv="Pragma" content="no-cache" />
+      <meta http-equiv="Expires" content="0" />
+      <title>Crestron HTML5 UI Builder</title>
+      <script>
+        // Force reload crestron-home template (version gate)
+        if (localStorage.getItem('crestron-builder-tpl') !== 'home-v1') {
+          localStorage.removeItem('crestron-project');
+          localStorage.setItem('crestron-builder-tpl', 'home-v1');
+        }
+      </script>
+      <script type="module" crossorigin src="/builder-app/assets/index-Lk1ayMt8.js"></script>
+      <link rel="stylesheet" crossorigin href="/builder-app/assets/index-YrSOU68m.css">
+    </head>
+
+    <body>
+      <div id="root"></div>
+    </body>
+  </html>
+  

@@ -235,7 +235,7 @@ export default function DebugPage() {
                         </span>
                       ) : formatValue(sig)}
                     </td>
-                    <td style={{ fontSize: 11, color: "#64748b" }}>{formatTime(sig.lastChanged)}</td>
+                    <td style={{ fontSize: 11, color: "var(--text-muted)" }}>{formatTime(sig.lastChanged)}</td>
                     <td>
                       <button
                         className="button"
@@ -266,7 +266,7 @@ export default function DebugPage() {
                   {eisc.online ? "Online" : "Offline"}
                 </span>
               </div>
-              <p style={{ color: "#475569", fontSize: 13, margin: "0 0 12px" }}>
+              <p style={{ color: "var(--text-secondary)", fontSize: 13, margin: "0 0 12px" }}>
                 Digital: {eisc.digitalInputs.size + eisc.digitalOutputs.size} | Analog: {eisc.analogInputs.size + eisc.analogOutputs.size} | Serial: {eisc.serialInputs.size + eisc.serialOutputs.size}
               </p>
               <button className={`toggle-switch${eisc.online ? " toggle-switch--on" : ""}`} onClick={() => toggleConnection(eisc.processorId)} aria-label="Toggle connection" />
@@ -314,16 +314,16 @@ export default function DebugPage() {
       {tab === "log" && (
         <>
           <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8 }}>
-            <span style={{ fontSize: 13, color: "#64748b" }}>{logEntries.length} entries</span>
+            <span style={{ fontSize: 13, color: "var(--text-muted)" }}>{logEntries.length} entries</span>
             <button className="button" style={{ fontSize: 12, padding: "4px 10px" }} onClick={() => setLogEntries([])}>Clear</button>
           </div>
           <div className="log-viewer" ref={logRef}>
-            {logEntries.length === 0 && <div style={{ color: "#64748b", padding: 16 }}>No log entries yet. Interact with the Panel Emulator to see signal changes.</div>}
+            {logEntries.length === 0 && <div style={{ color: "var(--text-muted)", padding: 16 }}>No log entries yet. Interact with the Panel Emulator to see signal changes.</div>}
             {logEntries.map((entry, i) => (
               <div key={i} className="log-entry">
                 <span className="log-entry__time">{new Date(entry.time).toLocaleTimeString([], { hour12: false })}</span>
                 <span className={`log-entry__level--${entry.level}`}>[{entry.level.toUpperCase()}]</span>
-                <span style={{ color: "#94a3b8" }}>{entry.source}</span>
+                <span style={{ color: "var(--text-faint)" }}>{entry.source}</span>
                 <span className="log-entry__msg">{entry.message}</span>
               </div>
             ))}

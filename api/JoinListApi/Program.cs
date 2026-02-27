@@ -7,6 +7,8 @@ using System.Text;
 using System.Text.Json;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
+using System.Security;
+using System.Xml.Linq;
 using Microsoft.AspNetCore.StaticFiles;
 using JoinListApi.Services;
 using Renci.SshNet;
@@ -30,6 +32,7 @@ var app = builder.Build();
 
 var logger = app.Services.GetRequiredService<ILogger<Program>>();
 var useRealAppleTv = builder.Configuration.GetValue<bool?>("Media:AppleTv:UseReal") ?? true;
+var useRealSonos = builder.Configuration.GetValue<bool?>("Media:Sonos:UseReal") ?? true;
 
 app.Urls.Clear();
 app.Urls.Add("http://localhost:5000");
@@ -94,6 +97,7 @@ logger.LogInformation("SDK-CD PDF path: {Path}", sdkCdPdfPath);
 logger.LogInformation("XPanel source root: {Path}", xpanelSourceRoot);
 logger.LogInformation("XPanel package root: {Path}", xpanelPackageRoot);
 logger.LogInformation("Apple TV control mode: {Mode}", useRealAppleTv ? "real" : "mock");
+logger.LogInformation("Sonos control mode: {Mode}", useRealSonos ? "real" : "mock");
 
 app.UseExceptionHandler(exApp =>
 {
@@ -2640,11 +2644,29 @@ app.MapPost("/api/media/sonos/bedroom/command", async (HttpRequest request) =>
         var root = doc.RootElement;
         var command = root.TryGetProperty("command", out var cmdEl) ? (cmdEl.GetString() ?? string.Empty) : string.Empty;
         var source = root.TryGetProperty("source", out var srcEl) ? srcEl.GetString() : null;
+        var ip = root.TryGetProperty("ip", out var ipEl) ? (ipEl.GetString() ?? "192.168.23.105") : "192.168.23.105";
+        var room = root.TryGetProperty("room", out var roomEl) ? (roomEl.GetString() ?? "Bedroom") : "Bedroom";
         int? volume = null;
         if (root.TryGetProperty("volume", out var volEl) && volEl.TryGetInt32(out var v)) volume = v;
 
         if (string.IsNullOrWhiteSpace(command))
             return Results.BadRequest(new { message = "command is required." });
+
+        if (useRealSonos)
+        {
+            var sent = await RealSonosBridge.SendCommand(ip, command, source, volume);
+            if (!sent.ok)
+                return Results.BadRequest(new { message = sent.message, real = true, details = sent.details });
+
+            return Results.Ok(new
+            {
+                ok = true,
+                real = true,
+                room,
+                message = sent.message,
+                sonos = sent.details,
+            });
+        }
 
         var state = MockMediaBridge.SendBedroomSonosCommand(command, source, volume);
         return Results.Ok(new
@@ -2654,6 +2676,282 @@ app.MapPost("/api/media/sonos/bedroom/command", async (HttpRequest request) =>
             message = "Bedroom Sonos command applied (mock).",
             sonos = state,
         });
+    }
+    catch (JsonException)
+    {
+        return Results.BadRequest(new { message = "Invalid JSON format." });
+    }
+});
+
+app.MapGet("/api/media/sonos/topology", async (HttpRequest request) =>
+{
+    var ip = request.Query.TryGetValue("ip", out var value) ? (value.ToString() ?? "") : "";
+    if (string.IsNullOrWhiteSpace(ip))
+        return Results.BadRequest(new { message = "ip query param is required." });
+
+    if (!useRealSonos)
+        return Results.BadRequest(new { message = "Real Sonos mode is disabled." });
+
+    var topo = await RealSonosBridge.GetTopology(ip);
+    if (!topo.ok)
+        return Results.BadRequest(new { message = topo.message, real = true, details = topo.details });
+
+    return Results.Ok(new { ok = true, real = true, message = topo.message, topology = topo.details });
+});
+
+app.MapPost("/api/media/sonos/group", async (HttpRequest request) =>
+{
+    using var reader = new StreamReader(request.Body);
+    var body = await reader.ReadToEndAsync();
+
+    try
+    {
+        using var doc = JsonDocument.Parse(body);
+        var root = doc.RootElement;
+
+        var coordinatorIp = root.TryGetProperty("coordinatorIp", out var cIpEl) ? (cIpEl.GetString() ?? "") : "";
+        var memberIps = new List<string>();
+        if (root.TryGetProperty("memberIps", out var membersEl) && membersEl.ValueKind == JsonValueKind.Array)
+        {
+            foreach (var m in membersEl.EnumerateArray())
+            {
+                var v = m.GetString();
+                if (!string.IsNullOrWhiteSpace(v)) memberIps.Add(v.Trim());
+            }
+        }
+
+        if (!useRealSonos)
+            return Results.BadRequest(new { message = "Real Sonos mode is disabled." });
+
+        var grouped = await RealSonosBridge.GroupRooms(coordinatorIp, memberIps);
+        if (!grouped.ok)
+            return Results.BadRequest(new { message = grouped.message, real = true, details = grouped.details });
+
+        return Results.Ok(new { ok = true, real = true, message = grouped.message, details = grouped.details });
+    }
+    catch (JsonException)
+    {
+        return Results.BadRequest(new { message = "Invalid JSON format." });
+    }
+});
+
+app.MapPost("/api/media/sonos/ungroup", async (HttpRequest request) =>
+{
+    using var reader = new StreamReader(request.Body);
+    var body = await reader.ReadToEndAsync();
+
+    try
+    {
+        using var doc = JsonDocument.Parse(body);
+        var root = doc.RootElement;
+        var ip = root.TryGetProperty("ip", out var ipEl) ? (ipEl.GetString() ?? "") : "";
+
+        if (!useRealSonos)
+            return Results.BadRequest(new { message = "Real Sonos mode is disabled." });
+
+        var ungrouped = await RealSonosBridge.Ungroup(ip);
+        if (!ungrouped.ok)
+            return Results.BadRequest(new { message = ungrouped.message, real = true, details = ungrouped.details });
+
+        return Results.Ok(new { ok = true, real = true, message = ungrouped.message, details = ungrouped.details });
+    }
+    catch (JsonException)
+    {
+        return Results.BadRequest(new { message = "Invalid JSON format." });
+    }
+});
+
+app.MapGet("/api/media/sonos/now-playing", async (HttpRequest request) =>
+{
+    var ip = request.Query.TryGetValue("ip", out var ipEl) ? (ipEl.ToString() ?? "") : "";
+
+    if (!useRealSonos)
+        return Results.BadRequest(new { message = "Real Sonos mode is disabled." });
+
+    var nowPlaying = await RealSonosBridge.GetNowPlaying(ip);
+    if (!nowPlaying.ok)
+        return Results.BadRequest(new { message = nowPlaying.message, real = true, details = nowPlaying.details });
+
+    return Results.Ok(new { ok = true, real = true, message = nowPlaying.message, details = nowPlaying.details });
+});
+
+app.MapPost("/api/media/sonos/volume", async (HttpRequest request) =>
+{
+    using var reader = new StreamReader(request.Body);
+    var body = await reader.ReadToEndAsync();
+
+    try
+    {
+        using var doc = JsonDocument.Parse(body);
+        var root = doc.RootElement;
+        var ip = root.TryGetProperty("ip", out var ipEl) ? (ipEl.GetString() ?? "") : "";
+
+        if (!root.TryGetProperty("volume", out var volumeEl) || !volumeEl.TryGetInt32(out var volume))
+            return Results.BadRequest(new { message = "volume is required." });
+
+        if (!useRealSonos)
+            return Results.BadRequest(new { message = "Real Sonos mode is disabled." });
+
+        var changed = await RealSonosBridge.SetVolumeAbsolute(ip, volume);
+        if (!changed.ok)
+            return Results.BadRequest(new { message = changed.message, real = true, details = changed.details });
+
+        return Results.Ok(new { ok = true, real = true, message = changed.message, details = changed.details });
+    }
+    catch (JsonException)
+    {
+        return Results.BadRequest(new { message = "Invalid JSON format." });
+    }
+});
+
+app.MapPost("/api/media/sonos/mute", async (HttpRequest request) =>
+{
+    using var reader = new StreamReader(request.Body);
+    var body = await reader.ReadToEndAsync();
+
+    try
+    {
+        using var doc = JsonDocument.Parse(body);
+        var root = doc.RootElement;
+        var ip = root.TryGetProperty("ip", out var ipEl) ? (ipEl.GetString() ?? "") : "";
+
+        if (!root.TryGetProperty("muted", out var mutedEl) ||
+            (mutedEl.ValueKind != JsonValueKind.True && mutedEl.ValueKind != JsonValueKind.False))
+            return Results.BadRequest(new { message = "muted is required." });
+
+        var muted = mutedEl.GetBoolean();
+
+        if (!useRealSonos)
+            return Results.BadRequest(new { message = "Real Sonos mode is disabled." });
+
+        var changed = await RealSonosBridge.SetMute(ip, muted);
+        if (!changed.ok)
+            return Results.BadRequest(new { message = changed.message, real = true, details = changed.details });
+
+        return Results.Ok(new { ok = true, real = true, message = changed.message, details = changed.details });
+    }
+    catch (JsonException)
+    {
+        return Results.BadRequest(new { message = "Invalid JSON format." });
+    }
+});
+
+app.MapGet("/api/media/sonos/queue", async (HttpRequest request) =>
+{
+    var ip = request.Query.TryGetValue("ip", out var ipEl) ? (ipEl.ToString() ?? "") : "";
+    var start = request.Query.TryGetValue("start", out var startEl) && int.TryParse(startEl, out var s) ? s : 0;
+    var count = request.Query.TryGetValue("count", out var countEl) && int.TryParse(countEl, out var c) ? c : 50;
+
+    if (!useRealSonos)
+        return Results.BadRequest(new { message = "Real Sonos mode is disabled." });
+
+    var queue = await RealSonosBridge.BrowseQueue(ip, start, count);
+    if (!queue.ok)
+        return Results.BadRequest(new { message = queue.message, real = true, details = queue.details });
+
+    return Results.Ok(new { ok = true, real = true, message = queue.message, details = queue.details });
+});
+
+app.MapGet("/api/media/sonos/playlists", async (HttpRequest request) =>
+{
+    var ip = request.Query.TryGetValue("ip", out var ipEl) ? (ipEl.ToString() ?? "") : "";
+    var start = request.Query.TryGetValue("start", out var startEl) && int.TryParse(startEl, out var s) ? s : 0;
+    var count = request.Query.TryGetValue("count", out var countEl) && int.TryParse(countEl, out var c) ? c : 100;
+
+    if (!useRealSonos)
+        return Results.BadRequest(new { message = "Real Sonos mode is disabled." });
+
+    var playlists = await RealSonosBridge.BrowsePlaylists(ip, start, count);
+    if (!playlists.ok)
+        return Results.BadRequest(new { message = playlists.message, real = true, details = playlists.details });
+
+    return Results.Ok(new { ok = true, real = true, message = playlists.message, details = playlists.details });
+});
+
+app.MapGet("/api/media/sonos/favorites", async (HttpRequest request) =>
+{
+    var ip = request.Query.TryGetValue("ip", out var ipEl) ? (ipEl.ToString() ?? "") : "";
+    var start = request.Query.TryGetValue("start", out var startEl) && int.TryParse(startEl, out var s) ? s : 0;
+    var count = request.Query.TryGetValue("count", out var countEl) && int.TryParse(countEl, out var c) ? c : 100;
+
+    if (!useRealSonos)
+        return Results.BadRequest(new { message = "Real Sonos mode is disabled." });
+
+    var favorites = await RealSonosBridge.BrowseFavorites(ip, start, count);
+    if (!favorites.ok)
+        return Results.BadRequest(new { message = favorites.message, real = true, details = favorites.details });
+
+    return Results.Ok(new { ok = true, real = true, message = favorites.message, details = favorites.details });
+});
+
+app.MapGet("/api/media/sonos/search", async (HttpRequest request) =>
+{
+    var ip = request.Query.TryGetValue("ip", out var ipEl) ? (ipEl.ToString() ?? "") : "";
+    var term = request.Query.TryGetValue("term", out var termEl) ? (termEl.ToString() ?? "") : "";
+    var start = request.Query.TryGetValue("start", out var startEl) && int.TryParse(startEl, out var s) ? s : 0;
+    var count = request.Query.TryGetValue("count", out var countEl) && int.TryParse(countEl, out var c) ? c : 50;
+    var containerId = request.Query.TryGetValue("containerId", out var containerEl) ? (containerEl.ToString() ?? "A:TRACKS") : "A:TRACKS";
+
+    if (!useRealSonos)
+        return Results.BadRequest(new { message = "Real Sonos mode is disabled." });
+
+    if (string.IsNullOrWhiteSpace(term))
+        return Results.BadRequest(new { message = "term is required." });
+
+    var search = await RealSonosBridge.Search(ip, term, start, count, containerId);
+    if (!search.ok)
+        return Results.BadRequest(new { message = search.message, real = true, details = search.details });
+
+    return Results.Ok(new { ok = true, real = true, message = search.message, details = search.details });
+});
+
+app.MapPost("/api/media/sonos/play-favorite", async (HttpRequest request) =>
+{
+    using var reader = new StreamReader(request.Body);
+    var body = await reader.ReadToEndAsync();
+
+    try
+    {
+        using var doc = JsonDocument.Parse(body);
+        var root = doc.RootElement;
+        var ip = root.TryGetProperty("ip", out var ipEl) ? (ipEl.GetString() ?? "") : "";
+        var title = root.TryGetProperty("title", out var titleEl) ? (titleEl.GetString() ?? "") : "";
+
+        if (!useRealSonos)
+            return Results.BadRequest(new { message = "Real Sonos mode is disabled." });
+
+        var play = await RealSonosBridge.PlayFavorite(ip, title);
+        if (!play.ok)
+            return Results.BadRequest(new { message = play.message, real = true, details = play.details });
+
+        return Results.Ok(new { ok = true, real = true, message = play.message, details = play.details });
+    }
+    catch (JsonException)
+    {
+        return Results.BadRequest(new { message = "Invalid JSON format." });
+    }
+});
+
+app.MapPost("/api/media/sonos/play-playlist", async (HttpRequest request) =>
+{
+    using var reader = new StreamReader(request.Body);
+    var body = await reader.ReadToEndAsync();
+
+    try
+    {
+        using var doc = JsonDocument.Parse(body);
+        var root = doc.RootElement;
+        var ip = root.TryGetProperty("ip", out var ipEl) ? (ipEl.GetString() ?? "") : "";
+        var title = root.TryGetProperty("title", out var titleEl) ? (titleEl.GetString() ?? "") : "";
+
+        if (!useRealSonos)
+            return Results.BadRequest(new { message = "Real Sonos mode is disabled." });
+
+        var play = await RealSonosBridge.PlayPlaylist(ip, title);
+        if (!play.ok)
+            return Results.BadRequest(new { message = play.message, real = true, details = play.details });
+
+        return Results.Ok(new { ok = true, real = true, message = play.message, details = play.details });
     }
     catch (JsonException)
     {
@@ -4651,6 +4949,691 @@ static class RealAppleTvBridge
         var stdout = await outTask;
         var stderr = await errTask;
         return (process.ExitCode, stdout, stderr);
+    }
+}
+
+static class RealSonosBridge
+{
+    sealed class SonosDidlItem
+    {
+        public string Id { get; init; } = "";
+        public string Title { get; init; } = "";
+        public string Uri { get; init; } = "";
+        public string ItemXml { get; init; } = "";
+    }
+
+    static readonly HttpClient _http = new()
+    {
+        Timeout = TimeSpan.FromSeconds(6),
+    };
+
+    public static async Task<(bool ok, string message, object details)> SendCommand(string ip, string command, string? source, int? volume)
+    {
+        if (string.IsNullOrWhiteSpace(ip))
+            return (false, "ip is required.", new { ip = "" });
+
+        if (volume.HasValue)
+        {
+            var vol = Math.Clamp(volume.Value, 0, 100);
+            var volResult = await SetVolume(ip, vol);
+            if (!volResult.ok)
+                return (false, volResult.message, volResult.details);
+        }
+
+        if (!string.IsNullOrWhiteSpace(source))
+        {
+            var srcResult = await SetSource(ip, source.Trim());
+            if (!srcResult.ok)
+                return (false, srcResult.message, srcResult.details);
+        }
+
+        var cmd = (command ?? string.Empty).Trim().ToLowerInvariant();
+        var action = cmd switch
+        {
+            "play" => "Play",
+            "pause" => "Pause",
+            "stop" => "Stop",
+            "next" => "Next",
+            "prev" => "Previous",
+            "previous" => "Previous",
+            "volume-up" => "VolumeUp",
+            "volume-down" => "VolumeDown",
+            _ => "",
+        };
+
+        if (string.IsNullOrWhiteSpace(action))
+            return (false, $"Unsupported Sonos command: {command}", new { ip, command });
+
+        if (action == "VolumeUp" || action == "VolumeDown")
+        {
+            var current = await GetVolume(ip);
+            if (!current.ok)
+                return (false, current.message, current.details);
+
+            var currentVol = current.volume;
+            var nextVol = action == "VolumeUp" ? Math.Clamp(currentVol + 5, 0, 100) : Math.Clamp(currentVol - 5, 0, 100);
+            var volResult = await SetVolume(ip, nextVol);
+            if (!volResult.ok)
+                return (false, volResult.message, volResult.details);
+
+            return (true, "Sonos volume changed.", new { ip, volume = nextVol, source = source ?? "unchanged" });
+        }
+
+        var payload =
+            "<u:" + action + " xmlns:u=\"urn:schemas-upnp-org:service:AVTransport:1\">" +
+            "<InstanceID>0</InstanceID>" +
+            (action == "Play" ? "<Speed>1</Speed>" : "") +
+            "</u:" + action + ">";
+
+        var result = await Soap(ip, "/MediaRenderer/AVTransport/Control", "urn:schemas-upnp-org:service:AVTransport:1", action, payload);
+        if (!result.ok)
+            return (false, $"Sonos command failed: {action}", new { ip, action, result.status, response = TrimForLog(result.response) });
+
+        return (true, "Sonos command sent.", new { ip, action, status = result.status });
+    }
+
+    public static async Task<(bool ok, string message, object details)> GetTopology(string ip)
+    {
+        if (string.IsNullOrWhiteSpace(ip))
+            return (false, "ip is required.", new { ip = "" });
+
+        var payload = "<u:GetZoneGroupState xmlns:u=\"urn:schemas-upnp-org:service:ZoneGroupTopology:1\"></u:GetZoneGroupState>";
+        var result = await Soap(ip, "/ZoneGroupTopology/Control", "urn:schemas-upnp-org:service:ZoneGroupTopology:1", "GetZoneGroupState", payload);
+        if (!result.ok)
+            return (false, "Failed to read Sonos topology.", new { ip, result.status, response = TrimForLog(result.response) });
+
+        try
+        {
+            var outer = XDocument.Parse(result.response);
+            var value = outer.Descendants().FirstOrDefault(x => x.Name.LocalName == "ZoneGroupState")?.Value ?? string.Empty;
+            if (string.IsNullOrWhiteSpace(value))
+                return (true, "Topology response was empty.", new { ip, groups = Array.Empty<object>() });
+
+            var groupsDoc = XDocument.Parse(value);
+            var groups = groupsDoc
+                .Descendants()
+                .Where(x => x.Name.LocalName == "ZoneGroup")
+                .Select(g => new
+                {
+                    coordinator = g.Attribute("Coordinator")?.Value ?? "",
+                    id = g.Attribute("ID")?.Value ?? "",
+                    members = g.Descendants()
+                        .Where(m => m.Name.LocalName == "ZoneGroupMember")
+                        .Select(m => new
+                        {
+                            uuid = m.Attribute("UUID")?.Value ?? "",
+                            zoneName = m.Attribute("ZoneName")?.Value ?? "",
+                            location = m.Attribute("Location")?.Value ?? "",
+                            isCoordinator = string.Equals((m.Attribute("UUID")?.Value ?? ""), (g.Attribute("Coordinator")?.Value ?? ""), StringComparison.OrdinalIgnoreCase),
+                        })
+                        .ToArray(),
+                })
+                .ToArray();
+
+            return (true, "Sonos topology loaded.", new { ip, groups });
+        }
+        catch (Exception ex)
+        {
+            return (false, "Failed to parse topology XML.", new { ip, error = ex.Message, raw = TrimForLog(result.response) });
+        }
+    }
+
+    public static async Task<(bool ok, string message, object details)> GroupRooms(string coordinatorIp, List<string> memberIps)
+    {
+        if (string.IsNullOrWhiteSpace(coordinatorIp))
+            return (false, "coordinatorIp is required.", new { coordinatorIp = "" });
+
+        if (memberIps == null || memberIps.Count == 0)
+            return (false, "memberIps is required.", new { coordinatorIp, memberIps = Array.Empty<string>() });
+
+        var coordinatorUidResult = await GetDeviceUid(coordinatorIp);
+        if (!coordinatorUidResult.ok)
+            return (false, coordinatorUidResult.message, coordinatorUidResult.details);
+
+        var coordinatorUid = coordinatorUidResult.uid;
+        var errors = new List<object>();
+        var grouped = new List<string>();
+
+        foreach (var memberIp in memberIps.Where(x => !string.IsNullOrWhiteSpace(x)).Select(x => x.Trim()).Distinct(StringComparer.OrdinalIgnoreCase))
+        {
+            if (string.Equals(memberIp, coordinatorIp, StringComparison.OrdinalIgnoreCase))
+                continue;
+
+            var payload =
+                "<u:SetAVTransportURI xmlns:u=\"urn:schemas-upnp-org:service:AVTransport:1\">" +
+                "<InstanceID>0</InstanceID>" +
+                "<CurrentURI>x-rincon:" + coordinatorUid + "</CurrentURI>" +
+                "<CurrentURIMetaData></CurrentURIMetaData>" +
+                "</u:SetAVTransportURI>";
+
+            var result = await Soap(memberIp, "/MediaRenderer/AVTransport/Control", "urn:schemas-upnp-org:service:AVTransport:1", "SetAVTransportURI", payload);
+            if (!result.ok)
+            {
+                errors.Add(new { ip = memberIp, result.status, response = TrimForLog(result.response) });
+                continue;
+            }
+
+            grouped.Add(memberIp);
+        }
+
+        if (errors.Count > 0)
+            return (false, "Failed to group one or more Sonos members.", new { coordinatorIp, grouped, errors });
+
+        return (true, "Sonos rooms grouped.", new { coordinatorIp, coordinatorUid, grouped });
+    }
+
+    public static async Task<(bool ok, string message, object details)> Ungroup(string ip)
+    {
+        if (string.IsNullOrWhiteSpace(ip))
+            return (false, "ip is required.", new { ip = "" });
+
+        var payload = "<u:BecomeCoordinatorOfStandaloneGroup xmlns:u=\"urn:schemas-upnp-org:service:AVTransport:1\"><InstanceID>0</InstanceID></u:BecomeCoordinatorOfStandaloneGroup>";
+        var result = await Soap(ip, "/MediaRenderer/AVTransport/Control", "urn:schemas-upnp-org:service:AVTransport:1", "BecomeCoordinatorOfStandaloneGroup", payload);
+        if (!result.ok)
+            return (false, "Failed to ungroup Sonos room.", new { ip, result.status, response = TrimForLog(result.response) });
+
+        return (true, "Sonos room ungrouped.", new { ip, status = result.status });
+    }
+
+    public static async Task<(bool ok, string message, object details)> GetNowPlaying(string ip)
+    {
+        if (string.IsNullOrWhiteSpace(ip))
+            return (false, "ip is required.", new { ip = "" });
+
+        var transportPayload =
+            "<u:GetTransportInfo xmlns:u=\"urn:schemas-upnp-org:service:AVTransport:1\">" +
+            "<InstanceID>0</InstanceID></u:GetTransportInfo>";
+        var positionPayload =
+            "<u:GetPositionInfo xmlns:u=\"urn:schemas-upnp-org:service:AVTransport:1\">" +
+            "<InstanceID>0</InstanceID></u:GetPositionInfo>";
+
+        var transport = await Soap(ip, "/MediaRenderer/AVTransport/Control", "urn:schemas-upnp-org:service:AVTransport:1", "GetTransportInfo", transportPayload);
+        if (!transport.ok)
+            return (false, "Failed to get Sonos transport info.", new { ip, transport.status, response = TrimForLog(transport.response) });
+
+        var position = await Soap(ip, "/MediaRenderer/AVTransport/Control", "urn:schemas-upnp-org:service:AVTransport:1", "GetPositionInfo", positionPayload);
+        if (!position.ok)
+            return (false, "Failed to get Sonos position info.", new { ip, position.status, response = TrimForLog(position.response) });
+
+        return (true, "Now playing loaded.", BuildNowPlayingPayload(ip, position.response, transport.response));
+    }
+
+    public static Task<(bool ok, string message, object details)> SetVolumeAbsolute(string ip, int volume)
+    {
+        return SetVolume(ip, volume);
+    }
+
+    public static async Task<(bool ok, string message, object details)> SetMute(string ip, bool muted)
+    {
+        if (string.IsNullOrWhiteSpace(ip))
+            return (false, "ip is required.", new { ip = "" });
+
+        var payload =
+            "<u:SetMute xmlns:u=\"urn:schemas-upnp-org:service:RenderingControl:1\">" +
+            "<InstanceID>0</InstanceID><Channel>Master</Channel><DesiredMute>" + (muted ? "1" : "0") + "</DesiredMute>" +
+            "</u:SetMute>";
+        var result = await Soap(ip, "/MediaRenderer/RenderingControl/Control", "urn:schemas-upnp-org:service:RenderingControl:1", "SetMute", payload);
+        if (!result.ok)
+            return (false, "Failed to set Sonos mute.", new { ip, muted, result.status, response = TrimForLog(result.response) });
+
+        return (true, "Sonos mute updated.", new { ip, muted, status = result.status });
+    }
+
+    public static async Task<(bool ok, string message, object details)> BrowseQueue(string ip, int start, int count)
+    {
+        var browsed = await Browse(ip, "Q:0", start, count);
+        if (!browsed.ok)
+            return (false, browsed.message, browsed.details);
+
+        return (true, "Sonos queue loaded.", browsed.details);
+    }
+
+    public static async Task<(bool ok, string message, object details)> BrowsePlaylists(string ip, int start, int count)
+    {
+        var containerCandidates = new[] { "SQ:", "A:PLAYLISTS", "A:ALBUMARTIST" };
+        foreach (var container in containerCandidates)
+        {
+            var browsed = await Browse(ip, container, start, count);
+            if (!browsed.ok)
+                continue;
+
+            return (true, "Sonos playlists loaded.", browsed.details);
+        }
+
+        return (false, "Failed to browse Sonos playlists.", new { ip, start, count });
+    }
+
+    public static async Task<(bool ok, string message, object details)> BrowseFavorites(string ip, int start, int count)
+    {
+        var containerCandidates = new[] { "FV:2", "FV:1", "A:FAVORITES" };
+        foreach (var container in containerCandidates)
+        {
+            var browsed = await Browse(ip, container, start, count);
+            if (!browsed.ok)
+                continue;
+
+            return (true, "Sonos favorites loaded.", browsed.details);
+        }
+
+        return (false, "Failed to browse Sonos favorites.", new { ip, start, count });
+    }
+
+    public static async Task<(bool ok, string message, object details)> Search(string ip, string term, int start, int count, string containerId)
+    {
+        if (string.IsNullOrWhiteSpace(ip))
+            return (false, "ip is required.", new { ip = "" });
+        if (string.IsNullOrWhiteSpace(term))
+            return (false, "term is required.", new { ip, term = "" });
+
+        var searched = await SearchContent(ip, string.IsNullOrWhiteSpace(containerId) ? "A:TRACKS" : containerId, term, start, count);
+        if (searched.ok && searched.items.Count > 0)
+            return (true, "Sonos search completed.", searched.details);
+
+        // Fallback: local title contains search across favorites and playlists.
+        var favorites = await BrowseFavorites(ip, 0, Math.Max(200, count));
+        var playlists = await BrowsePlaylists(ip, 0, Math.Max(200, count));
+
+        var fallbackItems = new List<object>();
+        void AppendFrom(object details, string source)
+        {
+            var json = JsonSerializer.Serialize(details);
+            using var doc = JsonDocument.Parse(json);
+            if (!doc.RootElement.TryGetProperty("items", out var arr) || arr.ValueKind != JsonValueKind.Array) return;
+            foreach (var item in arr.EnumerateArray())
+            {
+                var title = item.TryGetProperty("title", out var t) ? (t.GetString() ?? "") :
+                    (item.TryGetProperty("Title", out var t2) ? (t2.GetString() ?? "") : "");
+                if (title.IndexOf(term, StringComparison.OrdinalIgnoreCase) < 0) continue;
+                var id = item.TryGetProperty("id", out var idEl) ? (idEl.GetString() ?? "") :
+                    (item.TryGetProperty("Id", out var idEl2) ? (idEl2.GetString() ?? "") : "");
+                var uri = item.TryGetProperty("uri", out var uriEl) ? (uriEl.GetString() ?? "") :
+                    (item.TryGetProperty("Uri", out var uriEl2) ? (uriEl2.GetString() ?? "") : "");
+                fallbackItems.Add(new { id, title, uri, source });
+            }
+        }
+
+        if (favorites.ok) AppendFrom(favorites.details, "favorites");
+        if (playlists.ok) AppendFrom(playlists.details, "playlists");
+
+        var page = fallbackItems.Skip(Math.Max(0, start)).Take(Math.Max(1, count)).ToArray();
+        return (true, "Sonos fallback search completed.", new
+        {
+            ip,
+            term,
+            containerId,
+            total = fallbackItems.Count,
+            start,
+            count,
+            items = page,
+            mode = "fallback-title-contains",
+        });
+    }
+
+    public static async Task<(bool ok, string message, object details)> PlayFavorite(string ip, string title)
+    {
+        if (string.IsNullOrWhiteSpace(title))
+            return (false, "title is required.", new { ip, title = "" });
+
+        var browsed = await BrowseFavorites(ip, 0, 500);
+        if (!browsed.ok)
+            return (false, browsed.message, browsed.details);
+
+        var selected = ExtractMatchByTitle(browsed.details, title);
+        if (!selected.ok)
+            return (false, "Favorite not found.", new { ip, title });
+
+        var setUri = await SetAvTransportUri(ip, selected.uri, selected.itemXml);
+        if (!setUri.ok)
+            return (false, setUri.message, setUri.details);
+
+        var playPayload = "<u:Play xmlns:u=\"urn:schemas-upnp-org:service:AVTransport:1\"><InstanceID>0</InstanceID><Speed>1</Speed></u:Play>";
+        var play = await Soap(ip, "/MediaRenderer/AVTransport/Control", "urn:schemas-upnp-org:service:AVTransport:1", "Play", playPayload);
+        if (!play.ok)
+            return (false, "Failed to start favorite.", new { ip, title, play.status, response = TrimForLog(play.response) });
+
+        return (true, "Sonos favorite started.", new { ip, title = selected.title, uri = selected.uri });
+    }
+
+    public static async Task<(bool ok, string message, object details)> PlayPlaylist(string ip, string title)
+    {
+        if (string.IsNullOrWhiteSpace(title))
+            return (false, "title is required.", new { ip, title = "" });
+
+        var browsed = await BrowsePlaylists(ip, 0, 500);
+        if (!browsed.ok)
+            return (false, browsed.message, browsed.details);
+
+        var selected = ExtractMatchByTitle(browsed.details, title);
+        if (!selected.ok)
+            return (false, "Playlist not found.", new { ip, title });
+
+        var playlistUri = selected.uri;
+        // Sonos saved queue items often return file:// URI and need queue URI form.
+        if (playlistUri.StartsWith("file:///jffs/settings/savedqueues.rsq#", StringComparison.OrdinalIgnoreCase))
+        {
+            var uidResult = await GetDeviceUid(ip);
+            if (!uidResult.ok)
+                return (false, uidResult.message, uidResult.details);
+
+            var hashIndex = playlistUri.LastIndexOf('#');
+            var queueSuffix = hashIndex >= 0 ? playlistUri.Substring(hashIndex) : "";
+            playlistUri = "x-rincon-queue:" + uidResult.uid + queueSuffix;
+        }
+
+        var setUri = await SetAvTransportUri(ip, playlistUri, selected.itemXml);
+        if (!setUri.ok)
+            return (false, setUri.message, setUri.details);
+
+        var playPayload = "<u:Play xmlns:u=\"urn:schemas-upnp-org:service:AVTransport:1\"><InstanceID>0</InstanceID><Speed>1</Speed></u:Play>";
+        var play = await Soap(ip, "/MediaRenderer/AVTransport/Control", "urn:schemas-upnp-org:service:AVTransport:1", "Play", playPayload);
+        if (!play.ok)
+            return (false, "Failed to start playlist.", new { ip, title, play.status, response = TrimForLog(play.response) });
+
+        return (true, "Sonos playlist started.", new { ip, title = selected.title, uri = playlistUri });
+    }
+
+    static async Task<(bool ok, string message, object details, List<SonosDidlItem> items)> Browse(string ip, string objectId, int start, int count)
+    {
+        if (string.IsNullOrWhiteSpace(ip))
+            return (false, "ip is required.", new { ip = "" }, new List<SonosDidlItem>());
+
+        var payload =
+            "<u:Browse xmlns:u=\"urn:schemas-upnp-org:service:ContentDirectory:1\">" +
+            "<ObjectID>" + SecurityElement.Escape(objectId) + "</ObjectID>" +
+            "<BrowseFlag>BrowseDirectChildren</BrowseFlag>" +
+            "<Filter>*</Filter>" +
+            "<StartingIndex>" + Math.Max(0, start) + "</StartingIndex>" +
+            "<RequestedCount>" + Math.Max(1, count) + "</RequestedCount>" +
+            "<SortCriteria></SortCriteria>" +
+            "</u:Browse>";
+
+        var result = await Soap(ip, "/MediaServer/ContentDirectory/Control", "urn:schemas-upnp-org:service:ContentDirectory:1", "Browse", payload);
+        if (!result.ok)
+            return (false, "Sonos browse failed.", new { ip, objectId, result.status, response = TrimForLog(result.response) }, new List<SonosDidlItem>());
+
+        var didl = SoapDecodeInnerXml(result.response, "Result");
+        var items = ParseDidlItems(didl);
+        var totalMatches = SoapDecodeInnerXml(result.response, "TotalMatches");
+        var numberReturned = SoapDecodeInnerXml(result.response, "NumberReturned");
+
+        var details = new
+        {
+            ip,
+            objectId,
+            start,
+            count,
+            totalMatches,
+            numberReturned,
+            items = items.Select(x => new { x.Id, x.Title, x.Uri, x.ItemXml }).ToArray(),
+        };
+        return (true, "Sonos browse completed.", details, items);
+    }
+
+    static async Task<(bool ok, string message, object details, List<SonosDidlItem> items)> SearchContent(string ip, string containerId, string term, int start, int count)
+    {
+        if (string.IsNullOrWhiteSpace(ip))
+            return (false, "ip is required.", new { ip = "" }, new List<SonosDidlItem>());
+        if (string.IsNullOrWhiteSpace(term))
+            return (false, "term is required.", new { ip, term = "" }, new List<SonosDidlItem>());
+
+        var criteria = "dc:title contains \"" + SecurityElement.Escape(term) + "\"";
+        var payload =
+            "<u:Search xmlns:u=\"urn:schemas-upnp-org:service:ContentDirectory:1\">" +
+            "<ContainerID>" + SecurityElement.Escape(containerId) + "</ContainerID>" +
+            "<SearchCriteria>" + criteria + "</SearchCriteria>" +
+            "<Filter>*</Filter>" +
+            "<StartingIndex>" + Math.Max(0, start) + "</StartingIndex>" +
+            "<RequestedCount>" + Math.Max(1, count) + "</RequestedCount>" +
+            "<SortCriteria></SortCriteria>" +
+            "</u:Search>";
+
+        var result = await Soap(ip, "/MediaServer/ContentDirectory/Control", "urn:schemas-upnp-org:service:ContentDirectory:1", "Search", payload);
+        if (!result.ok)
+            return (false, "Sonos search failed.", new { ip, containerId, term, result.status, response = TrimForLog(result.response) }, new List<SonosDidlItem>());
+
+        var didl = SoapDecodeInnerXml(result.response, "Result");
+        var items = ParseDidlItems(didl);
+        var totalMatches = SoapDecodeInnerXml(result.response, "TotalMatches");
+        var numberReturned = SoapDecodeInnerXml(result.response, "NumberReturned");
+
+        var details = new
+        {
+            ip,
+            containerId,
+            term,
+            start,
+            count,
+            totalMatches,
+            numberReturned,
+            items = items.Select(x => new { x.Id, x.Title, x.Uri, x.ItemXml }).ToArray(),
+        };
+        return (true, "Sonos search completed.", details, items);
+    }
+
+    static List<SonosDidlItem> ParseDidlItems(string didl)
+    {
+        var result = new List<SonosDidlItem>();
+        if (string.IsNullOrWhiteSpace(didl))
+            return result;
+
+        try
+        {
+            var doc = XDocument.Parse(didl);
+            foreach (var node in doc.Descendants().Where(x => x.Name.LocalName == "item" || x.Name.LocalName == "container"))
+            {
+                var id = node.Attribute("id")?.Value ?? "";
+                var title = node.Descendants().FirstOrDefault(x => x.Name.LocalName == "title")?.Value ?? "";
+                var uri = node.Descendants().FirstOrDefault(x => x.Name.LocalName == "res")?.Value ?? "";
+                result.Add(new SonosDidlItem
+                {
+                    Id = id,
+                    Title = title,
+                    Uri = uri,
+                    ItemXml = node.ToString(SaveOptions.DisableFormatting),
+                });
+            }
+        }
+        catch
+        {
+            return new List<SonosDidlItem>();
+        }
+
+        return result;
+    }
+
+    static async Task<(bool ok, string message, object details)> SetAvTransportUri(string ip, string uri, string meta)
+    {
+        if (string.IsNullOrWhiteSpace(ip))
+            return (false, "ip is required.", new { ip = "" });
+
+        var payload =
+            "<u:SetAVTransportURI xmlns:u=\"urn:schemas-upnp-org:service:AVTransport:1\">" +
+            "<InstanceID>0</InstanceID>" +
+            "<CurrentURI>" + SecurityElement.Escape(uri) + "</CurrentURI>" +
+            "<CurrentURIMetaData>" + SecurityElement.Escape(meta) + "</CurrentURIMetaData>" +
+            "</u:SetAVTransportURI>";
+
+        var result = await Soap(ip, "/MediaRenderer/AVTransport/Control", "urn:schemas-upnp-org:service:AVTransport:1", "SetAVTransportURI", payload);
+        if (!result.ok)
+            return (false, "Failed to set Sonos transport URI.", new { ip, uri, result.status, response = TrimForLog(result.response) });
+
+        return (true, "Sonos transport URI set.", new { ip, uri, status = result.status });
+    }
+
+    static object BuildNowPlayingPayload(string ip, string positionInfoXml, string transportInfoXml)
+    {
+        string trackUri = SoapDecodeInnerXml(positionInfoXml, "TrackURI");
+        string trackMeta = SoapDecodeInnerXml(positionInfoXml, "TrackMetaData");
+        string trackDuration = SoapDecodeInnerXml(positionInfoXml, "TrackDuration");
+        string relTime = SoapDecodeInnerXml(positionInfoXml, "RelTime");
+        string state = SoapDecodeInnerXml(transportInfoXml, "CurrentTransportState");
+        var didlItems = ParseDidlItems(trackMeta);
+        var first = didlItems.FirstOrDefault();
+
+        return new
+        {
+            ip,
+            state,
+            track = new
+            {
+                title = first?.Title ?? "",
+                uri = string.IsNullOrWhiteSpace(trackUri) ? (first?.Uri ?? "") : trackUri,
+                id = first?.Id ?? "",
+                duration = trackDuration,
+                position = relTime,
+            }
+        };
+    }
+
+    static string SoapDecodeInnerXml(string xml, string elementName)
+    {
+        if (string.IsNullOrWhiteSpace(xml) || string.IsNullOrWhiteSpace(elementName))
+            return "";
+
+        try
+        {
+            var doc = XDocument.Parse(xml);
+            var el = doc.Descendants().FirstOrDefault(x => x.Name.LocalName == elementName);
+            return el?.Value ?? "";
+        }
+        catch
+        {
+            return "";
+        }
+    }
+
+    static (bool ok, string title, string uri, string itemXml) ExtractMatchByTitle(object details, string title)
+    {
+        var json = JsonSerializer.Serialize(details);
+        using var doc = JsonDocument.Parse(json);
+        if (!doc.RootElement.TryGetProperty("items", out var arr) || arr.ValueKind != JsonValueKind.Array)
+            return (false, "", "", "");
+
+        foreach (var item in arr.EnumerateArray())
+        {
+            var itemTitle = item.TryGetProperty("Title", out var titleEl) ? (titleEl.GetString() ?? "") :
+                (item.TryGetProperty("title", out var titleLowerEl) ? (titleLowerEl.GetString() ?? "") : "");
+            if (itemTitle.IndexOf(title, StringComparison.OrdinalIgnoreCase) < 0)
+                continue;
+
+            var uri = item.TryGetProperty("Uri", out var uriEl) ? (uriEl.GetString() ?? "") :
+                (item.TryGetProperty("uri", out var uriLowerEl) ? (uriLowerEl.GetString() ?? "") : "");
+            var itemXml = item.TryGetProperty("ItemXml", out var xmlEl) ? (xmlEl.GetString() ?? "") :
+                (item.TryGetProperty("itemXml", out var xmlLowerEl) ? (xmlLowerEl.GetString() ?? "") : "");
+
+            return (true, itemTitle, uri, itemXml);
+        }
+
+        return (false, "", "", "");
+    }
+
+    static async Task<(bool ok, int status, string response)> Soap(string ip, string path, string service, string action, string bodyInner)
+    {
+        var envelope =
+            "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
+            "<s:Envelope xmlns:s=\"http://schemas.xmlsoap.org/soap/envelope/\" s:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">" +
+            "<s:Body>" + bodyInner + "</s:Body></s:Envelope>";
+
+        var req = new HttpRequestMessage(HttpMethod.Post, $"http://{ip}:1400{path}");
+        req.Headers.TryAddWithoutValidation("SOAPACTION", $"\"{service}#{action}\"");
+        req.Content = new StringContent(envelope, Encoding.UTF8, "text/xml");
+
+        try
+        {
+            var resp = await _http.SendAsync(req);
+            var text = await resp.Content.ReadAsStringAsync();
+            return (resp.IsSuccessStatusCode, (int)resp.StatusCode, text);
+        }
+        catch (Exception ex)
+        {
+            return (false, 0, "HTTP error: " + ex.Message);
+        }
+    }
+
+    static async Task<(bool ok, string uid, string message, object details)> GetDeviceUid(string ip)
+    {
+        if (string.IsNullOrWhiteSpace(ip))
+            return (false, "", "ip is required.", new { ip = "" });
+
+        try
+        {
+            var xml = await _http.GetStringAsync($"http://{ip}:1400/xml/device_description.xml");
+            var doc = XDocument.Parse(xml);
+            var udn = doc.Descendants().FirstOrDefault(x => x.Name.LocalName == "UDN")?.Value ?? string.Empty;
+            var uid = udn.Replace("uuid:", "", StringComparison.OrdinalIgnoreCase).Trim();
+            if (string.IsNullOrWhiteSpace(uid))
+                return (false, "", "Unable to resolve Sonos UID.", new { ip, udn = TrimForLog(udn) });
+
+            return (true, uid, "ok", new { ip, uid });
+        }
+        catch (Exception ex)
+        {
+            return (false, "", "Failed to read Sonos device description.", new { ip, error = ex.Message });
+        }
+    }
+
+    static async Task<(bool ok, int volume, string message, object details)> GetVolume(string ip)
+    {
+        var payload =
+            "<u:GetVolume xmlns:u=\"urn:schemas-upnp-org:service:RenderingControl:1\">" +
+            "<InstanceID>0</InstanceID><Channel>Master</Channel></u:GetVolume>";
+        var result = await Soap(ip, "/MediaRenderer/RenderingControl/Control", "urn:schemas-upnp-org:service:RenderingControl:1", "GetVolume", payload);
+        if (!result.ok)
+            return (false, 0, "Failed to get Sonos volume.", new { ip, result.status, response = TrimForLog(result.response) });
+
+        try
+        {
+            var doc = XDocument.Parse(result.response);
+            var val = doc.Descendants().FirstOrDefault(x => x.Name.LocalName == "CurrentVolume")?.Value ?? "0";
+            if (!int.TryParse(val, out var volume)) volume = 0;
+            return (true, Math.Clamp(volume, 0, 100), "ok", new { ip, volume = Math.Clamp(volume, 0, 100) });
+        }
+        catch
+        {
+            return (false, 0, "Failed to parse Sonos volume response.", new { ip, raw = result.response });
+        }
+    }
+
+    static async Task<(bool ok, string message, object details)> SetVolume(string ip, int volume)
+    {
+        var payload =
+            "<u:SetVolume xmlns:u=\"urn:schemas-upnp-org:service:RenderingControl:1\">" +
+            "<InstanceID>0</InstanceID><Channel>Master</Channel><DesiredVolume>" + Math.Clamp(volume, 0, 100) + "</DesiredVolume>" +
+            "</u:SetVolume>";
+        var result = await Soap(ip, "/MediaRenderer/RenderingControl/Control", "urn:schemas-upnp-org:service:RenderingControl:1", "SetVolume", payload);
+        if (!result.ok)
+            return (false, "Failed to set Sonos volume.", new { ip, volume, result.status, response = TrimForLog(result.response) });
+
+        return (true, "Sonos volume set.", new { ip, volume = Math.Clamp(volume, 0, 100), status = result.status });
+    }
+
+    static async Task<(bool ok, string message, object details)> SetSource(string ip, string source)
+    {
+        // Accept direct URI source strings so control can target Sonos playlists, line-in, or streams.
+        var uri = source;
+        if (!uri.Contains(':'))
+            uri = "x-rincon-queue:" + source;
+
+        var payload =
+            "<u:SetAVTransportURI xmlns:u=\"urn:schemas-upnp-org:service:AVTransport:1\">" +
+            "<InstanceID>0</InstanceID>" +
+            "<CurrentURI>" + SecurityElement.Escape(uri) + "</CurrentURI>" +
+            "<CurrentURIMetaData></CurrentURIMetaData>" +
+            "</u:SetAVTransportURI>";
+
+        var result = await Soap(ip, "/MediaRenderer/AVTransport/Control", "urn:schemas-upnp-org:service:AVTransport:1", "SetAVTransportURI", payload);
+        if (!result.ok)
+            return (false, "Failed to set Sonos source URI.", new { ip, source = uri, result.status, response = TrimForLog(result.response) });
+
+        return (true, "Sonos source set.", new { ip, source = uri, status = result.status });
+    }
+
+    static string TrimForLog(string value)
+    {
+        if (string.IsNullOrWhiteSpace(value)) return "";
+        value = value.Replace("\r", "").Trim();
+        const int max = 1200;
+        return value.Length <= max ? value : value[..max] + "...";
     }
 }
 

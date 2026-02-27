@@ -16,6 +16,9 @@ const workflowSections = [
     links: [
       { to: "/validate", label: "Validate", icon: "terminal" },
       { to: "/panel", label: "Panel", icon: "monitor" },
+      { to: "/prototype-studio", label: "Prototype Studio", icon: "layout" },
+      { to: "/builder-app", label: "Builder App (Full)", icon: "layout" },
+      { to: "/crestron-home", label: "Crestron Home", icon: "home" },
       { to: "/xpanel-fidelity", label: "XPanel Fidelity", icon: "monitor" },
       { to: "/network", label: "Network", icon: "wifi" },
       { to: "/configure/deploy", label: "Deploy", icon: "upload" },
@@ -110,6 +113,13 @@ const icons: Record<string, ReactNode> = {
       <circle cx="9" cy="14" r="1" />
       <circle cx="15" cy="14" r="1" />
       <path d="M9 17h6" />
+    </svg>
+  ),
+  layout: (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="3" width="18" height="18" rx="2" />
+      <line x1="3" y1="9" x2="21" y2="9" />
+      <line x1="9" y1="9" x2="9" y2="21" />
     </svg>
   ),
 };

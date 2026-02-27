@@ -203,7 +203,7 @@ export default function ConfigurePage() {
         {projectsLoading && <p className="subhead">Loading projects...</p>}
 
         {!projectsLoading && projects.length === 0 && (
-          <div style={{ textAlign: "center", color: "#64748b", padding: 12, border: "1px dashed var(--border-default)", borderRadius: 8 }}>
+          <div style={{ textAlign: "center", color: "var(--text-muted)", padding: 12, border: "1px dashed var(--border-default)", borderRadius: 8 }}>
             <p>No saved projects yet.</p>
             <p style={{ fontSize: 13 }}>Save your current config as a project, or import a JSON file.</p>
           </div>

@@ -31,6 +31,9 @@ const NetworkScanPage = lazy(() => import("./pages/NetworkScanPage"));
 const ProjectOverviewPage = lazy(() => import("./pages/ProjectOverviewPage"));
 const AgentGuidePage = lazy(() => import("./pages/AgentGuidePage"));
 const XPanelFidelityPage = lazy(() => import("./pages/XPanelFidelityPage"));
+const PrototypeStudioPage = lazy(() => import("./pages/PrototypeStudioPage"));
+const BuilderAppPage = lazy(() => import("./pages/BuilderAppPage"));
+const CrestronHomePage = lazy(() => import("./pages/CrestronHomePage"));
 
 function withSuspense(node: ReactNode): ReactNode {
   return (
@@ -44,6 +47,8 @@ export default function App() {
   return (
     <HashRouter>
       <Routes>
+        <Route path="builder-app" element={withSuspense(<BuilderAppPage />)} />
+        <Route path="crestron-home" element={withSuspense(<CrestronHomePage />)} />
         <Route element={<Shell />}>
           <Route index element={withSuspense(<ProjectOverviewPage />)} />
           <Route path="project" element={withSuspense(<ProjectOverviewPage />)} />
@@ -61,6 +66,7 @@ export default function App() {
           <Route path="code" element={withSuspense(<LogicPlaygroundPage />)} />
           <Route path="network" element={withSuspense(<NetworkScanPage />)} />
           <Route path="xpanel-fidelity" element={withSuspense(<XPanelFidelityPage />)} />
+          <Route path="prototype-studio" element={withSuspense(<PrototypeStudioPage />)} />
           <Route path="architecture" element={withSuspense(<ArchitecturePage />)} />
           <Route path="scenes" element={withSuspense(<ScenesPage />)} />
           <Route path="joinlist" element={withSuspense(<JoinListEditorPage />)} />

@@ -32,7 +32,7 @@ const IO_TYPE_LABELS: Record<string, { label: string; abbr: string; color: strin
   ANALOG_OUTPUT:  { label: "Analog Output",  abbr: "AO", color: "#d97706" },
   STRING_INPUT:   { label: "String Input",   abbr: "SI", color: "#be185d" },
   STRING_OUTPUT:  { label: "String Output",  abbr: "SO", color: "#ea580c" },
-  BUFFER_INPUT:   { label: "Buffer Input",   abbr: "BI", color: "#64748b" },
+  BUFFER_INPUT:   { label: "Buffer Input",   abbr: "BI", color: "var(--text-muted)" },
 };
 
 export default function LogicPlaygroundPage() {
@@ -483,7 +483,7 @@ export default function LogicPlaygroundPage() {
             </div>
             <div className="splus-console" ref={consoleRef}>
               {consoleLines.length === 0 && (
-                <span style={{ color: "#475569", fontStyle: "italic" }}>
+                <span style={{ color: "var(--text-secondary)", fontStyle: "italic" }}>
                   {isRunning ? "No output yet" : 'Click "Build & Run" to start...'}
                 </span>
               )}
@@ -1067,7 +1067,7 @@ function NetworkPanel({ sockets, onInjectData, onRunDemo, onStopDemo, onLoadTcpT
           <button className="button" onClick={onRunDemo}>Run Network Demo</button>
           <button className="button" onClick={onExitTab}>Exit Network Tab</button>
         </div>
-        <div style={{ marginTop: 12, fontSize: 12, color: "#64748b" }}>
+        <div style={{ marginTop: 12, fontSize: 12, color: "var(--text-muted)" }}>
           <div>Available simulators:</div>
           <div style={{ fontFamily: "var(--font-mono)", marginTop: 4 }}>
             <div>Echo Server &nbsp;&nbsp;&nbsp;192.168.1.100:23</div>

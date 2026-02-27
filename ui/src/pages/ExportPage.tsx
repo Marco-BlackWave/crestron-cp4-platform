@@ -155,7 +155,7 @@ export default function ExportPage() {
           onClick={() => setJsonExpanded(!jsonExpanded)}
         >
           <h2 style={{ margin: 0, fontSize: 16 }}>SystemConfig JSON</h2>
-          <span style={{ color: "#64748b", fontSize: 13 }}>{jsonExpanded ? "Collapse" : "Expand"}</span>
+          <span style={{ color: "var(--text-muted)", fontSize: 13 }}>{jsonExpanded ? "Collapse" : "Expand"}</span>
         </div>
         {jsonExpanded && (
           <pre style={{
@@ -177,7 +177,7 @@ export default function ExportPage() {
       {/* Deploy to Processor */}
       <div className="card" style={{ marginBottom: 20 }}>
         <h2 style={{ margin: "0 0 12px", fontSize: 16 }}>Deploy to Processor</h2>
-        <p style={{ fontSize: 13, color: "#94a3b8", marginBottom: 16 }}>
+        <p style={{ fontSize: 13, color: "var(--text-faint)", marginBottom: 16 }}>
           Transfer configuration files directly to your CP4 processor via SFTP — with real-time progress,
           file verification, and program restart.
         </p>

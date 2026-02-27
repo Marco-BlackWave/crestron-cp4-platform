@@ -314,7 +314,7 @@ export default function DeviceLibraryPage() {
                             </span>
                           </td>
                           <td style={{ textAlign: "right", fontVariantNumeric: "tabular-nums" }}>
-                            {cmdCount > 0 ? cmdCount : <span style={{ color: "#cbd5e1" }}>&mdash;</span>}
+                            {cmdCount > 0 ? cmdCount : <span style={{ color: "var(--text-faint)" }}>&mdash;</span>}
                           </td>
                           <td>
                             {usedProfiles.has(device.id) && (

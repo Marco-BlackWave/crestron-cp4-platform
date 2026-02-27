@@ -592,7 +592,7 @@ function AddToProjectPanel({ device, onClose, onAdded }: {
         <h3 style={{ margin: 0 }}>Add to Project</h3>
         <button className="button" onClick={onClose} style={{ fontSize: 12, padding: "4px 8px" }}>Close</button>
       </div>
-      <div style={{ fontSize: 13, color: "#64748b", marginBottom: 12 }}>
+      <div style={{ fontSize: 13, color: "var(--text-muted)", marginBottom: 12 }}>
         <span className="ns-detail__mono">{device.ip}</span>
         {" \u2014 "}
         {crestron ? <span className="ns-type-badge ns-type-badge--crestron">{device.type}</span> : device.type}
