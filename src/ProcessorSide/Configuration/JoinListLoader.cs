@@ -1,62 +1,46 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Runtime.Serialization.Json;
 using CrestronCP4.ProcessorSide.Core.Diagnostics;
 using CrestronCP4.ProcessorSide.Infrastructure;
 
 namespace CrestronCP4.ProcessorSide.Configuration
 {
-    public sealed class JoinListLoader
+    public sealed class JoinListLoader : JsonConfigLoaderBase<JoinListConfig, JoinListLoadResult>
     {
-        private readonly IFileSystem _fileSystem;
-        private readonly ILogger _logger;
-
         public JoinListLoader(IFileSystem fileSystem, ILogger logger)
+            : base(fileSystem, logger)
         {
-            _fileSystem = fileSystem;
-            _logger = logger;
         }
 
-        public JoinListLoadResult Load(string path)
+        protected override string EmptyPathError => "Join List path is empty.";
+
+        protected override string FileNotFoundError(string path) => "Join List file not found: " + path;
+
+        protected override string NullDeserializationError => "Join List JSON deserialized to null.";
+
+        protected override string ParseError(Exception ex) => "Failed to parse Join List JSON.";
+
+        protected override void LogSuccess(string path)
         {
-            var result = new JoinListLoadResult();
+            Logger.Info("JoinList loaded from " + path);
+        }
 
-            if (string.IsNullOrWhiteSpace(path))
+        protected override JoinListLoadResult BuildResult(JoinListConfig config, List<string> errors)
+        {
+            var result = new JoinListLoadResult
             {
-                result.Errors.Add("Join List path is empty.");
-                return result;
-            }
+                Config = config
+            };
 
-            if (!_fileSystem.FileExists(path))
+            if (errors != null)
             {
-                result.Errors.Add("Join List file not found: " + path);
-                return result;
-            }
-
-            try
-            {
-                var json = _fileSystem.ReadAllText(path);
-                using (var stream = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(json)))
+                foreach (var error in errors)
                 {
-                    var serializer = new DataContractJsonSerializer(typeof(JoinListConfig));
-                    var config = serializer.ReadObject(stream) as JoinListConfig;
-                    if (config == null)
-                    {
-                        result.Errors.Add("Join List JSON deserialized to null.");
-                        return result;
-                    }
-
-                    result.Config = config;
-                    return result;
+                    result.Errors.Add(error);
                 }
             }
-            catch (Exception ex)
-            {
-                _logger.Error("Failed to load Join List: " + ex.Message);
-                result.Errors.Add("Failed to parse Join List JSON.");
-                return result;
-            }
+
+            return result;
         }
     }
 

@@ -15,6 +15,7 @@ namespace CrestronCP4.ProcessorSide.Subsystems
     {
         private readonly List<IDisplayDriver> _displays;
         private readonly List<IAudioDriver> _audios;
+        private readonly List<IMediaDriver> _medias;
         private readonly List<string> _sourceNames;
         private readonly ILogger _logger;
         private SignalRegistry _signals;
@@ -26,13 +27,15 @@ namespace CrestronCP4.ProcessorSide.Subsystems
         // Primary drivers for feedback (first in list)
         private IDisplayDriver _display => _displays.Count > 0 ? _displays[0] : null;
         private IAudioDriver _audio => _audios.Count > 0 ? _audios[0] : null;
+        private IMediaDriver _media => _medias.Count > 0 ? _medias[0] : null;
 
         public string Id => "av";
 
-        public AvSubsystem(List<IDisplayDriver> displays, List<IAudioDriver> audios, List<string> sourceNames, ILogger logger)
+        public AvSubsystem(List<IDisplayDriver> displays, List<IAudioDriver> audios, List<IMediaDriver> medias, List<string> sourceNames, ILogger logger)
         {
             _displays = displays ?? new List<IDisplayDriver>();
             _audios = audios ?? new List<IAudioDriver>();
+            _medias = medias ?? new List<IMediaDriver>();
             _sourceNames = sourceNames ?? new List<string>();
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
@@ -42,6 +45,7 @@ namespace CrestronCP4.ProcessorSide.Subsystems
             : this(
                 display != null ? new List<IDisplayDriver> { display } : new List<IDisplayDriver>(),
                 audio != null ? new List<IAudioDriver> { audio } : new List<IAudioDriver>(),
+                new List<IMediaDriver>(),
                 sourceNames, logger)
         { }
 
@@ -93,6 +97,88 @@ namespace CrestronCP4.ProcessorSide.Subsystems
                 case JoinMap.Digital.MuteToggle:
                     if (value is bool mt && mt)
                         foreach (var a in _audios) { try { a.MuteToggle(); } catch { } }
+                    break;
+
+                case JoinMap.Digital.PowerOn:
+                    if (value is bool pon && pon)
+                    {
+                        foreach (var d in _displays)
+                        {
+                            try { d.PowerOn(); } catch (Exception ex) { _logger.Error("Display power on error: " + ex.Message); }
+                        }
+                        UpdatePowerFeedback();
+                    }
+                    break;
+
+                case JoinMap.Digital.PowerOff:
+                    if (value is bool pof && pof)
+                    {
+                        foreach (var d in _displays)
+                        {
+                            try { d.PowerOff(); } catch (Exception ex) { _logger.Error("Display power off error: " + ex.Message); }
+                        }
+                        UpdatePowerFeedback();
+                    }
+                    break;
+
+                case JoinMap.Digital.MediaPlayPause:
+                    if (value is bool pp && pp)
+                    {
+                        foreach (var media in _medias)
+                        {
+                            try { if (media.IsPlaying) media.Pause(); else media.Play(); } catch (Exception ex) { _logger.Error("Media play/pause error: " + ex.Message); }
+                        }
+                    }
+                    break;
+
+                case JoinMap.Digital.MediaStop:
+                    if (value is bool stp && stp)
+                        foreach (var media in _medias) { try { media.Stop(); } catch (Exception ex) { _logger.Error("Media stop error: " + ex.Message); } }
+                    break;
+
+                case JoinMap.Digital.MediaUp:
+                    if (value is bool up && up)
+                        foreach (var media in _medias) { try { media.Up(); } catch (Exception ex) { _logger.Error("Media up error: " + ex.Message); } }
+                    break;
+
+                case JoinMap.Digital.MediaDown:
+                    if (value is bool down && down)
+                        foreach (var media in _medias) { try { media.Down(); } catch (Exception ex) { _logger.Error("Media down error: " + ex.Message); } }
+                    break;
+
+                case JoinMap.Digital.MediaLeft:
+                    if (value is bool left && left)
+                        foreach (var media in _medias) { try { media.Left(); } catch (Exception ex) { _logger.Error("Media left error: " + ex.Message); } }
+                    break;
+
+                case JoinMap.Digital.MediaRight:
+                    if (value is bool right && right)
+                        foreach (var media in _medias) { try { media.Right(); } catch (Exception ex) { _logger.Error("Media right error: " + ex.Message); } }
+                    break;
+
+                case JoinMap.Digital.MediaSelect:
+                    if (value is bool sel && sel)
+                        foreach (var media in _medias) { try { media.Select(); } catch (Exception ex) { _logger.Error("Media select error: " + ex.Message); } }
+                    break;
+
+                case JoinMap.Digital.MediaMenu:
+                    if (value is bool menu && menu)
+                        foreach (var media in _medias) { try { media.Menu(); } catch (Exception ex) { _logger.Error("Media menu error: " + ex.Message); } }
+                    break;
+
+                case JoinMap.Digital.MediaHome:
+                    if (value is bool home && home)
+                        foreach (var media in _medias) { try { media.Home(); } catch (Exception ex) { _logger.Error("Media home error: " + ex.Message); } }
+                    break;
+
+                case JoinMap.Digital.MediaNext:
+                    if (value is bool next && next)
+                        foreach (var media in _medias) { try { media.Next(); } catch (Exception ex) { _logger.Error("Media next error: " + ex.Message); } }
+                    break;
+
+                case JoinMap.Digital.MediaPrevious:
+                    if (value is bool prev && prev)
+                        foreach (var media in _medias) { try { media.Previous(); } catch (Exception ex) { _logger.Error("Media previous error: " + ex.Message); } }
                     break;
 
                 default:

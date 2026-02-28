@@ -2,8 +2,11 @@ import { useEffect, useMemo, useState, useRef } from "react";
 import { useSystemConfig } from "../hooks/useSystemConfig";
 import { useSignalEngine } from "../hooks/useSignalEngine";
 import type { SimSignal } from "../simulator/SignalEngine";
+import WorkflowContextBar from "../components/WorkflowContextBar";
 
 type Tab = "signals" | "connections" | "joinmap" | "log";
+const ANALOG_MIN = 0;
+const ANALOG_MAX = 65535;
 
 interface LogEntry {
   time: number;
@@ -79,7 +82,12 @@ export default function DebugPage() {
   }, [signals, search, typeFilter, dirFilter, roomFilter]);
 
   const handleEdit = (sig: SimSignal) => {
+    if (sig.direction !== "input") return;
     setEditingKey(sig.key);
+    if (sig.type === "digital") {
+      setEditValue(sig.value ? "HIGH" : "LOW");
+      return;
+    }
     setEditValue(String(sig.value));
   };
 
@@ -87,9 +95,18 @@ export default function DebugPage() {
     if (!editingKey) return;
     const sig = signals.find((s) => s.key === editingKey);
     if (!sig) return;
+    if (sig.direction !== "input") {
+      setEditingKey(null);
+      return;
+    }
+
     let val: unknown;
-    if (sig.type === "digital") val = editValue === "true";
-    else if (sig.type === "analog") val = parseInt(editValue) || 0;
+    if (sig.type === "digital") val = editValue === "HIGH";
+    else if (sig.type === "analog") {
+      const parsed = Number.parseInt(editValue, 10);
+      const safe = Number.isNaN(parsed) ? ANALOG_MIN : parsed;
+      val = Math.max(ANALOG_MIN, Math.min(ANALOG_MAX, safe));
+    }
     else val = editValue;
     setSignalValue(editingKey, val as boolean | number | string);
     setEditingKey(null);
@@ -113,6 +130,14 @@ export default function DebugPage() {
 
   return (
     <div className="page-content">
+      <WorkflowContextBar
+        current="validate"
+        projectName={config.system.name}
+        roomCount={config.rooms.length}
+        deviceCount={config.rooms.reduce((sum, room) => sum + Object.keys(room.devices).length, 0)}
+        signalCount={signals.length}
+      />
+
       <div className="page-header">
         <div>
           <h1>Debug Panel</h1>
@@ -175,14 +200,52 @@ export default function DebugPage() {
                     <td style={{ fontFamily: "var(--font-mono)", fontSize: 12 }}>
                       {editingKey === sig.key ? (
                         <span style={{ display: "flex", gap: 4 }}>
-                          <input className="input" value={editValue} onChange={(e) => setEditValue(e.target.value)} style={{ width: 100, padding: "2px 6px", fontSize: 12 }} onKeyDown={(e) => e.key === "Enter" && handleSaveEdit()} />
+                          {sig.type === "digital" ? (
+                            <select
+                              className="input"
+                              value={editValue}
+                              onChange={(e) => setEditValue(e.target.value)}
+                              style={{ width: 110, padding: "2px 6px", fontSize: 12 }}
+                            >
+                              <option value="LOW">LOW</option>
+                              <option value="HIGH">HIGH</option>
+                            </select>
+                          ) : sig.type === "analog" ? (
+                            <input
+                              className="input"
+                              type="number"
+                              min={ANALOG_MIN}
+                              max={ANALOG_MAX}
+                              step={1}
+                              value={editValue}
+                              onChange={(e) => setEditValue(e.target.value)}
+                              style={{ width: 120, padding: "2px 6px", fontSize: 12 }}
+                              onKeyDown={(e) => e.key === "Enter" && handleSaveEdit()}
+                            />
+                          ) : (
+                            <input
+                              className="input"
+                              value={editValue}
+                              onChange={(e) => setEditValue(e.target.value)}
+                              style={{ width: 160, padding: "2px 6px", fontSize: 12 }}
+                              onKeyDown={(e) => e.key === "Enter" && handleSaveEdit()}
+                            />
+                          )}
                           <button className="button" style={{ fontSize: 11, padding: "2px 8px" }} onClick={handleSaveEdit}>OK</button>
                         </span>
                       ) : formatValue(sig)}
                     </td>
-                    <td style={{ fontSize: 11, color: "#64748b" }}>{formatTime(sig.lastChanged)}</td>
+                    <td style={{ fontSize: 11, color: "var(--text-muted)" }}>{formatTime(sig.lastChanged)}</td>
                     <td>
-                      <button className="button" style={{ fontSize: 11, padding: "2px 8px" }} onClick={() => handleEdit(sig)}>Edit</button>
+                      <button
+                        className="button"
+                        style={{ fontSize: 11, padding: "2px 8px" }}
+                        onClick={() => handleEdit(sig)}
+                        disabled={sig.direction !== "input"}
+                        title={sig.direction !== "input" ? "Only input signals are editable" : "Edit value"}
+                      >
+                        Edit
+                      </button>
                     </td>
                   </tr>
                 ))}
@@ -203,7 +266,7 @@ export default function DebugPage() {
                   {eisc.online ? "Online" : "Offline"}
                 </span>
               </div>
-              <p style={{ color: "#475569", fontSize: 13, margin: "0 0 12px" }}>
+              <p style={{ color: "var(--text-secondary)", fontSize: 13, margin: "0 0 12px" }}>
                 Digital: {eisc.digitalInputs.size + eisc.digitalOutputs.size} | Analog: {eisc.analogInputs.size + eisc.analogOutputs.size} | Serial: {eisc.serialInputs.size + eisc.serialOutputs.size}
               </p>
               <button className={`toggle-switch${eisc.online ? " toggle-switch--on" : ""}`} onClick={() => toggleConnection(eisc.processorId)} aria-label="Toggle connection" />
@@ -251,16 +314,16 @@ export default function DebugPage() {
       {tab === "log" && (
         <>
           <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8 }}>
-            <span style={{ fontSize: 13, color: "#64748b" }}>{logEntries.length} entries</span>
+            <span style={{ fontSize: 13, color: "var(--text-muted)" }}>{logEntries.length} entries</span>
             <button className="button" style={{ fontSize: 12, padding: "4px 10px" }} onClick={() => setLogEntries([])}>Clear</button>
           </div>
           <div className="log-viewer" ref={logRef}>
-            {logEntries.length === 0 && <div style={{ color: "#64748b", padding: 16 }}>No log entries yet. Interact with the Panel Emulator to see signal changes.</div>}
+            {logEntries.length === 0 && <div style={{ color: "var(--text-muted)", padding: 16 }}>No log entries yet. Interact with the Panel Emulator to see signal changes.</div>}
             {logEntries.map((entry, i) => (
               <div key={i} className="log-entry">
                 <span className="log-entry__time">{new Date(entry.time).toLocaleTimeString([], { hour12: false })}</span>
                 <span className={`log-entry__level--${entry.level}`}>[{entry.level.toUpperCase()}]</span>
-                <span style={{ color: "#94a3b8" }}>{entry.source}</span>
+                <span style={{ color: "var(--text-faint)" }}>{entry.source}</span>
                 <span className="log-entry__msg">{entry.message}</span>
               </div>
             ))}

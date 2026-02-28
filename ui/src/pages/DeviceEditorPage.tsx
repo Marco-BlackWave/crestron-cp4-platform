@@ -2,10 +2,33 @@ import { useEffect, useState, useMemo } from "react";
 import { useParams, useNavigate, Link } from "react-router";
 import { loadDevice } from "../api/loadDevices";
 import { createDevice, updateDevice, cloneDevice, deleteDevice } from "../api/saveDevice";
+import { useSystemConfig } from "../hooks/useSystemConfig";
 import JsonEditor from "../components/JsonEditor";
 
-const CATEGORIES = ["display", "receiver", "lighting", "shades", "hvac", "security", "matrix", "dsp", "media", "gateway"];
+const CATEGORIES = [
+  "display", "audio", "receiver", "lighting", "shades", "hvac",
+  "security", "matrix", "dsp", "media", "gateway",
+];
+
 const PROTOCOLS = ["ir", "serial", "ip", "bacnet", "modbus", "knx", "artnet", "shelly", "pjlink"];
+
+const PROTOCOL_META: Record<string, { label: string; color: string; icon: string }> = {
+  ir:      { label: "Infrared",   color: "#7c3aed", icon: "IR" },
+  serial:  { label: "RS-232",     color: "#0d9488", icon: "RS" },
+  ip:      { label: "TCP/IP",     color: "#2563eb", icon: "IP" },
+  bacnet:  { label: "BACnet",     color: "#ca8a04", icon: "BA" },
+  modbus:  { label: "Modbus",     color: "#be185d", icon: "MB" },
+  knx:     { label: "KNX",        color: "#059669", icon: "KX" },
+  artnet:  { label: "Art-Net",    color: "#7c3aed", icon: "AN" },
+  shelly:  { label: "Shelly",     color: "#2563eb", icon: "SH" },
+  pjlink:  { label: "PJLink",     color: "#dc2626", icon: "PJ" },
+};
+
+const CATEGORY_ICONS: Record<string, string> = {
+  display: "TV", audio: "AU", receiver: "RX", lighting: "LT",
+  shades: "SH", hvac: "HC", security: "SC", matrix: "MX",
+  dsp: "DS", media: "MD", gateway: "GW",
+};
 
 interface CommandEntry {
   name: string;
@@ -18,7 +41,11 @@ interface ProtocolState {
   port?: string;
   delimiter?: string;
   baudRate?: string;
+  dataBits?: string;
+  parity?: string;
+  stopBits?: string;
   driverFile?: string;
+  type?: string;
 }
 
 function emptyProtocolState(): ProtocolState {
@@ -28,6 +55,7 @@ function emptyProtocolState(): ProtocolState {
 export default function DeviceEditorPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const config = useSystemConfig();
   const isNew = !id;
 
   const [loading, setLoading] = useState(!isNew);
@@ -37,12 +65,15 @@ export default function DeviceEditorPage() {
   const [mode, setMode] = useState<"form" | "json">("form");
   const [jsonText, setJsonText] = useState("");
   const [jsonError, setJsonError] = useState<string | null>(null);
+  const [expandedProto, setExpandedProto] = useState<string | null>(null);
+  const [confirmDelete, setConfirmDelete] = useState(false);
 
   // Form state
   const [deviceId, setDeviceId] = useState("");
   const [manufacturer, setManufacturer] = useState("");
   const [model, setModel] = useState("");
   const [category, setCategory] = useState("display");
+  const [sourceModule, setSourceModule] = useState("");
   const [discretePower, setDiscretePower] = useState(false);
   const [volumeControl, setVolumeControl] = useState(false);
   const [inputSelect, setInputSelect] = useState(false);
@@ -57,6 +88,14 @@ export default function DeviceEditorPage() {
     document.title = isNew ? "New Device — CP4" : `Edit Device — CP4`;
   }, [isNew]);
 
+  // Auto-clear success message
+  useEffect(() => {
+    if (!success) return;
+    const timer = setTimeout(() => setSuccess(null), 3000);
+    return () => clearTimeout(timer);
+  }, [success]);
+
+  // Load device data
   useEffect(() => {
     if (!id) return;
     setLoading(true);
@@ -66,6 +105,7 @@ export default function DeviceEditorPage() {
         setManufacturer(profile.manufacturer);
         setModel(profile.model);
         setCategory(profile.category);
+        setSourceModule(profile.sourceModule ?? "");
         setDiscretePower(profile.capabilities.discretePower);
         setVolumeControl(profile.capabilities.volumeControl);
         setInputSelect(profile.capabilities.inputSelect);
@@ -86,17 +126,41 @@ export default function DeviceEditorPage() {
               commands,
               port: e.port?.toString(),
               baudRate: e.baudRate?.toString(),
+              dataBits: e.dataBits?.toString(),
+              parity: e.parity?.toString(),
+              stopBits: e.stopBits?.toString(),
               driverFile: e.driverFile?.toString(),
+              type: e.type?.toString(),
             };
           } else {
             protoState[p] = emptyProtocolState();
           }
         }
         setProtocols(protoState);
+        // Auto-expand first enabled protocol
+        const firstEnabled = PROTOCOLS.find(p => protoState[p]?.enabled);
+        if (firstEnabled) setExpandedProto(firstEnabled);
       })
       .catch((e) => setError(e.message))
       .finally(() => setLoading(false));
   }, [id]);
+
+  // Room usage
+  const usage = useMemo(() => {
+    if (!config.data || !id) return [];
+    const rooms: { roomId: string; roomName: string; role: string; protocol: string }[] = [];
+    for (const room of config.data.rooms) {
+      for (const [role, ref] of Object.entries(room.devices)) {
+        if (ref.profileId === id) {
+          rooms.push({ roomId: room.id, roomName: room.name, role, protocol: ref.protocol });
+        }
+      }
+    }
+    return rooms;
+  }, [config.data, id]);
+
+  const enabledProtocols = PROTOCOLS.filter(p => protocols[p]?.enabled);
+  const cmdTotal = enabledProtocols.reduce((sum, p) => sum + (protocols[p]?.commands.length ?? 0), 0);
 
   const buildProfile = () => {
     const protoObj: Record<string, unknown> = {};
@@ -110,11 +174,15 @@ export default function DeviceEditorPage() {
       if (Object.keys(commands).length > 0) entry.commands = commands;
       if (state.port) entry.port = parseInt(state.port, 10) || state.port;
       if (state.baudRate) entry.baudRate = parseInt(state.baudRate, 10);
+      if (state.dataBits) entry.dataBits = parseInt(state.dataBits, 10);
+      if (state.parity) entry.parity = state.parity;
+      if (state.stopBits) entry.stopBits = parseInt(state.stopBits, 10);
       if (state.driverFile) entry.driverFile = state.driverFile;
+      if (state.type) entry.type = state.type;
       protoObj[p] = entry;
     }
 
-    return {
+    const profile: Record<string, unknown> = {
       id: deviceId.trim(),
       manufacturer: manufacturer.trim(),
       model: model.trim(),
@@ -129,6 +197,8 @@ export default function DeviceEditorPage() {
         ...(cooldownMs ? { cooldownMs: parseInt(cooldownMs, 10) } : {}),
       },
     };
+    if (sourceModule.trim()) profile.sourceModule = sourceModule.trim();
+    return profile;
   };
 
   const handleSave = async () => {
@@ -136,17 +206,22 @@ export default function DeviceEditorPage() {
     setError(null);
     setSuccess(null);
     try {
-      const profile = buildProfile();
+      let profile;
+      if (mode === "json") {
+        profile = JSON.parse(jsonText);
+      } else {
+        profile = buildProfile();
+      }
       if (!profile.id || !profile.manufacturer || !profile.model) {
         throw new Error("ID, manufacturer, and model are required.");
       }
       if (isNew) {
         await createDevice(profile);
-        setSuccess("Device created.");
+        setSuccess("Device created successfully.");
         navigate(`/devices/${profile.id}/edit`, { replace: true });
       } else {
         await updateDevice(id!, profile);
-        setSuccess("Device saved.");
+        setSuccess("Changes saved.");
       }
     } catch (e: unknown) {
       setError(e instanceof Error ? e.message : "Save failed.");
@@ -159,16 +234,14 @@ export default function DeviceEditorPage() {
     if (!id) return;
     try {
       const result = await cloneDevice(id) as { id?: string };
-      if (result.id) {
-        navigate(`/devices/${result.id}/edit`);
-      }
+      if (result.id) navigate(`/devices/${result.id}/edit`);
     } catch (e: unknown) {
       setError(e instanceof Error ? e.message : "Clone failed.");
     }
   };
 
   const handleDelete = async () => {
-    if (!id || !confirm("Delete this device profile?")) return;
+    if (!id) return;
     try {
       await deleteDevice(id);
       navigate("/devices");
@@ -178,10 +251,12 @@ export default function DeviceEditorPage() {
   };
 
   const toggleProtocol = (p: string) => {
-    setProtocols((prev) => ({
-      ...prev,
-      [p]: { ...prev[p], enabled: !prev[p].enabled },
-    }));
+    setProtocols((prev) => {
+      const next = { ...prev, [p]: { ...prev[p], enabled: !prev[p].enabled } };
+      // Auto-expand when enabling
+      if (!prev[p].enabled) setExpandedProto(p);
+      return next;
+    });
   };
 
   const addCommand = (p: string) => {
@@ -196,9 +271,7 @@ export default function DeviceEditorPage() {
       ...prev,
       [p]: {
         ...prev[p],
-        commands: prev[p].commands.map((c, i) =>
-          i === idx ? { ...c, [field]: val } : c
-        ),
+        commands: prev[p].commands.map((c, i) => i === idx ? { ...c, [field]: val } : c),
       },
     }));
   };
@@ -206,37 +279,37 @@ export default function DeviceEditorPage() {
   const removeCommand = (p: string, idx: number) => {
     setProtocols((prev) => ({
       ...prev,
-      [p]: {
-        ...prev[p],
-        commands: prev[p].commands.filter((_, i) => i !== idx),
-      },
+      [p]: { ...prev[p], commands: prev[p].commands.filter((_, i) => i !== idx) },
     }));
   };
 
   const updateProtoField = (p: string, field: string, val: string) => {
-    setProtocols((prev) => ({
-      ...prev,
-      [p]: { ...prev[p], [field]: val },
-    }));
+    setProtocols((prev) => ({ ...prev, [p]: { ...prev[p], [field]: val } }));
   };
 
   if (loading) {
     return (
       <div className="page-content">
         <div className="skeleton skeleton-heading" />
-        <div className="skeleton" style={{ height: 300 }} />
+        <div style={{ display: "flex", gap: 16, marginTop: 20 }}>
+          <div className="skeleton" style={{ height: 200, flex: 2, borderRadius: 12 }} />
+          <div className="skeleton" style={{ height: 200, flex: 1, borderRadius: 12 }} />
+        </div>
+        <div className="skeleton" style={{ height: 300, marginTop: 16, borderRadius: 12 }} />
       </div>
     );
   }
 
   return (
     <div className="page-content">
-      <div className="page-header">
-        <div>
-          <h1>{isNew ? "Create Device Profile" : "Edit Device Profile"}</h1>
-          <p className="subhead">{isNew ? "Define a new device for the library" : deviceId}</p>
+      {/* ── Header ── */}
+      <div className="de-header">
+        <div className="de-header__left">
+          <Link to="/devices" className="de-back">Device Library</Link>
+          <span className="de-back-sep">/</span>
+          <span className="de-back-current">{isNew ? "New Device" : deviceId}</span>
         </div>
-        <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+        <div className="de-header__actions">
           <div className="mode-toggle">
             <button
               className={`mode-toggle__btn${mode === "form" ? " mode-toggle__btn--active" : ""}`}
@@ -251,192 +324,343 @@ export default function DeviceEditorPage() {
               }}
             >JSON</button>
           </div>
-          <Link to="/devices" className="button">Back to Library</Link>
+          {!isNew && (
+            <button className="button" onClick={handleClone}>Clone</button>
+          )}
+          <button
+            className="button primary"
+            onClick={handleSave}
+            disabled={saving || (mode === "json" && !!jsonError)}
+          >
+            {saving ? "Saving..." : isNew ? "Create Device" : "Save Changes"}
+          </button>
         </div>
       </div>
 
-      {error && <div className="card error" role="alert" style={{ marginBottom: 16 }}>{error}</div>}
-      {success && <p style={{ color: "#059669", fontWeight: 600, marginBottom: 16 }}>{success}</p>}
+      {/* ── Toast messages ── */}
+      {success && <div className="de-toast de-toast--success">{success}</div>}
+      {error && <div className="de-toast de-toast--error">{error} <button onClick={() => setError(null)} className="de-toast__close">x</button></div>}
 
       {mode === "json" ? (
-        <div className="card" style={{ marginBottom: 16, padding: 0, overflow: "hidden" }}>
+        /* ── JSON mode ── */
+        <div className="de-json-wrap">
           <JsonEditor
             value={jsonText}
             onChange={(v) => setJsonText(v)}
             onValidationError={setJsonError}
-            height="500px"
+            height="600px"
           />
           {jsonError && (
-            <div style={{ padding: "8px 12px", background: "rgba(220,38,38,0.06)", color: "#dc2626", fontSize: 13 }}>
-              {jsonError}
-            </div>
+            <div className="de-json-error">{jsonError}</div>
           )}
         </div>
       ) : (
-      <>
-      {/* Basic info */}
-      <div className="card" style={{ marginBottom: 16 }}>
-        <h2 style={{ margin: "0 0 16px", fontSize: 16 }}>Basic Info</h2>
-        <div className="form-row">
-          <div className="form-group" style={{ flex: 1 }}>
-            <label className="label">Device ID</label>
-            <input className="input" value={deviceId} onChange={(e) => setDeviceId(e.target.value)} disabled={!isNew} placeholder="sony-xbr-65x900h" />
-            {isNew && <p className="form-hint">Slug format, e.g. sony-xbr-65x900h</p>}
-          </div>
-          <div className="form-group" style={{ flex: 1 }}>
-            <label className="label">Category</label>
-            <select className="input" value={category} onChange={(e) => setCategory(e.target.value)}>
-              {CATEGORIES.map((c) => (
-                <option key={c} value={c}>{c}</option>
-              ))}
-            </select>
-          </div>
-        </div>
-        <div className="form-row">
-          <div className="form-group" style={{ flex: 1 }}>
-            <label className="label">Manufacturer</label>
-            <input className="input" value={manufacturer} onChange={(e) => setManufacturer(e.target.value)} placeholder="Sony" />
-          </div>
-          <div className="form-group" style={{ flex: 1 }}>
-            <label className="label">Model</label>
-            <input className="input" value={model} onChange={(e) => setModel(e.target.value)} placeholder="XBR-65X900H" />
-          </div>
-        </div>
-      </div>
-
-      {/* Capabilities */}
-      <div className="card" style={{ marginBottom: 16 }}>
-        <h2 style={{ margin: "0 0 16px", fontSize: 16 }}>Capabilities</h2>
-        <div className="cap-grid">
-          {[
-            { key: "discretePower", label: "Discrete Power", val: discretePower, set: setDiscretePower },
-            { key: "volumeControl", label: "Volume Control", val: volumeControl, set: setVolumeControl },
-            { key: "inputSelect", label: "Input Select", val: inputSelect, set: setInputSelect },
-            { key: "feedback", label: "Feedback", val: feedback, set: setFeedback },
-          ].map(({ key, label, val, set }) => (
-            <div
-              key={key}
-              className={`cap-item ${val ? "cap--true" : "cap--false"}`}
-              style={{ cursor: "pointer" }}
-              onClick={() => set(!val)}
-            >
-              <div className="cap-icon">{val ? "\u2713" : "\u2014"}</div>
-              {label}
+        /* ── Form mode ── */
+        <>
+          {/* ── Identity + Summary row ── */}
+          <div className="de-top-row">
+            <div className="de-identity card">
+              <div className="de-identity__icon" style={{ background: getCategoryColor(category) }}>
+                {CATEGORY_ICONS[category] ?? "DV"}
+              </div>
+              <div className="de-identity__fields">
+                <h2 className="de-identity__title">
+                  {isNew ? "New Device" : `${manufacturer || "Device"} ${model || ""}`}
+                </h2>
+                <div className="de-form-grid">
+                  <div className="de-field">
+                    <label className="de-label">Device ID</label>
+                    <input
+                      className="de-input"
+                      value={deviceId}
+                      onChange={(e) => setDeviceId(e.target.value)}
+                      disabled={!isNew}
+                      placeholder="manufacturer-model"
+                    />
+                  </div>
+                  <div className="de-field">
+                    <label className="de-label">Category</label>
+                    <select className="de-input" value={category} onChange={(e) => setCategory(e.target.value)}>
+                      {CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
+                    </select>
+                  </div>
+                  <div className="de-field">
+                    <label className="de-label">Manufacturer</label>
+                    <input className="de-input" value={manufacturer} onChange={(e) => setManufacturer(e.target.value)} placeholder="Sony" />
+                  </div>
+                  <div className="de-field">
+                    <label className="de-label">Model</label>
+                    <input className="de-input" value={model} onChange={(e) => setModel(e.target.value)} placeholder="XBR-65X900H" />
+                  </div>
+                  <div className="de-field de-field--full">
+                    <label className="de-label">SIMPL+ Module</label>
+                    <input className="de-input" value={sourceModule} onChange={(e) => setSourceModule(e.target.value)} placeholder="Optional .usp file name" />
+                  </div>
+                </div>
+              </div>
             </div>
-          ))}
-        </div>
-        <div className="form-row" style={{ marginTop: 12 }}>
-          <div className="form-group" style={{ flex: 1 }}>
-            <label className="label">Warmup (ms)</label>
-            <input className="input" type="number" value={warmupMs} onChange={(e) => setWarmupMs(e.target.value)} placeholder="0" />
-          </div>
-          <div className="form-group" style={{ flex: 1 }}>
-            <label className="label">Cooldown (ms)</label>
-            <input className="input" type="number" value={cooldownMs} onChange={(e) => setCooldownMs(e.target.value)} placeholder="0" />
-          </div>
-        </div>
-      </div>
 
-      {/* Protocols */}
-      <div className="card" style={{ marginBottom: 16 }}>
-        <h2 style={{ margin: "0 0 16px", fontSize: 16 }}>Protocols</h2>
-        <div className="badge-row" style={{ marginBottom: 16 }}>
-          {PROTOCOLS.map((p) => (
-            <button
-              key={p}
-              className={`pill ${protocols[p].enabled ? "pill--checked pill--ip" : "pill--unchecked"}`}
-              onClick={() => toggleProtocol(p)}
-              type="button"
-            >
-              {p}
-            </button>
-          ))}
-        </div>
-
-        {PROTOCOLS.filter((p) => protocols[p].enabled).map((p) => (
-          <div key={p} className="protocol-section">
-            <h3 style={{ margin: "0 0 12px", fontSize: 14, textTransform: "uppercase" }}>{p} Protocol</h3>
-
-            {(p === "ip" || p === "bacnet" || p === "modbus" || p === "pjlink") && (
-              <div className="form-group">
-                <label className="label">Default Port</label>
-                <input className="input" type="number" value={protocols[p].port ?? ""} onChange={(e) => updateProtoField(p, "port", e.target.value)} placeholder="23" style={{ maxWidth: 200 }} />
+            <div className="de-summary card">
+              <h3 className="de-section-title">Quick Stats</h3>
+              <div className="de-stat-grid">
+                <div className="de-stat">
+                  <span className="de-stat__value">{enabledProtocols.length}</span>
+                  <span className="de-stat__label">Protocols</span>
+                </div>
+                <div className="de-stat">
+                  <span className="de-stat__value">{cmdTotal}</span>
+                  <span className="de-stat__label">Commands</span>
+                </div>
+                <div className="de-stat">
+                  <span className="de-stat__value">{[discretePower, volumeControl, inputSelect, feedback].filter(Boolean).length}</span>
+                  <span className="de-stat__label">Capabilities</span>
+                </div>
+                <div className="de-stat">
+                  <span className="de-stat__value">{usage.length}</span>
+                  <span className="de-stat__label">Rooms</span>
+                </div>
               </div>
+              {usage.length > 0 && (
+                <div className="de-usage-list">
+                  {usage.map(u => (
+                    <Link key={`${u.roomId}-${u.role}`} to={`/rooms/${u.roomId}`} className="de-usage-item">
+                      {u.roomName} <span className="de-usage-role">{u.role}</span>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* ── Capabilities ── */}
+          <div className="card de-section">
+            <h3 className="de-section-title">Capabilities</h3>
+            <div className="de-caps-grid">
+              {([
+                { key: "discretePower", label: "Discrete Power", desc: "Separate ON/OFF commands", val: discretePower, set: setDiscretePower },
+                { key: "volumeControl", label: "Volume Control", desc: "Analog level control", val: volumeControl, set: setVolumeControl },
+                { key: "inputSelect", label: "Input Select", desc: "Source switching", val: inputSelect, set: setInputSelect },
+                { key: "feedback", label: "Feedback", desc: "Device reports state", val: feedback, set: setFeedback },
+              ] as const).map(({ key, label, desc, val, set }) => (
+                <button
+                  key={key}
+                  type="button"
+                  className={`de-cap-card${val ? " de-cap-card--active" : ""}`}
+                  onClick={() => set(!val)}
+                >
+                  <span className="de-cap-card__check">{val ? "\u2713" : ""}</span>
+                  <span className="de-cap-card__label">{label}</span>
+                  <span className="de-cap-card__desc">{desc}</span>
+                </button>
+              ))}
+            </div>
+            <div className="de-form-grid" style={{ marginTop: 16, maxWidth: 400 }}>
+              <div className="de-field">
+                <label className="de-label">Warmup (ms)</label>
+                <input className="de-input" type="number" value={warmupMs} onChange={(e) => setWarmupMs(e.target.value)} placeholder="0" />
+              </div>
+              <div className="de-field">
+                <label className="de-label">Cooldown (ms)</label>
+                <input className="de-input" type="number" value={cooldownMs} onChange={(e) => setCooldownMs(e.target.value)} placeholder="0" />
+              </div>
+            </div>
+          </div>
+
+          {/* ── Protocols ── */}
+          <div className="card de-section">
+            <h3 className="de-section-title">Protocols &amp; Commands</h3>
+            <p className="de-section-hint">Select which protocols this device supports, then add commands for each.</p>
+
+            {/* Protocol toggle pills */}
+            <div className="de-proto-toggles">
+              {PROTOCOLS.map((p) => {
+                const meta = PROTOCOL_META[p];
+                const enabled = protocols[p]?.enabled;
+                return (
+                  <button
+                    key={p}
+                    type="button"
+                    className={`de-proto-pill${enabled ? " de-proto-pill--active" : ""}`}
+                    style={enabled ? { borderColor: meta.color, color: meta.color } : {}}
+                    onClick={() => toggleProtocol(p)}
+                  >
+                    <span className="de-proto-pill__icon" style={enabled ? { background: meta.color } : {}}>
+                      {meta.icon}
+                    </span>
+                    {meta.label}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Expanded protocol cards */}
+            {enabledProtocols.length === 0 && (
+              <p className="de-empty-hint">No protocols enabled. Click a protocol above to add it.</p>
             )}
 
-            {p === "serial" && (
-              <div className="form-group">
-                <label className="label">Baud Rate</label>
-                <input className="input" type="number" value={protocols[p].baudRate ?? ""} onChange={(e) => updateProtoField(p, "baudRate", e.target.value)} placeholder="9600" style={{ maxWidth: 200 }} />
-              </div>
-            )}
+            {enabledProtocols.map(p => {
+              const meta = PROTOCOL_META[p];
+              const state = protocols[p];
+              const isExpanded = expandedProto === p;
 
-            {p === "ir" && (
-              <div className="form-group">
-                <label className="label">Driver File</label>
-                <input className="input" value={protocols[p].driverFile ?? ""} onChange={(e) => updateProtoField(p, "driverFile", e.target.value)} placeholder="Sony XBR-65.ir" style={{ maxWidth: 300 }} />
-              </div>
-            )}
+              return (
+                <div key={p} className="de-proto-card" style={{ borderLeftColor: meta.color }}>
+                  <button
+                    type="button"
+                    className="de-proto-card__header"
+                    onClick={() => setExpandedProto(isExpanded ? null : p)}
+                  >
+                    <span className="de-proto-card__icon" style={{ background: meta.color }}>{meta.icon}</span>
+                    <span className="de-proto-card__title">{meta.label}</span>
+                    <span className="de-proto-card__count">{state.commands.length} cmd{state.commands.length !== 1 ? "s" : ""}</span>
+                    <span className={`de-proto-card__chevron${isExpanded ? " de-proto-card__chevron--open" : ""}`}>
+                      {"\u25B6"}
+                    </span>
+                  </button>
 
-            <label className="label" style={{ marginTop: 8 }}>Commands</label>
-            {protocols[p].commands.map((cmd, idx) => (
-              <div key={idx} className="command-editor-row">
-                <input className="input" placeholder="Command name" value={cmd.name} onChange={(e) => updateCommand(p, idx, "name", e.target.value)} />
-                <input className="input" placeholder="Command value" value={cmd.value} onChange={(e) => updateCommand(p, idx, "value", e.target.value)} />
-                <button className="button" onClick={() => removeCommand(p, idx)} style={{ fontSize: 12, padding: "6px 10px" }}>X</button>
-              </div>
-            ))}
-            <button className="button" onClick={() => addCommand(p)} style={{ fontSize: 12, marginTop: 4 }}>+ Add Command</button>
+                  {isExpanded && (
+                    <div className="de-proto-card__body">
+                      {/* Protocol-specific settings */}
+                      <div className="de-proto-settings">
+                        {(p === "ir") && (
+                          <div className="de-field">
+                            <label className="de-label">IR Driver File</label>
+                            <input className="de-input" value={state.driverFile ?? ""} onChange={(e) => updateProtoField(p, "driverFile", e.target.value)} placeholder="Sony_XBR.ir" />
+                          </div>
+                        )}
+                        {(p === "serial") && (
+                          <div className="de-form-grid">
+                            <div className="de-field">
+                              <label className="de-label">Baud Rate</label>
+                              <select className="de-input" value={state.baudRate ?? "9600"} onChange={(e) => updateProtoField(p, "baudRate", e.target.value)}>
+                                {["1200", "2400", "4800", "9600", "19200", "38400", "57600", "115200"].map(b => (
+                                  <option key={b} value={b}>{b}</option>
+                                ))}
+                              </select>
+                            </div>
+                            <div className="de-field">
+                              <label className="de-label">Data Bits</label>
+                              <select className="de-input" value={state.dataBits ?? "8"} onChange={(e) => updateProtoField(p, "dataBits", e.target.value)}>
+                                {["7", "8"].map(d => <option key={d} value={d}>{d}</option>)}
+                              </select>
+                            </div>
+                            <div className="de-field">
+                              <label className="de-label">Parity</label>
+                              <select className="de-input" value={state.parity ?? "none"} onChange={(e) => updateProtoField(p, "parity", e.target.value)}>
+                                {["none", "odd", "even"].map(v => <option key={v} value={v}>{v}</option>)}
+                              </select>
+                            </div>
+                            <div className="de-field">
+                              <label className="de-label">Stop Bits</label>
+                              <select className="de-input" value={state.stopBits ?? "1"} onChange={(e) => updateProtoField(p, "stopBits", e.target.value)}>
+                                {["1", "2"].map(s => <option key={s} value={s}>{s}</option>)}
+                              </select>
+                            </div>
+                          </div>
+                        )}
+                        {(["ip", "bacnet", "modbus", "pjlink"].includes(p)) && (
+                          <div className="de-form-grid" style={{ maxWidth: 400 }}>
+                            <div className="de-field">
+                              <label className="de-label">Default Port</label>
+                              <input className="de-input" type="number" value={state.port ?? ""} onChange={(e) => updateProtoField(p, "port", e.target.value)} placeholder="23" />
+                            </div>
+                            {(p === "ip") && (
+                              <div className="de-field">
+                                <label className="de-label">Type</label>
+                                <select className="de-input" value={state.type ?? "tcp"} onChange={(e) => updateProtoField(p, "type", e.target.value)}>
+                                  {["tcp", "udp"].map(t => <option key={t} value={t}>{t}</option>)}
+                                </select>
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Command table */}
+                      <div className="de-cmd-section">
+                        <div className="de-cmd-header">
+                          <span className="de-label">Commands</span>
+                          <button type="button" className="button" style={{ fontSize: 12, padding: "4px 12px" }} onClick={() => addCommand(p)}>
+                            + Add
+                          </button>
+                        </div>
+
+                        {state.commands.length === 0 ? (
+                          <p className="de-empty-hint" style={{ margin: "8px 0" }}>
+                            No commands yet. Click "+ Add" to define commands.
+                          </p>
+                        ) : (
+                          <div className="de-cmd-table">
+                            <div className="de-cmd-row de-cmd-row--header">
+                              <span>Command Name</span>
+                              <span>Value / Hex String</span>
+                              <span></span>
+                            </div>
+                            {state.commands.map((cmd, idx) => (
+                              <div key={idx} className="de-cmd-row">
+                                <input
+                                  className="de-input"
+                                  placeholder="powerOn"
+                                  value={cmd.name}
+                                  onChange={(e) => updateCommand(p, idx, "name", e.target.value)}
+                                />
+                                <input
+                                  className="de-input de-input--mono"
+                                  placeholder="\\xFF\\x30..."
+                                  value={cmd.value}
+                                  onChange={(e) => updateCommand(p, idx, "value", e.target.value)}
+                                />
+                                <button
+                                  type="button"
+                                  className="de-cmd-remove"
+                                  onClick={() => removeCommand(p, idx)}
+                                  title="Remove command"
+                                >
+                                  x
+                                </button>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
-        ))}
-      </div>
 
-      </>
+          {/* ── Danger Zone ── */}
+          {!isNew && (
+            <div className="card de-section de-danger-zone">
+              <h3 className="de-section-title" style={{ color: "#dc2626" }}>Danger Zone</h3>
+              {!confirmDelete ? (
+                <button className="button danger" onClick={() => setConfirmDelete(true)}>
+                  Delete Device Profile
+                </button>
+              ) : (
+                <div className="de-confirm-delete">
+                  <p>Are you sure you want to delete <strong>{deviceId}</strong>? This cannot be undone.</p>
+                  <div style={{ display: "flex", gap: 8 }}>
+                    <button className="button danger" onClick={handleDelete}>Yes, Delete</button>
+                    <button className="button" onClick={() => setConfirmDelete(false)}>Cancel</button>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+        </>
       )}
-
-      {/* Actions */}
-      <div style={{ display: "flex", gap: 8 }}>
-        <button className="button primary" onClick={() => {
-          if (mode === "json") {
-            try {
-              const parsed = JSON.parse(jsonText);
-              setDeviceId(parsed.id ?? "");
-              setManufacturer(parsed.manufacturer ?? "");
-              setModel(parsed.model ?? "");
-              setCategory(parsed.category ?? "display");
-              setDiscretePower(parsed.capabilities?.discretePower ?? false);
-              setVolumeControl(parsed.capabilities?.volumeControl ?? false);
-              setInputSelect(parsed.capabilities?.inputSelect ?? false);
-              setFeedback(parsed.capabilities?.feedback ?? false);
-              setWarmupMs(parsed.capabilities?.warmupMs?.toString() ?? "");
-              setCooldownMs(parsed.capabilities?.cooldownMs?.toString() ?? "");
-              // Rebuild protocol state from JSON
-              const protoState: Record<string, ProtocolState> = {};
-              for (const p of PROTOCOLS) {
-                const existing = parsed.protocols?.[p];
-                if (existing && typeof existing === "object") {
-                  const commands = existing.commands
-                    ? Object.entries(existing.commands as Record<string, string>).map(([name, value]) => ({ name, value }))
-                    : [];
-                  protoState[p] = { enabled: true, commands, port: existing.port?.toString(), baudRate: existing.baudRate?.toString(), driverFile: existing.driverFile?.toString() };
-                } else {
-                  protoState[p] = emptyProtocolState();
-                }
-              }
-              setProtocols(protoState);
-            } catch { /* validation error already shown */ }
-          }
-          handleSave();
-        }} disabled={saving || (mode === "json" && !!jsonError)}>
-          {saving ? "Saving..." : isNew ? "Create Device" : "Save Changes"}
-        </button>
-        {!isNew && (
-          <>
-            <button className="button" onClick={handleClone}>Clone</button>
-            <button className="button danger" onClick={handleDelete}>Delete</button>
-          </>
-        )}
-      </div>
     </div>
   );
+}
+
+function getCategoryColor(cat: string): string {
+  const colors: Record<string, string> = {
+    display: "#2563eb", audio: "#7c3aed", receiver: "#0d9488",
+    lighting: "#d97706", shades: "#059669", hvac: "#ea580c",
+    security: "#dc2626", matrix: "#2563eb", dsp: "#7c3aed",
+    media: "#0d9488", gateway: "#ca8a04",
+  };
+  return colors[cat] ?? "#64748b";
 }

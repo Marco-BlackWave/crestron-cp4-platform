@@ -45,6 +45,19 @@ namespace CrestronCP4.ProcessorSide.Bindings
             BindDigitalInput(roomId, offset, JoinMap.Digital.VolumeUp, "Volume Up");
             BindDigitalInput(roomId, offset, JoinMap.Digital.VolumeDown, "Volume Down");
             BindDigitalInput(roomId, offset, JoinMap.Digital.MuteToggle, "Mute Toggle");
+            BindDigitalInput(roomId, offset, JoinMap.Digital.PowerOn, "Power On");
+            BindDigitalInput(roomId, offset, JoinMap.Digital.PowerOff, "Power Off");
+            BindDigitalInput(roomId, offset, JoinMap.Digital.MediaPlayPause, "Media Play/Pause");
+            BindDigitalInput(roomId, offset, JoinMap.Digital.MediaStop, "Media Stop");
+            BindDigitalInput(roomId, offset, JoinMap.Digital.MediaUp, "Media Up");
+            BindDigitalInput(roomId, offset, JoinMap.Digital.MediaDown, "Media Down");
+            BindDigitalInput(roomId, offset, JoinMap.Digital.MediaLeft, "Media Left");
+            BindDigitalInput(roomId, offset, JoinMap.Digital.MediaRight, "Media Right");
+            BindDigitalInput(roomId, offset, JoinMap.Digital.MediaSelect, "Media Select");
+            BindDigitalInput(roomId, offset, JoinMap.Digital.MediaMenu, "Media Menu");
+            BindDigitalInput(roomId, offset, JoinMap.Digital.MediaHome, "Media Home");
+            BindDigitalInput(roomId, offset, JoinMap.Digital.MediaNext, "Media Next");
+            BindDigitalInput(roomId, offset, JoinMap.Digital.MediaPrevious, "Media Previous");
             for (int i = 0; i < 4; i++)
                 BindDigitalInput(roomId, offset, JoinMap.Digital.LightingScene1 + i, "Lighting Scene " + (i + 1));
             BindDigitalInput(roomId, offset, JoinMap.Digital.ShadeOpen, "Shade Open");

@@ -128,7 +128,7 @@ export default function RoomsListPage() {
                     )}
                   </div>
                   {room.sources.length > 0 && (
-                    <p style={{ margin: "8px 0 0", fontSize: 13, color: "#64748b" }}>
+                    <p style={{ margin: "8px 0 0", fontSize: 13, color: "var(--text-muted)" }}>
                       Sources: {room.sources.join(", ")}
                     </p>
                   )}

@@ -49,3 +49,23 @@ export async function activateProject(id: string): Promise<void> {
   const resp = await fetch(`${BASE}/${id}/activate`, { method: "POST" });
   if (!resp.ok) throw new Error(await resp.text());
 }
+
+export interface RepoBootstrapResult {
+  message: string;
+  repoPath: string;
+  gitInitialized: boolean;
+  gitMessage: string;
+}
+
+export async function bootstrapProjectRepo(
+  id: string,
+  options?: { initializeGit?: boolean; repoFolderName?: string }
+): Promise<RepoBootstrapResult> {
+  const resp = await fetch(`${BASE}/${id}/bootstrap-repo`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(options ?? {}),
+  });
+  if (!resp.ok) throw new Error(await resp.text());
+  return resp.json();
+}

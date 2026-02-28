@@ -28,6 +28,10 @@ namespace CrestronCP4.ProcessorSide.Configuration
             public const int VolumeDown = 13;
             public const int MuteToggle = 14;
             public const int MuteFeedback = 15;
+            public const int PowerOn = 16;
+            public const int PowerOff = 17;
+            public const int MediaPlayPause = 18;
+            public const int MediaStop = 19;
             public const int LightingScene1 = 20;
             public const int LightingScene2 = 21;
             public const int LightingScene3 = 22;
@@ -66,6 +70,17 @@ namespace CrestronCP4.ProcessorSide.Configuration
             public const int SecurityZone6Fb = 68;
             public const int SecurityZone7Fb = 69;
             public const int SecurityZone8Fb = 70;
+
+            // Media remote controls (Apple TV / streaming transport)
+            public const int MediaUp = 71;
+            public const int MediaDown = 72;
+            public const int MediaLeft = 73;
+            public const int MediaRight = 74;
+            public const int MediaSelect = 75;
+            public const int MediaMenu = 76;
+            public const int MediaHome = 77;
+            public const int MediaNext = 78;
+            public const int MediaPrevious = 79;
         }
 
         // Analog join offsets (per room)

@@ -116,21 +116,21 @@ export default function DeviceDetailPage() {
 
             {/* Serial settings */}
             {s.baudRate != null && (
-              <p style={{ fontSize: 14, color: "#475569", marginBottom: 12 }}>
+              <p style={{ fontSize: 14, color: "var(--text-secondary)", marginBottom: 12 }}>
                 {String(s.baudRate)} baud, {String(s.dataBits ?? 8)}/{String(s.parity ?? "N")}/{String(s.stopBits ?? 1)}
               </p>
             )}
 
             {/* IP settings */}
             {s.port != null && s.baudRate == null && (
-              <p style={{ fontSize: 14, color: "#475569", marginBottom: 12 }}>
+              <p style={{ fontSize: 14, color: "var(--text-secondary)", marginBottom: 12 }}>
                 Port: {String(s.port)}{s.type ? ` (${String(s.type)})` : ""}
               </p>
             )}
 
             {/* Driver file */}
             {s.driverFile != null && (
-              <p style={{ fontSize: 14, color: "#475569", marginBottom: 12 }}>
+              <p style={{ fontSize: 14, color: "var(--text-secondary)", marginBottom: 12 }}>
                 Driver: <code className="mono">{String(s.driverFile)}</code>
               </p>
             )}
@@ -151,7 +151,7 @@ export default function DeviceDetailPage() {
                 </tbody>
               </table>
             ) : (
-              <p style={{ color: "#94a3b8", fontSize: 14 }}>No commands defined for this protocol.</p>
+              <p style={{ color: "var(--text-faint)", fontSize: 14 }}>No commands defined for this protocol.</p>
             )}
           </section>
         );
@@ -173,7 +173,7 @@ export default function DeviceDetailPage() {
         </section>
       ) : (
         <div className="card">
-          <p style={{ color: "#94a3b8", margin: 0 }}>Not used in any room.</p>
+          <p style={{ color: "var(--text-faint)", margin: 0 }}>Not used in any room.</p>
         </div>
       )}
     </div>

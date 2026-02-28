@@ -1,9 +1,9 @@
 {
   "schemaVersion": "1.0",
-  "projectId": "test-villa",
+  "projectId": "d",
   "processor": "CP4",
   "system": {
-    "name": "Test Villa",
+    "name": "d",
     "eiscIpId": "0x03",
     "eiscIpAddress": "127.0.0.2",
     "processors": [
@@ -17,8 +17,8 @@
   },
   "rooms": [
     {
-      "id": "living-room",
-      "name": "Living Room",
+      "id": "marco",
+      "name": "marco",
       "joinOffset": 0,
       "processorId": "main",
       "roomType": "standard",
@@ -26,19 +26,22 @@
         "av",
         "lighting"
       ],
-      "devices": {},
+      "devices": {
+        "display": {
+          "profileId": "lg-webos",
+          "protocol": "ip",
+          "address": ""
+        }
+      },
       "sources": []
     },
     {
-      "id": "master-bedroom",
-      "name": "Master Bedroom",
+      "id": "equipment-rack",
+      "name": "Equipment Rack",
       "joinOffset": 100,
       "processorId": "main",
-      "roomType": "standard",
-      "subsystems": [
-        "av",
-        "lighting"
-      ],
+      "roomType": "technical",
+      "subsystems": [],
       "devices": {},
       "sources": []
     }

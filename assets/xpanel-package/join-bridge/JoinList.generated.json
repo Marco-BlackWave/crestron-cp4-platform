@@ -1,0 +1,59 @@
+{
+  "schemaVersion": "1.0",
+  "processor": "CP4",
+  "projectId": "d",
+  "debugMode": false,
+  "joins": {
+    "digital": [
+      {
+        "join": 1,
+        "name": "Master Bedroom_Power",
+        "direction": "output"
+      },
+      {
+        "join": 2,
+        "name": "Master Bedroom_PowerFb",
+        "direction": "input"
+      }
+    ],
+    "analog": [
+      {
+        "join": 1,
+        "name": "Master Bedroom_Volume",
+        "direction": "output"
+      },
+      {
+        "join": 2,
+        "name": "Master Bedroom_VolumeFb",
+        "direction": "input"
+      },
+      {
+        "join": 3,
+        "name": "Master Bedroom_Source",
+        "direction": "output"
+      },
+      {
+        "join": 4,
+        "name": "Master Bedroom_SourceFb",
+        "direction": "input"
+      },
+      {
+        "join": 10,
+        "name": "Master Bedroom_LightLevel",
+        "direction": "output"
+      },
+      {
+        "join": 11,
+        "name": "Master Bedroom_LightLevelFb",
+        "direction": "input"
+      }
+    ],
+    "serial": [
+      {
+        "join": 1,
+        "name": "Master Bedroom_SourceName",
+        "direction": "input"
+      }
+    ]
+  }
+}

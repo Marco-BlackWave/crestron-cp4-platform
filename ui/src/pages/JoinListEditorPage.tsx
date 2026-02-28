@@ -124,7 +124,7 @@ export default function JoinListEditorPage() {
                 )}
                 {stats?.total === 0 && (
                   <tr>
-                    <td colSpan={4} style={{ textAlign: "center", color: "#64748b" }}>
+                    <td colSpan={4} style={{ textAlign: "center", color: "var(--text-muted)" }}>
                       No joins configured.
                     </td>
                   </tr>

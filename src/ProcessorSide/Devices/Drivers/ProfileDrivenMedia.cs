@@ -93,6 +93,14 @@ namespace CrestronCP4.ProcessorSide.Devices.Drivers
             }
         }
 
+        public void Up() => SendMediaCommand("up");
+        public void Down() => SendMediaCommand("down");
+        public void Left() => SendMediaCommand("left");
+        public void Right() => SendMediaCommand("right");
+        public void Select() => SendMediaCommand("select");
+        public void Menu() => SendMediaCommand("menu");
+        public void Home() => SendMediaCommand("home");
+
         private bool SendMediaCommand(string action)
         {
             // First try profile media transport commands

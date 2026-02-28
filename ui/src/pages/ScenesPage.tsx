@@ -53,7 +53,7 @@ export default function ScenesPage() {
                 Target: {scene.rooms.join(", ")}
               </p>
 
-              <h4 style={{ margin: "0 0 6px", fontSize: 12, textTransform: "uppercase", letterSpacing: "0.08em", color: "#64748b" }}>
+              <h4 style={{ margin: "0 0 6px", fontSize: 12, textTransform: "uppercase", letterSpacing: "0.08em", color: "var(--text-muted)" }}>
                 Actions
               </h4>
               <ul className="scene-actions">

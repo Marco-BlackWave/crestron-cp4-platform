@@ -6,7 +6,30 @@
   "protocols": {
     "ip": {
       "port": 80,
-      "type": "tcp"
+      "type": "tcp",
+      "commands": {
+        "play": "POST /ctrl-int/1/play HTTP/1.1\r\nHost: apple-tv\r\nContent-Length: 0\r\n\r\n",
+        "pause": "POST /ctrl-int/1/pause HTTP/1.1\r\nHost: apple-tv\r\nContent-Length: 0\r\n\r\n",
+        "stop": "POST /ctrl-int/1/stop HTTP/1.1\r\nHost: apple-tv\r\nContent-Length: 0\r\n\r\n",
+        "next": "POST /ctrl-int/1/nextitem HTTP/1.1\r\nHost: apple-tv\r\nContent-Length: 0\r\n\r\n",
+        "previous": "POST /ctrl-int/1/previtem HTTP/1.1\r\nHost: apple-tv\r\nContent-Length: 0\r\n\r\n",
+        "menu": "POST /ctrl-int/1/menu HTTP/1.1\r\nHost: apple-tv\r\nContent-Length: 0\r\n\r\n",
+        "home": "POST /ctrl-int/1/topmenu HTTP/1.1\r\nHost: apple-tv\r\nContent-Length: 0\r\n\r\n",
+        "select": "POST /ctrl-int/1/select HTTP/1.1\r\nHost: apple-tv\r\nContent-Length: 0\r\n\r\n",
+        "up": "POST /ctrl-int/1/up HTTP/1.1\r\nHost: apple-tv\r\nContent-Length: 0\r\n\r\n",
+        "down": "POST /ctrl-int/1/down HTTP/1.1\r\nHost: apple-tv\r\nContent-Length: 0\r\n\r\n",
+        "left": "POST /ctrl-int/1/left HTTP/1.1\r\nHost: apple-tv\r\nContent-Length: 0\r\n\r\n",
+        "right": "POST /ctrl-int/1/right HTTP/1.1\r\nHost: apple-tv\r\nContent-Length: 0\r\n\r\n"
+      }
+    }
+  },
+  "media": {
+    "transportCommands": {
+      "play": "POST /ctrl-int/1/play HTTP/1.1\r\nHost: apple-tv\r\nContent-Length: 0\r\n\r\n",
+      "pause": "POST /ctrl-int/1/pause HTTP/1.1\r\nHost: apple-tv\r\nContent-Length: 0\r\n\r\n",
+      "stop": "POST /ctrl-int/1/stop HTTP/1.1\r\nHost: apple-tv\r\nContent-Length: 0\r\n\r\n",
+      "next": "POST /ctrl-int/1/nextitem HTTP/1.1\r\nHost: apple-tv\r\nContent-Length: 0\r\n\r\n",
+      "previous": "POST /ctrl-int/1/previtem HTTP/1.1\r\nHost: apple-tv\r\nContent-Length: 0\r\n\r\n"
     }
   },
   "capabilities": {

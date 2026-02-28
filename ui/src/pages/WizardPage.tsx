@@ -319,7 +319,7 @@ export default function WizardPage() {
             <div key={i} style={{ marginBottom: 8 }}>
               <strong>{proc.id}</strong>
               <span className="pill" style={{ marginLeft: 8, fontSize: 11 }}>{proc.processor}</span>
-              <span style={{ marginLeft: 8, color: "#64748b", fontSize: 13 }}>
+              <span style={{ marginLeft: 8, color: "var(--text-muted)", fontSize: 13 }}>
                 EISC {proc.eiscIpId} @ {proc.eiscIpAddress}
               </span>
             </div>
@@ -335,7 +335,7 @@ export default function WizardPage() {
                   {room.processorId}
                 </span>
               )}
-              <span style={{ marginLeft: 8, color: "#64748b", fontSize: 13 }}>
+              <span style={{ marginLeft: 8, color: "var(--text-muted)", fontSize: 13 }}>
                 Joins {i * 100 + 1}–{(i + 1) * 100}
               </span>
               <div className="badge-row" style={{ marginTop: 4 }}>

@@ -1,17 +1,38 @@
 import { type ReactNode } from "react";
 import { NavLink } from "react-router";
 
-const mainLinks = [
-  { to: "/", label: "Dashboard", icon: "grid" },
-  { to: "/configure", label: "Configure", icon: "wrench" },
-  { to: "/devices", label: "Devices", icon: "cpu" },
-  { to: "/panel", label: "Panel", icon: "monitor" },
-  { to: "/debug", label: "Debug", icon: "terminal" },
-  { to: "/logic", label: "Logic", icon: "workflow" },
-  { to: "/network", label: "Network", icon: "wifi" },
+const workflowSections = [
+  {
+    heading: "Build",
+    links: [
+      { to: "/", label: "Project", icon: "grid", end: true },
+      { to: "/configure", label: "Configure", icon: "wrench" },
+      { to: "/devices", label: "Devices", icon: "cpu" },
+      { to: "/code", label: "Code", icon: "workflow" },
+    ],
+  },
+  {
+    heading: "Verify",
+    links: [
+      { to: "/validate", label: "Validate", icon: "terminal" },
+      { to: "/panel", label: "Panel", icon: "monitor" },
+      { to: "/prototype-studio", label: "Prototype Studio", icon: "layout" },
+      { to: "/builder-app", label: "Builder App (Full)", icon: "layout" },
+      { to: "/crestron-home", label: "Crestron Home", icon: "home" },
+      { to: "/xpanel-fidelity", label: "XPanel Fidelity", icon: "monitor" },
+      { to: "/network", label: "Network", icon: "wifi" },
+      { to: "/configure/deploy", label: "Deploy", icon: "upload" },
+    ],
+  },
+  {
+    heading: "Reference",
+    links: [
+      { to: "/architecture", label: "Architecture", icon: "layers" },
+      { to: "/agent-guide", label: "Agent Guide", icon: "bot" },
+      { to: "/getting-started", label: "Guide", icon: "help" },
+    ],
+  },
 ];
-
-const helpLink = { to: "/getting-started", label: "Getting Started", icon: "help" };
 
 const icons: Record<string, ReactNode> = {
   grid: (
@@ -70,6 +91,37 @@ const icons: Record<string, ReactNode> = {
       <line x1="12" y1="20" x2="12.01" y2="20" />
     </svg>
   ),
+  upload: (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+      <polyline points="17 8 12 3 7 8" />
+      <line x1="12" y1="3" x2="12" y2="15" />
+    </svg>
+  ),
+  layers: (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <polygon points="12 2 2 7 12 12 22 7 12 2" />
+      <polyline points="2 17 12 22 22 17" />
+      <polyline points="2 12 12 17 22 12" />
+    </svg>
+  ),
+  bot: (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="8" width="18" height="12" rx="2" />
+      <path d="M12 4v4" />
+      <path d="M9 2h6" />
+      <circle cx="9" cy="14" r="1" />
+      <circle cx="15" cy="14" r="1" />
+      <path d="M9 17h6" />
+    </svg>
+  ),
+  layout: (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="3" width="18" height="18" rx="2" />
+      <line x1="3" y1="9" x2="21" y2="9" />
+      <line x1="9" y1="9" x2="9" y2="21" />
+    </svg>
+  ),
 };
 
 export default function NavSidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
@@ -82,30 +134,26 @@ export default function NavSidebar({ open, onClose }: { open: boolean; onClose: 
           <span>Dashboard</span>
         </div>
         <ul className="sidebar-links">
-          {mainLinks.map((link) => (
-            <li key={link.to}>
-              <NavLink
-                to={link.to}
-                end={link.to === "/"}
-                className={({ isActive }) => `sidebar-link ${isActive ? "sidebar-link--active" : ""}`}
-                onClick={onClose}
-              >
-                {icons[link.icon]}
-                {link.label}
-              </NavLink>
+          {workflowSections.map((section) => (
+            <li key={section.heading} className="sidebar-section">
+              <p className="sidebar-section-title">{section.heading}</p>
+              <ul className="sidebar-section-links">
+                {section.links.map((link) => (
+                  <li key={link.to}>
+                    <NavLink
+                      to={link.to}
+                      end={link.end}
+                      className={({ isActive }) => `sidebar-link ${isActive ? "sidebar-link--active" : ""}`}
+                      onClick={onClose}
+                    >
+                      {icons[link.icon]}
+                      {link.label}
+                    </NavLink>
+                  </li>
+                ))}
+              </ul>
             </li>
           ))}
-          <li className="sidebar-divider" />
-          <li>
-            <NavLink
-              to={helpLink.to}
-              className={({ isActive }) => `sidebar-link ${isActive ? "sidebar-link--active" : ""}`}
-              onClick={onClose}
-            >
-              {icons[helpLink.icon]}
-              {helpLink.label}
-            </NavLink>
-          </li>
         </ul>
       </nav>
     </>

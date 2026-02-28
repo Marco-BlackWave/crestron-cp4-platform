@@ -173,7 +173,7 @@ export default function GettingStartedPage() {
                 </Link>
               )}
               {status === "locked" && (
-                <span style={{ fontSize: 12, color: "#94a3b8", flexShrink: 0 }}>
+                <span style={{ fontSize: 12, color: "var(--text-faint)", flexShrink: 0 }}>
                   Complete previous steps
                 </span>
               )}
