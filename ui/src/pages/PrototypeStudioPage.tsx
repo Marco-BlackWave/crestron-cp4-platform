@@ -246,10 +246,12 @@ export default function PrototypeStudioPage() {
     const rect = node.getBoundingClientRect();
     const maxW = Math.max(80, canvasRect.width);
     const maxH = Math.max(60, canvasRect.height);
-    updateWidget(id, {
-      w: Math.max(80, Math.min(maxW, Math.round(rect.width))),
-      h: Math.max(60, Math.min(maxH, Math.round(rect.height))),
-    });
+    const newW = Math.max(80, Math.min(maxW, Math.round(rect.width)));
+    const newH = Math.max(60, Math.min(maxH, Math.round(rect.height)));
+    const widget = widgets.find((w) => w.id === id);
+    if (widget && (widget.w !== newW || widget.h !== newH)) {
+      updateWidget(id, { w: newW, h: newH });
+    }
   };
 
   const removeSelected = () => {
@@ -832,7 +834,6 @@ export default function PrototypeStudioPage() {
                 }}
                 onMouseDown={() => setSelectedId(widget.id)}
                 onContextMenu={(e) => openContextMenu(e, widget.id)}
-                ref={(node) => captureResize(widget.id, node)}
               >
                 <div className="prototype-widget-drag" onMouseDown={(e) => startDrag(widget.id, e)}>
                   {widget.name}
